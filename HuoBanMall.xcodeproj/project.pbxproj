@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA64881B8AC3BB008B5461 /* ManagementModel.m */; };
 		83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA648B1B8AC4E1008B5461 /* ManagementController.m */; };
-		83CA64911B8AF26F008B5461 /* HTDataStatisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA64901B8AF26F008B5461 /* HTDataStatisViewController.m */; };
 		83D4572C1B8AA7910027D452 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D4572B1B8AA7910027D452 /* UserLoginTool.m */; };
 		E61CE6EC4EBF197C9E132636 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D16C2F2959A3DD8CCC1A8D4 /* libPods.a */; };
 		EF6AB17F1B87241900C9F114 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB17E1B87241900C9F114 /* main.m */; };
@@ -19,7 +18,6 @@
 		EF6AB18A1B87241A00C9F114 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF6AB1891B87241A00C9F114 /* Images.xcassets */; };
 		EF6AB18D1B87241A00C9F114 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF6AB18B1B87241A00C9F114 /* LaunchScreen.xib */; };
 		EF6AB1991B87241A00C9F114 /* HuoBanMallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB1981B87241A00C9F114 /* HuoBanMallTests.m */; };
-		EFB67CAD1B8AEFD80037547A /* HTDataStatisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB67CAC1B8AEFD80037547A /* HTDataStatisViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +38,6 @@
 		83CA648A1B8AC4E1008B5461 /* ManagementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagementController.h; sourceTree = "<group>"; };
 		83CA648B1B8AC4E1008B5461 /* ManagementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagementController.m; sourceTree = "<group>"; };
 		83CA648F1B8AF26F008B5461 /* HTDataStatisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTDataStatisViewController.h; sourceTree = "<group>"; };
-		83CA64901B8AF26F008B5461 /* HTDataStatisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTDataStatisViewController.m; sourceTree = "<group>"; };
 		83D4572A1B8AA7910027D452 /* UserLoginTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginTool.h; sourceTree = "<group>"; };
 		83D4572B1B8AA7910027D452 /* UserLoginTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginTool.m; sourceTree = "<group>"; };
 		8D16C2F2959A3DD8CCC1A8D4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,7 +55,6 @@
 		EF6AB1971B87241A00C9F114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF6AB1981B87241A00C9F114 /* HuoBanMallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HuoBanMallTests.m; sourceTree = "<group>"; };
 		EF6AB1A21B87245F00C9F114 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		EFB67CAC1B8AEFD80037547A /* HTDataStatisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTDataStatisViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,15 +155,6 @@
 				83CA648E1B8AF26F008B5461 /* controller */,
 			);
 			path = "DataStatistics(数据统计)";
-			sourceTree = "<group>";
-		};
-		83CA648E1B8AF26F008B5461 /* controller */ = {
-			isa = PBXGroup;
-			children = (
-				83CA648F1B8AF26F008B5461 /* HTDataStatisViewController.h */,
-				83CA64901B8AF26F008B5461 /* HTDataStatisViewController.m */,
-			);
-			path = controller;
 			sourceTree = "<group>";
 		};
 		83D457271B8AA7910027D452 /* Classes */ = {
@@ -450,8 +437,6 @@
 				83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */,
 				83D4572C1B8AA7910027D452 /* UserLoginTool.m in Sources */,
 				EF6AB1851B87241A00C9F114 /* ViewController.m in Sources */,
-				EFB67CAD1B8AEFD80037547A /* HTDataStatisViewController.m in Sources */,
-				83CA64911B8AF26F008B5461 /* HTDataStatisViewController.m in Sources */,
 				EF6AB1821B87241900C9F114 /* AppDelegate.m in Sources */,
 				EF6AB17F1B87241900C9F114 /* main.m in Sources */,
 				83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */,
