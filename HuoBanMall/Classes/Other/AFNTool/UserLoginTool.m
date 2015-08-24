@@ -7,7 +7,7 @@
 //
 
 #import "UserLoginTool.h"
-
+#import <AFNetworking.h>
 
 @interface UserLoginTool()
 
@@ -21,25 +21,25 @@
     
     AFHTTPRequestOperationManager * manager  = [AFHTTPRequestOperationManager manager];
     NSMutableDictionary * paramsOption = [NSMutableDictionary dictionary];
-    paramsOption[@"appKey"] = APPKEY;
-    paramsOption[@"appSecret"] = HuoToAppSecret;
-    NSString * lat = [[NSUserDefaults standardUserDefaults] objectForKey:DWLatitude];
-    NSString * lng = [[NSUserDefaults standardUserDefaults] objectForKey:DWLongitude];
-    paramsOption[@"lat"] = (lat?lat:@(40.0));
-    paramsOption[@"lng"] = (lng?lng:@(116.0));
-    paramsOption[@"timestamp"] = apptimesSince1970;
-    paramsOption[@"operation"] = OPERATION_parame;
-    paramsOption[@"version"] =AppVersion;
-    NSString * token = [[NSUserDefaults standardUserDefaults] stringForKey:AppToken];
-    paramsOption[@"token"] = token?token:@"";
-    paramsOption[@"imei"] = DeviceNo;
-    paramsOption[@"cityCode"] = @"1372";
-    paramsOption[@"cpaCode"] = @"default";
-    if (params != nil) { //传入参数不为空
-       [paramsOption addEntriesFromDictionary:params];
-    }
-    paramsOption[@"sign"] = [NSDictionary asignWithMutableDictionary:paramsOption];  //计算asign
-    [paramsOption removeObjectForKey:@"appSecret"];
+//    paramsOption[@"appKey"] = APPKEY;
+//    paramsOption[@"appSecret"] = HuoToAppSecret;
+//    NSString * lat = [[NSUserDefaults standardUserDefaults] objectForKey:DWLatitude];
+//    NSString * lng = [[NSUserDefaults standardUserDefaults] objectForKey:DWLongitude];
+//    paramsOption[@"lat"] = (lat?lat:@(40.0));
+//    paramsOption[@"lng"] = (lng?lng:@(116.0));
+//    paramsOption[@"timestamp"] = apptimesSince1970;
+//    paramsOption[@"operation"] = OPERATION_parame;
+//    paramsOption[@"version"] =AppVersion;
+//    NSString * token = [[NSUserDefaults standardUserDefaults] stringForKey:AppToken];
+//    paramsOption[@"token"] = token?token:@"";
+//    paramsOption[@"imei"] = DeviceNo;
+//    paramsOption[@"cityCode"] = @"1372";
+//    paramsOption[@"cpaCode"] = @"default";
+//    if (params != nil) { //传入参数不为空
+//       [paramsOption addEntriesFromDictionary:params];
+//    }
+//    paramsOption[@"sign"] = [NSDictionary asignWithMutableDictionary:paramsOption];  //计算asign
+//    [paramsOption removeObjectForKey:@"appSecret"];
     
 //    NSArray * parameaaa = [paramsOption allKeys];
 //    NSMutableString * aaa = [[NSMutableString alloc] init];
@@ -68,25 +68,25 @@
     
     AFHTTPRequestOperationManager * manager  = [AFHTTPRequestOperationManager manager];
     NSMutableDictionary * paramsOption = [NSMutableDictionary dictionary];
-    paramsOption[@"appKey"] = APPKEY;
-    paramsOption[@"appSecret"] = HuoToAppSecret;
-    NSString * lat = [[NSUserDefaults standardUserDefaults] objectForKey:DWLatitude];
-    NSString * lng = [[NSUserDefaults standardUserDefaults] objectForKey:DWLongitude];
-    paramsOption[@"lat"] = lat?lat:@(40.0);
-    paramsOption[@"lng"] = lng?lng:@(116.0);;
-    paramsOption[@"timestamp"] = apptimesSince1970;;
-    paramsOption[@"operation"] = OPERATION_parame;
-    paramsOption[@"version"] = AppVersion;
-    NSString * token = [[NSUserDefaults standardUserDefaults] objectForKey:AppToken];
-    paramsOption[@"token"] = token?token:@"";
-    paramsOption[@"imei"] = DeviceNo;
-    paramsOption[@"cityCode"] = @"1372";
-    paramsOption[@"cpaCode"] = @"default";
-    if (params != nil) { //传入参数不为空
-        [paramsOption addEntriesFromDictionary:params];
-    }
-    paramsOption[@"sign"] = [NSDictionary asignWithMutableDictionary:paramsOption];  //计算asign
-    [paramsOption removeObjectForKey:@"appSecret"];
+//    paramsOption[@"appKey"] = APPKEY;
+//    paramsOption[@"appSecret"] = HuoToAppSecret;
+//    NSString * lat = [[NSUserDefaults standardUserDefaults] objectForKey:DWLatitude];
+//    NSString * lng = [[NSUserDefaults standardUserDefaults] objectForKey:DWLongitude];
+//    paramsOption[@"lat"] = lat?lat:@(40.0);
+//    paramsOption[@"lng"] = lng?lng:@(116.0);;
+//    paramsOption[@"timestamp"] = apptimesSince1970;;
+//    paramsOption[@"operation"] = OPERATION_parame;
+//    paramsOption[@"version"] = AppVersion;
+//    NSString * token = [[NSUserDefaults standardUserDefaults] objectForKey:AppToken];
+//    paramsOption[@"token"] = token?token:@"";
+//    paramsOption[@"imei"] = DeviceNo;
+//    paramsOption[@"cityCode"] = @"1372";
+//    paramsOption[@"cpaCode"] = @"default";
+//    if (params != nil) { //传入参数不为空
+//        [paramsOption addEntriesFromDictionary:params];
+//    }
+//    paramsOption[@"sign"] = [NSDictionary asignWithMutableDictionary:paramsOption];  //计算asign
+//    [paramsOption removeObjectForKey:@"appSecret"];
 //    NSArray * parameaaa = [paramsOption allKeys];
 //    NSMutableString * aaa = [[NSMutableString alloc] init];
 //    for (NSString * a in parameaaa) {
@@ -112,46 +112,46 @@
     
     AFHTTPRequestOperationManager * manager  = [AFHTTPRequestOperationManager manager];
     NSMutableDictionary * paramsOption = [NSMutableDictionary dictionary];
-    paramsOption[@"appKey"] = APPKEY;
-    paramsOption[@"appSecret"] = HuoToAppSecret;
-    NSString * lat = [[NSUserDefaults standardUserDefaults] objectForKey:DWLatitude];
-    NSString * lng = [[NSUserDefaults standardUserDefaults] objectForKey:DWLongitude];
-    paramsOption[@"lat"] = lat?lat:@(40.0);
-    paramsOption[@"lng"] = lng?lng:@(116.0);;
-    paramsOption[@"timestamp"] = apptimesSince1970;;
-    paramsOption[@"operation"] = OPERATION_parame;
-    paramsOption[@"version"] = AppVersion;
-    NSString * token = [[NSUserDefaults standardUserDefaults] objectForKey:AppToken];
-    paramsOption[@"token"] = token?token:@"";
-    paramsOption[@"imei"] = DeviceNo;
-    paramsOption[@"cityCode"] = @"1372";
-    paramsOption[@"cpaCode"] = @"default";
-    if (params != nil) { //传入参数不为空
-        [paramsOption addEntriesFromDictionary:params];
-    }
-    paramsOption[@"sign"] = [NSDictionary asignWithMutableDictionary:paramsOption];  //计算asign
-    [paramsOption removeObjectForKey:@"appSecret"];
-    
-
-    NSData * data = [[paramsOption objectForKey:key] dataUsingEncoding:NSUTF8StringEncoding];
-    [paramsOption removeObjectForKey:key];
-    //    NSArray * parameaaa = [paramsOption allKeys];
-    //    NSMutableString * aaa = [[NSMutableString alloc] init];
-    //    for (NSString * a in parameaaa) {
-    //        [aaa appendString:[NSString stringWithFormat:@"%@=%@&",a,[paramsOption objectForKey:a]]];
-    //    }
-    //    [aaa substringToIndex:aaa.length];
-    //    NSLog(@"--------------------%@",aaa);
-    //    NSLog(@"xxxxxx-----网络请求get参数parame%@",paramsOption);
-    //    NSLog(@"网络请求－－－－post参数%@",paramsOption);
-    [manager POST:urlStr parameters:paramsOption constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFormData:data name:key];
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error);
-    }];
+//    paramsOption[@"appKey"] = APPKEY;
+//    paramsOption[@"appSecret"] = HuoToAppSecret;
+//    NSString * lat = [[NSUserDefaults standardUserDefaults] objectForKey:DWLatitude];
+//    NSString * lng = [[NSUserDefaults standardUserDefaults] objectForKey:DWLongitude];
+//    paramsOption[@"lat"] = lat?lat:@(40.0);
+//    paramsOption[@"lng"] = lng?lng:@(116.0);;
+//    paramsOption[@"timestamp"] = apptimesSince1970;;
+//    paramsOption[@"operation"] = OPERATION_parame;
+//    paramsOption[@"version"] = AppVersion;
+//    NSString * token = [[NSUserDefaults standardUserDefaults] objectForKey:AppToken];
+//    paramsOption[@"token"] = token?token:@"";
+//    paramsOption[@"imei"] = DeviceNo;
+//    paramsOption[@"cityCode"] = @"1372";
+//    paramsOption[@"cpaCode"] = @"default";
+//    if (params != nil) { //传入参数不为空
+//        [paramsOption addEntriesFromDictionary:params];
+//    }
+//    paramsOption[@"sign"] = [NSDictionary asignWithMutableDictionary:paramsOption];  //计算asign
+//    [paramsOption removeObjectForKey:@"appSecret"];
+//    
+//
+//    NSData * data = [[paramsOption objectForKey:key] dataUsingEncoding:NSUTF8StringEncoding];
+//    [paramsOption removeObjectForKey:key];
+//    //    NSArray * parameaaa = [paramsOption allKeys];
+//    //    NSMutableString * aaa = [[NSMutableString alloc] init];
+//    //    for (NSString * a in parameaaa) {
+//    //        [aaa appendString:[NSString stringWithFormat:@"%@=%@&",a,[paramsOption objectForKey:a]]];
+//    //    }
+//    //    [aaa substringToIndex:aaa.length];
+//    //    NSLog(@"--------------------%@",aaa);
+//    //    NSLog(@"xxxxxx-----网络请求get参数parame%@",paramsOption);
+//    //    NSLog(@"网络请求－－－－post参数%@",paramsOption);
+//    [manager POST:urlStr parameters:paramsOption constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        [formData appendPartWithFormData:data name:key];
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        success(responseObject);
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        failure(error);
+//    }];
 //    [manager POST:urlStr parameters:paramsOption success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"-------%@",operation);
 //        success(responseObject);

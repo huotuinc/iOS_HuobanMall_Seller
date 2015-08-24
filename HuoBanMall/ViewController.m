@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "HTDataStatisViewController.h"
 @interface ViewController ()
 
 @end
@@ -17,11 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (IBAction)adasd:(id)sender {
+    HTDataStatisViewController * aa = [[HTDataStatisViewController alloc] init];
+    UINavigationController * cc = [[UINavigationController alloc] initWithRootViewController:aa];
+    [self presentViewController:cc animated:YES completion:nil];
 }
 
 @end
