@@ -9,6 +9,7 @@
 #ifndef HuoBanMall_PrefixHeader_pch
 #define HuoBanMall_PrefixHeader_pch
 
+#import <BlocksKit+UIKit.h>
 
 
 #define a @"abc"
