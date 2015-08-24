@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -39,6 +39,114 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Rwu-19-437">
+            <objects>
+                <navigationController id="h8s-Su-hjh" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JPj-5v-0ZN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="qLH-zd-NH7" kind="relationship" relationship="rootViewController" id="dD7-n0-rsV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T8o-h9-yXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-456" y="1130"/>
+        </scene>
+        <!--Management Controller-->
+        <scene sceneID="vAm-LW-u4f">
+            <objects>
+                <viewController storyboardIdentifier="ManagementController" id="qLH-zd-NH7" customClass="ManagementController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lpu-1s-WwR"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ip3-LF-ARc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VCB-5Q-t2j">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uNq-rp-K8n">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9XO-Js-RFo">
+                                <rect key="frame" x="0.0" y="545" width="600" height="55"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGe-vb-52f">
+                                        <rect key="frame" x="512" y="10" width="68" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="4OR-X8-CA4"/>
+                                            <constraint firstAttribute="width" constant="68" id="k2u-dD-XNu"/>
+                                        </constraints>
+                                        <state key="normal" title="上架">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="putawayAction:" destination="qLH-zd-NH7" eventType="touchUpInside" id="Q75-Si-D3j"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bH0-rs-SH2">
+                                        <rect key="frame" x="424" y="10" width="68" height="35"/>
+                                        <state key="normal" title="删除">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteGood:" destination="qLH-zd-NH7" eventType="touchUpInside" id="dYU-mH-JI3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tor-CL-u6C">
+                                        <rect key="frame" x="20" y="10" width="68" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="RIi-nN-dYP"/>
+                                            <constraint firstAttribute="width" constant="68" id="xi6-IU-6fs"/>
+                                        </constraints>
+                                        <state key="normal" title="全选">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="allSelected:" destination="qLH-zd-NH7" eventType="touchUpInside" id="tPV-my-0vn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="bH0-rs-SH2" firstAttribute="width" secondItem="xGe-vb-52f" secondAttribute="width" id="B28-6O-CAG"/>
+                                    <constraint firstAttribute="bottom" secondItem="xGe-vb-52f" secondAttribute="bottom" constant="10" id="FLg-35-G9O"/>
+                                    <constraint firstItem="bH0-rs-SH2" firstAttribute="bottom" secondItem="xGe-vb-52f" secondAttribute="bottom" id="QfQ-01-yXd"/>
+                                    <constraint firstItem="xGe-vb-52f" firstAttribute="leading" secondItem="bH0-rs-SH2" secondAttribute="trailing" constant="20" id="Rd8-rj-sFu"/>
+                                    <constraint firstAttribute="height" constant="55" id="V19-hO-0fz"/>
+                                    <constraint firstAttribute="bottom" secondItem="Tor-CL-u6C" secondAttribute="bottom" constant="10" id="WFm-wH-x5b"/>
+                                    <constraint firstItem="bH0-rs-SH2" firstAttribute="height" secondItem="xGe-vb-52f" secondAttribute="height" id="gF8-yW-VGs"/>
+                                    <constraint firstAttribute="trailing" secondItem="xGe-vb-52f" secondAttribute="trailing" constant="20" id="ll4-jQ-4Le"/>
+                                    <constraint firstItem="Tor-CL-u6C" firstAttribute="leading" secondItem="9XO-Js-RFo" secondAttribute="leading" constant="20" id="wxa-Jg-lrE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9XO-Js-RFo" firstAttribute="leading" secondItem="VCB-5Q-t2j" secondAttribute="leading" id="26H-zo-5MS"/>
+                            <constraint firstItem="Ip3-LF-ARc" firstAttribute="top" secondItem="uNq-rp-K8n" secondAttribute="bottom" id="3OA-YC-3jJ"/>
+                            <constraint firstAttribute="trailing" secondItem="9XO-Js-RFo" secondAttribute="trailing" id="4Xd-FY-9E7"/>
+                            <constraint firstItem="Ip3-LF-ARc" firstAttribute="top" secondItem="9XO-Js-RFo" secondAttribute="bottom" id="5Uz-9O-dWG"/>
+                            <constraint firstItem="uNq-rp-K8n" firstAttribute="leading" secondItem="VCB-5Q-t2j" secondAttribute="leading" id="Gkb-ON-tKO"/>
+                            <constraint firstAttribute="trailing" secondItem="uNq-rp-K8n" secondAttribute="trailing" id="fNw-E0-Rjn"/>
+                            <constraint firstItem="uNq-rp-K8n" firstAttribute="top" secondItem="Lpu-1s-WwR" secondAttribute="bottom" id="gpI-RI-2I1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="cIH-fp-SNV"/>
+                    <connections>
+                        <outlet property="allSelect" destination="Tor-CL-u6C" id="WVg-eV-ZWA"/>
+                        <outlet property="buttomView" destination="9XO-Js-RFo" id="8ST-VK-xA7"/>
+                        <outlet property="deleteButton" destination="bH0-rs-SH2" id="ypd-Rb-iwf"/>
+                        <outlet property="putaway" destination="xGe-vb-52f" id="Ccy-jx-z11"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QMZ-qR-Woo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="290" y="1130"/>
         </scene>
     </scenes>
 </document>
