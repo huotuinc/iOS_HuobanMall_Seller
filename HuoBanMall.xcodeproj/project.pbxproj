@@ -24,6 +24,8 @@
 		83CA64811B8ABCFC008B5461 /* updateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA645A1B8ABCFC008B5461 /* updateData.m */; };
 		83CA64821B8ABCFC008B5461 /* userData.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA645C1B8ABCFC008B5461 /* userData.m */; };
 		83CA64831B8ABCFC008B5461 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA645F1B8ABCFC008B5461 /* UserLoginTool.m */; };
+		83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA64881B8AC3BB008B5461 /* ManagementModel.m */; };
+		83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA648B1B8AC4E1008B5461 /* ManagementController.m */; };
 		83D4572C1B8AA7910027D452 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D4572B1B8AA7910027D452 /* UserLoginTool.m */; };
 		E61CE6EC4EBF197C9E132636 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D16C2F2959A3DD8CCC1A8D4 /* libPods.a */; };
 		EF6AB17F1B87241900C9F114 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB17E1B87241900C9F114 /* main.m */; };
@@ -78,6 +80,10 @@
 		83CA645C1B8ABCFC008B5461 /* userData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userData.m; sourceTree = "<group>"; };
 		83CA645E1B8ABCFC008B5461 /* UserLoginTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginTool.h; sourceTree = "<group>"; };
 		83CA645F1B8ABCFC008B5461 /* UserLoginTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginTool.m; sourceTree = "<group>"; };
+		83CA64871B8AC3BB008B5461 /* ManagementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagementModel.h; sourceTree = "<group>"; };
+		83CA64881B8AC3BB008B5461 /* ManagementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagementModel.m; sourceTree = "<group>"; };
+		83CA648A1B8AC4E1008B5461 /* ManagementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagementController.h; sourceTree = "<group>"; };
+		83CA648B1B8AC4E1008B5461 /* ManagementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagementController.m; sourceTree = "<group>"; };
 		83D4572A1B8AA7910027D452 /* UserLoginTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginTool.h; sourceTree = "<group>"; };
 		83D4572B1B8AA7910027D452 /* UserLoginTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginTool.m; sourceTree = "<group>"; };
 		8D16C2F2959A3DD8CCC1A8D4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -221,6 +227,8 @@
 		83CA64661B8ABCFC008B5461 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				83CA648A1B8AC4E1008B5461 /* ManagementController.h */,
+				83CA648B1B8AC4E1008B5461 /* ManagementController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -228,6 +236,8 @@
 		83CA64671B8ABCFC008B5461 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				83CA64871B8AC3BB008B5461 /* ManagementModel.h */,
+				83CA64881B8AC3BB008B5461 /* ManagementModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -550,6 +560,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83CA64831B8ABCFC008B5461 /* UserLoginTool.m in Sources */,
+				83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */,
 				83CA64821B8ABCFC008B5461 /* userData.m in Sources */,
 				83CA647C1B8ABCFC008B5461 /* GlobalData.m in Sources */,
 				83CA647F1B8ABCFC008B5461 /* Result.m in Sources */,
@@ -565,6 +576,7 @@
 				83CA64721B8ABCFC008B5461 /* findBackPwViewController.m in Sources */,
 				83CA647D1B8ABCFC008B5461 /* HomeTaskResult.m in Sources */,
 				EF6AB17F1B87241900C9F114 /* main.m in Sources */,
+				83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */,
 				83CA64801B8ABCFC008B5461 /* twoOption.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
