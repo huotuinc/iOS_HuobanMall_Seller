@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E5B3F761987310FC4EF71165 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFEA7F87B05936A49C7BD256 /* libPods.a */; };
 		EF6AB17F1B87241900C9F114 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB17E1B87241900C9F114 /* main.m */; };
 		EF6AB1821B87241900C9F114 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB1811B87241900C9F114 /* AppDelegate.m */; };
 		EF6AB1851B87241A00C9F114 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB1841B87241A00C9F114 /* ViewController.m */; };
@@ -14,6 +15,7 @@
 		EF6AB18A1B87241A00C9F114 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF6AB1891B87241A00C9F114 /* Images.xcassets */; };
 		EF6AB18D1B87241A00C9F114 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF6AB18B1B87241A00C9F114 /* LaunchScreen.xib */; };
 		EF6AB1991B87241A00C9F114 /* HuoBanMallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB1981B87241A00C9F114 /* HuoBanMallTests.m */; };
+		EFDA51611B8844E500FCD0C7 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EFDA51601B8844E500FCD0C7 /* UserLoginTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08F588505FC4EAA33AF13D1F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		CFEA7F87B05936A49C7BD256 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC9B46A791F943862AA4D4D1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EF6AB1791B87241900C9F114 /* HuoBanMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HuoBanMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6AB17D1B87241900C9F114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF6AB17E1B87241900C9F114 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +45,9 @@
 		EF6AB1921B87241A00C9F114 /* HuoBanMallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HuoBanMallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6AB1971B87241A00C9F114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF6AB1981B87241A00C9F114 /* HuoBanMallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HuoBanMallTests.m; sourceTree = "<group>"; };
+		EF6AB1A21B87245F00C9F114 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		EFDA515F1B8844E500FCD0C7 /* UserLoginTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginTool.h; sourceTree = "<group>"; };
+		EFDA51601B8844E500FCD0C7 /* UserLoginTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5B3F761987310FC4EF71165 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +69,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		082A3B16D5566250862C717B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DC9B46A791F943862AA4D4D1 /* Pods.debug.xcconfig */,
+				08F588505FC4EAA33AF13D1F /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6C5F87B508564DE335579857 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CFEA7F87B05936A49C7BD256 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EF6AB1701B87241900C9F114 = {
 			isa = PBXGroup;
 			children = (
 				EF6AB17B1B87241900C9F114 /* HuoBanMall */,
 				EF6AB1951B87241A00C9F114 /* HuoBanMallTests */,
 				EF6AB17A1B87241900C9F114 /* Products */,
+				082A3B16D5566250862C717B /* Pods */,
+				6C5F87B508564DE335579857 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +109,7 @@
 		EF6AB17B1B87241900C9F114 /* HuoBanMall */ = {
 			isa = PBXGroup;
 			children = (
+				EF6AB1A41B8725FE00C9F114 /* Classes */,
 				EF6AB1801B87241900C9F114 /* AppDelegate.h */,
 				EF6AB1811B87241900C9F114 /* AppDelegate.m */,
 				EF6AB1831B87241900C9F114 /* ViewController.h */,
@@ -89,6 +118,7 @@
 				EF6AB1891B87241A00C9F114 /* Images.xcassets */,
 				EF6AB18B1B87241A00C9F114 /* LaunchScreen.xib */,
 				EF6AB17C1B87241900C9F114 /* Supporting Files */,
+				EF6AB1A21B87245F00C9F114 /* PrefixHeader.pch */,
 			);
 			path = HuoBanMall;
 			sourceTree = "<group>";
@@ -119,6 +149,39 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EF6AB1A41B8725FE00C9F114 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EF6AB1A61B87266000C9F114 /* Other */,
+				EF6AB1A51B87262C00C9F114 /* Home */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		EF6AB1A51B87262C00C9F114 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EF6AB1A61B87266000C9F114 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				EFDA515E1B8844E500FCD0C7 /* AFNTool */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		EFDA515E1B8844E500FCD0C7 /* AFNTool */ = {
+			isa = PBXGroup;
+			children = (
+				EFDA515F1B8844E500FCD0C7 /* UserLoginTool.h */,
+				EFDA51601B8844E500FCD0C7 /* UserLoginTool.m */,
+			);
+			path = AFNTool;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +189,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EF6AB19C1B87241A00C9F114 /* Build configuration list for PBXNativeTarget "HuoBanMall" */;
 			buildPhases = (
+				1BFBB2671CDDF1616CEBF9A2 /* Check Pods Manifest.lock */,
 				EF6AB1751B87241900C9F114 /* Sources */,
 				EF6AB1761B87241900C9F114 /* Frameworks */,
 				EF6AB1771B87241900C9F114 /* Resources */,
+				0BADD6041EFA8953C3D74C7D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -163,6 +228,7 @@
 		EF6AB1711B87241900C9F114 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = HT;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = HT;
 				TargetAttributes = {
@@ -214,11 +280,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0BADD6041EFA8953C3D74C7D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1BFBB2671CDDF1616CEBF9A2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EF6AB1751B87241900C9F114 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFDA51611B8844E500FCD0C7 /* UserLoginTool.m in Sources */,
 				EF6AB1851B87241A00C9F114 /* ViewController.m in Sources */,
 				EF6AB1821B87241900C9F114 /* AppDelegate.m in Sources */,
 				EF6AB17F1B87241900C9F114 /* main.m in Sources */,
@@ -347,8 +447,11 @@
 		};
 		EF6AB19D1B87241A00C9F114 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC9B46A791F943862AA4D4D1 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = HuoBanMall/PrefixHeader.pch;
 				INFOPLIST_FILE = HuoBanMall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -357,8 +460,11 @@
 		};
 		EF6AB19E1B87241A00C9F114 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08F588505FC4EAA33AF13D1F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = HuoBanMall/PrefixHeader.pch;
 				INFOPLIST_FILE = HuoBanMall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -418,6 +524,7 @@
 				EF6AB19E1B87241A00C9F114 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EF6AB19F1B87241A00C9F114 /* Build configuration list for PBXNativeTarget "HuoBanMallTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +533,7 @@
 				EF6AB1A11B87241A00C9F114 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
