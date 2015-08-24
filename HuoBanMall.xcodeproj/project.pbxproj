@@ -267,7 +267,11 @@
 			files = (
 				EF6AB1881B87241A00C9F114 /* Main.storyboard in Resources */,
 				EF6AB18D1B87241A00C9F114 /* LaunchScreen.xib in Resources */,
+				83CA64771B8ABCFC008B5461 /* UserRegisterViewController.xib in Resources */,
 				EF6AB18A1B87241A00C9F114 /* Images.xcassets in Resources */,
+				83CA64701B8ABCFC008B5461 /* BoundPhoneViewController.xib in Resources */,
+				83CA64751B8ABCFC008B5461 /* LoginViewController.xib in Resources */,
+				83CA64731B8ABCFC008B5461 /* findBackPwViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +325,12 @@
 				EFDA51611B8844E500FCD0C7 /* UserLoginTool.m in Sources */,
 				EF6AB1851B87241A00C9F114 /* ViewController.m in Sources */,
 				EF6AB1821B87241900C9F114 /* AppDelegate.m in Sources */,
+				83CA64741B8ABCFC008B5461 /* LoginViewController.m in Sources */,
+				83CA64721B8ABCFC008B5461 /* findBackPwViewController.m in Sources */,
+				83CA647D1B8ABCFC008B5461 /* HomeTaskResult.m in Sources */,
 				EF6AB17F1B87241900C9F114 /* main.m in Sources */,
+				83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */,
+				83CA64801B8ABCFC008B5461 /* twoOption.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
