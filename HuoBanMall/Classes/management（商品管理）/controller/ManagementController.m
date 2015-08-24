@@ -8,7 +8,7 @@
 
 #import "ManagementController.h"
 
-@interface ManagementController ()
+@interface ManagementController ()<UITableViewDelegate, UITableViewDataSource>
 
 /**
  *  商品列表
@@ -31,7 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.tableView.delegate = self;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,6 +42,7 @@
 }
 
 #pragma tableView
+
 
 
 
