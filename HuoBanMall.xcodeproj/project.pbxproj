@@ -121,38 +121,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		83CA64311B8ABCFC008B5461 /* statistics（数据统计） */ = {
-			isa = PBXGroup;
-			children = (
-				83CA64321B8ABCFC008B5461 /* controller */,
-				83CA64331B8ABCFC008B5461 /* model */,
-				83CA64341B8ABCFC008B5461 /* view */,
-			);
-			name = "statistics（数据统计）";
-			path = " statistics（数据统计）";
-			sourceTree = "<group>";
-		};
-		83CA64321B8ABCFC008B5461 /* controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = controller;
-			sourceTree = "<group>";
-		};
-		83CA64331B8ABCFC008B5461 /* model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		83CA64341B8ABCFC008B5461 /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
 		83CA64351B8ABCFC008B5461 /* Login(登录) */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,7 +251,6 @@
 		83D457271B8AA7910027D452 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				83CA64311B8ABCFC008B5461 /* statistics（数据统计） */,
 				83CA64351B8ABCFC008B5461 /* Login(登录) */,
 				83CA64651B8ABCFC008B5461 /* management（商品管理） */,
 				83CA64691B8ABCFC008B5461 /* setting（设置） */,
