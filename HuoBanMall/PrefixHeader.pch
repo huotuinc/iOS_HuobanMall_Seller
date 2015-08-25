@@ -15,7 +15,7 @@
 //判断ios8
 #define IsIos8 ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0)
 
-#define HuobanMallName @"伙伴商城卖家版"
+
 //网络请求的固定参数
 #define HuoBanMallSecretKey @"1165a8d240b29af3f418b8d10599d0da"  //1、伙伴商场卖家版网络请求私钥
 
@@ -38,7 +38,16 @@
 
 #define HuoBanMallAppToken @"HuoBanMallAppToken"  //11、伙伴商场卖家版appToken推送
 
+#define ScreenHeight  [UIScreen mainScreen].bounds.size.height
+
+#define ScreenWidth  [UIScreen mainScreen].bounds.size.width
 
 //网络请求的固定参数
+
+
+/**注册宏*/
+#define PHONENUMBERLENGTH 11   //手机号长度
+#define VERIFICATIONCODELENGTH 6  //验证码长度
+
 
 #endif
