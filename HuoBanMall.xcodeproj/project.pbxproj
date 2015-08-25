@@ -18,6 +18,15 @@
 		EF6AB18A1B87241A00C9F114 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF6AB1891B87241A00C9F114 /* Images.xcassets */; };
 		EF6AB18D1B87241A00C9F114 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF6AB18B1B87241A00C9F114 /* LaunchScreen.xib */; };
 		EF6AB1991B87241A00C9F114 /* HuoBanMallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB1981B87241A00C9F114 /* HuoBanMallTests.m */; };
+		EF73D1691B8BFAB6004A7B37 /* NSData+NSDataDeal.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D15E1B8BFAB6004A7B37 /* NSData+NSDataDeal.m */; };
+		EF73D16A1B8BFAB6004A7B37 /* NSDictionary+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1601B8BFAB6004A7B37 /* NSDictionary+EXTERN.m */; };
+		EF73D16B1B8BFAB6004A7B37 /* NSString+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1621B8BFAB6004A7B37 /* NSString+EXTERN.m */; };
+		EF73D16C1B8BFAB6004A7B37 /* UITableView+CJ.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1641B8BFAB6004A7B37 /* UITableView+CJ.m */; };
+		EF73D16D1B8BFAB6004A7B37 /* UITextField+HT.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1661B8BFAB6004A7B37 /* UITextField+HT.m */; };
+		EF73D1771B8C0103004A7B37 /* Base64Util.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1711B8C0103004A7B37 /* Base64Util.m */; };
+		EF73D1781B8C0103004A7B37 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1731B8C0103004A7B37 /* GTMBase64.m */; };
+		EF73D1791B8C0103004A7B37 /* MD5Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1761B8C0103004A7B37 /* MD5Encryption.m */; };
+		EF73D17B1B8C02A0004A7B37 /* cityCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF73D17A1B8C02A0004A7B37 /* cityCode.plist */; };
 		EFB67CC81B8B0C5A0037547A /* HTDataStatisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB67CC71B8B0C5A0037547A /* HTDataStatisViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +64,24 @@
 		EF6AB1971B87241A00C9F114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF6AB1981B87241A00C9F114 /* HuoBanMallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HuoBanMallTests.m; sourceTree = "<group>"; };
 		EF6AB1A21B87245F00C9F114 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		EF73D15D1B8BFAB6004A7B37 /* NSData+NSDataDeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NSDataDeal.h"; sourceTree = "<group>"; };
+		EF73D15E1B8BFAB6004A7B37 /* NSData+NSDataDeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSDataDeal.m"; sourceTree = "<group>"; };
+		EF73D15F1B8BFAB6004A7B37 /* NSDictionary+EXTERN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+EXTERN.h"; sourceTree = "<group>"; };
+		EF73D1601B8BFAB6004A7B37 /* NSDictionary+EXTERN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+EXTERN.m"; sourceTree = "<group>"; };
+		EF73D1611B8BFAB6004A7B37 /* NSString+EXTERN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EXTERN.h"; sourceTree = "<group>"; };
+		EF73D1621B8BFAB6004A7B37 /* NSString+EXTERN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EXTERN.m"; sourceTree = "<group>"; };
+		EF73D1631B8BFAB6004A7B37 /* UITableView+CJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CJ.h"; sourceTree = "<group>"; };
+		EF73D1641B8BFAB6004A7B37 /* UITableView+CJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CJ.m"; sourceTree = "<group>"; };
+		EF73D1651B8BFAB6004A7B37 /* UITextField+HT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+HT.h"; sourceTree = "<group>"; };
+		EF73D1661B8BFAB6004A7B37 /* UITextField+HT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+HT.m"; sourceTree = "<group>"; };
+		EF73D1701B8C0103004A7B37 /* Base64Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Util.h; sourceTree = "<group>"; };
+		EF73D1711B8C0103004A7B37 /* Base64Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Util.m; sourceTree = "<group>"; };
+		EF73D1721B8C0103004A7B37 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		EF73D1731B8C0103004A7B37 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		EF73D1741B8C0103004A7B37 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		EF73D1751B8C0103004A7B37 /* MD5Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Encryption.h; sourceTree = "<group>"; };
+		EF73D1761B8C0103004A7B37 /* MD5Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Encryption.m; sourceTree = "<group>"; };
+		EF73D17A1B8C02A0004A7B37 /* cityCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cityCode.plist; sourceTree = "<group>"; };
 		EFB67CC61B8B0C5A0037547A /* HTDataStatisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTDataStatisViewController.h; sourceTree = "<group>"; };
 		EFB67CC71B8B0C5A0037547A /* HTDataStatisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTDataStatisViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,6 +204,8 @@
 		83D457281B8AA7910027D452 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				EF73D16F1B8C0103004A7B37 /* Encryption */,
+				EF73D15C1B8BFAB6004A7B37 /* 扩展 */,
 				83D457291B8AA7910027D452 /* AFNTool */,
 			);
 			path = Other;
@@ -279,6 +308,7 @@
 		EF6AB17C1B87241900C9F114 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EF73D17A1B8C02A0004A7B37 /* cityCode.plist */,
 				EF6AB17D1B87241900C9F114 /* Info.plist */,
 				EF6AB17E1B87241900C9F114 /* main.m */,
 			);
@@ -300,6 +330,37 @@
 				EF6AB1971B87241A00C9F114 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EF73D15C1B8BFAB6004A7B37 /* 扩展 */ = {
+			isa = PBXGroup;
+			children = (
+				EF73D15D1B8BFAB6004A7B37 /* NSData+NSDataDeal.h */,
+				EF73D15E1B8BFAB6004A7B37 /* NSData+NSDataDeal.m */,
+				EF73D15F1B8BFAB6004A7B37 /* NSDictionary+EXTERN.h */,
+				EF73D1601B8BFAB6004A7B37 /* NSDictionary+EXTERN.m */,
+				EF73D1611B8BFAB6004A7B37 /* NSString+EXTERN.h */,
+				EF73D1621B8BFAB6004A7B37 /* NSString+EXTERN.m */,
+				EF73D1631B8BFAB6004A7B37 /* UITableView+CJ.h */,
+				EF73D1641B8BFAB6004A7B37 /* UITableView+CJ.m */,
+				EF73D1651B8BFAB6004A7B37 /* UITextField+HT.h */,
+				EF73D1661B8BFAB6004A7B37 /* UITextField+HT.m */,
+			);
+			path = "扩展";
+			sourceTree = "<group>";
+		};
+		EF73D16F1B8C0103004A7B37 /* Encryption */ = {
+			isa = PBXGroup;
+			children = (
+				EF73D1701B8C0103004A7B37 /* Base64Util.h */,
+				EF73D1711B8C0103004A7B37 /* Base64Util.m */,
+				EF73D1721B8C0103004A7B37 /* GTMBase64.h */,
+				EF73D1731B8C0103004A7B37 /* GTMBase64.m */,
+				EF73D1741B8C0103004A7B37 /* GTMDefines.h */,
+				EF73D1751B8C0103004A7B37 /* MD5Encryption.h */,
+				EF73D1761B8C0103004A7B37 /* MD5Encryption.m */,
+			);
+			path = Encryption;
 			sourceTree = "<group>";
 		};
 		EFB67CB11B8AF5230037547A /* model */ = {
@@ -408,6 +469,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF73D17B1B8C02A0004A7B37 /* cityCode.plist in Resources */,
 				EF6AB1881B87241A00C9F114 /* Main.storyboard in Resources */,
 				EF6AB18D1B87241A00C9F114 /* LaunchScreen.xib in Resources */,
 				EF6AB18A1B87241A00C9F114 /* Images.xcassets in Resources */,
@@ -462,12 +524,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */,
+				EF73D16C1B8BFAB6004A7B37 /* UITableView+CJ.m in Sources */,
 				83D4572C1B8AA7910027D452 /* UserLoginTool.m in Sources */,
 				EF6AB1851B87241A00C9F114 /* ViewController.m in Sources */,
+				EF73D1791B8C0103004A7B37 /* MD5Encryption.m in Sources */,
+				EF73D16B1B8BFAB6004A7B37 /* NSString+EXTERN.m in Sources */,
+				EF73D16D1B8BFAB6004A7B37 /* UITextField+HT.m in Sources */,
 				EFB67CC81B8B0C5A0037547A /* HTDataStatisViewController.m in Sources */,
+				EF73D16A1B8BFAB6004A7B37 /* NSDictionary+EXTERN.m in Sources */,
 				EF6AB1821B87241900C9F114 /* AppDelegate.m in Sources */,
+				EF73D1691B8BFAB6004A7B37 /* NSData+NSDataDeal.m in Sources */,
 				EF6AB17F1B87241900C9F114 /* main.m in Sources */,
 				83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */,
+				EF73D1771B8C0103004A7B37 /* Base64Util.m in Sources */,
+				EF73D1781B8C0103004A7B37 /* GTMBase64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -56,20 +56,18 @@
 }
 
 
+/**
+ *  1、数据统计中第一个订单统计页面
+ */
 - (void)showOrderContrpller{
-    
-    
-    
-    
-    
     UIScrollView * scr = self.scrollerviews[0];
-    
     //添加
     UIPageControl *pageControll = [[UIPageControl alloc] init];
     pageControll.backgroundColor = [UIColor blackColor];
     pageControll.numberOfPages = 3;
     pageControll.frame = CGRectMake(self.view.frame.size.width*0.5-40, 0, 80, 40);
     pageControll.userInteractionEnabled = NO;
+    pageControll.currentPage = 0;
     [scr addSubview:pageControll];
     
     UILabel * titleLable = [[UILabel alloc] init];
@@ -180,6 +178,107 @@
     
     scr.contentSize = CGSizeMake(0, topGoodTableViewY+topGoodTableViewH+88);
     scr.contentInset = UIEdgeInsetsMake(0, 0, 0, 20);
+}
+
+/**
+ *  2、数据统计中第二个销售额统计
+ */
+- (void)showSellCountStatistics{
+    
+    UIScrollView * scr = self.scrollerviews[1];
+    scr.backgroundColor = [UIColor redColor];
+    //添加
+    UIPageControl *pageControll = [[UIPageControl alloc] init];
+    pageControll.backgroundColor = [UIColor blackColor];
+    pageControll.numberOfPages = 3;
+    pageControll.frame = CGRectMake(self.view.frame.size.width*0.5-40, 0, 80, 40);
+    pageControll.userInteractionEnabled = NO;
+    pageControll.currentPage = 0;
+    [scr addSubview:pageControll];
+    
+    UILabel * titleLable = [[UILabel alloc] init];
+    titleLable.text = self.titlesArray[scr.tag];
+    titleLable.frame = CGRectMake(5, 40, self.view.frame.size.width, 40);
+    [scr addSubview:titleLable];
+    
+    CGFloat timeViewX = 2;
+    CGFloat timeViewY = 80;
+    CGFloat timeViewW = self.view.frame.size.width-4;
+    CGFloat timeViewH = 50;
+    UIView * timeView = [[UIView alloc] init];
+    //    timeView.backgroundColor = [UIColor redColor];
+    timeView.frame = CGRectMake(timeViewX, timeViewY, timeViewW, timeViewH);
+    [scr addSubview:timeView];
+    //本周
+    UIView * week = [[UIView alloc] init];
+    week.frame = CGRectMake(0, 0, (timeViewW-2)*0.5, timeViewH);
+    //week.backgroundColor = [UIColor blackColor];
+    [timeView addSubview:week];
+    
+    UILabel * weekLable = [[UILabel alloc] init];
+    weekLable.text = @"本周";
+    weekLable.frame = CGRectMake(0, 0, (timeViewW-2)*0.5, timeViewH*0.5);
+    weekLable.textAlignment = NSTextAlignmentCenter;
+    [week addSubview:weekLable];
+    //本周订单数量
+    UILabel * weekLableNumber = [[UILabel alloc] init];
+    weekLableNumber.text = @"7";
+    self.weekNumberLable = weekLableNumber;
+    weekLableNumber.textAlignment = NSTextAlignmentCenter;
+    weekLableNumber.frame = CGRectMake(0, timeViewH*0.5, (timeViewW-2)*0.5, timeViewH*0.5);
+    weekLableNumber.contentMode = UIViewContentModeCenter;
+    [week addSubview:weekLableNumber];
+    
+    //本月
+    UIView * month = [[UIView alloc] init];
+    month.frame = CGRectMake((timeViewW-2)*0.5+2, 0, (timeViewW-2)*0.5, timeViewH);
+    [timeView addSubview:month];
+    UILabel * monthLable = [[UILabel alloc] init];
+    monthLable.text = @"本月";
+    monthLable.frame = CGRectMake(0, 0, (timeViewW-2)*0.5, timeViewH*0.5);
+    monthLable.textAlignment = NSTextAlignmentCenter;
+    [month addSubview:monthLable];
+    //本月订单的数量
+    UILabel * monthLableNumber = [[UILabel alloc] init];
+    monthLableNumber.text = @"3000";
+    self.monthNumberLable = monthLableNumber;
+    monthLableNumber.textAlignment = NSTextAlignmentCenter;
+    monthLableNumber.frame = CGRectMake(0, timeViewH*0.5, (timeViewW-2)*0.5, timeViewH*0.5);
+    monthLableNumber.contentMode = UIViewContentModeCenter;
+    [month addSubview:monthLableNumber];
+    
+    
+    UILabel * title1Lable = [[UILabel alloc] init];
+    title1Lable.text = @"数据分析（本周/本月）";
+    CGFloat title1LableX = 5;
+    CGFloat title1LableY = timeViewY + timeViewH;
+    CGFloat title1LableW = timeViewW-2*timeViewX;
+    CGFloat title1LableH = 40;
+    title1Lable.frame = CGRectMake(title1LableX, title1LableY, title1LableW, title1LableH);
+    [scr addSubview:title1Lable];
+    
+    
+    CGFloat pnchartX = 2;
+    CGFloat pnchartY = title1LableY+title1LableH;
+    CGFloat pnchartW = self.view.frame.size.width-4;
+    CGFloat pnchartH = self.view.frame.size.height*0.3;
+    UIView * pnchartView = [[UIView alloc] init];
+    pnchartView.backgroundColor = [UIColor redColor];
+    pnchartView.frame = CGRectMake(pnchartX, pnchartY, pnchartW, pnchartH);
+    [scr addSubview:pnchartView];
+    
+    UILabel * topGoodLable = [[UILabel alloc] init];
+    topGoodLable.text = @"商品购买量排行 (Top10)";
+    CGFloat topGoodLableX = 5;
+    CGFloat topGoodLableY = pnchartY+pnchartH+2;
+    CGFloat topGoodLableW = timeViewW-2*timeViewX;
+    CGFloat topGoodLableH = 40;
+    topGoodLable.backgroundColor = [UIColor grayColor];
+    topGoodLable.frame = CGRectMake(topGoodLableX, topGoodLableY, topGoodLableW, topGoodLableH);
+    [scr addSubview:topGoodLable];
+    
+    
+    
 }
 
 /**
