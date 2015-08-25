@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		836B3AB71B8BFF2500813281 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 836B3AB61B8BFF2500813281 /* SettingViewController.m */; };
+		836B3AB91B8C01B200813281 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 836B3AB81B8C01B200813281 /* InfoPlist.strings */; };
 		83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA64881B8AC3BB008B5461 /* ManagementModel.m */; };
 		83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA648B1B8AC4E1008B5461 /* ManagementController.m */; };
 		83D4572C1B8AA7910027D452 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D4572B1B8AA7910027D452 /* UserLoginTool.m */; };
@@ -34,6 +36,9 @@
 /* Begin PBXFileReference section */
 		012BCF5BA04A81A24BCFD345 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1590A519FFB44B2DB48962BD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		836B3AB51B8BFF2500813281 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		836B3AB61B8BFF2500813281 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		836B3AB81B8C01B200813281 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		83CA64871B8AC3BB008B5461 /* ManagementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagementModel.h; sourceTree = "<group>"; };
 		83CA64881B8AC3BB008B5461 /* ManagementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagementModel.m; sourceTree = "<group>"; };
 		83CA648A1B8AC4E1008B5461 /* ManagementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagementController.h; sourceTree = "<group>"; };
@@ -133,6 +138,8 @@
 		83CA646A1B8ABCFC008B5461 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				836B3AB51B8BFF2500813281 /* SettingViewController.h */,
+				836B3AB61B8BFF2500813281 /* SettingViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -279,6 +286,7 @@
 		EF6AB17C1B87241900C9F114 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				836B3AB81B8C01B200813281 /* InfoPlist.strings */,
 				EF6AB17D1B87241900C9F114 /* Info.plist */,
 				EF6AB17E1B87241900C9F114 /* main.m */,
 			);
@@ -409,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF6AB1881B87241A00C9F114 /* Main.storyboard in Resources */,
+				836B3AB91B8C01B200813281 /* InfoPlist.strings in Resources */,
 				EF6AB18D1B87241A00C9F114 /* LaunchScreen.xib in Resources */,
 				EF6AB18A1B87241A00C9F114 /* Images.xcassets in Resources */,
 			);
@@ -468,6 +477,7 @@
 				EF6AB1821B87241900C9F114 /* AppDelegate.m in Sources */,
 				EF6AB17F1B87241900C9F114 /* main.m in Sources */,
 				83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */,
+				836B3AB71B8BFF2500813281 /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

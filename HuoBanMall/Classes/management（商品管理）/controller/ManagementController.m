@@ -197,10 +197,10 @@
 
 
 - (IBAction)putawayAction:(id)sender {
+    
 }
 
 - (IBAction)deleteGood:(id)sender {
-    
     
 }
 
