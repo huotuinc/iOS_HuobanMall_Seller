@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "HTDataStatisViewController.h"
 
 @interface ViewController ()
 
@@ -20,5 +21,10 @@
 }
 
 
+- (IBAction)buttonClick:(id)sender {
+    HTDataStatisViewController * aa = [[HTDataStatisViewController alloc] init];
+    UINavigationController * ac = [[UINavigationController alloc] initWithRootViewController:aa];
+    [self presentViewController:ac animated:YES completion:nil];
+}
 
 @end

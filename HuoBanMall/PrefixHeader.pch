@@ -12,6 +12,32 @@
 #import <BlocksKit+UIKit.h>
 
 
-#define a @"abc"
+//判断ios8
+#define IsIos8 ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0)
+
+//网络请求的固定参数
+#define HuoBanMallSecretKey @"1165a8d240b29af3f418b8d10599d0da"  //1、伙伴商场卖家版网络请求私钥
+
+#define HuoBanMallAPPKEY @"b73ca64567fb49ee963477263283a1bf"     //2、伙伴商场卖家版appKey
+
+#define HuoBanMallAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] //3、伙伴商场卖家版App版本号*
+
+#define LocalHuoBanMallAppVersion @"LocalAppVersion"  //4、伙伴商场卖家版本地存储的版本号
+
+#define OPERATION_parame @"FM2015AP"  //5、伙伴商场卖家版平台
+
+#define  DeviceNo ([[UIDevice currentDevice].identifierForVendor UUIDString])  //6、伙伴商场卖家版设备唯一号
+
+#define apptimesSince1970 [NSString stringWithFormat:@"%.0f",([[[NSDate alloc] init] timeIntervalSince1970]*1000)]  //7、伙伴商场卖家版时间
+#define HuoBanMallDWLongitude @"dwLong" //8、伙伴商场卖家版定位精度
+
+#define HuoBanMallDWLatitude @"dwLat"   //9、伙伴商场卖家版定位纬度
+
+#define HuoBanMallBaiDuCityCode @"BaiDuCityCode" //10、伙伴商场卖家版百度citycode
+
+#define HuoBanMallAppToken @"HuoBanMallAppToken"  //11、伙伴商场卖家版appToken推送
+
+
+//网络请求的固定参数
 
 #endif
