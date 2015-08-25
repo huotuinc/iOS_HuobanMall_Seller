@@ -15,6 +15,7 @@
 //判断ios8
 #define IsIos8 ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0)
 
+#define HuobanMallName @"伙伴商城卖家版"
 //网络请求的固定参数
 #define HuoBanMallSecretKey @"1165a8d240b29af3f418b8d10599d0da"  //1、伙伴商场卖家版网络请求私钥
 
