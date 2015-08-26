@@ -16,6 +16,9 @@
 		834728EF1B8C66B3005B72F9 /* FMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 834728EE1B8C66B3005B72F9 /* FMButton.m */; };
 		834728F21B8C6F61005B72F9 /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834728F11B8C6F61005B72F9 /* PushViewController.m */; };
 		836B3AC51B8C077E00813281 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 836B3AC41B8C077E00813281 /* InfoPlist.strings */; };
+		8389FA0A1B8D59940003FCDE /* AmendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA091B8D59940003FCDE /* AmendController.m */; };
+		8389FA0D1B8D5A380003FCDE /* DescribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA0C1B8D5A380003FCDE /* DescribeController.m */; };
+		8389FA111B8D86710003FCDE /* WebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA101B8D86710003FCDE /* WebController.m */; };
 		83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA64881B8AC3BB008B5461 /* ManagementModel.m */; };
 		83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA648B1B8AC4E1008B5461 /* ManagementController.m */; };
 		83D4572C1B8AA7910027D452 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D4572B1B8AA7910027D452 /* UserLoginTool.m */; };
@@ -67,6 +70,12 @@
 		834728F01B8C6F61005B72F9 /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
 		834728F11B8C6F61005B72F9 /* PushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushViewController.m; sourceTree = "<group>"; };
 		836B3AC41B8C077E00813281 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		8389FA081B8D59940003FCDE /* AmendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmendController.h; sourceTree = "<group>"; };
+		8389FA091B8D59940003FCDE /* AmendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmendController.m; sourceTree = "<group>"; };
+		8389FA0B1B8D5A380003FCDE /* DescribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescribeController.h; sourceTree = "<group>"; };
+		8389FA0C1B8D5A380003FCDE /* DescribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescribeController.m; sourceTree = "<group>"; };
+		8389FA0F1B8D86710003FCDE /* WebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebController.h; sourceTree = "<group>"; };
+		8389FA101B8D86710003FCDE /* WebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebController.m; sourceTree = "<group>"; };
 		83CA64871B8AC3BB008B5461 /* ManagementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagementModel.h; sourceTree = "<group>"; };
 		83CA64881B8AC3BB008B5461 /* ManagementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagementModel.m; sourceTree = "<group>"; };
 		83CA648A1B8AC4E1008B5461 /* ManagementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagementController.h; sourceTree = "<group>"; };
@@ -136,6 +145,10 @@
 				834728D21B8C0D8C005B72F9 /* SettingViewController.m */,
 				834728F01B8C6F61005B72F9 /* PushViewController.h */,
 				834728F11B8C6F61005B72F9 /* PushViewController.m */,
+				8389FA081B8D59940003FCDE /* AmendController.h */,
+				8389FA091B8D59940003FCDE /* AmendController.m */,
+				8389FA0B1B8D5A380003FCDE /* DescribeController.h */,
+				8389FA0C1B8D5A380003FCDE /* DescribeController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -162,6 +175,15 @@
 				834728EE1B8C66B3005B72F9 /* FMButton.m */,
 			);
 			path = fanmoreButton;
+			sourceTree = "<group>";
+		};
+		8389FA0E1B8D86630003FCDE /* web */ = {
+			isa = PBXGroup;
+			children = (
+				8389FA0F1B8D86710003FCDE /* WebController.h */,
+				8389FA101B8D86710003FCDE /* WebController.m */,
+			);
+			path = web;
 			sourceTree = "<group>";
 		};
 		83CA64651B8ABCFC008B5461 /* management（商品管理） */ = {
@@ -236,6 +258,7 @@
 		83D457271B8AA7910027D452 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8389FA0E1B8D86630003FCDE /* web */,
 				83CA648D1B8AF26F008B5461 /* DataStatistics(数据统计) */,
 				83CA64651B8ABCFC008B5461 /* management（商品管理） */,
 				834728D91B8C4EBB005B72F9 /* login（登录） */,
@@ -585,15 +608,18 @@
 				EFB67CC81B8B0C5A0037547A /* HTDataStatisViewController.m in Sources */,
 				EF73D16A1B8BFAB6004A7B37 /* NSDictionary+EXTERN.m in Sources */,
 				EF6AB1821B87241900C9F114 /* AppDelegate.m in Sources */,
+				8389FA111B8D86710003FCDE /* WebController.m in Sources */,
 				834728E81B8C51C6005B72F9 /* findBackPwViewController.m in Sources */,
 				EF73D1691B8BFAB6004A7B37 /* NSData+NSDataDeal.m in Sources */,
 				EF6AB17F1B87241900C9F114 /* main.m in Sources */,
 				83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */,
 				834728EA1B8C51C6005B72F9 /* LoginViewController.m in Sources */,
+				8389FA0D1B8D5A380003FCDE /* DescribeController.m in Sources */,
 				834728EF1B8C66B3005B72F9 /* FMButton.m in Sources */,
 				EF73D1771B8C0103004A7B37 /* Base64Util.m in Sources */,
 				EF73D1781B8C0103004A7B37 /* GTMBase64.m in Sources */,
 				834728D31B8C0D8C005B72F9 /* SettingViewController.m in Sources */,
+				8389FA0A1B8D59940003FCDE /* AmendController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

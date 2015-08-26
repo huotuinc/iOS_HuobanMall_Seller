@@ -31,8 +31,7 @@
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     SettingViewController *aa = [story instantiateViewControllerWithIdentifier:@"SettingViewController"];
-    UINavigationController * ac = [[UINavigationController alloc] initWithRootViewController:aa];
-    [self presentViewController:ac animated:YES completion:nil];
+    [self.navigationController pushViewController:aa animated:YES];
     
 }
 
