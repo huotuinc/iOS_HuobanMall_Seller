@@ -30,6 +30,7 @@
 		EF6AB18A1B87241A00C9F114 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF6AB1891B87241A00C9F114 /* Images.xcassets */; };
 		EF6AB18D1B87241A00C9F114 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF6AB18B1B87241A00C9F114 /* LaunchScreen.xib */; };
 		EF6AB1991B87241A00C9F114 /* HuoBanMallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB1981B87241A00C9F114 /* HuoBanMallTests.m */; };
+		EF6B32AF1B9044AA00A6B46D /* HTHuoBanNavgationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6B32AE1B9044AA00A6B46D /* HTHuoBanNavgationViewController.m */; };
 		EF73D1691B8BFAB6004A7B37 /* NSData+NSDataDeal.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D15E1B8BFAB6004A7B37 /* NSData+NSDataDeal.m */; };
 		EF73D16A1B8BFAB6004A7B37 /* NSDictionary+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1601B8BFAB6004A7B37 /* NSDictionary+EXTERN.m */; };
 		EF73D16B1B8BFAB6004A7B37 /* NSString+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1621B8BFAB6004A7B37 /* NSString+EXTERN.m */; };
@@ -97,6 +98,8 @@
 		EF6AB1971B87241A00C9F114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF6AB1981B87241A00C9F114 /* HuoBanMallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HuoBanMallTests.m; sourceTree = "<group>"; };
 		EF6AB1A21B87245F00C9F114 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		EF6B32AD1B9044AA00A6B46D /* HTHuoBanNavgationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHuoBanNavgationViewController.h; path = Classes/HTHuoBanNavgationViewController.h; sourceTree = "<group>"; };
+		EF6B32AE1B9044AA00A6B46D /* HTHuoBanNavgationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHuoBanNavgationViewController.m; path = Classes/HTHuoBanNavgationViewController.m; sourceTree = "<group>"; };
 		EF73D15D1B8BFAB6004A7B37 /* NSData+NSDataDeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NSDataDeal.h"; sourceTree = "<group>"; };
 		EF73D15E1B8BFAB6004A7B37 /* NSData+NSDataDeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSDataDeal.m"; sourceTree = "<group>"; };
 		EF73D15F1B8BFAB6004A7B37 /* NSDictionary+EXTERN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+EXTERN.h"; sourceTree = "<group>"; };
@@ -366,6 +369,8 @@
 				EF6AB1811B87241900C9F114 /* AppDelegate.m */,
 				EF6AB1831B87241900C9F114 /* ViewController.h */,
 				EF6AB1841B87241A00C9F114 /* ViewController.m */,
+				EF6B32AD1B9044AA00A6B46D /* HTHuoBanNavgationViewController.h */,
+				EF6B32AE1B9044AA00A6B46D /* HTHuoBanNavgationViewController.m */,
 				EF6AB1861B87241A00C9F114 /* Main.storyboard */,
 				EF6AB1891B87241A00C9F114 /* Images.xcassets */,
 				EF6AB18B1B87241A00C9F114 /* LaunchScreen.xib */,
@@ -609,6 +614,7 @@
 				EF73D16C1B8BFAB6004A7B37 /* UITableView+CJ.m in Sources */,
 				83D4572C1B8AA7910027D452 /* UserLoginTool.m in Sources */,
 				EF6AB1851B87241A00C9F114 /* ViewController.m in Sources */,
+				EF6B32AF1B9044AA00A6B46D /* HTHuoBanNavgationViewController.m in Sources */,
 				834728F21B8C6F61005B72F9 /* PushViewController.m in Sources */,
 				EF73D1791B8C0103004A7B37 /* MD5Encryption.m in Sources */,
 				EF73D16B1B8BFAB6004A7B37 /* NSString+EXTERN.m in Sources */,

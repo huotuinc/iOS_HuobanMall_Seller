@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "HTHuoBanNavgationViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 /**用户名*/
@@ -90,6 +91,13 @@
  */
 - (IBAction)loginBtn:(id)sender {
     
+    UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    HTHuoBanNavgationViewController * home = [story instantiateViewControllerWithIdentifier:@"HTHuoBanNavgationViewController"];
+    
+    UIWindow * mainview = [UIApplication sharedApplication].keyWindow;
+    mainview.rootViewController = home;
+   
+    
     
 }
 
@@ -132,6 +140,7 @@
 
 
 - (void)dealloc{
+    NSLog(@"------");
     [self.view endEditing:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
