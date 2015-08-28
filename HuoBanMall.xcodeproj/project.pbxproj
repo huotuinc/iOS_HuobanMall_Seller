@@ -31,6 +31,7 @@
 		EF6AB18D1B87241A00C9F114 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF6AB18B1B87241A00C9F114 /* LaunchScreen.xib */; };
 		EF6AB1991B87241A00C9F114 /* HuoBanMallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB1981B87241A00C9F114 /* HuoBanMallTests.m */; };
 		EF6B32AF1B9044AA00A6B46D /* HTHuoBanNavgationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6B32AE1B9044AA00A6B46D /* HTHuoBanNavgationViewController.m */; };
+		EF6B32B81B904B2B00A6B46D /* HTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6B32B71B904B2B00A6B46D /* HTHomeViewController.m */; };
 		EF73D1691B8BFAB6004A7B37 /* NSData+NSDataDeal.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D15E1B8BFAB6004A7B37 /* NSData+NSDataDeal.m */; };
 		EF73D16A1B8BFAB6004A7B37 /* NSDictionary+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1601B8BFAB6004A7B37 /* NSDictionary+EXTERN.m */; };
 		EF73D16B1B8BFAB6004A7B37 /* NSString+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1621B8BFAB6004A7B37 /* NSString+EXTERN.m */; };
@@ -100,6 +101,8 @@
 		EF6AB1A21B87245F00C9F114 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		EF6B32AD1B9044AA00A6B46D /* HTHuoBanNavgationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHuoBanNavgationViewController.h; path = Classes/HTHuoBanNavgationViewController.h; sourceTree = "<group>"; };
 		EF6B32AE1B9044AA00A6B46D /* HTHuoBanNavgationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHuoBanNavgationViewController.m; path = Classes/HTHuoBanNavgationViewController.m; sourceTree = "<group>"; };
+		EF6B32B61B904B2B00A6B46D /* HTHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHomeViewController.h; sourceTree = "<group>"; };
+		EF6B32B71B904B2B00A6B46D /* HTHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHomeViewController.m; sourceTree = "<group>"; };
 		EF73D15D1B8BFAB6004A7B37 /* NSData+NSDataDeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NSDataDeal.h"; sourceTree = "<group>"; };
 		EF73D15E1B8BFAB6004A7B37 /* NSData+NSDataDeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSDataDeal.m"; sourceTree = "<group>"; };
 		EF73D15F1B8BFAB6004A7B37 /* NSDictionary+EXTERN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+EXTERN.h"; sourceTree = "<group>"; };
@@ -262,12 +265,12 @@
 		83D457271B8AA7910027D452 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				EF6B32B21B904B0000A6B46D /* Home */,
 				8389FA0E1B8D86630003FCDE /* web */,
 				83CA648D1B8AF26F008B5461 /* DataStatistics(数据统计) */,
 				83CA64651B8ABCFC008B5461 /* management（商品管理） */,
 				834728D91B8C4EBB005B72F9 /* login（登录） */,
 				83CA64691B8ABCFC008B5461 /* setting（设置） */,
-				83D4572D1B8AA8380027D452 /* home（首页) */,
 				83D457281B8AA7910027D452 /* Other */,
 			);
 			path = Classes;
@@ -291,37 +294,6 @@
 				83D4572B1B8AA7910027D452 /* UserLoginTool.m */,
 			);
 			path = AFNTool;
-			sourceTree = "<group>";
-		};
-		83D4572D1B8AA8380027D452 /* home（首页) */ = {
-			isa = PBXGroup;
-			children = (
-				83D4572E1B8AA8380027D452 /* controller */,
-				83D4572F1B8AA8380027D452 /* model */,
-				83D457301B8AA8380027D452 /* view */,
-			);
-			path = "home（首页)";
-			sourceTree = "<group>";
-		};
-		83D4572E1B8AA8380027D452 /* controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = controller;
-			sourceTree = "<group>";
-		};
-		83D4572F1B8AA8380027D452 /* model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		83D457301B8AA8380027D452 /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = view;
 			sourceTree = "<group>";
 		};
 		DFABCA9FF5221E3D51E3BCDB /* Frameworks */ = {
@@ -409,6 +381,39 @@
 			sourceTree = "<group>";
 		};
 		EF6B32981B9032B800A6B46D /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		EF6B32B21B904B0000A6B46D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EF6B32B51B904B1E00A6B46D /* model */,
+				EF6B32B41B904B1000A6B46D /* view */,
+				EF6B32B31B904B0000A6B46D /* controller */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EF6B32B31B904B0000A6B46D /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				EF6B32B61B904B2B00A6B46D /* HTHomeViewController.h */,
+				EF6B32B71B904B2B00A6B46D /* HTHomeViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		EF6B32B41B904B1000A6B46D /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		EF6B32B51B904B1E00A6B46D /* model */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -610,6 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */,
+				EF6B32B81B904B2B00A6B46D /* HTHomeViewController.m in Sources */,
 				834728E71B8C51C6005B72F9 /* ChangePasswordController.m in Sources */,
 				EF73D16C1B8BFAB6004A7B37 /* UITableView+CJ.m in Sources */,
 				83D4572C1B8AA7910027D452 /* UserLoginTool.m in Sources */,
