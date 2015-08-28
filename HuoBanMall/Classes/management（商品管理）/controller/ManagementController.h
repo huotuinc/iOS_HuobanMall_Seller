@@ -10,6 +10,9 @@
 
 @interface ManagementController : UIViewController
 
+//底部视图高度
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewHeight;
+
 /**
  *  头部选项卡
  */
