@@ -164,6 +164,7 @@
 				834728E41B8C51C6005B72F9 /* LoginViewController.h */,
 				834728E51B8C51C6005B72F9 /* LoginViewController.m */,
 				834728E61B8C51C6005B72F9 /* LoginViewController.xib */,
+				EF6B32981B9032B800A6B46D /* model */,
 			);
 			path = "login（登录）";
 			sourceTree = "<group>";
@@ -400,6 +401,13 @@
 				EF6AB1971B87241A00C9F114 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EF6B32981B9032B800A6B46D /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		EF73D15C1B8BFAB6004A7B37 /* 扩展 */ = {

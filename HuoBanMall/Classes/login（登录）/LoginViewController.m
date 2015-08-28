@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 
-@interface LoginViewController ()
+@interface LoginViewController ()<UITextFieldDelegate>
 /**用户名*/
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextFiled;
 /**密码*/
@@ -33,83 +33,49 @@
 @implementation LoginViewController
 
 
-/**显示导行栏*/
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [self.view endEditing:YES];
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     //1、设置控件属性
     [self setweigtAttribute];
-    //2、设置键盘弹出的监听
-    [self registerForKeyboardNotifications];
-    //3、设置键盘弹出
-    [self.userNameTextFiled becomeFirstResponder];
+        //3、设置键盘弹出
+//    [self.userNameTextFiled becomeFirstResponder];
     
     //4.导航栏返回
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"返回" style:UIBarButtonItemStylePlain handler:^(id sender) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
+    
+    //2、设置键盘弹出的监听
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidChangeFrameNotification object:nil];
+    
+//    [self.userNameTextFiled addTarget:self
+//                       action:@selector(textFieldDidChange:)
+//             forControlEvents:UIControlEventEditingChanged];
+
 }
 
-/**
- *  设置键盘弹出的监听
- */
-- (void)registerForKeyboardNotifications
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardWillShowNotification object:self.passwdTextField];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:self.passwdTextField];
- }
 /**
  *  键盘弹出
  *
  *  @param noto <#noto description#>
  */
 -(void)keyboardWasShown:(NSNotification *) note{
-    
-    NSDictionary* info = [note userInfo];
-//    NSLog(@"%@",info);
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//    NSLog(@"kbsize == %f ----- y == %f",kbSize.height,CGRectGetMaxY(self.loginBtn.frame));
-    CGFloat sizesss = CGRectGetMaxY(self.loginBtn.frame) - (ScreenHeight - kbSize.height);
-//    NSLog(@"--------------size%f",sizesss);
-    if (sizesss > 0) {
-        
-        [UIView animateWithDuration:0.15 animations:^{
-            
-            self.backView.transform = CGAffineTransformMakeTranslation(0,-(sizesss));
-        }];
-        
-    }
-}
-/**
- *  键盘退下
- *
- *  @param noto <#noto description#>
- */
--(void)keyboardWillBeHidden:(NSNotification *) note{
-    [UIView animateWithDuration:0.1 animations:^{
-        
-        self.backView.transform = CGAffineTransformIdentity;
+    NSDictionary* keyboardInfo = note.userInfo;
+    NSLog(@"%@",keyboardInfo);
+    CGPoint kbSize = [[keyboardInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
+    CGPoint center = self.backView.center;
+    center.y = self.view.center.y - (self.view.frame.size.height - kbSize.y)*0.2;
+    [UIView animateWithDuration:0.2 animations:^{
+       self.backView.center = center;
     }];
 }
+
 /**
  *设置控件属性
  */
 - (void) setweigtAttribute
 {
     self.title = @"粉猫登陆";
-//    self.loginBtn.backgroundColor = LWColor(18, 18, 127);
 }
 
 /**退下下键盘*/
@@ -124,6 +90,19 @@
  */
 - (IBAction)loginBtn:(id)sender {
     
+    
+}
+
+/**
+ * 忘记密码
+ */
+- (IBAction)forgetPWBtn:(id)sender {
+    
+}
+/**
+ * 注册
+ */
+- (IBAction)loginBtnClick:(id)sender {
     
 }
 
@@ -157,37 +136,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-/**
- * 忘记密码
- */
-- (IBAction)forgetPWBtn:(id)sender {
 
-}
-/**
- * 注册
- */
-- (IBAction)loginBtnClick:(id)sender {
-
-}
-
-/**
- *  验证手机号的正则表达式
- */
--(BOOL) checkTel:(NSString *) phoneNumber{
-    NSString *regex = @"^(1)\\d{10}$";
-    
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    
-    BOOL isMatch = [pred evaluateWithObject:phoneNumber];
-    
-    if (!isMatch) {
-        return NO;
-    }
-    return YES;
-}
-
-
-
+#pragma mark textField代理方法
+//- (void)textFieldDidChange:(UITextField *)sender{
+//}
 
 
 
