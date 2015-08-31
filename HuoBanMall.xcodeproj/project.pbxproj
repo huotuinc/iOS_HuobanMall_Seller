@@ -24,6 +24,7 @@
 		83D4572C1B8AA7910027D452 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D4572B1B8AA7910027D452 /* UserLoginTool.m */; };
 		E61CE6EC4EBF197C9E132636 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D16C2F2959A3DD8CCC1A8D4 /* libPods.a */; };
 		EF61A08D1B93E4B00008A82C /* HTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61A08C1B93E4B00008A82C /* HTUser.m */; };
+		EF61A0901B93E8C50008A82C /* HTGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61A08F1B93E8C50008A82C /* HTGlobal.m */; };
 		EF6AB17F1B87241900C9F114 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB17E1B87241900C9F114 /* main.m */; };
 		EF6AB1821B87241900C9F114 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB1811B87241900C9F114 /* AppDelegate.m */; };
 		EF6AB1851B87241A00C9F114 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB1841B87241A00C9F114 /* ViewController.m */; };
@@ -88,6 +89,8 @@
 		8D16C2F2959A3DD8CCC1A8D4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF61A08B1B93E4B00008A82C /* HTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTUser.h; sourceTree = "<group>"; };
 		EF61A08C1B93E4B00008A82C /* HTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTUser.m; sourceTree = "<group>"; };
+		EF61A08E1B93E8C50008A82C /* HTGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTGlobal.h; sourceTree = "<group>"; };
+		EF61A08F1B93E8C50008A82C /* HTGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTGlobal.m; sourceTree = "<group>"; };
 		EF6AB1791B87241900C9F114 /* HuoBanMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HuoBanMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6AB17D1B87241900C9F114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF6AB17E1B87241900C9F114 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -321,6 +324,8 @@
 			children = (
 				EF61A08B1B93E4B00008A82C /* HTUser.h */,
 				EF61A08C1B93E4B00008A82C /* HTUser.m */,
+				EF61A08E1B93E8C50008A82C /* HTGlobal.h */,
+				EF61A08F1B93E8C50008A82C /* HTGlobal.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -633,6 +638,7 @@
 				EFB67CC81B8B0C5A0037547A /* HTDataStatisViewController.m in Sources */,
 				EF73D16A1B8BFAB6004A7B37 /* NSDictionary+EXTERN.m in Sources */,
 				EF6AB1821B87241900C9F114 /* AppDelegate.m in Sources */,
+				EF61A0901B93E8C50008A82C /* HTGlobal.m in Sources */,
 				8389FA111B8D86710003FCDE /* WebController.m in Sources */,
 				834728E81B8C51C6005B72F9 /* findBackPwViewController.m in Sources */,
 				EF61A08D1B93E4B00008A82C /* HTUser.m in Sources */,
