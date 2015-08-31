@@ -9,6 +9,7 @@
 #import "HTDataStatisViewController.h"
 #import <BlocksKit.h>
 #import <PNChart.h>
+#import <POP.h>
 
 
 
@@ -20,8 +21,6 @@
 @property(nonatomic,strong) UIPageControl * pageControl;
 
 @property(nonatomic,strong) NSMutableArray * scrollerviews;
-
-@property(nonatomic,strong) NSArray *titlesArray;
 
 @property(nonatomic,strong) UIScrollView * BackScrollerview;
 
@@ -55,17 +54,20 @@
 /**会员vip*/
 @property(nonatomic,strong) PNLineChart * viplineChart;
 
+
+
 @end
 
 @implementation HTDataStatisViewController
 
+static NSString *popAnimation = @"first";
 
-- (NSArray *)titlesArray{
-    if (_titlesArray == nil) {
-        _titlesArray = @[@"订单统计",@"销售额统计",@"注册会员统计 (人)"];
-    }
-    return _titlesArray;
-}
+//- (NSArray *)titlesArray{
+//    if (_titlesArray == nil) {
+//        _titlesArray = @[@"订单",@"销售额",@"会员"];
+//    }
+//    return _titlesArray;
+//}
 
 - (NSMutableArray *)scrollerviews{
     if (_scrollerviews == nil) {
@@ -81,15 +83,20 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //初始化滚地
     [self setupScrollView];
-     //添加分页控件
-    [self setupPageControll];
+    //添加分页控件
+//    [self setupPageControll];
     // 1、数据统计中第一个订单统计页面
     [self showOrderContrpller];
     // 2、数据统计中第二个销售额统计
     [self showSellCountStatistics];
     // 3、数据统计中第三个会员统计
     [self showVipPersonNumber];
+    
+    [self _initSegment];
 }
+
+
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -97,6 +104,31 @@
     
     [self _removeNavBackgroundColor];
 }
+
+/**
+ *  初始化头部选择器
+ */
+- (void)_initSegment
+{
+    self.segment = [[UISegmentedControl alloc] initWithItems:_titlesArray];
+    self.segment.selectedSegmentIndex = 0;
+    [self.segment addTarget:self action:@selector(segmentChanged) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = self.segment;
+}
+
+/**
+ *  选择器点击方法
+ */
+- (void)segmentChanged {
+    
+
+    [UIView animateWithDuration:0.35 animations:^{
+    self.BackScrollerview.contentOffset = CGPointMake(ScreenWidth * self.segment.selectedSegmentIndex, 0);
+    self.BackScrollerview.frame = CGRectMake(0, 0, self.BackScrollerview.frame.size.width, self.BackScrollerview.frame.size.height);
+    }];
+
+}
+
 
 /**
  *添加  pageControll
@@ -130,12 +162,13 @@
  */
 - (void)showOrderContrpller{
     UIScrollView * scr = self.scrollerviews[0];
+    
     CGFloat titleLableX = 2;
     CGFloat titleLableY = 0;
     CGFloat titleLableW = self.view.frame.size.width-2*titleLableX;
     CGFloat titleLableH = 40;
     UILabel * titleLable = [[UILabel alloc] init];
-    titleLable.text = self.titlesArray[scr.tag];
+    titleLable.text = [NSString stringWithFormat:@"总订单数:123123123"];
     titleLable.frame = CGRectMake(titleLableX, titleLableY, titleLableW, titleLableH);
     [scr addSubview:titleLable];
     
@@ -269,7 +302,7 @@
     CGFloat titleLableH = 40;
 
     UILabel * titleLable = [[UILabel alloc] init];
-    titleLable.text = self.titlesArray[scr.tag];
+    titleLable.text = [NSString stringWithFormat:@"总销售额:123123123"];
     titleLable.frame = CGRectMake(titleLableX, titleLableY, titleLableW, titleLableH);
     [scr addSubview:titleLable];
     
@@ -373,7 +406,7 @@
     CGFloat titleLableW = self.view.frame.size.width-2*titleLableX;
     CGFloat titleLableH = 40;
     UILabel * titleLable = [[UILabel alloc] init];
-    titleLable.text = self.titlesArray[scr.tag];
+    titleLable.text = [NSString stringWithFormat:@"总会员数:123123123"];
     titleLable.frame = CGRectMake(titleLableX, titleLableY, titleLableW, titleLableH);
     [scr addSubview:titleLable];
     
@@ -685,6 +718,7 @@
  */
 - (void)setupScrollView
 {
+    
     UIScrollView * scrollView = [[UIScrollView alloc] init];
     scrollView.frame = self.view.bounds;
     scrollView.delegate = self;
@@ -702,7 +736,7 @@
         CGFloat scY = 0;
         UIScrollView * sc = [[UIScrollView alloc] init];
         sc.tag = index;
-        sc.frame = CGRectMake(scX, scY+PageControllerHeight, scrollW, scrollH);
+        sc.frame = CGRectMake(scX, scY, scrollW, scrollH);
         [self.scrollerviews addObject:sc];
         [scrollView addSubview:sc];
         
@@ -742,10 +776,12 @@
  */
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    
     CGFloat x =  scrollView.contentOffset.x;
     double padgeDouble = x / scrollView.frame.size.width;
     int padgeInt = (int)(padgeDouble + 0.5);
-    self.title = self.titlesArray[padgeInt];
-    self.pageControl.currentPage = padgeInt;
+    if (self.segment.selectedSegmentIndex != padgeInt) {
+        self.segment.selectedSegmentIndex = padgeInt;
+    }
 }
 @end

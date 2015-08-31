@@ -46,6 +46,7 @@
        
         UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SettingViewController * setvc = [story instantiateViewControllerWithIdentifier:@"SettingViewController"];
+        setvc.title = @"设置中心";
         [wself.navigationController pushViewController:setvc animated:YES];
         
     }];
@@ -53,6 +54,8 @@
     
     [self.dataStatics bk_whenTapped:^{
         HTDataStatisViewController * dataStatics = [[HTDataStatisViewController alloc] init];
+        dataStatics.titlesArray = @[@"订单",@"销售额",@"会员"];
+        
         [wself.navigationController pushViewController:dataStatics animated:YES];
         
     }];

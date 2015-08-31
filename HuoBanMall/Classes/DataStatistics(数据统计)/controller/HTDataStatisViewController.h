@@ -10,4 +10,12 @@
 
 @interface HTDataStatisViewController : UIViewController
 
+//标题
+@property(nonatomic,strong) NSArray *titlesArray;
+
+/**
+ *  title视图选择器
+ */
+@property(nonatomic,strong) UISegmentedControl *segment;
+
 @end
