@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <CoreLocation/CoreLocation.h> 
+#import "LoginViewController.h"
 
 @interface AppDelegate ()<CLLocationManagerDelegate>
 /**定位管理者*/
@@ -28,6 +29,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //开启定位服务
     [self AppLaunchTolocation];
+    
+    LoginViewController *login = [[LoginViewController alloc] init];
+    self.window.rootViewController = login;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -57,9 +63,6 @@
 
 
 #pragma mark  定位
-
-
-
 /**
  *  定位
  */
@@ -73,8 +76,6 @@
         [self.mgr startUpdatingLocation];
     }
 }
-
-
 /**
  *  定位定位代理方法
  *
@@ -90,7 +91,12 @@
     [[NSUserDefaults standardUserDefaults] setObject:lg forKey:HuoBanMallDWLongitude];//保存精度
     [self.mgr stopUpdatingLocation];
 }
-
+/**
+ *  定位定位代理方法
+ *
+ *  @param manager   <#manager description#>
+ *  @param locations <#locations description#>
+ */
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
     if (status == kCLAuthorizationStatusNotDetermined) {
         
@@ -101,7 +107,6 @@
     }
     
 }
-
 /**
  *  反地理编码
  *

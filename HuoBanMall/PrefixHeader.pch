@@ -11,10 +11,11 @@
 
 #import <BlocksKit+UIKit.h>
 
+#define MainUrl @""
 
 //判断ios8
 #define IsIos8 ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0)
-
+#define AppDefauftColorr ([UIColor colorWithRed:0.242 green:0.384 blue:1.000 alpha:1.000])
 
 //网络请求的固定参数
 #define HuoBanMallSecretKey @"1165a8d240b29af3f418b8d10599d0da"  //1、伙伴商场卖家版网络请求私钥
