@@ -7,7 +7,7 @@
 //  用户信息
 
 #import "HTUser.h"
-
+#import "MJExtension.h"
 @implementation HTUser
-
+MJCodingImplementation
 @end

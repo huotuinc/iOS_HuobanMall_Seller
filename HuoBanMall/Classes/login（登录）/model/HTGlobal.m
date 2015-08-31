@@ -7,7 +7,9 @@
 //  全局数据
 
 #import "HTGlobal.h"
-
+#import "MJExtension.h"
 @implementation HTGlobal
 
+
+MJCodingImplementation
 @end
