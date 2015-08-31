@@ -4,7 +4,7 @@
 //
 //  Created by lhb on 15/8/28.
 //  Copyright (c) 2015年 HT. All rights reserved.
-//
+//  吖吖
 
 #import "HTHuoBanNavgationViewController.h"
 
@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+   
 }
 
 - (void)didReceiveMemoryWarning {
