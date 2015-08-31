@@ -46,8 +46,12 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
     
+    
+    if ([UIScreen mainScreen].bounds.size.height == 480) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidChangeFrameNotification object:nil];
+    }
     //2、设置键盘弹出的监听
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidChangeFrameNotification object:nil];
+    
     
 //    [self.userNameTextFiled addTarget:self
 //                       action:@selector(textFieldDidChange:)
