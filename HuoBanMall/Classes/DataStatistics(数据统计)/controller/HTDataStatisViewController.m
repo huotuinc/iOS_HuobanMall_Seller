@@ -91,6 +91,13 @@
     [self showVipPersonNumber];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self _removeNavBackgroundColor];
+}
+
 /**
  *添加  pageControll
  */

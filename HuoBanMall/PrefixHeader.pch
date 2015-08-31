@@ -9,6 +9,7 @@
 #ifndef HuoBanMall_PrefixHeader_pch
 #define HuoBanMall_PrefixHeader_pch
 
+#import "UIViewController+NAV.h"
 #import <BlocksKit+UIKit.h>
 
 #define MainUrl @""
@@ -50,5 +51,7 @@
 #define PHONENUMBERLENGTH 11   //手机号长度
 #define VERIFICATIONCODELENGTH 6  //验证码长度
 
+
+#define NavBackgroundColor [UIColor colorWithRed:0.988 green:0.420 blue:0.035 alpha:1.000] //设置导航栏背景颜色
 
 #endif

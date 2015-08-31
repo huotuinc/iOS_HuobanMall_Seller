@@ -9,6 +9,8 @@
 #import "HTHomeViewController.h"
 #import "SettingViewController.h"
 #import "HTDataStatisViewController.h"
+#import "ManagementController.h"
+
 @interface HTHomeViewController ()
 
 /**产品管理*/
@@ -32,7 +34,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
     HTHomeViewController * wself = self;
+    
+    [self.productManager bk_whenTapped:^{
+        ManagementController *management = [[ManagementController alloc] init];
+        [wself.navigationController pushViewController:management animated:YES];
+    }];
+    
     [self.settingManager bk_whenTapped:^{
        
         UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -41,13 +50,53 @@
         
     }];
     
+    
     [self.dataStatics bk_whenTapped:^{
         HTDataStatisViewController * dataStatics = [[HTDataStatisViewController alloc] init];
         [wself.navigationController pushViewController:dataStatics animated:YES];
         
     }];
+    
 }
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self _initNav];
+    
+}
+/**
+ *  设置导航栏
+ */
+- (void)_initNav
+{
+    
+    HTHomeViewController * wself = self;
+    
+    UIImage *right = [UIImage imageNamed:@"dp-top"];
+    right = [right imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:right style:UIBarButtonItemStylePlain handler:^(id sender) {
+        
+        //转跳店铺首页
+        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
+    }];
+    
+    UIImage *left = [UIImage imageNamed:@"sz-top"];
+    left = [left imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:left style:UIBarButtonItemStylePlain handler:^(id sender) {
+        
+        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        SettingViewController * setvc = [story instantiateViewControllerWithIdentifier:@"SettingViewController"];
+        [wself.navigationController pushViewController:setvc animated:YES];
+    }];
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    [self _initNavBackgroundColor];
+}
 
 /*
 #pragma mark - Navigation
