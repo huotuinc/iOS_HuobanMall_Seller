@@ -73,6 +73,14 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self _removeNavBackgroundColor];
+    
+}
+
 
 
 - (void)didReceiveMemoryWarning {
