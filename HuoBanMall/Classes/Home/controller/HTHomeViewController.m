@@ -11,8 +11,19 @@
 #import "HTDataStatisViewController.h"
 #import "ManagementController.h"
 
-@interface HTHomeViewController ()
+@interface HTHomeViewController () <UIScrollViewDelegate>
 
+
+
+/**
+ *  滑动视图的背景
+ */
+@property (weak, nonatomic) IBOutlet UIView *SBgView;
+
+/**
+ *  滑动视图
+ */
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 /**产品管理*/
 @property (weak, nonatomic) IBOutlet UIImageView *productManager;
 /**订单管理*/
@@ -21,10 +32,15 @@
 @property (weak, nonatomic) IBOutlet UIImageView *dataStatics;
 /**设置管理*/
 @property (weak, nonatomic) IBOutlet UIImageView *settingManager;
+
 /**更多数据*/
 @property (weak, nonatomic) IBOutlet UIImageView *moreData;
 /**店铺首页*/
 @property (weak, nonatomic) IBOutlet UIImageView *mallHome;
+
+
+
+@property (nonatomic, strong) NSMutableArray *scorllArray;
 
 @end
 
@@ -60,6 +76,8 @@
         
     }];
     
+    [self _initScrollView];
+    
 }
 
 
@@ -78,28 +96,86 @@
     
     HTHomeViewController * wself = self;
     
-    UIImage *right = [UIImage imageNamed:@"dp-top"];
-    right = [right imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:right style:UIBarButtonItemStylePlain handler:^(id sender) {
+    [self _initNavBackgroundColor];
+    
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"dp-top"] style:UIBarButtonItemStylePlain handler:^(id sender) {
         
         //转跳店铺首页
         UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-
+        
     }];
     
-    UIImage *left = [UIImage imageNamed:@"sz-top"];
-    left = [left imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:left style:UIBarButtonItemStylePlain handler:^(id sender) {
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"sz-top"] style:UIBarButtonItemStylePlain handler:^(id sender) {
         
         UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SettingViewController * setvc = [story instantiateViewControllerWithIdentifier:@"SettingViewController"];
         [wself.navigationController pushViewController:setvc animated:YES];
     }];
     
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
-    [self _initNavBackgroundColor];
+    
 }
+
+
+
+
+- (void)_initScrollView
+{
+    
+    
+//    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.SBgView.bounds.size.width, self.SBgView.bounds.size.height)];
+    
+//    self.scrollView.frame = CGRectMake(0, 0, self.SBgView.frame.size.width, self.SBgView.frame.size.height);
+    
+    [self.scrollView layoutIfNeeded];
+    
+    NSLog(@"%f",self.scrollView.bounds.size.width);
+    NSLog(@"%f",self.scrollView.bounds.size.height);
+    
+    self.scrollView.delegate = self;
+    self.scrollView.userInteractionEnabled = YES;
+    
+//    [self.SBgView addSubview:_scrollView];
+    //2、添加图片
+    CGFloat scrollW = self.scrollView.bounds.size.width;
+    CGFloat scrollH = self.scrollView.bounds.size.height;
+    for (int index = 0; index < 3; index++) {
+        CGFloat scX = scrollW * index;
+        CGFloat scY = 0;
+        UIView * sc = [[UIView alloc] init];
+        sc.tag = index;
+        sc.frame = CGRectMake(scX, scY, scrollW, scrollH);
+        switch (index) {
+            case 0:
+                sc.backgroundColor = [UIColor grayColor];
+                break;
+            case 1:
+                sc.backgroundColor = [UIColor blueColor];
+                break;
+            default:
+                sc.backgroundColor = [UIColor yellowColor];
+                break;
+        }
+        
+        [self.scorllArray addObject:sc];
+        [self.scrollView addSubview:sc];
+    }
+    
+    
+    //设置滚动内容范围尺寸
+    self.scrollView.contentSize = CGSizeMake(ScreenWidth * 3, 0);
+
+    
+    //隐藏滚动条
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.bounces =NO;
+    
+}
+
+
 
 /*
 #pragma mark - Navigation

@@ -52,6 +52,6 @@
 #define VERIFICATIONCODELENGTH 6  //验证码长度
 
 
-#define NavBackgroundColor [UIColor colorWithRed:0.988 green:0.420 blue:0.035 alpha:1.000] //设置导航栏背景颜色
+#define NavBackgroundColor [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000] //设置导航栏背景颜色
 
 #endif

@@ -102,7 +102,10 @@ static NSString *popAnimation = @"first";
 {
     [super viewWillAppear:animated];
     
-    [self _removeNavBackgroundColor];
+//    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+//    self.navigationController.navigationBar.translucent = NO;
+    
+//    [self _removeNavBackgroundColor];
 }
 
 /**
@@ -113,6 +116,7 @@ static NSString *popAnimation = @"first";
     self.segment = [[UISegmentedControl alloc] initWithItems:_titlesArray];
     self.segment.selectedSegmentIndex = 0;
     [self.segment addTarget:self action:@selector(segmentChanged) forControlEvents:UIControlEventValueChanged];
+    self.segment.tintColor = [UIColor whiteColor];
     self.navigationItem.titleView = self.segment;
 }
 
@@ -161,71 +165,110 @@ static NSString *popAnimation = @"first";
  *  1、数据统计中第一个订单统计页面
  */
 - (void)showOrderContrpller{
-    UIScrollView * scr = self.scrollerviews[0];
+    UIView * scr = self.scrollerviews[0];
     
-    CGFloat titleLableX = 2;
-    CGFloat titleLableY = 0;
+    CGFloat imageX = 16;
+    CGFloat imageY = 18;
+    CGFloat imageW = 36;
+    CGFloat imageH = 36;
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(imageX, imageY, imageW, imageH)];
+    imageView.image = [UIImage imageNamed:@"ddzs"];
+    [scr addSubview:imageView];
+    
+    //数字
+    CGFloat titleLableX = imageX + imageW + 8;
+    CGFloat titleLableY = imageY;
     CGFloat titleLableW = self.view.frame.size.width-2*titleLableX;
-    CGFloat titleLableH = 40;
+    CGFloat titleLableH = 20;
     UILabel * titleLable = [[UILabel alloc] init];
-    titleLable.text = [NSString stringWithFormat:@"总订单数:123123123"];
+    titleLable.font = [UIFont systemFontOfSize:20];
+    titleLable.text = [NSString stringWithFormat:@"123123123"];
     titleLable.frame = CGRectMake(titleLableX, titleLableY, titleLableW, titleLableH);
     [scr addSubview:titleLable];
     
+    //文字解释
+    UILabel *explainLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLableX, titleLableY + titleLableH , titleLableW, titleLableH)];
+    explainLabel.font = [UIFont systemFontOfSize:12];
+    explainLabel.text = [NSString stringWithFormat:@"订单总数"];
+    [scr addSubview:explainLabel];
+    
+    
     CGFloat timeViewX = 2;
-    CGFloat timeViewY = CGRectGetMaxY(titleLable.frame)+2;
-    CGFloat timeViewW = self.view.frame.size.width-4;
-    CGFloat timeViewH = 50;
+    CGFloat timeViewY = imageY + imageH + 16;
+    CGFloat timeViewW = ScreenWidth;
+    CGFloat timeViewH = ScreenHeight * 0.06;
     UIView * timeView = [[UIView alloc] init];
-//    timeView.backgroundColor = [UIColor redColor];
+    
     timeView.frame = CGRectMake(timeViewX, timeViewY, timeViewW, timeViewH);
+//    timeView.backgroundColor = [UIColor redColor];
     [scr addSubview:timeView];
-    //本周
+    
+    //7日
+    
+    CGFloat weekX = ScreenWidth * 0.4;
+    CGFloat weekY = 0;
+    CGFloat weekW = ScreenWidth * 0.2;
+    CGFloat weekH = timeViewH;
+    
     UIView * week = [[UIView alloc] init];
-    week.frame = CGRectMake(0, 0, (timeViewW-2)*0.5, timeViewH);
-    week.backgroundColor = [UIColor colorWithRed:195/255.0 green:43/255.0 blue:149/255.0 alpha:1.000];
+    week.frame = CGRectMake(weekX, weekY, weekW, weekH);
     [week bk_whenTapped:^{
-        week.backgroundColor = [UIColor grayColor];
         [self changeValue];
     }];
     [timeView addSubview:week];
     
     UILabel * weekLable = [[UILabel alloc] init];
-    weekLable.text = @"本周";
-    weekLable.textColor = [UIColor whiteColor];
-    weekLable.frame = CGRectMake(0, 0, (timeViewW-2)*0.5, timeViewH*0.5);
+    weekLable.text = @"七日";
+    weekLable.textColor = [UIColor blackColor];
+    weekLable.frame = CGRectMake(0, 0, weekW, weekH);
     weekLable.textAlignment = NSTextAlignmentCenter;
     [week addSubview:weekLable];
-    //本周订单数量
-    UILabel * weekLableNumber = [[UILabel alloc] init];
-    weekLableNumber.text = @"7";
-    weekLableNumber.textColor = [UIColor whiteColor];
-    self.orderweekNumberLableValue = weekLable;
-    weekLableNumber.textAlignment = NSTextAlignmentCenter;
-    weekLableNumber.frame = CGRectMake(0, timeViewH*0.5, (timeViewW-2)*0.5, timeViewH*0.5);
-    weekLableNumber.contentMode = UIViewContentModeCenter;
-    [week addSubview:weekLableNumber];
     
     //本月
+    
+    CGFloat monthX = ScreenWidth * 0.7;
+    CGFloat monthY = 0;
+    CGFloat monthW = weekW;
+    CGFloat monthH = weekH;
     UIView * month = [[UIView alloc] init];
-    month.backgroundColor = [UIColor colorWithRed:0/255.0 green:102/255.0 blue:255/255.0 alpha:1.000];
-    month.frame = CGRectMake((timeViewW-2)*0.5+2, 0, (timeViewW-2)*0.5, timeViewH);
+    month.frame = CGRectMake(monthX, monthY, monthW, monthH);
+    [month bk_whenTapped:^{
+        
+    }];
     [timeView addSubview:month];
+    
     UILabel * monthLable = [[UILabel alloc] init];
     monthLable.text = @"本月";
-    monthLable.textColor = [UIColor whiteColor];
-    monthLable.frame = CGRectMake(0, 0, (timeViewW-2)*0.5, timeViewH*0.5);
+    monthLable.textColor = [UIColor blackColor];
+    monthLable.frame = CGRectMake(0, 0, monthW, monthH);
     monthLable.textAlignment = NSTextAlignmentCenter;
     [month addSubview:monthLable];
-    //本月订单的数量
-    UILabel * monthLableNumber = [[UILabel alloc] init];
-    monthLableNumber.text = @"3000";
-    monthLableNumber.textColor = [UIColor whiteColor];
-    self.ordermonthNumberLableValue = monthLableNumber;
-    monthLableNumber.textAlignment = NSTextAlignmentCenter;
-    monthLableNumber.frame = CGRectMake(0, timeViewH*0.5, (timeViewW-2)*0.5, timeViewH*0.5);
-    monthLableNumber.contentMode = UIViewContentModeCenter;
-    [month addSubview:monthLableNumber];
+    
+    
+    //今日
+    CGFloat todayX = ScreenWidth * 0.1;
+    CGFloat todayY = 0;
+    CGFloat todayW = weekW;
+    CGFloat todayH = weekH;
+    UIView *today = [[UIView alloc] init];
+    today.frame = CGRectMake(todayX, todayY, todayW, todayH);
+    [today bk_whenTapped:^{
+        
+    }];
+    [timeView addSubview:today];
+    
+    UILabel *todayLabel = [[UILabel alloc] init];
+    todayLabel.text = @"今日";
+    todayLabel.textColor = [UIColor blackColor];
+    todayLabel.frame = CGRectMake(0, 0, todayW, todayH);
+    todayLabel.textAlignment = NSTextAlignmentCenter;
+    [today addSubview:todayLabel];
+    
+    //画灰色线
+    UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, timeViewW, 1)];
+    line1.backgroundColor = [UIColor lightGrayColor];
+    
+    
     
     
     UILabel * title1Lable = [[UILabel alloc] init];
@@ -235,6 +278,7 @@ static NSString *popAnimation = @"first";
     CGFloat title1LableW = timeViewW-2*timeViewX;
     CGFloat title1LableH = 40;
     title1Lable.frame = CGRectMake(title1LableX, title1LableY, title1LableW, title1LableH);
+    
     [scr addSubview:title1Lable];
     
     
@@ -248,6 +292,7 @@ static NSString *popAnimation = @"first";
     //创建绘图
     self.orderlineChart = [self linePNChartWithFrame:pnchartView.frame];
     self.orderlineChart.tag = 1;
+//    self.orderlineChart.backgroundColor = [UIColor colorWithRed:0.004 green:0.553 blue:1.000 alpha:1.000];
     [pnchartView addSubview:self.orderlineChart];
     [scr addSubview:pnchartView];
     
@@ -285,8 +330,7 @@ static NSString *popAnimation = @"first";
     [scr addSubview:topGoodTableView];
     
     
-    scr.contentSize = CGSizeMake(0, topGoodTableViewY+topGoodTableViewH+88);
-    scr.contentInset = UIEdgeInsetsMake(0, 0, 0, 20);
+    
 }
 
 /**

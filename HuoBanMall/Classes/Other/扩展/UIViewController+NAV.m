@@ -14,12 +14,16 @@
 {
     self.navigationController.navigationBar.barTintColor = NavBackgroundColor;
     
-    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)_removeNavBackgroundColor
 {
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    
+    
 }
 
 

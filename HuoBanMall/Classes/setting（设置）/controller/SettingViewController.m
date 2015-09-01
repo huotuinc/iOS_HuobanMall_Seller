@@ -41,7 +41,6 @@
 {
     [super viewWillAppear:animated];
     
-    [self _removeNavBackgroundColor];
 }
 
 #pragma mark - Table view data source
