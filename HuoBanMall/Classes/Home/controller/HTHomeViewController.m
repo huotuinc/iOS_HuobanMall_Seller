@@ -10,8 +10,9 @@
 #import "SettingViewController.h"
 #import "HTDataStatisViewController.h"
 #import "ManagementController.h"
+#import <PNChart.h>
 
-@interface HTHomeViewController () <UIScrollViewDelegate>
+@interface HTHomeViewController () <UIScrollViewDelegate,PNChartDelegate>
 
 
 
@@ -39,8 +40,23 @@
 @property (weak, nonatomic) IBOutlet UIImageView *mallHome;
 
 
-
+//滑动视图中的元素数组
 @property (nonatomic, strong) NSMutableArray *scorllArray;
+/*****************************************************/
+/**
+ *  订单
+ */
+@property (nonatomic, strong) PNLineChart *ordorChart;
+
+/**
+ *  会员
+ */
+@property (nonatomic, strong) PNLineChart *memberChart;
+
+/**
+ *  分销商
+ */
+@property (nonatomic, strong) PNLineChart *distributorChart;
 
 @end
 
@@ -125,9 +141,6 @@
 {
     
     
-//    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.SBgView.bounds.size.width, self.SBgView.bounds.size.height)];
-    
-//    self.scrollView.frame = CGRectMake(0, 0, self.SBgView.frame.size.width, self.SBgView.frame.size.height);
     
     [self.scrollView layoutIfNeeded];
     
@@ -149,13 +162,19 @@
         sc.frame = CGRectMake(scX, scY, scrollW, scrollH);
         switch (index) {
             case 0:
-                sc.backgroundColor = [UIColor grayColor];
+                self.ordorChart = [self PNChartWithView:sc AndXArray:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7"] AndYArray:@[@"75",@"150",@"225",@"300",] AndDataArray:@[@0,@0, @0, @0, @0.0, @0, @0, @176.2]];
+                sc.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.000];
+                [sc addSubview:self.ordorChart];
                 break;
             case 1:
-                sc.backgroundColor = [UIColor blueColor];
+                self.memberChart = [self PNChartWithView:sc AndXArray:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7"] AndYArray:@[@"50",@"100",@"150",@"200",@"250",@"300",] AndDataArray:@[@0,@0, @0, @0, @0.0, @0, @0, @176.2]];
+                sc.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.000];
+                [sc addSubview:self.memberChart];
                 break;
             default:
-                sc.backgroundColor = [UIColor yellowColor];
+                self.distributorChart = [self PNChartWithView:sc AndXArray:@[@"6-10",@"2",@"3",@"4",@"5",@"6",@"7"] AndYArray:@[@"50",@"100",@"150",@"200",] AndDataArray:@[@1,@55, @22, @0, @33, @0, @0, @176.2]];
+                sc.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.000];
+                [sc addSubview:self.distributorChart];
                 break;
         }
         
@@ -175,6 +194,47 @@
     
 }
 
+- (PNLineChart *)PNChartWithView:(UIView *)view AndXArray:(NSArray *) xArray AndYArray:(NSArray *) yArray AndDataArray: (NSArray *) dataArray;
+{
+    PNLineChart *lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 10, view.bounds.size.width, view.bounds.size.height - 20)];
+    lineChart.yLabelFormat = @"%1.1f";
+    lineChart.backgroundColor = [UIColor clearColor];
+    [lineChart setXLabels:xArray];
+    lineChart.showCoordinateAxis = YES;
+    
+//    lineChart.xLabelWidth =
+    
+    lineChart.yFixedValueMax = 300;
+    lineChart.yFixedValueMin = 0.0;
+    lineChart.yValueMin = 0;
+    [lineChart setYLabels:yArray];
+    
+    PNLineChartData *data01 = [PNLineChartData new];
+    data01.dataTitle = @"Alpha";
+    data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+    data01.alpha = 1;
+    data01.itemCount = dataArray.count;
+    data01.inflexionPointStyle = PNLineChartPointStyleCircle;
+    data01.getData = ^(NSUInteger index) {
+        CGFloat yValue = [dataArray[index] floatValue];
+        return [PNLineChartDataItem dataItemWithY:yValue];
+    };
+    lineChart.chartData = @[data01];
+    [lineChart strokeChart];
+    lineChart.delegate = self;
+    
+    return lineChart;
+}
+
+#pragma mark PNChart代理方法
+- (void)userClickedOnLineKeyPoint:(CGPoint)point lineIndex:(NSInteger)lineIndex pointIndex:(NSInteger)pointIndex{//点击关键点
+    NSLog(@"Click Key on line %f, %f line index is %d and point index is %d",point.x, point.y,(int)lineIndex, (int)pointIndex);
+    
+}
+
+- (void)userClickedOnLinePoint:(CGPoint)point lineIndex:(NSInteger)lineIndex{//点击线上点
+    NSLog(@"Click on line %f, %f, line index is %d",point.x, point.y, (int)lineIndex);
+}
 
 
 /*
