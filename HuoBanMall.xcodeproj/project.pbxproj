@@ -16,7 +16,8 @@
 		834728EF1B8C66B3005B72F9 /* FMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 834728EE1B8C66B3005B72F9 /* FMButton.m */; };
 		834728F21B8C6F61005B72F9 /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834728F11B8C6F61005B72F9 /* PushViewController.m */; };
 		836B3AC51B8C077E00813281 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 836B3AC41B8C077E00813281 /* InfoPlist.strings */; };
-		836CEAD01B9BDD29005074DA /* MD5Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 836CEACF1B9BDD29005074DA /* MD5Encryption.m */; };
+		836CEAD61B9C2B48005074DA /* HTResultData.m in Sources */ = {isa = PBXBuildFile; fileRef = 836CEAD51B9C2B48005074DA /* HTResultData.m */; };
+		836CEAD91B9C2BE7005074DA /* HTupData.m in Sources */ = {isa = PBXBuildFile; fileRef = 836CEAD81B9C2BE7005074DA /* HTupData.m */; };
 		8389FA0A1B8D59940003FCDE /* AmendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA091B8D59940003FCDE /* AmendController.m */; };
 		8389FA0D1B8D5A380003FCDE /* DescribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA0C1B8D5A380003FCDE /* DescribeController.m */; };
 		8389FA111B8D86710003FCDE /* WebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA101B8D86710003FCDE /* WebController.m */; };
@@ -87,8 +88,10 @@
 		834728F01B8C6F61005B72F9 /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
 		834728F11B8C6F61005B72F9 /* PushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushViewController.m; sourceTree = "<group>"; };
 		836B3AC41B8C077E00813281 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
-		836CEACE1B9BDD29005074DA /* MD5Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Encryption.h; sourceTree = "<group>"; };
-		836CEACF1B9BDD29005074DA /* MD5Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Encryption.m; sourceTree = "<group>"; };
+		836CEAD41B9C2B48005074DA /* HTResultData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTResultData.h; sourceTree = "<group>"; };
+		836CEAD51B9C2B48005074DA /* HTResultData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTResultData.m; sourceTree = "<group>"; };
+		836CEAD71B9C2BE7005074DA /* HTupData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTupData.h; sourceTree = "<group>"; };
+		836CEAD81B9C2BE7005074DA /* HTupData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTupData.m; sourceTree = "<group>"; };
 		8389FA081B8D59940003FCDE /* AmendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmendController.h; sourceTree = "<group>"; };
 		8389FA091B8D59940003FCDE /* AmendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmendController.m; sourceTree = "<group>"; };
 		8389FA0B1B8D5A380003FCDE /* DescribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescribeController.h; sourceTree = "<group>"; };
@@ -337,8 +340,6 @@
 		83D457291B8AA7910027D452 /* AFNTool */ = {
 			isa = PBXGroup;
 			children = (
-				836CEACE1B9BDD29005074DA /* MD5Encryption.h */,
-				836CEACF1B9BDD29005074DA /* MD5Encryption.m */,
 				83D4572A1B8AA7910027D452 /* UserLoginTool.h */,
 				83D4572B1B8AA7910027D452 /* UserLoginTool.m */,
 			);
@@ -369,6 +370,10 @@
 				EF61A08C1B93E4B00008A82C /* HTUser.m */,
 				EF61A08E1B93E8C50008A82C /* HTGlobal.h */,
 				EF61A08F1B93E8C50008A82C /* HTGlobal.m */,
+				836CEAD71B9C2BE7005074DA /* HTupData.h */,
+				836CEAD81B9C2BE7005074DA /* HTupData.m */,
+				836CEAD41B9C2B48005074DA /* HTResultData.h */,
+				836CEAD51B9C2B48005074DA /* HTResultData.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -719,6 +724,7 @@
 				834728F21B8C6F61005B72F9 /* PushViewController.m in Sources */,
 				EF73D1791B8C0103004A7B37 /* MD5Encryption.m in Sources */,
 				EF73D16B1B8BFAB6004A7B37 /* NSString+EXTERN.m in Sources */,
+				836CEAD91B9C2BE7005074DA /* HTupData.m in Sources */,
 				EF61A0CC1B93F3FE0008A82C /* NSObject+MJKeyValue.m in Sources */,
 				EF73D16D1B8BFAB6004A7B37 /* UITextField+HT.m in Sources */,
 				EF61A0C31B93F3FE0008A82C /* MJArgument.m in Sources */,
@@ -727,6 +733,7 @@
 				EF6AB1821B87241900C9F114 /* AppDelegate.m in Sources */,
 				EF61A0901B93E8C50008A82C /* HTGlobal.m in Sources */,
 				EF61A0C51B93F3FE0008A82C /* MJFoundation.m in Sources */,
+				836CEAD61B9C2B48005074DA /* HTResultData.m in Sources */,
 				8389FA111B8D86710003FCDE /* WebController.m in Sources */,
 				834728E81B8C51C6005B72F9 /* findBackPwViewController.m in Sources */,
 				EF61A08D1B93E4B00008A82C /* HTUser.m in Sources */,
@@ -737,7 +744,6 @@
 				EF61A0CB1B93F3FE0008A82C /* NSObject+MJCoding.m in Sources */,
 				EF61A0C81B93F3FE0008A82C /* MJMethod.m in Sources */,
 				EF61A0C71B93F3FE0008A82C /* MJMember.m in Sources */,
-				836CEAD01B9BDD29005074DA /* MD5Encryption.m in Sources */,
 				8389FA0D1B8D5A380003FCDE /* DescribeController.m in Sources */,
 				EF61A0CD1B93F3FE0008A82C /* NSObject+MJMember.m in Sources */,
 				EF61A0C61B93F3FE0008A82C /* MJIvar.m in Sources */,

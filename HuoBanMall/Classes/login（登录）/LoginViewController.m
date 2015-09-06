@@ -10,6 +10,7 @@
 #import "HTHuoBanNavgationViewController.h"
 #import "HTUser.h"
 #import "MD5Encryption.h"
+#import <SVProgressHUD.h>
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -106,14 +107,70 @@
     UIWindow * mainview = [UIApplication sharedApplication].keyWindow;
     mainview.rootViewController = home;
    
+    self.userNameTextFiled.text = @"huotu";
+    self.passwdTextField.text = @"123456";
+    
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"username"] = self.userNameTextFiled.text;
     dic[@"password"] = [MD5Encryption md5by32:self.passwdTextField.text];
     
-    [UserLoginTool loginRequestGet:@"" parame:dic success:^(id json) {
-        
+    __weak LoginViewController * wself = self;
+    
+//    [SVProgressHUD showWithStatus:@"登录ing"];
+    [UserLoginTool loginRequestGet:@"login" parame:dic success:^(id json) {
+        [SVProgressHUD dismiss];
+        NSLog(@"%@", json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 54003) {
+
+            [SVProgressHUD setStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
+            return ;
+        }
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 57001) {
+
+            [SVProgressHUD setStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
+            return ;
+        }
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 57002) {
+
+            [SVProgressHUD setStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
+            return ;
+        }
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 53011) {
+
+            [SVProgressHUD setStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
+            return ;
+        }
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            HTUser *user = [HTUser objectWithKeyValues:(json[@"resultData"][@"user"])];
+            
+            //1、登入成功用户数据本地化
+            NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+            NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+            [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+            
+            //2、保存手机号和密码
+            [[NSUserDefaults standardUserDefaults] setObject:wself.userNameTextFiled.text forKey:loginUserName];
+            [[NSUserDefaults standardUserDefaults] setObject:[MD5Encryption md5by32:wself.passwdTextField.text] forKey:loginPassword];
+            //3、保存登录token
+            NSString * apptoken = [[NSUserDefaults standardUserDefaults] stringForKey:HuoBanMallAppToken];
+            NSLog(@"%@",apptoken);
+            NSLog(@"%@",user.token);
+            if (![apptoken isEqualToString:user.token]) { //当前token和原先的token不同
+                
+                [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:HuoBanMallAppToken];
+            }
+            
+            if (![user.welcomeTip isEqualToString:@""]) {
+                [SVProgressHUD showInfoWithStatus:user.welcomeTip];
+            }else {
+                [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            }
+            
+        }
     } failure:^(NSError *error) {
-        
+        NSLog(@"%@", error);
     }];
     
 }

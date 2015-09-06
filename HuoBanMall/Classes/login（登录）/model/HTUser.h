@@ -32,4 +32,5 @@
 @property(nonatomic,strong) NSString * token;
 /**欢迎语*/
 @property(nonatomic,strong) NSString * welcomeTip;
+
 @end

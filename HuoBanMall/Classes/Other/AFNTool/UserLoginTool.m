@@ -20,7 +20,7 @@
 
 + (void)loginRequestGet:(NSString *)urlStr parame:(NSMutableDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure{
     
-   NSString *url = [MainUrl stringByAppendingString:urlStr];
+   NSString *url = [MainUrl stringByAppendingPathComponent:urlStr];
     
    AFHTTPRequestOperationManager * manager  = [AFHTTPRequestOperationManager manager];
    NSMutableDictionary * paramsOption = [NSMutableDictionary dictionary];
@@ -33,6 +33,7 @@
    paramsOption[@"operation"] = OPERATION_parame;
    NSString * token = [[NSUserDefaults standardUserDefaults] stringForKey:HuoBanMallAppToken];
    paramsOption[@"token"] = token?token:@"";
+//   paramsOption[@"token"] = @"";
    paramsOption[@"version"] = HuoBanMallAppVersion;
    paramsOption[@"timestamp"] = apptimesSince1970;
    
@@ -82,7 +83,7 @@
 
 + (void)loginRequestPost:(NSString *)urlStr parame:(NSMutableDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure{
     
-   NSString *url = [MainUrl stringByAppendingString:urlStr];
+   NSString *url = [MainUrl stringByAppendingPathComponent:urlStr];
    
    AFHTTPRequestOperationManager * manager  = [AFHTTPRequestOperationManager manager];
    NSMutableDictionary * paramsOption = [NSMutableDictionary dictionary];
@@ -127,7 +128,7 @@
 
 + (void)loginRequestPostWithFile:(NSString *)urlStr parame:(NSMutableDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure withFileKey:(NSString *)key{
     
-   NSString *url = [MainUrl stringByAppendingString:urlStr];
+   NSString *url = [MainUrl stringByAppendingPathComponent:urlStr];
    
    AFHTTPRequestOperationManager * manager  = [AFHTTPRequestOperationManager manager];
    NSMutableDictionary * paramsOption = [NSMutableDictionary dictionary];

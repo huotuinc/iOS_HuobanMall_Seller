@@ -12,6 +12,7 @@
 #import "UIViewController+NAV.h"
 #import <BlocksKit+UIKit.h>
 #import "UserLoginTool.h"
+#import "MJExtension.h"
 
 #define MainUrl @"http://apitest.51flashmall.com:8080/huobanmall/app"
 
@@ -35,7 +36,7 @@
 
 #define  DeviceNo ([[UIDevice currentDevice].identifierForVendor UUIDString])  //6、伙伴商场卖家版设备唯一号
 
-#define apptimesSince1970 [NSString stringWithFormat:@"%.0f",([[[NSDate alloc] init] timeIntervalSince1970]*1000)]  //7、伙伴商场卖家版时间
+#define apptimesSince1970 [NSString stringWithFormat:@"%.f",([[[NSDate alloc] init] timeIntervalSince1970]*1000)]  //7、伙伴商场卖家版时间
 #define HuoBanMallDWLongitude @"dwLong" //8、伙伴商场卖家版定位精度
 
 #define HuoBanMallDWLatitude @"dwLat"   //9、伙伴商场卖家版定位纬度
@@ -48,7 +49,14 @@
 
 #define ScreenWidth  [UIScreen mainScreen].bounds.size.width
 
-//网络请求的固定参数
+
+/*******************************/
+#define LocalUserDate @"loginUserDate"  //登入绑定返回的用户数据
+#define loginUserName  @"username" //用户名
+#define loginPassword @"password"  //密码
+#define loginFlag @"loginFlag"  // 是否需要登录标志
+
+#define InitGlobalDate @"initGlobalDate"    //初始化返回的global
 
 
 /**注册宏*/

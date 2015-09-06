@@ -19,4 +19,7 @@
 
 /**服务地址*/
 @property(nonatomic,strong) NSString * serverUrl;
+
+
+
 @end
