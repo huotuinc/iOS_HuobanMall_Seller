@@ -8,8 +8,13 @@
 
 #import "LoginViewController.h"
 #import "HTHuoBanNavgationViewController.h"
+#import "HTUser.h"
+#import "MD5Encryption.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
+
+
+
 /**用户名*/
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextFiled;
 /**密码*/
@@ -101,7 +106,15 @@
     UIWindow * mainview = [UIApplication sharedApplication].keyWindow;
     mainview.rootViewController = home;
    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"username"] = self.userNameTextFiled.text;
+    dic[@"password"] = [MD5Encryption md5by32:self.passwdTextField.text];
     
+    [UserLoginTool loginRequestGet:@"" parame:dic success:^(id json) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
     
 }
 

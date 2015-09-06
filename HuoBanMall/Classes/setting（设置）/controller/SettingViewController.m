@@ -17,7 +17,29 @@
 
 @interface SettingViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
 
+//店铺logo
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
+
+/**
+ *  店铺简介
+ */
+@property (weak, nonatomic) IBOutlet UILabel *introLabel;
+
+/**
+ *  店铺名称
+ */
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
+/**
+ *  当前账号
+ */
+@property (weak, nonatomic) IBOutlet UILabel *accountLabel;
+
+/**
+ *  昵称
+ */
+@property (weak, nonatomic) IBOutlet UILabel *nickname;
+
 @end
 
 @implementation SettingViewController

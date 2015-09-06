@@ -419,7 +419,11 @@
                     <navigationItem key="navigationItem" id="FAb-tv-nzs"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="accountLabel" destination="7Ay-2F-ExQ" id="m2S-hT-cxm"/>
                         <outlet property="iconView" destination="gKe-AO-bUV" id="DsO-el-GOj"/>
+                        <outlet property="introLabel" destination="5gE-Fk-Yqq" id="tpb-3Z-7it"/>
+                        <outlet property="nameLabel" destination="IuV-si-D4L" id="qiU-j7-3Dj"/>
+                        <outlet property="nickname" destination="wtC-1o-U4g" id="USO-wq-BGO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gd9-Z5-Lml" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -592,11 +596,10 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="打法的沙发沙发沙发萨法司法多少分的萨法的沙发电视发呆沙发萨法的身份的萨夫的萨夫" translatesAutoresizingMaskIntoConstraints="NO" id="0CD-XY-qAp">
                                 <rect key="frame" x="0.0" y="30" width="320" height="240"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="b6N-bi-qDG"/>
                                 </constraints>
-                                <color key="textColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
@@ -909,13 +912,13 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ozd-yv-N8a">
                                                 <rect key="frame" x="0.0" y="0.0" width="107" height="58"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQz-wl-gVd">
-                                                        <rect key="frame" x="32" y="9" width="42" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQz-wl-gVd">
+                                                        <rect key="frame" x="32" y="8" width="42" height="22"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jN-qX-v2E">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="订单" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jN-qX-v2E">
                                                         <rect key="frame" x="36" y="30" width="34" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1177,11 +1180,16 @@
                     <navigationItem key="navigationItem" id="dQv-Uc-rnf"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="allLabel" destination="IrV-41-3uI" id="c95-Gh-aA7"/>
                         <outlet property="dataStatics" destination="VJL-A9-HcS" id="ExR-3D-37F"/>
+                        <outlet property="distributorLabel" destination="O3F-It-k2P" id="hNv-yx-ChK"/>
+                        <outlet property="memberLabel" destination="H31-3V-Ega" id="fMP-Ry-sYu"/>
                         <outlet property="orderManager" destination="qYt-LC-Cwu" id="I1Y-v4-TFO"/>
+                        <outlet property="ordorLabel" destination="tQz-wl-gVd" id="WbK-jO-gLi"/>
                         <outlet property="productManager" destination="NMq-ja-INg" id="oY8-ln-LSu"/>
                         <outlet property="scrollView" destination="B2P-ad-GCV" id="2YB-FT-t8n"/>
                         <outlet property="settingManager" destination="Egh-lq-OPX" id="nxd-Zq-8ZJ"/>
+                        <outlet property="todayLabel" destination="C1P-yk-4fQ" id="gIh-31-s9Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PCr-HJ-Vw2" userLabel="First Responder" sceneMemberID="firstResponder"/>

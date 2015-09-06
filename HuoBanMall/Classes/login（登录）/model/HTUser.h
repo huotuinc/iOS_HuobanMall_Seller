@@ -27,7 +27,7 @@
 /**用户昵称*/
 @property(nonatomic,strong) NSString * nickName;
 /**夜间免打老*/
-@property(nonatomic,assign) BOOL noDisturbed;
+@property(nonatomic,strong) NSNumber * noDisturbed;
 /**登入验证token*/
 @property(nonatomic,strong) NSString * token;
 /**欢迎语*/

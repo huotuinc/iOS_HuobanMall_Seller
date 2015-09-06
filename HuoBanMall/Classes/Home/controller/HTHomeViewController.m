@@ -43,6 +43,16 @@
 //滑动视图中的元素数组
 @property (nonatomic, strong) NSMutableArray *scorllArray;
 /*****************************************************/
+
+/**
+ *  今日销售额
+ */
+@property (weak, nonatomic) IBOutlet UILabel *todayLabel;
+/**
+ *  总销售额
+ */
+@property (weak, nonatomic) IBOutlet UILabel *allLabel;
+
 /**
  *  订单
  */
@@ -57,6 +67,19 @@
  *  分销商
  */
 @property (nonatomic, strong) PNLineChart *distributorChart;
+/*********************************************************/
+/**
+ *  订单的数量
+ */
+@property (weak, nonatomic) IBOutlet UILabel *ordorLabel;
+/**
+ *  会员数量
+ */
+@property (weak, nonatomic) IBOutlet UILabel *memberLabel;
+/**
+ *  分销商数量
+ */
+@property (weak, nonatomic) IBOutlet UILabel *distributorLabel;
 
 @end
 
