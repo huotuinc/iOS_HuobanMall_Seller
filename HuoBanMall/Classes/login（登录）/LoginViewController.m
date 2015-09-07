@@ -156,10 +156,10 @@
             NSString * apptoken = [[NSUserDefaults standardUserDefaults] stringForKey:HuoBanMallAppToken];
             NSLog(@"%@",apptoken);
             NSLog(@"%@",user.token);
-            if (![apptoken isEqualToString:user.token]) { //当前token和原先的token不同
-                
-                [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:HuoBanMallAppToken];
-            }
+//            if (![apptoken isEqualToString:user.token]) { //当前token和原先的token不同
+            
+            [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:HuoBanMallAppToken];
+//            }
             
             if (![user.welcomeTip isEqualToString:@""]) {
                 [SVProgressHUD showInfoWithStatus:user.welcomeTip];

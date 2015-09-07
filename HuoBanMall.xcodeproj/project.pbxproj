@@ -26,6 +26,7 @@
 		83D3EDFA1B93EA2900454A0E /* UIViewController+NAV.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3EDF91B93EA2900454A0E /* UIViewController+NAV.m */; };
 		83D4572C1B8AA7910027D452 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D4572B1B8AA7910027D452 /* UserLoginTool.m */; };
 		E61CE6EC4EBF197C9E132636 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D16C2F2959A3DD8CCC1A8D4 /* libPods.a */; };
+		EF0790A91B9DAF5A0007C3D3 /* HTToJudgeLoginFlag.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0790A81B9DAF5A0007C3D3 /* HTToJudgeLoginFlag.m */; };
 		EF61A08D1B93E4B00008A82C /* HTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61A08C1B93E4B00008A82C /* HTUser.m */; };
 		EF61A0901B93E8C50008A82C /* HTGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61A08F1B93E8C50008A82C /* HTGlobal.m */; };
 		EF61A0C31B93F3FE0008A82C /* MJArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61A0AD1B93F3FE0008A82C /* MJArgument.m */; };
@@ -107,6 +108,8 @@
 		83D4572A1B8AA7910027D452 /* UserLoginTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginTool.h; sourceTree = "<group>"; };
 		83D4572B1B8AA7910027D452 /* UserLoginTool.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = UserLoginTool.m; sourceTree = "<group>"; };
 		8D16C2F2959A3DD8CCC1A8D4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF0790A71B9DAF5A0007C3D3 /* HTToJudgeLoginFlag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTToJudgeLoginFlag.h; sourceTree = "<group>"; };
+		EF0790A81B9DAF5A0007C3D3 /* HTToJudgeLoginFlag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTToJudgeLoginFlag.m; sourceTree = "<group>"; };
 		EF61A08B1B93E4B00008A82C /* HTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTUser.h; sourceTree = "<group>"; };
 		EF61A08C1B93E4B00008A82C /* HTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTUser.m; sourceTree = "<group>"; };
 		EF61A08E1B93E8C50008A82C /* HTGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTGlobal.h; sourceTree = "<group>"; };
@@ -367,6 +370,8 @@
 		EF0790A61B9D76790007C3D3 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				EF0790A71B9DAF5A0007C3D3 /* HTToJudgeLoginFlag.h */,
+				EF0790A81B9DAF5A0007C3D3 /* HTToJudgeLoginFlag.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -759,6 +764,7 @@
 				EF61A0CA1B93F3FE0008A82C /* MJTypeEncoding.m in Sources */,
 				EF73D1771B8C0103004A7B37 /* Base64Util.m in Sources */,
 				EF73D1781B8C0103004A7B37 /* GTMBase64.m in Sources */,
+				EF0790A91B9DAF5A0007C3D3 /* HTToJudgeLoginFlag.m in Sources */,
 				EF61A0C41B93F3FE0008A82C /* MJConst.m in Sources */,
 				834728D31B8C0D8C005B72F9 /* SettingViewController.m in Sources */,
 				8389FA0A1B8D59940003FCDE /* AmendController.m in Sources */,
