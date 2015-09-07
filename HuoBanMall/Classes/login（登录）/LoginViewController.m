@@ -47,6 +47,12 @@
         //3、设置键盘弹出
 //    [self.userNameTextFiled becomeFirstResponder];
     
+    
+    
+    self.userNameTextFiled.text = [[NSUserDefaults standardUserDefaults] objectForKey:loginUserName];
+    self.passwdTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:loginPassword];
+    
+    
     //4.导航栏返回
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"返回" style:UIBarButtonItemStylePlain handler:^(id sender) {
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -101,11 +107,8 @@
  */
 - (IBAction)loginBtn:(id)sender {
     
-    NSLog(@"xxxx");
-   
     self.userNameTextFiled.text = @"huotu";
     self.passwdTextField.text = @"123456";
-    
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"username"] = self.userNameTextFiled.text;
@@ -139,9 +142,6 @@
         }
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
-            [[NSUserDefaults standardUserDefaults] setObject:LoginSuccess forKey:loginFlag];
-            
-            
             HTUser *user = [HTUser objectWithKeyValues:(json[@"resultData"][@"user"])];
             
             //1、登入成功用户数据本地化
@@ -151,30 +151,24 @@
             
             //2、保存手机号和密码
             [[NSUserDefaults standardUserDefaults] setObject:wself.userNameTextFiled.text forKey:loginUserName];
-            [[NSUserDefaults standardUserDefaults] setObject:[MD5Encryption md5by32:wself.passwdTextField.text] forKey:loginPassword];
-            //3、保存登录token
-            NSString * apptoken = [[NSUserDefaults standardUserDefaults] stringForKey:HuoBanMallAppToken];
-            NSLog(@"%@",apptoken);
-            NSLog(@"%@",user.token);
-//            if (![apptoken isEqualToString:user.token]) { //当前token和原先的token不同
+            [[NSUserDefaults standardUserDefaults] setObject:wself.passwdTextField.text forKey:loginPassword];
             
+            //保存新的token
             [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:HuoBanMallAppToken];
-//            }
-            
-            if (![user.welcomeTip isEqualToString:@""]) {
+            if (![user.welcomeTip isEqualToString:@""]) {//登入成功提示
                 [SVProgressHUD showInfoWithStatus:user.welcomeTip];
             }else {
                 [SVProgressHUD showSuccessWithStatus:@"登录成功"];
             }
+            
             UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             HTHuoBanNavgationViewController * home = [story instantiateViewControllerWithIdentifier:@"HTHuoBanNavgationViewController"];
-            
             UIWindow * mainview = [UIApplication sharedApplication].keyWindow;
             mainview.rootViewController = home;
             
         }
     } failure:^(NSError *error) {
-        NSLog(@"%@", error);
+        NSLog(@"%@", error.description);
     }];
     
 }
