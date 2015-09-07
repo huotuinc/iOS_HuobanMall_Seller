@@ -17,11 +17,6 @@
 
 
 /**
- *  滑动视图的背景
- */
-@property (weak, nonatomic) IBOutlet UIView *SBgView;
-
-/**
  *  滑动视图
  */
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -81,6 +76,31 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *distributorLabel;
 
+/*********************************************************/
+
+/**
+ *  滑动模块
+ */
+@property (strong, nonatomic) UIImageView *scrollImage;
+/*********************************************************/
+
+/**
+ *  订单视图
+ */
+@property (weak, nonatomic) IBOutlet UIView *ordorBgView;
+
+/**
+ *  会员视图
+ */
+@property (weak, nonatomic) IBOutlet UIView *menBgView;
+
+/**
+ *  分销商视图
+ */
+@property (weak, nonatomic) IBOutlet UIView *distributorBgView;
+
+@property (weak, nonatomic) IBOutlet UIView *bgView;
+
 @end
 
 @implementation HTHomeViewController
@@ -88,6 +108,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
     
     
     HTHomeViewController * wself = self;
@@ -114,6 +136,10 @@
         [wself.navigationController pushViewController:dataStatics animated:YES];
         
     }];
+    
+    
+    
+    
     
     [self _initScrollView];
     
@@ -160,12 +186,16 @@
 
 
 
+
 - (void)_initScrollView
 {
     
     
     
     [self.scrollView layoutIfNeeded];
+    [self.ordorBgView layoutIfNeeded];
+    [self.menBgView layoutIfNeeded];
+    [self.distributorBgView layoutIfNeeded];
     
     NSLog(@"%f",self.scrollView.bounds.size.width);
     NSLog(@"%f",self.scrollView.bounds.size.height);
@@ -214,6 +244,14 @@
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.pagingEnabled = YES;
     self.scrollView.bounces =NO;
+    
+    
+    CGFloat SIY = self.ordorBgView.frame.size.height - 34;
+    
+    
+    self.scrollImage = [[UIImageView alloc] initWithFrame:CGRectMake( self.ordorBgView.frame.size.width / 2 - 17 + self.ordorBgView.frame.origin.x, SIY, 34, 34)];
+    self.scrollImage.image = [UIImage imageNamed:@"sjx"];
+    [self.bgView addSubview:self.scrollImage];
     
 }
 

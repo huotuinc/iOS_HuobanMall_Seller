@@ -912,14 +912,14 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ozd-yv-N8a">
                                                 <rect key="frame" x="0.0" y="0.0" width="107" height="58"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQz-wl-gVd">
-                                                        <rect key="frame" x="32" y="8" width="42" height="22"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQz-wl-gVd">
+                                                        <rect key="frame" x="32" y="8" width="42" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="订单" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jN-qX-v2E">
-                                                        <rect key="frame" x="36" y="30" width="34" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jN-qX-v2E">
+                                                        <rect key="frame" x="36" y="29" width="34" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1181,10 +1181,14 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="allLabel" destination="IrV-41-3uI" id="c95-Gh-aA7"/>
+                        <outlet property="bgView" destination="Ad4-mb-Uo4" id="gR4-5d-BfQ"/>
                         <outlet property="dataStatics" destination="VJL-A9-HcS" id="ExR-3D-37F"/>
+                        <outlet property="distributorBgView" destination="aFc-CY-88y" id="00f-Vr-Xi1"/>
                         <outlet property="distributorLabel" destination="O3F-It-k2P" id="hNv-yx-ChK"/>
                         <outlet property="memberLabel" destination="H31-3V-Ega" id="fMP-Ry-sYu"/>
+                        <outlet property="menBgView" destination="ISF-Kt-Clf" id="7AB-RV-Tex"/>
                         <outlet property="orderManager" destination="qYt-LC-Cwu" id="I1Y-v4-TFO"/>
+                        <outlet property="ordorBgView" destination="Ozd-yv-N8a" id="6Ct-b0-SpQ"/>
                         <outlet property="ordorLabel" destination="tQz-wl-gVd" id="WbK-jO-gLi"/>
                         <outlet property="productManager" destination="NMq-ja-INg" id="oY8-ln-LSu"/>
                         <outlet property="scrollView" destination="B2P-ad-GCV" id="2YB-FT-t8n"/>
