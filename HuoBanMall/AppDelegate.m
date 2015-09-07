@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h> 
 #import "LoginViewController.h"
 #import "HTResultData.h"
-
+#import "HTHuoBanNavgationViewController.h"
 @interface AppDelegate ()<CLLocationManagerDelegate>
 /**定位管理者*/
 @property(nonatomic,strong) CLLocationManager *mgr;
@@ -31,12 +31,20 @@
     //开启定位服务
     [self AppLaunchTolocation];
     
-    LoginViewController *login = [[LoginViewController alloc] init];
-    self.window.rootViewController = login;
-    [self.window makeKeyAndVisible];
-    
     //程序初始化借口
     [self callInitFunction];
+    
+    NSString * isLogin = [[NSUserDefaults standardUserDefaults] objectForKey:loginFlag];
+    NSLog(@"%@",isLogin);
+    if ([isLogin isEqualToString:LoginSuccess]) {
+        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        HTHuoBanNavgationViewController * homeNav = [story instantiateViewControllerWithIdentifier:@"HTHuoBanNavgationViewController"];
+        self.window.rootViewController = homeNav;
+    }else{
+        LoginViewController *login = [[LoginViewController alloc] init];
+        self.window.rootViewController = login;
+    }
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
@@ -89,7 +97,7 @@
             }
         }
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+        NSLog(@"%@",error.description);
     }];
     
 }

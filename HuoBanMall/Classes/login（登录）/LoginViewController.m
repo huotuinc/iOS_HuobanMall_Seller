@@ -101,11 +101,7 @@
  */
 - (IBAction)loginBtn:(id)sender {
     
-    UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    HTHuoBanNavgationViewController * home = [story instantiateViewControllerWithIdentifier:@"HTHuoBanNavgationViewController"];
-    
-    UIWindow * mainview = [UIApplication sharedApplication].keyWindow;
-    mainview.rootViewController = home;
+    NSLog(@"xxxx");
    
     self.userNameTextFiled.text = @"huotu";
     self.passwdTextField.text = @"123456";
@@ -143,6 +139,9 @@
         }
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
+            [[NSUserDefaults standardUserDefaults] setObject:LoginSuccess forKey:loginFlag];
+            
+            
             HTUser *user = [HTUser objectWithKeyValues:(json[@"resultData"][@"user"])];
             
             //1、登入成功用户数据本地化
@@ -167,6 +166,11 @@
             }else {
                 [SVProgressHUD showSuccessWithStatus:@"登录成功"];
             }
+            UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            HTHuoBanNavgationViewController * home = [story instantiateViewControllerWithIdentifier:@"HTHuoBanNavgationViewController"];
+            
+            UIWindow * mainview = [UIApplication sharedApplication].keyWindow;
+            mainview.rootViewController = home;
             
         }
     } failure:^(NSError *error) {
