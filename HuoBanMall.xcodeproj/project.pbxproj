@@ -58,6 +58,7 @@
 		EF73D1781B8C0103004A7B37 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1731B8C0103004A7B37 /* GTMBase64.m */; };
 		EF73D1791B8C0103004A7B37 /* MD5Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1761B8C0103004A7B37 /* MD5Encryption.m */; };
 		EF73D17B1B8C02A0004A7B37 /* cityCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF73D17A1B8C02A0004A7B37 /* cityCode.plist */; };
+		EF749C8B1B9E755200FB579B /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = EF749C8A1B9E755200FB579B /* Foundation+Log.m */; };
 		EFB67CC81B8B0C5A0037547A /* HTDataStatisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB67CC71B8B0C5A0037547A /* HTDataStatisViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -173,6 +174,7 @@
 		EF73D1751B8C0103004A7B37 /* MD5Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Encryption.h; sourceTree = "<group>"; };
 		EF73D1761B8C0103004A7B37 /* MD5Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Encryption.m; sourceTree = "<group>"; };
 		EF73D17A1B8C02A0004A7B37 /* cityCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cityCode.plist; sourceTree = "<group>"; };
+		EF749C8A1B9E755200FB579B /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
 		EFB67CC61B8B0C5A0037547A /* HTDataStatisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTDataStatisViewController.h; sourceTree = "<group>"; };
 		EFB67CC71B8B0C5A0037547A /* HTDataStatisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTDataStatisViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -432,6 +434,7 @@
 		EF6AB1701B87241900C9F114 = {
 			isa = PBXGroup;
 			children = (
+				EF749C8A1B9E755200FB579B /* Foundation+Log.m */,
 				EF6AB17B1B87241900C9F114 /* HuoBanMall */,
 				EF6AB1951B87241A00C9F114 /* HuoBanMallTests */,
 				EF6AB17A1B87241900C9F114 /* Products */,
@@ -752,6 +755,7 @@
 				EF61A08D1B93E4B00008A82C /* HTUser.m in Sources */,
 				EF73D1691B8BFAB6004A7B37 /* NSData+NSDataDeal.m in Sources */,
 				EF6AB17F1B87241900C9F114 /* main.m in Sources */,
+				EF749C8B1B9E755200FB579B /* Foundation+Log.m in Sources */,
 				83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */,
 				834728EA1B8C51C6005B72F9 /* LoginViewController.m in Sources */,
 				EF61A0CB1B93F3FE0008A82C /* NSObject+MJCoding.m in Sources */,

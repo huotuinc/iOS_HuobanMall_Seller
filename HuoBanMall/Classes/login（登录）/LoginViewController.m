@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "findBackPwViewController.h"
 #import "HTHuoBanNavgationViewController.h"
 #import "HTUser.h"
 #import "MD5Encryption.h"
@@ -51,14 +52,7 @@
     
     self.userNameTextFiled.text = [[NSUserDefaults standardUserDefaults] objectForKey:loginUserName];
     self.passwdTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:loginPassword];
-    
-    
-    //4.导航栏返回
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"返回" style:UIBarButtonItemStylePlain handler:^(id sender) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    
+   
     if ([UIScreen mainScreen].bounds.size.height == 480) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidChangeFrameNotification object:nil];
     }
@@ -92,7 +86,8 @@
  */
 - (void) setweigtAttribute
 {
-    self.title = @"粉猫登陆";
+    self.title = @"伙伴商城登陆";
+    [self _initNavBackgroundColor];
 }
 
 /**退下下键盘*/
@@ -107,6 +102,8 @@
  */
 - (IBAction)loginBtn:(id)sender {
     
+    
+    NSLog(@"xxxx");
     self.userNameTextFiled.text = @"huotu";
     self.passwdTextField.text = @"123456";
     
@@ -177,6 +174,9 @@
  * 忘记密码
  */
 - (IBAction)forgetPWBtn:(id)sender {
+    findBackPwViewController * findvc = [[findBackPwViewController alloc] init];
+    UINavigationController * navCt = [[UINavigationController alloc] initWithRootViewController:findvc];
+    [self presentViewController:navCt animated:YES completion:nil];
     
 }
 /**

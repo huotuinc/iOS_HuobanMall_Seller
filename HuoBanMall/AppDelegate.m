@@ -40,7 +40,8 @@
         self.window.rootViewController = homeNav;
     }else{
         LoginViewController *login = [[LoginViewController alloc] init];
-        self.window.rootViewController = login;
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+        self.window.rootViewController = nav;
     }
     [self.window makeKeyAndVisible];
     return YES;

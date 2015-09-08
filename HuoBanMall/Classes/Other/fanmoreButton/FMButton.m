@@ -13,9 +13,9 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.backgroundColor = [UIColor colorWithRed:0.004 green:0.553 blue:1.000 alpha:1.000];
+    self.backgroundColor = NavBackgroundColor;
     self.layer.cornerRadius = 6;
-    self.layer.borderColor = [UIColor colorWithRed:0.004 green:0.553 blue:1.000 alpha:1.000].CGColor;
+    self.layer.borderColor = NavBackgroundColor.CGColor;
     self.layer.borderWidth = 0.5;
     
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
