@@ -20,11 +20,17 @@
 /**
  *  底部背景图片
  */
+
+
 @property (weak, nonatomic) IBOutlet UIView *buttomView;
 /**
  *  全选按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *allSelect;
+/**
+ *  全选图片
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *selectImage;
 /**
  *  上下架按钮
  */

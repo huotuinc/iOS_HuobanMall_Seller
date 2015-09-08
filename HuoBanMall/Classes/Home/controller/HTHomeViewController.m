@@ -81,7 +81,7 @@
 /**
  *  滑动模块
  */
-@property (strong, nonatomic) UIImageView *scrollImage;
+@property (strong, nonatomic) UIView *scrollImage;
 /*********************************************************/
 
 /**
@@ -115,7 +115,8 @@
     HTHomeViewController * wself = self;
     
     [self.productManager bk_whenTapped:^{
-        ManagementController *management = [[ManagementController alloc] init];
+        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ManagementController * management = [story instantiateViewControllerWithIdentifier:@"ManagementController"];
         [wself.navigationController pushViewController:management animated:YES];
     }];
     
@@ -137,11 +138,11 @@
         
     }];
     
-    
-    
-    
-    
+
     [self _initScrollView];
+    
+    
+    [self showScrollView];
     
 }
 
@@ -151,6 +152,8 @@
     [super viewWillAppear:animated];
     
     [self _initNav];
+    
+    
     
 }
 /**
@@ -185,8 +188,6 @@
 
 
 
-
-
 - (void)_initScrollView
 {
     
@@ -196,6 +197,7 @@
     [self.ordorBgView layoutIfNeeded];
     [self.menBgView layoutIfNeeded];
     [self.distributorBgView layoutIfNeeded];
+    [self.bgView layoutIfNeeded];
     
     NSLog(@"%f",self.scrollView.bounds.size.width);
     NSLog(@"%f",self.scrollView.bounds.size.height);
@@ -236,9 +238,14 @@
     }
     
     
+
+    
+}
+
+- (void)showScrollView {
     //设置滚动内容范围尺寸
     self.scrollView.contentSize = CGSizeMake(ScreenWidth * 3, 0);
-
+    
     
     //隐藏滚动条
     self.scrollView.showsHorizontalScrollIndicator = NO;
@@ -246,14 +253,89 @@
     self.scrollView.bounces =NO;
     
     
-    CGFloat SIY = self.ordorBgView.frame.size.height - 34;
+#pragma 设置滑动块
+    
+    CGFloat SIY = (ScreenHeight - 64) * 0.1 - 2;
+    CGFloat ORX = self.ordorBgView.frame.size.width / 2 - ScreenWidth * 0.33 * 0.35 + self.ordorBgView.frame.origin.x;
+    CGFloat MEMX = self.menBgView.frame.size.width / 2 - ScreenWidth * 0.33 * 0.35 + self.menBgView.frame.origin.x;
+    CGFloat DISX = self.distributorBgView.frame.size.width / 2 - ScreenWidth * 0.33 * 0.35 + self.distributorBgView.frame.origin.x;
     
     
-    self.scrollImage = [[UIImageView alloc] initWithFrame:CGRectMake( self.ordorBgView.frame.size.width / 2 - 17 + self.ordorBgView.frame.origin.x, SIY, 34, 34)];
-    self.scrollImage.image = [UIImage imageNamed:@"sjx"];
+    NSLog(@"%f", ORX);
+    NSLog(@"%f", SIY);
+    NSLog(@"%f", ScreenWidth * 0.33 * 0.7);
+    
+    self.scrollImage = [[UIView alloc] initWithFrame:CGRectMake( ORX, SIY, ScreenWidth * 0.33 * 0.7, 2)];
+    self.scrollImage.backgroundColor = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+    
+    
     [self.bgView addSubview:self.scrollImage];
     
+    
+    [self.ordorBgView bk_whenTapped:^{
+        if (self.scrollImage.frame.origin.x != ORX) {
+            [UIView animateWithDuration:0.35 animations:^{
+                self.scrollImage.frame = CGRectMake(ORX, SIY, ScreenWidth * 0.33 * 0.7, 2);
+                self.scrollView.contentOffset = CGPointMake(0, 0);
+            }];
+            
+        }
+    }];
+    
+    [self.menBgView bk_whenTapped:^{
+        if (self.scrollImage.frame.origin.x != MEMX) {
+            [UIView animateWithDuration:0.35 animations:^{
+                self.scrollImage.frame = CGRectMake(MEMX, SIY, ScreenWidth * 0.33 * 0.7, 2);
+                self.scrollView.contentOffset = CGPointMake(ScreenWidth, 0);
+            }];
+            
+            
+        }
+        
+    }];
+    
+    [self.distributorBgView bk_whenTapped:^{
+        if (self.scrollImage.frame.origin.x != DISX) {
+            [UIView animateWithDuration:0.35 animations:^{
+                self.scrollImage.frame = CGRectMake(DISX, SIY, ScreenWidth * 0.33 * 0.7, 2);
+                self.scrollView.contentOffset = CGPointMake(2 * ScreenWidth, 0);
+            }];
+            
+            
+        }
+    }];
 }
+
+#pragma 滑动视图代理
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat SIY = self.ordorBgView.frame.size.height - 2;
+    CGFloat ORX = self.ordorBgView.frame.size.width / 2 - ScreenWidth * 0.33 * 0.35 + self.ordorBgView.frame.origin.x;
+    CGFloat MEMX = self.menBgView.frame.size.width / 2 - ScreenWidth * 0.33 * 0.35 + self.menBgView.frame.origin.x;
+    CGFloat DISX = self.distributorBgView.frame.size.width / 2 - ScreenWidth * 0.33 * 0.35 + self.distributorBgView.frame.origin.x;
+    
+    CGFloat x =  scrollView.contentOffset.x;
+    int padgeDouble = x / scrollView.frame.size.width;
+    
+    if (padgeDouble == 0) {
+        [UIView animateWithDuration:0.15 animations:^{
+            self.scrollImage.frame = CGRectMake(ORX, SIY, ScreenWidth * 0.33 * 0.7, 2);
+        }];
+    }else if (padgeDouble == 1) {
+        [UIView animateWithDuration:0.15 animations:^{
+            self.scrollImage.frame = CGRectMake(MEMX, SIY, ScreenWidth * 0.33 * 0.7, 2);
+        }];
+    }else {
+        [UIView animateWithDuration:0.15 animations:^{
+            self.scrollImage.frame = CGRectMake(DISX, SIY, ScreenWidth * 0.33 * 0.7, 2);
+        }];
+    }
+    
+}
+
+
+#pragma PNChart
 
 - (PNLineChart *)PNChartWithView:(UIView *)view AndXArray:(NSArray *) xArray AndYArray:(NSArray *) yArray AndDataArray: (NSArray *) dataArray;
 {
@@ -296,6 +378,7 @@
 - (void)userClickedOnLinePoint:(CGPoint)point lineIndex:(NSInteger)lineIndex{//点击线上点
     NSLog(@"Click on line %f, %f, line index is %d",point.x, point.y, (int)lineIndex);
 }
+
 
 
 /*

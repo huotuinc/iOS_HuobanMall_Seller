@@ -13,6 +13,7 @@
 #import <BlocksKit+UIKit.h>
 #import "UserLoginTool.h"
 #import "MJExtension.h"
+#import "UITableView+CJ.h"
 
 #define MainUrl @"http://apitest.51flashmall.com:8080/huobanmall/app"
 

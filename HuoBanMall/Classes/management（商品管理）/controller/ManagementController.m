@@ -8,6 +8,7 @@
 
 #import "ManagementController.h"
 #import "ManagementModel.h"
+#import "ManagementCell.h"
 
 @interface ManagementController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -34,6 +35,7 @@
 
 @implementation ManagementController
 
+static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 
 #pragma 数据初始化
 - (void)viewDidLoad {
@@ -44,22 +46,21 @@
     self.tableView.dataSource = self;
     self.tableView.editing = NO;
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"ManagementCell" bundle:nil] forCellReuseIdentifier:ManagementIdentifier];
+    
+    [self.tableView removeSpaces];
+    
     //设置选项卡
     NSArray *temp = @[@"已上架",@"已下架"];
     self.segment = [[UISegmentedControl alloc] initWithItems:temp];
     [self.segment addTarget:self action:@selector(segmentChanged) forControlEvents:UIControlEventValueChanged];
+    self.segment.selectedSegmentIndex = 0;
     [self.navigationItem setTitleView:self.segment];
     
     /**
      设置右上角编辑按钮
      */
-    UIBarButtonItem *right = [[UIBarButtonItem alloc] bk_initWithTitle:@"编辑" style:UIBarButtonItemStylePlain handler:^(id sender) {
-        if ([right.title isEqualToString:@"编辑"]) {
-            right.title = @"完成";
-        }else {
-            right.title = @"编辑";
-            [self.selectGoods removeAllObjects];
-        }
+    UIBarButtonItem *right = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"bj"] style:UIBarButtonItemStylePlain handler:^(id sender) {
         
         self.tableView.editing = !self.tableView.editing;
         
@@ -71,13 +72,18 @@
     self.navigationItem.rightBarButtonItem = right;
     
     
+    //设置上下架按钮
+    self.putaway.layer.cornerRadius = 5;
+    self.putaway.layer.borderColor = [UIColor colorWithWhite:0.784 alpha:1.000].CGColor;
+    self.putaway.layer.borderWidth = 1;
+ 
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self _removeNavBackgroundColor];
     
 }
 
@@ -91,6 +97,12 @@
 #pragma 网络访问
 
 #pragma tableView
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return  100;
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -124,7 +136,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    ManagementCell *cell = [tableView dequeueReusableCellWithIdentifier:ManagementIdentifier forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"ManagementCell" owner:nil options:nil] lastObject];
+    }
+    
+    
+    return cell;
 }
 
 /**
@@ -193,7 +211,7 @@
 
 - (void)showButtomView {
     if (self.tableView.editing) {
-        [UIView animateWithDuration:0.35 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             self.buttomView.hidden = NO;
         }];
     }else {
@@ -216,11 +234,11 @@
     if (self.selectGoods.count != self.goods.count) {
         [self.selectGoods removeAllObjects];
         self.selectGoods = self.goods;
-        
+        self.selectImage.image = [UIImage imageNamed:@"yxz"];
         [self.tableView reloadData];
     }else {
         [self.selectGoods removeAllObjects];
-        
+        self.selectImage.image = [UIImage imageNamed:@"wxz"];
         [self.tableView reloadData];
     }
 }

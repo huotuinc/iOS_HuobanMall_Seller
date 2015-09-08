@@ -114,7 +114,6 @@ static NSString *popAnimation = @"first";
 - (void)_initSegment
 {
     self.segment = [[UISegmentedControl alloc] initWithItems:_titlesArray];
-    self.segment.selectedSegmentIndex = 0;
     [self.segment addTarget:self action:@selector(segmentChanged) forControlEvents:UIControlEventValueChanged];
     self.segment.tintColor = [UIColor whiteColor];
     self.navigationItem.titleView = self.segment;

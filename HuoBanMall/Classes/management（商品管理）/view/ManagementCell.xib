@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="135" id="KGk-i7-Jjw" customClass="ManagementCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="山核桃" translatesAutoresizingMaskIntoConstraints="NO" id="CHi-uS-rp7">
+                        <rect key="frame" x="20" y="8" width="82" height="82"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="CHi-uS-rp7" secondAttribute="height" multiplier="1:1" id="zTx-wC-nWM"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="产品分类：干果" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpi-yO-zet">
+                        <rect key="frame" x="116" y="46" width="84" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 299" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUz-KC-kfT">
+                        <rect key="frame" x="116" y="73" width="37" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="库存 :3000件" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awj-Hd-ojH">
+                        <rect key="frame" x="187" y="73" width="83" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人生观豪华大礼包产品只要299元内有小核桃、葡萄干" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHw-0e-KIP">
+                        <rect key="frame" x="116" y="8" width="184" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="183" id="3XY-Pa-iQs"/>
+                            <constraint firstAttribute="height" constant="35" id="tJD-8g-wN7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3XY-Pa-iQs"/>
+                            </mask>
+                        </variation>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="eUz-KC-kfT" firstAttribute="bottom" secondItem="CHi-uS-rp7" secondAttribute="bottom" id="3dC-No-uwg"/>
+                    <constraint firstItem="eUz-KC-kfT" firstAttribute="leading" secondItem="CHi-uS-rp7" secondAttribute="trailing" constant="14" id="3hA-rO-wHl"/>
+                    <constraint firstItem="CHi-uS-rp7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="CFo-0k-GZd"/>
+                    <constraint firstItem="xHw-0e-KIP" firstAttribute="leading" secondItem="CHi-uS-rp7" secondAttribute="trailing" constant="14" id="DeB-F6-OLJ"/>
+                    <constraint firstAttribute="trailing" secondItem="xHw-0e-KIP" secondAttribute="trailing" constant="20" id="Jmv-bl-j09"/>
+                    <constraint firstAttribute="trailing" secondItem="awj-Hd-ojH" secondAttribute="trailing" constant="50" id="PD9-25-sBX"/>
+                    <constraint firstItem="CHi-uS-rp7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="hJ2-z6-8Yl"/>
+                    <constraint firstItem="awj-Hd-ojH" firstAttribute="centerY" secondItem="eUz-KC-kfT" secondAttribute="centerY" id="nWL-TZ-QLC"/>
+                    <constraint firstItem="Mpi-yO-zet" firstAttribute="leading" secondItem="CHi-uS-rp7" secondAttribute="trailing" constant="14" id="noI-lF-xgU"/>
+                    <constraint firstAttribute="bottom" secondItem="CHi-uS-rp7" secondAttribute="bottom" constant="8" id="oTv-6d-isE"/>
+                    <constraint firstItem="xHw-0e-KIP" firstAttribute="top" secondItem="CHi-uS-rp7" secondAttribute="top" id="pkG-3h-QGh"/>
+                    <constraint firstAttribute="centerY" secondItem="Mpi-yO-zet" secondAttribute="centerY" constant="-4" id="uhh-QN-uCk"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="classifyLabel" destination="Mpi-yO-zet" id="Ddd-fk-Gr0"/>
+                <outlet property="commodityImage" destination="CHi-uS-rp7" id="kUQ-6z-RB2"/>
+                <outlet property="introduceLabel" destination="xHw-0e-KIP" id="pVx-KR-3Nl"/>
+                <outlet property="priceLabel" destination="eUz-KC-kfT" id="qqq-22-5QA"/>
+                <outlet property="repertoryLabel" destination="awj-Hd-ojH" id="VSn-Eb-ynX"/>
+            </connections>
+            <point key="canvasLocation" x="273" y="310.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="山核桃" width="100" height="100"/>
+    </resources>
+</document>
