@@ -10,6 +10,8 @@
 #import <CoreLocation/CoreLocation.h> 
 #import "LoginViewController.h"
 #import "HTResultData.h"
+#import "HTHuoBanNavgationViewController.h"
+#import "HTToJudgeLoginFlag.h"
 
 @interface AppDelegate ()<CLLocationManagerDelegate>
 /**定位管理者*/
@@ -25,19 +27,23 @@
     }
     return _mgr;
 }
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //开启定位服务
     [self AppLaunchTolocation];
     
-    LoginViewController *login = [[LoginViewController alloc] init];
-    self.window.rootViewController = login;
-    [self.window makeKeyAndVisible];
-    
     //程序初始化借口
     [self callInitFunction];
     
+    if ([HTToJudgeLoginFlag ToJudgeLoginFlag]) {
+        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        HTHuoBanNavgationViewController * homeNav = [story instantiateViewControllerWithIdentifier:@"HTHuoBanNavgationViewController"];
+        self.window.rootViewController = homeNav;
+    }else{
+        LoginViewController *login = [[LoginViewController alloc] init];
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+        self.window.rootViewController = nav;
+    }
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -47,37 +53,15 @@
  *  程序初始化借口
  */
 - (void)callInitFunction{
-
-    NSString * apptoken = [[NSUserDefaults standardUserDefaults] stringForKey:HuoBanMallAppToken];
-    NSLog(@"%@",apptoken);
     __block HTResultData * resultData = [[HTResultData  alloc] init];
     [UserLoginTool loginRequestGet:@"init" parame:nil success:^(id json) {
-        
-        NSLog(@"%@",json);
-        
+        NSLog(@"xxxx------init%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
-             resultData = [HTResultData objectWithKeyValues:json[@"resultData"]];
-              NSString *localToken = [[NSUserDefaults standardUserDefaults] stringForKey:HuoBanMallAppToken];
-            if (![localToken isEqualToString:resultData.user.token]) {
-                //保存新的token
-                [[NSUserDefaults standardUserDefaults] setObject:resultData.user.token forKey:HuoBanMallAPPKEY];
-                NSString * flag = @"wrong";
-                [[NSUserDefaults standardUserDefaults] setObject:flag forKey:loginFlag];
-                
-                NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-                //1、保存全局信息
-                NSString *fileName = [path stringByAppendingPathComponent:InitGlobalDate];
-                [NSKeyedArchiver archiveRootObject:resultData.global toFile:fileName]; //保存用户信息
-                //2、保存个人信息
-                fileName = [path stringByAppendingPathComponent:LocalUserDate];
-                [NSKeyedArchiver archiveRootObject:nil toFile:fileName]; //保存用户信息
-                
-            }else{
-                NSString * flag = @"right";
-                [[NSUserDefaults standardUserDefaults] setObject:flag forKey:loginFlag];
+            resultData = [HTResultData objectWithKeyValues:json[@"resultData"]];
+            NSString *localToken = [[NSUserDefaults standardUserDefaults] stringForKey:HuoBanMallAppToken];
+            if ([localToken isEqualToString:resultData.user.token]) {
                 //初始化
                 NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-                
                 //1、保存个人信息
                 NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
                 [NSKeyedArchiver archiveRootObject:resultData.user toFile:fileName]; //保存用户信息
@@ -85,11 +69,22 @@
                 fileName = [path stringByAppendingPathComponent:InitGlobalDate];//保存全局信息
                 [NSKeyedArchiver archiveRootObject:resultData.global toFile:fileName]; //保存用户信息
                 
+            }else{
                 
+                NSLog(@"----init -new --token%@",resultData.user.token);
+                //保存新的token
+                [[NSUserDefaults standardUserDefaults] setObject:resultData.user.token forKey:HuoBanMallAPPKEY];
+                NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+                //1、保存全局信息
+                NSString *fileName = [path stringByAppendingPathComponent:InitGlobalDate];
+                [NSKeyedArchiver archiveRootObject:resultData.global toFile:fileName]; //保存用户信息
+                //2、保存个人信息
+                fileName = [path stringByAppendingPathComponent:LocalUserDate];
+                [NSKeyedArchiver archiveRootObject:resultData.user toFile:fileName]; //保存用户信息
             }
         }
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+        NSLog(@"%@",error.description);
     }];
     
 }

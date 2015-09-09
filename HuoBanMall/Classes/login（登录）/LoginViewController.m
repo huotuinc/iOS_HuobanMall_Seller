@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "findBackPwViewController.h"
 #import "HTHuoBanNavgationViewController.h"
 #import "HTUser.h"
 #import "MD5Encryption.h"
@@ -47,12 +48,11 @@
         //3、设置键盘弹出
 //    [self.userNameTextFiled becomeFirstResponder];
     
-    //4.导航栏返回
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"返回" style:UIBarButtonItemStylePlain handler:^(id sender) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
     
     
+    self.userNameTextFiled.text = [[NSUserDefaults standardUserDefaults] objectForKey:loginUserName];
+    self.passwdTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:loginPassword];
+   
     if ([UIScreen mainScreen].bounds.size.height == 480) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidChangeFrameNotification object:nil];
     }
@@ -86,7 +86,8 @@
  */
 - (void) setweigtAttribute
 {
-    self.title = @"粉猫登陆";
+    self.title = @"伙伴商城登陆";
+    [self _initNavBackgroundColor];
 }
 
 /**退下下键盘*/
@@ -101,15 +102,10 @@
  */
 - (IBAction)loginBtn:(id)sender {
     
-    UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    HTHuoBanNavgationViewController * home = [story instantiateViewControllerWithIdentifier:@"HTHuoBanNavgationViewController"];
     
-    UIWindow * mainview = [UIApplication sharedApplication].keyWindow;
-    mainview.rootViewController = home;
-   
-    self.userNameTextFiled.text = @"huotu";
+    NSLog(@"xxxx");
+    self.userNameTextFiled.text = @"huoban";
     self.passwdTextField.text = @"123456";
-    
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"username"] = self.userNameTextFiled.text;
@@ -152,25 +148,25 @@
             
             //2、保存手机号和密码
             [[NSUserDefaults standardUserDefaults] setObject:wself.userNameTextFiled.text forKey:loginUserName];
-            [[NSUserDefaults standardUserDefaults] setObject:[MD5Encryption md5by32:wself.passwdTextField.text] forKey:loginPassword];
-            //3、保存登录token
-            NSString * apptoken = [[NSUserDefaults standardUserDefaults] stringForKey:HuoBanMallAppToken];
-            NSLog(@"%@",apptoken);
-            NSLog(@"%@",user.token);
-            if (![apptoken isEqualToString:user.token]) { //当前token和原先的token不同
-                
-                [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:HuoBanMallAppToken];
-            }
+            [[NSUserDefaults standardUserDefaults] setObject:wself.passwdTextField.text forKey:loginPassword];
             
-            if (![user.welcomeTip isEqualToString:@""]) {
+            NSLog(@"用户登录后返回的token%@",user.token);
+            //保存新的token
+            [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:HuoBanMallAppToken];
+            if (![user.welcomeTip isEqualToString:@""]) {//登入成功提示
                 [SVProgressHUD showInfoWithStatus:user.welcomeTip];
             }else {
                 [SVProgressHUD showSuccessWithStatus:@"登录成功"];
             }
             
+            UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            HTHuoBanNavgationViewController * home = [story instantiateViewControllerWithIdentifier:@"HTHuoBanNavgationViewController"];
+            UIWindow * mainview = [UIApplication sharedApplication].keyWindow;
+            mainview.rootViewController = home;
+            
         }
     } failure:^(NSError *error) {
-        NSLog(@"%@", error);
+        NSLog(@"%@", error.description);
     }];
     
 }
@@ -179,6 +175,9 @@
  * 忘记密码
  */
 - (IBAction)forgetPWBtn:(id)sender {
+    findBackPwViewController * findvc = [[findBackPwViewController alloc] init];
+    UINavigationController * navCt = [[UINavigationController alloc] initWithRootViewController:findvc];
+    [self presentViewController:navCt animated:YES completion:nil];
     
 }
 /**

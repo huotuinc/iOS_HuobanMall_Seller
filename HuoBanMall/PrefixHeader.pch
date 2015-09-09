@@ -56,7 +56,8 @@
 #define loginUserName  @"username" //用户名
 #define loginPassword @"password"  //密码
 #define loginFlag @"loginFlag"  // 是否需要登录标志
-
+#define LoginSuccess @"success" //登陆成功
+#define LoginFailure @"failure" //登陆失败
 #define InitGlobalDate @"initGlobalDate"    //初始化返回的global
 
 

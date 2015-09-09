@@ -43,39 +43,13 @@
    
    paramsOption[@"sign"] = [NSDictionary asignWithMutableDictionary:paramsOption];
    [paramsOption removeObjectForKey:@"appSecret"];
-   
-//    paramsOption[@"timestamp"] = apptimesSince1970;
-//    paramsOption[@"operation"] = OPERATION_parame;
-//    paramsOption[@"version"] =AppVersion;
-//    NSString * token = [[NSUserDefaults standardUserDefaults] stringForKey:AppToken];
-//    paramsOption[@"token"] = token?token:@"";
-//    paramsOption[@"imei"] = DeviceNo;
-//    paramsOption[@"cityCode"] = @"1372";
-//    paramsOption[@"cpaCode"] = @"default";
-//    if (params != nil) { //传入参数不为空
-//       [paramsOption addEntriesFromDictionary:params];
-//    }
-//    paramsOption[@"sign"] = [NSDictionary asignWithMutableDictionary:paramsOption];  //计算asign
-//    [paramsOption removeObjectForKey:@"appSecret"];
-    
-//    NSArray * parameaaa = [paramsOption allKeys];
-//    NSMutableString * aaa = [[NSMutableString alloc] init];
-//    
-//    for (NSString * a in parameaaa) {
-//        [aaa appendString:[NSString stringWithFormat:@"%@=%@&",a,[paramsOption objectForKey:a]]];
-//    }
-//    aaa = [aaa substringToIndex:(int)(aaa.length-1)];
-//    NSLog(@"--------------------%@",aaa);
-//    
-//    NSLog(@"dasdasdas-------parame--get%@",paramsOption);
-//    manager.responseSerializer=[AFHTTPResponseSerializer serializer];
+
     [manager GET:url parameters:paramsOption success:^(AFHTTPRequestOperation *operation, id responseObject){
-//        NSLog(@"xxxxxxxx%@",operation);
-    
+        NSLog(@"%@",operation);
         success(responseObject);
         
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"%@",operation);
+        NSLog(@"%@",operation);
         failure(error);
     }];
 }
@@ -115,7 +89,7 @@
 //    NSLog(@"xxxxxx-----网络请求get参数parame%@",paramsOption);
 //    NSLog(@"网络请求－－－－post参数%@",paramsOption);
     [manager POST:url parameters:paramsOption success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"-------%@",operation);
+        NSLog(@"-------%@",operation);
         success(responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
