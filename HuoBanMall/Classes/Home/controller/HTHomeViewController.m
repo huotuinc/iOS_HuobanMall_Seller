@@ -9,6 +9,7 @@
 #import "HTHomeViewController.h"
 #import "SettingViewController.h"
 #import "HTDataStatisViewController.h"
+#import "MoreDataViewController.h"
 #import "ManagementController.h"
 #import <PNChart.h>
 
@@ -109,9 +110,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-    
-    
     HTHomeViewController * wself = self;
     
     [self.productManager bk_whenTapped:^{
@@ -131,10 +129,10 @@
     
     
     [self.dataStatics bk_whenTapped:^{
-        HTDataStatisViewController * dataStatics = [[HTDataStatisViewController alloc] init];
-        dataStatics.titlesArray = @[@"订单",@"销售额",@"会员"];
+        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        MoreDataViewController *more = [story instantiateViewControllerWithIdentifier:@"MoreDataViewController"];
         
-        [wself.navigationController pushViewController:dataStatics animated:YES];
+        [wself.navigationController pushViewController:more animated:YES];
         
     }];
     

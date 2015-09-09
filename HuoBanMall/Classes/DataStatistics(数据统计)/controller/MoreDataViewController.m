@@ -17,28 +17,48 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self _initImageView];
+    
 }
 
 #pragma 设置点击事件
 - (void)_initImageView {
-    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    HTDataStatisViewController *dataStatis = [story instantiateViewControllerWithIdentifier:@"HTDataStatisViewController"];
+    HTDataStatisViewController *dataStatis = [[HTDataStatisViewController alloc] init];;
     
     [self.ordorView bk_whenTapped:^{
-        dataStatis.segment.selectedSegmentIndex = 0;
+        dataStatis.selectIndex = 0;
         [self.navigationController pushViewController:dataStatis animated:YES];
     }];
     
     [self.distributorImage bk_whenTapped:^{
-        dataStatis.segment.selectedSegmentIndex = 2;
+        dataStatis.selectIndex = 2;
         [self.navigationController pushViewController:dataStatis animated:YES];
     }];
     
     [self.memberImage bk_whenTapped:^{
-        dataStatis.segment.selectedSegmentIndex = 2;
+        dataStatis.selectIndex = 2;
         [self.navigationController pushViewController:dataStatis animated:YES];
     }];
+    
+    [self.saleImage bk_whenTapped:^{
+        dataStatis.selectIndex = 1;
+        [self.navigationController pushViewController:dataStatis animated:YES];
+    }];
+    
+#warning 转跳网页
+    [self.marketImage bk_whenTapped:^{
+        
+    }];
+    
+    [self.rebateImage bk_whenTapped:^{
+        
+    }];
+    
+    [self.expenseImage bk_whenTapped:^{
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

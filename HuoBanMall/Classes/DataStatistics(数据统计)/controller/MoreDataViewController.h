@@ -15,6 +15,11 @@
 @property (weak, nonatomic) IBOutlet UIView *ordorView;
 
 /**
+ *  订单数量
+ */
+@property (weak, nonatomic) IBOutlet UILabel *ordorLabel;
+
+/**
  *  分销商图片
  */
 @property (weak, nonatomic) IBOutlet UIImageView *distributorImage;

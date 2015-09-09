@@ -96,6 +96,18 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 
 #pragma 网络访问
 
+- (void)getPutawayGoodList {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"type"] = @1;
+    
+    [UserLoginTool loginRequestGet:@"goodsList" parame:dic success:^(id json) {
+        NSLog(@"%@",json);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
 #pragma tableView
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

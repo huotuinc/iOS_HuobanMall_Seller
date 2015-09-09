@@ -18,4 +18,9 @@
  */
 @property(nonatomic,strong) UISegmentedControl *segment;
 
+/**
+ *  标记
+ */
+@property (nonatomic, assign) int selectIndex;
+
 @end

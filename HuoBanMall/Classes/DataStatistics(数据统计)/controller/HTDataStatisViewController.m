@@ -64,7 +64,7 @@ static NSString *popAnimation = @"first";
 
 //- (NSArray *)titlesArray{
 //    if (_titlesArray == nil) {
-//        _titlesArray = @[@"订单",@"销售额",@"会员"];
+//        ;
 //    }
 //    return _titlesArray;
 //}
@@ -92,7 +92,13 @@ static NSString *popAnimation = @"first";
     // 3、数据统计中第三个会员统计
     [self showVipPersonNumber];
     
+    if (self.titlesArray.count == 0) {
+        _titlesArray = @[@"订单",@"销售额",@"会员"];
+    }
+    
     [self _initSegment];
+    
+    
 }
 
 
@@ -102,10 +108,10 @@ static NSString *popAnimation = @"first";
 {
     [super viewWillAppear:animated];
     
-//    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-//    self.navigationController.navigationBar.translucent = NO;
+    self.segment.selectedSegmentIndex = self.selectIndex;
     
-//    [self _removeNavBackgroundColor];
+    self.BackScrollerview.contentOffset = CGPointMake(ScreenWidth * self.segment.selectedSegmentIndex, 0);
+    
 }
 
 /**
@@ -116,6 +122,7 @@ static NSString *popAnimation = @"first";
     self.segment = [[UISegmentedControl alloc] initWithItems:_titlesArray];
     [self.segment addTarget:self action:@selector(segmentChanged) forControlEvents:UIControlEventValueChanged];
     self.segment.tintColor = [UIColor whiteColor];
+    
     self.navigationItem.titleView = self.segment;
 }
 
