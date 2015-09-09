@@ -84,6 +84,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 {
     [super viewWillAppear:animated];
     
+    [self getNewGoodList];
     
 }
 
@@ -96,10 +97,15 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 
 #pragma 网络访问
 
-- (void)getPutawayGoodList {
+- (void)getNewGoodList {
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"type"] = @1;
+    if (self.segment.selectedSegmentIndex) {
+        dic[@"type"] = @2;
+    }else {
+        dic[@"type"] = @1;
+    }
+    
     
     [UserLoginTool loginRequestGet:@"goodsList" parame:dic success:^(id json) {
         NSLog(@"%@",json);
