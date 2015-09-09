@@ -104,7 +104,7 @@
     
     
     NSLog(@"xxxx");
-    self.userNameTextFiled.text = @"huotu";
+    self.userNameTextFiled.text = @"huoban";
     self.passwdTextField.text = @"123456";
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -150,6 +150,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:wself.userNameTextFiled.text forKey:loginUserName];
             [[NSUserDefaults standardUserDefaults] setObject:wself.passwdTextField.text forKey:loginPassword];
             
+            NSLog(@"用户登录后返回的token%@",user.token);
             //保存新的token
             [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:HuoBanMallAppToken];
             if (![user.welcomeTip isEqualToString:@""]) {//登入成功提示

@@ -70,6 +70,8 @@
                 [NSKeyedArchiver archiveRootObject:resultData.global toFile:fileName]; //保存用户信息
                 
             }else{
+                
+                NSLog(@"----init -new --token%@",resultData.user.token);
                 //保存新的token
                 [[NSUserDefaults standardUserDefaults] setObject:resultData.user.token forKey:HuoBanMallAPPKEY];
                 NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
