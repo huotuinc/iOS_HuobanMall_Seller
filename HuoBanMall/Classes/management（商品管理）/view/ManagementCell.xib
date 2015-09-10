@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="山核桃" translatesAutoresizingMaskIntoConstraints="NO" id="CHi-uS-rp7">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CHi-uS-rp7">
                         <rect key="frame" x="20" y="8" width="82" height="82"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="CHi-uS-rp7" secondAttribute="height" multiplier="1:1" id="zTx-wC-nWM"/>
@@ -80,7 +80,4 @@
             <point key="canvasLocation" x="273" y="310.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="山核桃" width="100" height="100"/>
-    </resources>
 </document>

@@ -41,6 +41,11 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.selectGoods = [NSMutableArray array];
+    
+    self.goods = [NSMutableArray array];
+    
+    
     //tableView
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -109,6 +114,18 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     
     [UserLoginTool loginRequestGet:@"goodsList" parame:dic success:^(id json) {
         NSLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+
+            NSArray *temp = [ManagementModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            
+            [self.goods removeAllObjects];
+            
+            [self.goods addObjectsFromArray:temp];
+            
+            [self.tableView reloadData];
+        }
+        
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -124,12 +141,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.goods.count != 0) {
-        return self.goods.count;
-    }else {
-        return  5;
-    }
-    
+    return self.goods.count;
 }
 
 /**
@@ -142,7 +154,9 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ManagementModel *model = nil;
-    model = self.goods[indexPath.row];
+    if (self.goods.count) {
+        model = self.goods[indexPath.row];
+    }
     if (model) {
         if ([self.selectGoods containsObject:model]) {
             if (self.tableView.editing == YES) {
@@ -158,6 +172,8 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"ManagementCell" owner:nil options:nil] lastObject];
     }
+    
+    cell.model = self.goods[indexPath.row];
     
     
     return cell;

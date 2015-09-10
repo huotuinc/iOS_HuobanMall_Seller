@@ -14,6 +14,8 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "AmendController.h"
 #import "DescribeController.h"
+#import "HTUser.h"
+#import <UIImageView+WebCache.h>
 
 @interface SettingViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
 
@@ -63,6 +65,44 @@
 {
     [super viewWillAppear:animated];
     
+//    [self getUserInformation];
+    
+    [self _initUserInfo];
+}
+
+#pragma mark 设置初始的用户信息
+
+- (void)_initUserInfo {
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+    HTUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:user.logo] placeholderImage:nil options:SDWebImageRetryFailed];
+    
+    self.introLabel.text = user.discription;
+    
+    self.nameLabel.text = user.name;
+    
+    self.accountLabel.text = user.mobile;
+    
+    self.nickname = user.nickName;
+    
+    
+}
+
+#pragma mark 网络请求
+
+- (void)getUserInformation {
+    [UserLoginTool loginRequestGet:@"getMerchantProfile" parame:nil success:^(id json) {
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            HTUser *user = [HTUser objectWithKeyValues:(json[@"resultData"][@"user"])];
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 #pragma mark - Table view data source

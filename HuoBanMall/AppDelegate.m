@@ -56,6 +56,11 @@
     __block HTResultData * resultData = [[HTResultData  alloc] init];
     [UserLoginTool loginRequestGet:@"init" parame:nil success:^(id json) {
         NSLog(@"xxxx------init%@",json);
+        if ([json[@"resultCode"] intValue] == 56001) {
+            LoginViewController *login = [[LoginViewController alloc] init];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+            self.window.rootViewController = nav;
+        }
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             resultData = [HTResultData objectWithKeyValues:json[@"resultData"]];
             NSString *localToken = [[NSUserDefaults standardUserDefaults] stringForKey:HuoBanMallAppToken];

@@ -10,6 +10,29 @@
 
 @interface ManagementModel : NSObject
 
+/**
+ *  图片url
+ */
+@property (nonatomic, strong) NSString *pictureUrl;
 
+/**
+ *  价格
+ */
+@property (nonatomic, strong) NSNumber *price;
+
+/**
+ *  库存
+ */
+@property (nonatomic, strong) NSNumber *stock;
+
+/**
+ *  标题
+ */
+@property (nonatomic, strong) NSString *title;
+
+/**
+ *  商品id
+ */
+@property (nonatomic, strong) NSNumber *goodsId;
 
 @end

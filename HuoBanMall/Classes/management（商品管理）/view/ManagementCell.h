@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ManagementModel.h"
 
 @interface ManagementCell : UITableViewCell
 
@@ -24,5 +25,8 @@
 
 //库存
 @property (weak, nonatomic) IBOutlet UILabel *repertoryLabel;
+
+
+@property (nonatomic, strong) ManagementModel *model;
 
 @end

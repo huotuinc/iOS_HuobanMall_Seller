@@ -7,12 +7,22 @@
 //
 
 #import "ManagementCell.h"
+#import <UIImageView+WebCache.h>
 
 @implementation ManagementCell
 
 - (void)awakeFromNib {
     
     [self.introduceLabel setContentMode:UIViewContentModeTopLeft];
+    
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.model.pictureUrl] placeholderImage:nil options:SDWebImageRetryFailed];
+    
+    self.introduceLabel.text = self.model.title;
+    
+    self.priceLabel.text = [NSString stringWithFormat:@"¥：%@",self.model.price];
+    
+    self.repertoryLabel.text = [NSString stringWithFormat:@"库存：%@", self.model.stock];
+    
     
 }
 
