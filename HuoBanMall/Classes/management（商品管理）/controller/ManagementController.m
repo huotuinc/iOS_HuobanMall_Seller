@@ -9,6 +9,8 @@
 #import "ManagementController.h"
 #import "ManagementModel.h"
 #import "ManagementCell.h"
+#import "MJRefresh.h"
+
 
 @interface ManagementController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -50,6 +52,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.editing = NO;
+    [self setupRefresh];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ManagementCell" bundle:nil] forCellReuseIdentifier:ManagementIdentifier];
     
@@ -102,9 +105,39 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     // Dispose of any resources that can be recreated.
 }
 
+///**
+// *  集成刷新控件
+// */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(getNewGoodList)];
+    //#warning 自动刷新(一进入程序就下拉刷新)
+//    [self.tableView headerBeginRefreshing];
+    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
+    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
+    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
+    self.tableView.headerRefreshingText = @"正在刷新最新数据,请稍等";
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];
+    
+    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
+    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
+    self.tableView.footerRefreshingText = @"正在加载更多数据,请稍等";
+    
+}
+
+
 #pragma 网络访问
 
 - (void)getNewGoodList {
+    
+    if (self.tableView.editing) {
+        self.selectImage.image = [UIImage imageNamed:@"wxz"];
+    }
+    
+    [self.selectGoods removeAllObjects];
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if (self.segment.selectedSegmentIndex) {
@@ -126,6 +159,9 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
             [self.goods addObjectsFromArray:temp];
             
             [self.tableView reloadData];
+            
+            
+            [self.tableView headerEndRefreshing];
         }
         
     } failure:^(NSError *error) {
@@ -134,6 +170,37 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 }
 
 - (void)getMoreGoodList {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    if (self.segment.selectedSegmentIndex) {
+        dic[@"type"] = @2;
+    }else {
+        dic[@"type"] = @1;
+    }
+    ManagementModel *model = self.goods.lastObject;
+    dic[@"lastProductId"] = model.goodsId;
+    
+    [UserLoginTool loginRequestPost:@"goodsList" parame:dic success:^(id json) {
+        
+        NSLog(@"%@", json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            NSArray *temp = [ManagementModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            
+            [self.goods addObjectsFromArray:temp];
+            
+            [self.tableView reloadData];
+            
+            [self.tableView footerEndRefreshing];
+            
+            if (self.tableView.editing) {
+                self.selectImage.image = [UIImage imageNamed:@"wxz"];
+            }
+            
+        }
+        
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
     
 }
 
@@ -189,16 +256,17 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
  */
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ManagementModel *model = nil;
-    if (self.goods.count) {
-        model = self.goods[indexPath.row];
-    }
-    if (model) {
+    if (self.tableView.editing) {
+        ManagementModel *model = self.goods[indexPath.row];
         if ([self.selectGoods containsObject:model]) {
-            if (self.tableView.editing == YES) {
-                [cell setSelected:YES];
-            }
+//            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            
+            cell.selected = YES;
+//            cell.userInteractionEnabled = 0;
+            
+            NSLog(@"%d",cell.userInteractionEnabled);
         }
+        
     }
 }
 
@@ -210,7 +278,6 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     }
     
     cell.model = self.goods[indexPath.row];
-    
     
     return cell;
 }
@@ -242,16 +309,16 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ManagementModel *model = nil;
+    
     
     if (self.tableView.editing == YES) {
         
-        model = self.goods[indexPath.row];
+        ManagementModel *model = self.goods[indexPath.row];
         
         [self.selectGoods removeObject:model];
         
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [cell setSelected:NO];
+//        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+//        [cell setSelected:NO animated:YES];
     }
 }
 
@@ -313,6 +380,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 
 - (IBAction)allSelected:(id)sender {
     if (self.selectGoods.count != self.goods.count) {
+        self.tableView.userInteractionEnabled = YES;
         [self.selectGoods removeAllObjects];
         [self.selectGoods addObjectsFromArray:self.goods];
         self.selectImage.image = [UIImage imageNamed:@"yxz"];
