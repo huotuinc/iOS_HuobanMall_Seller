@@ -132,6 +132,25 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     }];
 }
 
+- (void)getMoreGoodList {
+    
+}
+
+- (void)exchangeGoodWithType:(int) type {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    NSMutableString *string = [NSMutableString string];
+    
+    for (ManagementModel  *model in self.selectGoods) {
+        [string  appendFormat:@"%@,", model.goodsId];
+    }
+    NSString *toserverStr = [string substringToIndex:string.length - 1];
+    
+    dic[@"type"] = @(type);
+    dic[@"goods"] = toserverStr;
+    
+}
+
 #pragma tableView
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
