@@ -73,6 +73,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
          *  设置底部视图隐藏显示动画
          */
         [self showButtomView];
+        
     }];
     self.navigationItem.rightBarButtonItem = right;
     

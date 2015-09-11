@@ -28,8 +28,12 @@
 @property(nonatomic,strong) NSString * nickName;
 /**夜间免打老*/
 @property(nonatomic,strong) NSNumber * noDisturbed;
+/**是否是操作员**/
+@property(nonatomic,strong) NSNumber *operatored;
 /**登入验证token*/
 @property(nonatomic,strong) NSString * token;
+/**店铺名称**/
+@property(nonatomic,strong) NSString * title;
 /**欢迎语*/
 @property(nonatomic,strong) NSString * welcomeTip;
 

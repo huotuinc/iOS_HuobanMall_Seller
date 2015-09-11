@@ -12,6 +12,9 @@
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
-
+/**
+ *  网页加载类型
+ */
+@property (nonatomic, assign) int type;
 
 @end

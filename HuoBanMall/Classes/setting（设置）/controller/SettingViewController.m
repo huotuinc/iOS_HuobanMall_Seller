@@ -16,8 +16,11 @@
 #import "DescribeController.h"
 #import "HTUser.h"
 #import <UIImageView+WebCache.h>
+#import "WebController.h"
+#import "HTGlobal.h"
+#import "LoginViewController.h"
 
-@interface SettingViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
+@interface SettingViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UIAlertViewDelegate, AmendControllerdelegate ,DescribeControllerdelegate>
 
 //店铺logo
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
@@ -42,6 +45,12 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *nickname;
 
+
+/**
+ *  用户数据
+ */
+@property (strong, nonatomic) HTUser *user;
+
 @end
 
 @implementation SettingViewController
@@ -65,9 +74,40 @@
 {
     [super viewWillAppear:animated];
     
-//    [self getUserInformation];
+    //    [self getUserInformation];
     
     [self _initUserInfo];
+}
+
+#pragma mark 代理协议
+
+- (void)NameControllerpickName:(NSString *)name {
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+        self.user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+        self.nameLabel.text = name;
+    });
+}
+
+- (void)NicknameControllerpickName:(NSString *)name {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+        self.user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+        self.nickname.text = name;
+    });
+}
+
+- (void)DescribeControllerpickDescribe:(NSString *)describe
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+        self.user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+        self.introLabel.text = describe;
+    });
 }
 
 #pragma mark 设置初始的用户信息
@@ -75,17 +115,17 @@
 - (void)_initUserInfo {
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
-    HTUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    self.user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
     
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:user.logo] placeholderImage:nil options:SDWebImageRetryFailed];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:self.user.logo] placeholderImage:nil options:SDWebImageRetryFailed];
     
-    self.introLabel.text = user.discription;
+    self.introLabel.text = self.user.discription;
     
-    self.nameLabel.text = user.name;
+    self.nameLabel.text = self.user.title;
     
-    self.accountLabel.text = user.mobile;
+    self.accountLabel.text = self.user.mobile;
     
-    self.nickname = user.nickName;
+    self.nickname.text = self.user.nickName;
     
     
 }
@@ -96,7 +136,7 @@
     [UserLoginTool loginRequestGet:@"getMerchantProfile" parame:nil success:^(id json) {
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
-            HTUser *user = [HTUser objectWithKeyValues:(json[@"resultData"][@"user"])];
+            //            HTUser *user = [HTUser objectWithKeyValues:(json[@"resultData"][@"user"])];
             
         }
         
@@ -144,13 +184,17 @@
             UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             DescribeController *describe = [story instantiateViewControllerWithIdentifier:@"DescribeController"];
             describe.title = @"店铺描述";
+            describe.string = self.user.discription;
+            describe.delegate = self;
             [self.navigationController pushViewController:describe animated:YES];
         }else if (indexPath.row == 2) {
             UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             AmendController *describe = [story instantiateViewControllerWithIdentifier:@"AmendController"];
             describe.title = @"店铺名称";
-#warning 设置店铺名称
-//            describe.textField.placeholder =
+            describe.delegate = self;
+            //            describe.textField.text = ;
+#pragma  设置店铺名称
+            describe.string = self.user.title;
             [self.navigationController pushViewController:describe animated:YES];
         }
     }else if (indexPath.section == 1) {
@@ -158,21 +202,71 @@
             UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             AmendController *describe = [story instantiateViewControllerWithIdentifier:@"AmendController"];
             describe.title = @"昵称修改";
-#warning 设置昵称
-            //            describe.textField.placeholder =
+            describe.delegate = self;
+#pragma  设置昵称
+            describe.string = self.user.nickName;
             [self.navigationController pushViewController:describe animated:YES];
         }
+    }else if (indexPath.section == 3) {
+        UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        WebController *web = [story instantiateViewControllerWithIdentifier:@"WebController"];
+        
+        
+        if (indexPath.row == 0) {
+            
+            web.title = @"关于我们";
+            web.type = 1;
+            
+        }else if (indexPath.row == 1){
+            
+            web.title = @"实用帮助";
+            web.type = 2;
+        }else if (indexPath.row == 2){
+            
+            web.title = @"问题反馈";
+            web.type = 3;
+        }
+        
+        [self.navigationController pushViewController:web animated:YES];
+    }else if (indexPath.section) {
+        UIAlertView * ac = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定要退出吗?" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+        [ac show];
     }
+    
 }
 
+/**
+ *  退出账号提示按钮
+ *
+ *  @param alertView   <#alertView description#>
+ *  @param buttonIndex <#buttonIndex description#>
+ */
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:HuoBanMallAppToken];
+        [[NSUserDefaults standardUserDefaults] setObject:@"wrong" forKey:loginFlag];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:loginUserName];
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        
+        //1、保存个人信息
+        NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+        [NSKeyedArchiver archiveRootObject:nil toFile:fileName];
+        
+        LoginViewController *login = [[LoginViewController alloc] init];
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
+}
 
 
 #pragma 拍照
 /**
  *  拍照
  *
- *  @param picker <#picker description#>
- *  @param info   <#info description#>
+ *  @param picker
+ *  @param info
  */
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     

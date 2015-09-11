@@ -9,6 +9,7 @@
 #import "PushViewController.h"
 
 @interface PushViewController ()
+
 @property (weak, nonatomic) IBOutlet UISwitch *order;
 @property (weak, nonatomic) IBOutlet UISwitch *friend;
 @property (weak, nonatomic) IBOutlet UISwitch *message;
@@ -20,18 +21,61 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+    self.user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    
+    
+    NSLog(@"ordro%@", self.user.enableBillNotice);
+    self.order.on = [self.user.enableBillNotice intValue];
+    [self.order addTarget:self action:@selector(swichChanged:) forControlEvents:UIControlEventValueChanged];
+    self.order.tag = 4;
+    
+    NSLog(@"friend%@", self.user.enablePartnerNotice);
+    self.friend.on = [self.user.enablePartnerNotice intValue];
+    [self.friend addTarget:self action:@selector(swichChanged:) forControlEvents:UIControlEventValueChanged];
+    self.friend.tag = 5;
+    
+    NSLog(@"message%@", self.user.noDisturbed);
+    self.message.on = [self.user.noDisturbed intValue];
+    [self.message addTarget:self action:@selector(swichChanged:) forControlEvents:UIControlEventValueChanged];
+    self.message.tag = 6;
+}
+
+- (void)swichChanged:(UISwitch *) swich {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"profileType"] = @(swich.tag);
+    dic[@"profileData"] = @(swich.on);
+    [UserLoginTool loginRequestPost:@"updateMerchantProfile" parame:dic success:^(id json) {
+        
+        NSLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            self.user = [HTUser objectWithKeyValues:(json[@"resultData"][@"user"])];
+            NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+            NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+            [NSKeyedArchiver archiveRootObject:self.user toFile:fileName];
+        }
+        
+        
+    } failure:^(NSError *error) {
+        
+        swich.on = !swich.on;
+        
+        NSLog(@"%@", error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 #pragma mark - Table view data source
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
