@@ -74,6 +74,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
          */
         [self showButtomView];
         
+        
     }];
     self.navigationItem.rightBarButtonItem = right;
     
@@ -148,6 +149,21 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     
     dic[@"type"] = @(type);
     dic[@"goods"] = toserverStr;
+    
+    [UserLoginTool loginRequestPost:@"operGoods" parame:dic success:^(id json) {
+        
+        NSLog(@"%@", json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            for (ManagementModel *model in self.selectGoods) {
+                [self.goods removeObject:model];
+            }
+            [self.selectGoods removeAllObjects];
+            [self.tableView reloadData];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
     
 }
 
@@ -258,8 +274,12 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 - (void)segmentChanged {
     if (self.segment.selectedSegmentIndex == 0) {
 #warning 已上架
+        [self getNewGoodList];
+        [self.putaway setTitle:@"下架" forState:UIControlStateNormal];
     }else {
 #warning 已下架
+        [self getNewGoodList];
+        [self.putaway setTitle:@"上架" forState:UIControlStateNormal];
     }
 }
 
@@ -267,33 +287,41 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     if (self.tableView.editing) {
         [UIView animateWithDuration:0.5 animations:^{
             self.buttomView.hidden = NO;
+            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height - self.buttomView.frame.size.height);
         }];
     }else {
         [UIView animateWithDuration:0.35 animations:^{
             self.buttomView.hidden = YES;
+            
+            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, ScreenHeight - 64);
         }];
     }
 }
 
 
 - (IBAction)putawayAction:(id)sender {
-    
+    if ([self.putaway.titleLabel.text isEqualToString:@"上架"]) {
+        [self exchangeGoodWithType:1];
+    }else {
+        [self exchangeGoodWithType:2];
+    }
 }
 
 - (IBAction)deleteGood:(id)sender {
-    
+    [self exchangeGoodWithType:3];
 }
 
 - (IBAction)allSelected:(id)sender {
     if (self.selectGoods.count != self.goods.count) {
         [self.selectGoods removeAllObjects];
-        self.selectGoods = self.goods;
+        [self.selectGoods addObjectsFromArray:self.goods];
         self.selectImage.image = [UIImage imageNamed:@"yxz"];
         [self.tableView reloadData];
     }else {
         [self.selectGoods removeAllObjects];
         self.selectImage.image = [UIImage imageNamed:@"wxz"];
         [self.tableView reloadData];
+        NSLog(@"%ld",self.goods.count);
     }
 }
 @end
