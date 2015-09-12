@@ -273,9 +273,6 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ManagementCell *cell = [tableView dequeueReusableCellWithIdentifier:ManagementIdentifier forIndexPath:indexPath];
-    if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"ManagementCell" owner:nil options:nil] lastObject];
-    }
     
     cell.model = self.goods[indexPath.row];
     
