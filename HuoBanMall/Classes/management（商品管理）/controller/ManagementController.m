@@ -72,6 +72,8 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
         
         self.tableView.editing = !self.tableView.editing;
         
+        
+        
         /**
          *  设置底部视图隐藏显示动画
          */
@@ -135,6 +137,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     
     if (self.tableView.editing) {
         self.selectImage.image = [UIImage imageNamed:@"wxz"];
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height - self.buttomView.frame.size.height);
     }
     
     [self.selectGoods removeAllObjects];
@@ -187,11 +190,18 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
             
             [self.goods addObjectsFromArray:temp];
             
-            [self.tableView reloadData];
-            
             [self.tableView footerEndRefreshing];
             
-            if (self.tableView.editing) {
+            [self.tableView reloadData];
+            
+            for (int row = 0; row < self.selectGoods.count; row++){
+                NSIndexPath *index = [NSIndexPath indexPathForRow:row inSection:0];
+                [self.tableView selectRowAtIndexPath:index animated:NO scrollPosition:UITableViewScrollPositionNone];
+            }
+            
+            NSLog(@"%lu", (unsigned long)self.goods.count);
+            NSLog(@"%lu", (unsigned long)self.selectGoods.count);
+            if (self.tableView.editing && self.selectGoods != self.goods) {
                 self.selectImage.image = [UIImage imageNamed:@"wxz"];
             }
             
@@ -254,27 +264,18 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
  *  @param cell
  *  @param indexPath
  */
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (self.tableView.editing) {
-        ManagementModel *model = self.goods[indexPath.row];
-        if ([self.selectGoods containsObject:model]) {
-//            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            
-            cell.selected = YES;
-//            cell.userInteractionEnabled = 0;
-            
-            NSLog(@"%d",cell.userInteractionEnabled);
-        }
-        
-    }
-}
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//
+//    }
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ManagementCell *cell = [tableView dequeueReusableCellWithIdentifier:ManagementIdentifier forIndexPath:indexPath];
     
     cell.model = self.goods[indexPath.row];
+
     
     return cell;
 }
@@ -295,6 +296,17 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
         
         [self.selectGoods addObject:model];
     }
+    
+    if (self.tableView.editing) {
+        ManagementModel *model = self.goods[indexPath.row];
+        if ([self.selectGoods containsObject:model]) {
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            
+            cell.selected = YES;
+            
+        }
+    }
+
 }
 
 /**
@@ -356,7 +368,6 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     }else {
         [UIView animateWithDuration:0.35 animations:^{
             self.buttomView.hidden = YES;
-            
             self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, ScreenHeight - 64);
         }];
     }
@@ -381,12 +392,16 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
         [self.selectGoods removeAllObjects];
         [self.selectGoods addObjectsFromArray:self.goods];
         self.selectImage.image = [UIImage imageNamed:@"yxz"];
-        [self.tableView reloadData];
+        for (int row = 0; row < self.goods.count; row++){
+            NSIndexPath *index = [NSIndexPath indexPathForRow:row inSection:0];
+            [self.tableView selectRowAtIndexPath:index animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
+//        [self.tableView reloadData];
     }else {
         [self.selectGoods removeAllObjects];
         self.selectImage.image = [UIImage imageNamed:@"wxz"];
         [self.tableView reloadData];
-        NSLog(@"%ld",self.goods.count);
+        NSLog(@"%ld",(unsigned long)self.goods.count);
     }
 }
 @end
