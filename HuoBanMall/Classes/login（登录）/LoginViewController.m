@@ -111,6 +111,8 @@
     dic[@"username"] = self.userNameTextFiled.text;
     dic[@"password"] = [MD5Encryption md5by32:self.passwdTextField.text];
     
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:HuoBanMallAppToken];
+    
     __weak LoginViewController * wself = self;
     
 //    [SVProgressHUD showWithStatus:@"登录ing"];

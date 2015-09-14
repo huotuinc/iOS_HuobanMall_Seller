@@ -7,6 +7,7 @@
 //
 
 #import "AmendController.h"
+#import "HTUser.h"
 
 @interface AmendController ()
 
@@ -16,7 +17,64 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.textField.placeholder = self.string;
+    
+    [self.textField becomeFirstResponder];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    if (self.textField.text.length != 0) {
+        dic[@"profileData"] = self.textField.text;
+        
+        if ([self.title isEqualToString:@"店铺名称"]) {
+            dic[@"profileType"] = @0;
+        }else {
+            dic[@"profileType"] = @3;
+        }
+        
+        [UserLoginTool loginRequestPost:@"updateMerchantProfile" parame:dic success:^(id json) {
+            NSLog(@"%@",json);
+            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+                
+                HTUser *user = [HTUser objectWithKeyValues:(json[@"resultData"][@"user"])];
+                NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+                NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+                [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+                
+                if ([self.title isEqualToString:@"店铺名称"]) {
+                    if ([self.delegate respondsToSelector:@selector(NameControllerpickName:)]) {
+                        [self.delegate NameControllerpickName:self.textField.text];
+                    }
+                }else {
+                    if ([self.delegate respondsToSelector:@selector(NicknameControllerpickName:)]) {
+                        [self.delegate NicknameControllerpickName:self.textField.text];
+                    }
+                }
+            }
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
+        
+        
+        
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

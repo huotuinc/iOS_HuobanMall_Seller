@@ -33,12 +33,6 @@
                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="库存 :3000件" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awj-Hd-ojH">
-                        <rect key="frame" x="187" y="73" width="83" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人生观豪华大礼包产品只要299元内有小核桃、葡萄干" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHw-0e-KIP">
                         <rect key="frame" x="116" y="8" width="184" height="35"/>
                         <constraints>
@@ -54,6 +48,12 @@
                             </mask>
                         </variation>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="库存 :3000件" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awj-Hd-ojH">
+                        <rect key="frame" x="217" y="73" width="83" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="eUz-KC-kfT" firstAttribute="bottom" secondItem="CHi-uS-rp7" secondAttribute="bottom" id="3dC-No-uwg"/>
@@ -61,7 +61,7 @@
                     <constraint firstItem="CHi-uS-rp7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="CFo-0k-GZd"/>
                     <constraint firstItem="xHw-0e-KIP" firstAttribute="leading" secondItem="CHi-uS-rp7" secondAttribute="trailing" constant="14" id="DeB-F6-OLJ"/>
                     <constraint firstAttribute="trailing" secondItem="xHw-0e-KIP" secondAttribute="trailing" constant="20" id="Jmv-bl-j09"/>
-                    <constraint firstAttribute="trailing" secondItem="awj-Hd-ojH" secondAttribute="trailing" constant="50" id="PD9-25-sBX"/>
+                    <constraint firstAttribute="trailing" secondItem="awj-Hd-ojH" secondAttribute="trailing" constant="20" id="PD9-25-sBX"/>
                     <constraint firstItem="CHi-uS-rp7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="hJ2-z6-8Yl"/>
                     <constraint firstItem="awj-Hd-ojH" firstAttribute="centerY" secondItem="eUz-KC-kfT" secondAttribute="centerY" id="nWL-TZ-QLC"/>
                     <constraint firstItem="Mpi-yO-zet" firstAttribute="leading" secondItem="CHi-uS-rp7" secondAttribute="trailing" constant="14" id="noI-lF-xgU"/>

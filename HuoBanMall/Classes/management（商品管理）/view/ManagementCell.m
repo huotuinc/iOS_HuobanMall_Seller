@@ -14,6 +14,12 @@
 - (void)awakeFromNib {
     
     [self.introduceLabel setContentMode:UIViewContentModeTopLeft];
+
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
     
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.model.pictureUrl] placeholderImage:nil options:SDWebImageRetryFailed];
     
@@ -22,9 +28,8 @@
     self.priceLabel.text = [NSString stringWithFormat:@"¥：%@",self.model.price];
     
     self.repertoryLabel.text = [NSString stringWithFormat:@"库存：%@", self.model.stock];
-    
-    
 }
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

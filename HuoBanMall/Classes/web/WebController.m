@@ -7,8 +7,9 @@
 //  App网页
 
 #import "WebController.h"
+#import "HTGlobal.h"
 
-@interface WebController ()
+@interface WebController ()<UIWebViewDelegate>
 
 @end
 
@@ -16,7 +17,48 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.webView.delegate = self;
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    //1、保存全局信息
+    NSString *fileName = [path stringByAppendingPathComponent:InitGlobalDate];
+    HTGlobal* glob = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    self.webView.backgroundColor = [UIColor whiteColor];
+    
+    switch (self.type) {
+            /**
+             *  关于我们
+             */
+        case 1:
+        {
+            NSURL *url = [NSURL URLWithString:glob.aboutURL];
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            [self.webView loadRequest:request];
+            break;
+        }
+            /**
+             *  帮助
+             */
+        case 2:
+        {
+            NSURL *url = [NSURL URLWithString:glob.helpURL];
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            [self.webView loadRequest:request];
+            break;
+        }
+            /**
+             *  问题反馈
+             */
+        case 3:
+        {
+            NSURL *url = [NSURL URLWithString:glob.serverUrl];
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            [self.webView loadRequest:request];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,7 +70,6 @@
 {
     [super viewWillAppear:animated];
     
-    [self _removeNavBackgroundColor];
 }
 
 /*

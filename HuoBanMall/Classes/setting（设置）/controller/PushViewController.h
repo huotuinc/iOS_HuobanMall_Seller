@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTUser.h"
 
 @interface PushViewController : UITableViewController
+
+@property (nonatomic, strong) HTUser *user;
 
 @end
