@@ -32,6 +32,7 @@
 		8389FA0D1B8D5A380003FCDE /* DescribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA0C1B8D5A380003FCDE /* DescribeController.m */; };
 		8389FA111B8D86710003FCDE /* WebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA101B8D86710003FCDE /* WebController.m */; };
 		83B4F2AC1BA66263009D6631 /* NewTodayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B4F2AB1BA66263009D6631 /* NewTodayModel.m */; };
+		83B4F2B01BA6B47F009D6631 /* MoreDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B4F2AF1BA6B47F009D6631 /* MoreDataModel.m */; };
 		83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA64881B8AC3BB008B5461 /* ManagementModel.m */; };
 		83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA648B1B8AC4E1008B5461 /* ManagementController.m */; };
 		83D390871B9DB92800879569 /* MoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D390861B9DB92800879569 /* MoreDataViewController.m */; };
@@ -132,6 +133,8 @@
 		8389FA101B8D86710003FCDE /* WebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebController.m; sourceTree = "<group>"; };
 		83B4F2AA1BA66263009D6631 /* NewTodayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewTodayModel.h; path = "HuoBanMall/Classes/management（商品管理）/model/NewTodayModel.h"; sourceTree = SOURCE_ROOT; };
 		83B4F2AB1BA66263009D6631 /* NewTodayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewTodayModel.m; path = "HuoBanMall/Classes/management（商品管理）/model/NewTodayModel.m"; sourceTree = SOURCE_ROOT; };
+		83B4F2AE1BA6B47F009D6631 /* MoreDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreDataModel.h; sourceTree = "<group>"; };
+		83B4F2AF1BA6B47F009D6631 /* MoreDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreDataModel.m; sourceTree = "<group>"; };
 		83CA64871B8AC3BB008B5461 /* ManagementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagementModel.h; sourceTree = "<group>"; };
 		83CA64881B8AC3BB008B5461 /* ManagementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagementModel.m; sourceTree = "<group>"; };
 		83CA648A1B8AC4E1008B5461 /* ManagementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagementController.h; sourceTree = "<group>"; };
@@ -303,6 +306,15 @@
 			path = web;
 			sourceTree = "<group>";
 		};
+		83B4F2AD1BA6B464009D6631 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				83B4F2AE1BA6B47F009D6631 /* MoreDataModel.h */,
+				83B4F2AF1BA6B47F009D6631 /* MoreDataModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		83CA64651B8ABCFC008B5461 /* management（商品管理） */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,7 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				EFB67CC01B8B0BAA0037547A /* controller */,
-				EFB67CB11B8AF5230037547A /* model */,
+				83B4F2AD1BA6B464009D6631 /* model */,
 				EFB67CB21B8AF5230037547A /* view */,
 			);
 			path = "DataStatistics(数据统计)";
@@ -626,13 +638,6 @@
 			path = Encryption;
 			sourceTree = "<group>";
 		};
-		EFB67CB11B8AF5230037547A /* model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
 		EFB67CB21B8AF5230037547A /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -811,6 +816,7 @@
 				836CEAD91B9C2BE7005074DA /* HTupData.m in Sources */,
 				EF61A0CC1B93F3FE0008A82C /* NSObject+MJKeyValue.m in Sources */,
 				8372E4241BA2BA27007146BD /* MJRefreshHeaderView.m in Sources */,
+				83B4F2B01BA6B47F009D6631 /* MoreDataModel.m in Sources */,
 				EF73D16D1B8BFAB6004A7B37 /* UITextField+HT.m in Sources */,
 				EF61A0C31B93F3FE0008A82C /* MJArgument.m in Sources */,
 				EFB67CC81B8B0C5A0037547A /* HTDataStatisViewController.m in Sources */,

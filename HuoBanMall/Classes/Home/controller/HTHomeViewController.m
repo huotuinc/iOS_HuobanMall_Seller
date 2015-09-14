@@ -177,6 +177,11 @@
     
     [self showScrollView];
     
+    [self _initNav];
+    
+    [self getNewToday];
+
+    
 }
 
 
@@ -184,9 +189,6 @@
 {
     [super viewWillAppear:animated];
     
-    [self _initNav];
-    
-    [self getNewToday];
     
 }
 /**
@@ -241,8 +243,13 @@
 - (NSArray *)getArrayWithY:(NSInteger) num {
     NSArray *array = [NSArray array];
     
-    NSInteger i = num / 100 + 1;
+    NSInteger i;
     
+    if (num % 100 == 0) {
+        i = num / 100;
+    }else {
+        i = num / 100 + 1;
+    }
     array = @[[NSString stringWithFormat:@"%ld", i * 25],[NSString stringWithFormat:@"%ld", i * 50],[NSString stringWithFormat:@"%ld", i * 75],[NSString stringWithFormat:@"%ld", i * 100]];
     
     return array;
@@ -365,9 +372,9 @@
 
 - (void)_initAllLabels {
     if ([self.homeModel.totalSales intValue] > 10000) {
-        self.allLabel.text = [NSString stringWithFormat:@"总销售额(万元)%.2f", [self.homeModel.totalSales floatValue] / 10000];
+        self.allLabel.text = [NSString stringWithFormat:@"总销售额(万元):%.2f", [self.homeModel.totalSales floatValue] / 10000];
     }else {
-        self.allLabel.text = [NSString stringWithFormat:@"总销售额(元)%d", [self.homeModel.totalSales intValue]];
+        self.allLabel.text = [NSString stringWithFormat:@"总销售额(元):%d", [self.homeModel.totalSales intValue]];
     }
     
     self.todayLabel.text = [NSString stringWithFormat:@"¥:%d", [self.homeModel.todaySales intValue]];
