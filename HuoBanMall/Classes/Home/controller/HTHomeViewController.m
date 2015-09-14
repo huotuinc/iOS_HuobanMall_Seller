@@ -241,9 +241,24 @@
 - (NSArray *)getArrayWithY:(NSInteger) num {
     NSArray *array = [NSArray array];
     
-    array = @[@(num *0.25),@(num * 0.5),@(num * 0.75),@(num)];
+    NSInteger i = num / 100 + 1;
+    
+    array = @[[NSString stringWithFormat:@"%ld", i * 25],[NSString stringWithFormat:@"%ld", i * 50],[NSString stringWithFormat:@"%ld", i * 75],[NSString stringWithFormat:@"%ld", i * 100]];
     
     return array;
+}
+
+- (NSArray *)getNSStringArrayWithArray:(NSArray *)array {
+    
+    NSMutableArray *temp = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        [temp addObject:[NSString stringWithFormat:@"%@", array[i]]];
+    }
+    
+    NSArray *temp1 = temp;
+    
+    return temp1;
 }
 
 
@@ -280,7 +295,7 @@
             {
                 NSInteger max = [[self getMaxFromArray:self.homeModel.orderAmount] integerValue];
                 self.ordorChart.yValueMax = max;
-                self.ordorChart = [self PNChartWithView:sc AndXArray:self.homeModel.orderHour AndYArray:[self getArrayWithY:max] AndDataArray:self.homeModel.orderAmount];
+                self.ordorChart = [self PNChartWithView:sc AndXArray:[self getNSStringArrayWithArray:self.homeModel.orderHour] AndYArray:[self getArrayWithY:max] AndDataArray:self.homeModel.orderAmount];
                 sc.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.000];
                 [sc addSubview:self.ordorChart];
                 break;
@@ -289,7 +304,7 @@
             {
                 NSInteger max = [[self getMaxFromArray:self.homeModel.memberAmount] integerValue];
                 self.memberChart.yValueMax = max;
-                self.memberChart = [self PNChartWithView:sc AndXArray:self.homeModel.memberHour AndYArray:[self getArrayWithY:max] AndDataArray:self.homeModel.memberAmount];
+                self.memberChart = [self PNChartWithView:sc AndXArray:[self getNSStringArrayWithArray:self.homeModel.memberHour] AndYArray:[self getArrayWithY:max] AndDataArray:self.homeModel.memberAmount];
                 sc.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.000];
                 [sc addSubview:self.memberChart];
                 break;
@@ -299,7 +314,7 @@
                 NSInteger max = [[self getMaxFromArray:self.homeModel.partnerAmount] integerValue];
                 self.distributorChart.yValueMax = max;
                 self.distributorChart = [self PNChartWithView:sc
-                                                    AndXArray:self.homeModel.partnerHour
+                                                    AndXArray:[self getNSStringArrayWithArray:self.homeModel.partnerHour]
                                                     AndYArray:[self getArrayWithY:max]
                                                  AndDataArray:self.homeModel.partnerAmount];
                 sc.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.000];
