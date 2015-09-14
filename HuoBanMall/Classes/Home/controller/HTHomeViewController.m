@@ -6,11 +6,36 @@
 //  Copyright (c) 2015年 HT. All rights reserved.
 //
 
+//@interface NSNumber (Debug)
+//
+//- (void)rangeOfCharacterFromSet:(id) a;
+//
+//- (void)length;
+//
+//@end
+//
+//@implementation NSNumber (Debug)
+//
+//- (void)rangeOfCharacterFromSet:(id)a {
+//    NSLog(@"112312312");
+//}
+//
+//- (void)length
+//{
+//    
+//}
+//
+//@end
+
 #import "HTHomeViewController.h"
 #import "SettingViewController.h"
 #import "HTDataStatisViewController.h"
 #import "MoreDataViewController.h"
 #import "ManagementController.h"
+#import "NewTodayModel.h"
+#import "HTUser.h"
+#import <UIImageView+WebCache.h>
+#import "WebController.h"
 #import <PNChart.h>
 
 @interface HTHomeViewController () <UIScrollViewDelegate,PNChartDelegate>
@@ -102,6 +127,14 @@
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 
+
+/**
+ *  数据存储首页数据
+ */
+@property (nonatomic, strong) NewTodayModel *homeModel;
+
+
+
 @end
 
 @implementation HTHomeViewController
@@ -109,6 +142,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
     
     HTHomeViewController * wself = self;
     
@@ -137,7 +172,7 @@
     }];
     
 
-    [self _initScrollView];
+    
     
     
     [self showScrollView];
@@ -151,7 +186,7 @@
     
     [self _initNav];
     
-    
+    [self getNewToday];
     
 }
 /**
@@ -165,23 +200,50 @@
     [self _initNavBackgroundColor];
     
     
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+    HTUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"dp-top"] style:UIBarButtonItemStylePlain handler:^(id sender) {
         
         //转跳店铺首页
         UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        
+        WebController *web = [story instantiateViewControllerWithIdentifier:@"WebController"];
+        web.type = 4;
+        web.title = @"首页";
+        [self.navigationController pushViewController:web animated:YES];
     }];
     
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"sz-top"] style:UIBarButtonItemStylePlain handler:^(id sender) {
-        
-        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        SettingViewController * setvc = [story instantiateViewControllerWithIdentifier:@"SettingViewController"];
-        [wself.navigationController pushViewController:setvc animated:YES];
+    UIImageView *image = [[UIImageView alloc] init];
+    [image sd_setImageWithURL:[NSURL URLWithString:user.logo] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:nil action:nil];
     }];
     
+    self.navigationItem.title = user.name;
+}
+
+#pragma mark
+
+- (NSNumber *)getMaxFromArray:(NSArray *)array {
     
+    NSNumber *a = 0;
     
+    for (NSNumber *num in array) {
+        
+        if (num > a) {
+            a = num;
+        }
+    }
+    
+    return a;
+}
+
+- (NSArray *)getArrayWithY:(NSInteger) num {
+    NSArray *array = [NSArray array];
+    
+    array = @[@(num *0.25),@(num * 0.5),@(num * 0.75),@(num)];
+    
+    return array;
 }
 
 
@@ -215,20 +277,35 @@
         sc.frame = CGRectMake(scX, scY, scrollW, scrollH);
         switch (index) {
             case 0:
-                self.ordorChart = [self PNChartWithView:sc AndXArray:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7"] AndYArray:@[@"75",@"150",@"225",@"300",] AndDataArray:@[@0,@0, @0, @0, @0.0, @0, @0, @176.2]];
+            {
+                NSInteger max = [[self getMaxFromArray:self.homeModel.orderAmount] integerValue];
+                self.ordorChart.yValueMax = max;
+                self.ordorChart = [self PNChartWithView:sc AndXArray:self.homeModel.orderHour AndYArray:[self getArrayWithY:max] AndDataArray:self.homeModel.orderAmount];
                 sc.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.000];
                 [sc addSubview:self.ordorChart];
                 break;
+            }
             case 1:
-                self.memberChart = [self PNChartWithView:sc AndXArray:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7"] AndYArray:@[@"50",@"100",@"150",@"200",@"250",@"300",] AndDataArray:@[@0,@0, @0, @0, @0.0, @0, @0, @176.2]];
+            {
+                NSInteger max = [[self getMaxFromArray:self.homeModel.memberAmount] integerValue];
+                self.memberChart.yValueMax = max;
+                self.memberChart = [self PNChartWithView:sc AndXArray:self.homeModel.memberHour AndYArray:[self getArrayWithY:max] AndDataArray:self.homeModel.memberAmount];
                 sc.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.000];
                 [sc addSubview:self.memberChart];
                 break;
+            }
             default:
-                self.distributorChart = [self PNChartWithView:sc AndXArray:@[@"6-10",@"2",@"3",@"4",@"5",@"6",@"7"] AndYArray:@[@"50",@"100",@"150",@"200",] AndDataArray:@[@1,@55, @22, @0, @33, @0, @0, @176.2]];
+            {
+                NSInteger max = [[self getMaxFromArray:self.homeModel.partnerAmount] integerValue];
+                self.distributorChart.yValueMax = max;
+                self.distributorChart = [self PNChartWithView:sc
+                                                    AndXArray:self.homeModel.partnerHour
+                                                    AndYArray:[self getArrayWithY:max]
+                                                 AndDataArray:self.homeModel.partnerAmount];
                 sc.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.000];
                 [sc addSubview:self.distributorChart];
                 break;
+            }
         }
         
         [self.scorllArray addObject:sc];
@@ -240,6 +317,64 @@
     
 }
 
+#pragma 网络访问
+
+- (void)getNewToday {
+    
+    [UserLoginTool loginRequestGet:@"newToday" parame:nil success:^(id json) {
+        
+        NSLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
+            
+            self.homeModel = [NewTodayModel objectWithKeyValues:(json[@"resultData"])];
+            self.homeModel.todayMemberAmount = json[@"resultData"][@"todayMemberAmount"];
+            self.homeModel.todayOrderAmount = json[@"resultData"][@"todayOrderAmount"];
+            self.homeModel.todayPartnerAmount = json[@"resultData"][@"todayPartnerAmount"];
+            self.homeModel.todaySales = json[@"resultData"][@"todaySales"];
+            self.homeModel.totalSales = json[@"resultData"][@"totalSales"];
+            
+            [self _initAllLabels];
+            
+            [self _initScrollView];
+        }
+        
+     
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@", error);
+        
+    }];
+}
+
+- (void)_initAllLabels {
+    if ([self.homeModel.totalSales intValue] > 10000) {
+        self.allLabel.text = [NSString stringWithFormat:@"总销售额(万元)%.2f", [self.homeModel.totalSales floatValue] / 10000];
+    }else {
+        self.allLabel.text = [NSString stringWithFormat:@"总销售额(元)%d", [self.homeModel.totalSales intValue]];
+    }
+    
+    self.todayLabel.text = [NSString stringWithFormat:@"¥:%d", [self.homeModel.todaySales intValue]];
+    
+    self.ordorLabel.text = [NSString stringWithFormat:@"%d", [self.homeModel.todayOrderAmount intValue]];
+    
+    self.memberLabel.text = [NSString stringWithFormat:@"%d", [self.homeModel.todayMemberAmount intValue]];
+    
+    self.distributorLabel.text = [NSString stringWithFormat:@"%d", [self.homeModel.todayPartnerAmount intValue]];
+}
+
+- (void)setPNChartWithCount:(int) count {
+    if (count == 0) {
+        
+    }else if (count == 1){
+        
+    }else {
+        
+    }
+}
+
+#pragma 设置哈懂视图
 - (void)showScrollView {
     //设置滚动内容范围尺寸
     self.scrollView.contentSize = CGSizeMake(ScreenWidth * 3, 0);
@@ -345,7 +480,6 @@
     
 //    lineChart.xLabelWidth =
     
-    lineChart.yFixedValueMax = 300;
     lineChart.yFixedValueMin = 0.0;
     lineChart.yValueMin = 0;
     [lineChart setYLabels:yArray];
@@ -376,6 +510,7 @@
 - (void)userClickedOnLinePoint:(CGPoint)point lineIndex:(NSInteger)lineIndex{//点击线上点
     NSLog(@"Click on line %f, %f, line index is %d",point.x, point.y, (int)lineIndex);
 }
+
 
 
 

@@ -56,6 +56,10 @@
             [self.webView loadRequest:request];
             break;
         }
+        case 4:
+        {
+            
+        }
         default:
             break;
     }

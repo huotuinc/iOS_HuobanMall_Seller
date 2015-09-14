@@ -617,7 +617,7 @@ static NSString *popAnimation = @"first";
     //文字解释
     UILabel *explainLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLableX, titleLableY + titleLableH , titleLableW, titleLableH)];
     explainLabel.font = [UIFont systemFontOfSize:12];
-    explainLabel.text = [NSString stringWithFormat:@"注册会员总数"];
+    explainLabel.text = [NSString stringWithFormat:@"注册总人数"];
     [scr addSubview:explainLabel];
     
     //右侧文字 分销商
@@ -626,15 +626,15 @@ static NSString *popAnimation = @"first";
     CGFloat distriW = ScreenWidth * 0.3;
     CGFloat distriH = 20;
     UILabel *distriLabel = [[UILabel alloc] initWithFrame:CGRectMake(distriX, distriY, distriW, distriH)];
-    distriLabel.text = @"分销商:35786";
+    distriLabel.text = @"升级为分销商:35786";
     distriLabel.font = [UIFont systemFontOfSize:12];
     [scr addSubview:distriLabel];
     
     //会员
-    UILabel *memLabel = [[UILabel alloc] initWithFrame:CGRectMake(distriX, distriY + distriH + 2, distriW, distriH)];
-    memLabel.text = @"会员:1231321";
-    memLabel.font = [UIFont systemFontOfSize:12];
-    [scr addSubview:memLabel];
+//    UILabel *memLabel = [[UILabel alloc] initWithFrame:CGRectMake(distriX, distriY + distriH + 2, distriW, distriH)];
+//    memLabel.text = @"会员:1231321";
+//    memLabel.font = [UIFont systemFontOfSize:12];
+//    [scr addSubview:memLabel];
     
     
     CGFloat timeViewX = 2;
@@ -756,11 +756,11 @@ static NSString *popAnimation = @"first";
     [scr addSubview:statistics];
     
     UILabel * title1Lable = [[UILabel alloc] init];
-    title1Lable.text = @"当前统计:325600";
+    title1Lable.text = @"当前统计:";
     title1Lable.font = [UIFont systemFontOfSize:12];
     title1Lable.frame = CGRectMake(ScreenWidth * .05625, 2, ScreenWidth * .5, statisticsH - 4);
     [statistics addSubview:title1Lable];
-    
+#warning 加方块和文字
     
     CGFloat pnchartX = 2;
     CGFloat pnchartY = statisticsY + statisticsH;

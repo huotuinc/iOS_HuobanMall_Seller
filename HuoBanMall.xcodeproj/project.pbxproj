@@ -31,6 +31,7 @@
 		8389FA0A1B8D59940003FCDE /* AmendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA091B8D59940003FCDE /* AmendController.m */; };
 		8389FA0D1B8D5A380003FCDE /* DescribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA0C1B8D5A380003FCDE /* DescribeController.m */; };
 		8389FA111B8D86710003FCDE /* WebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA101B8D86710003FCDE /* WebController.m */; };
+		83B4F2AC1BA66263009D6631 /* NewTodayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B4F2AB1BA66263009D6631 /* NewTodayModel.m */; };
 		83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA64881B8AC3BB008B5461 /* ManagementModel.m */; };
 		83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA648B1B8AC4E1008B5461 /* ManagementController.m */; };
 		83D390871B9DB92800879569 /* MoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D390861B9DB92800879569 /* MoreDataViewController.m */; };
@@ -129,6 +130,8 @@
 		8389FA0C1B8D5A380003FCDE /* DescribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescribeController.m; sourceTree = "<group>"; };
 		8389FA0F1B8D86710003FCDE /* WebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebController.h; sourceTree = "<group>"; };
 		8389FA101B8D86710003FCDE /* WebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebController.m; sourceTree = "<group>"; };
+		83B4F2AA1BA66263009D6631 /* NewTodayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewTodayModel.h; path = "HuoBanMall/Classes/management（商品管理）/model/NewTodayModel.h"; sourceTree = SOURCE_ROOT; };
+		83B4F2AB1BA66263009D6631 /* NewTodayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewTodayModel.m; path = "HuoBanMall/Classes/management（商品管理）/model/NewTodayModel.m"; sourceTree = SOURCE_ROOT; };
 		83CA64871B8AC3BB008B5461 /* ManagementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagementModel.h; sourceTree = "<group>"; };
 		83CA64881B8AC3BB008B5461 /* ManagementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagementModel.m; sourceTree = "<group>"; };
 		83CA648A1B8AC4E1008B5461 /* ManagementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagementController.h; sourceTree = "<group>"; };
@@ -584,6 +587,8 @@
 		EF6B32B51B904B1E00A6B46D /* model */ = {
 			isa = PBXGroup;
 			children = (
+				83B4F2AA1BA66263009D6631 /* NewTodayModel.h */,
+				83B4F2AB1BA66263009D6631 /* NewTodayModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -833,6 +838,7 @@
 				830778681B9E7BC7002AF0FD /* ManagementCell.m in Sources */,
 				EF61A0CA1B93F3FE0008A82C /* MJTypeEncoding.m in Sources */,
 				EF73D1771B8C0103004A7B37 /* Base64Util.m in Sources */,
+				83B4F2AC1BA66263009D6631 /* NewTodayModel.m in Sources */,
 				8372E4261BA2BA27007146BD /* UIScrollView+MJRefresh.m in Sources */,
 				EF73D1781B8C0103004A7B37 /* GTMBase64.m in Sources */,
 				EF0790A91B9DAF5A0007C3D3 /* HTToJudgeLoginFlag.m in Sources */,
