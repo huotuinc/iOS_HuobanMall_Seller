@@ -755,11 +755,26 @@ static NSString *popAnimation = @"first";
     statistics.backgroundColor = [UIColor colorWithWhite:0.910 alpha:1.000];
     [scr addSubview:statistics];
     
+    
+    CGFloat title1LableX = ScreenWidth * .05625;
+    CGFloat title1LableY =  2;
+    CGFloat title1LableW =  ScreenWidth * .5;
+    CGFloat title1LableH =  statisticsH - 4;
     UILabel * title1Lable = [[UILabel alloc] init];
     title1Lable.text = @"当前统计:";
     title1Lable.font = [UIFont systemFontOfSize:12];
-    title1Lable.frame = CGRectMake(ScreenWidth * .05625, 2, ScreenWidth * .5, statisticsH - 4);
+    title1Lable.frame = CGRectMake(title1LableX,title1LableY, title1LableW, title1LableH);
     [statistics addSubview:title1Lable];
+    
+    CGFloat redViewX = title1LableX+title1LableW;
+    CGFloat redViewY = title1LableY;
+    CGFloat redViewW = title1LableH;
+    CGFloat redViewH = title1LableH;
+    UIView * redView = [[UIView alloc] init];
+    redView.frame = CGRectMake(redViewX, redViewY, redViewW, redViewH);
+    redView.backgroundColor = [UIColor redColor];
+    [statistics addSubview:redView];
+    
 #warning 加方块和文字
     
     CGFloat pnchartX = 2;
