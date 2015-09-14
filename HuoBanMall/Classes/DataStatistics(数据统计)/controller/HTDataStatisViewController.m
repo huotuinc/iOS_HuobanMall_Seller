@@ -46,6 +46,10 @@
 @property(nonatomic,strong) UILabel * partnermonthNumberLableValue;
 /**---------------------------------------------------------------------*/
 
+
+
+
+
 /**图表*/
 /**订单*/
 @property(nonatomic,strong) PNLineChart * orderlineChart;
@@ -622,7 +626,7 @@ static NSString *popAnimation = @"first";
     
     //右侧文字 分销商
     CGFloat distriX = ScreenWidth * 0.7;
-    CGFloat distriY = titleLableY;
+    CGFloat distriY = titleLableY + titleLableH;
     CGFloat distriW = ScreenWidth * 0.3;
     CGFloat distriH = 20;
     UILabel *distriLabel = [[UILabel alloc] initWithFrame:CGRectMake(distriX, distriY, distriW, distriH)];
@@ -641,6 +645,7 @@ static NSString *popAnimation = @"first";
     CGFloat timeViewY = imageY + imageH + 16;
     CGFloat timeViewW = ScreenWidth;
     CGFloat timeViewH = ScreenHeight * 0.06;
+    
     UIView * timeView = [[UIView alloc] init];
     
     timeView.frame = CGRectMake(timeViewX, timeViewY, timeViewW, timeViewH);
@@ -756,24 +761,78 @@ static NSString *popAnimation = @"first";
     [scr addSubview:statistics];
     
     
-    CGFloat title1LableX = ScreenWidth * .05625;
+    CGFloat title1LableX = 10;
     CGFloat title1LableY =  2;
-    CGFloat title1LableW =  ScreenWidth * .5;
+    CGFloat title1LableW =  60;
     CGFloat title1LableH =  statisticsH - 4;
     UILabel * title1Lable = [[UILabel alloc] init];
+    title1Lable.backgroundColor = [UIColor greenColor];
     title1Lable.text = @"当前统计:";
     title1Lable.font = [UIFont systemFontOfSize:12];
     title1Lable.frame = CGRectMake(title1LableX,title1LableY, title1LableW, title1LableH);
     [statistics addSubview:title1Lable];
     
     CGFloat redViewX = title1LableX+title1LableW;
-    CGFloat redViewY = title1LableY;
-    CGFloat redViewW = title1LableH;
-    CGFloat redViewH = title1LableH;
+    CGFloat redViewW = title1LableH-4;
+    CGFloat redViewH = title1LableH-4;
+    CGFloat redViewY = (statisticsH-redViewW)*0.5;
     UIView * redView = [[UIView alloc] init];
     redView.frame = CGRectMake(redViewX, redViewY, redViewW, redViewH);
     redView.backgroundColor = [UIColor redColor];
     [statistics addSubview:redView];
+    
+    //会员
+    CGFloat vipLableX = redViewX+redViewW+2;
+    CGFloat vipLableY = 2;
+    CGFloat vipLableW = 40;
+    CGFloat vipLableH = title1LableH;
+    UILabel * vipLable = [[UILabel alloc] init];
+    vipLable.text = @"会员:";
+    vipLable.frame = CGRectMake(vipLableX, vipLableY, vipLableW, vipLableH);
+    vipLable.font = [UIFont systemFontOfSize:12];
+    [statistics addSubview:vipLable];
+    
+    CGFloat redNumberX = vipLableX+vipLableW-2;
+    CGFloat redNumberY = 2;
+    CGFloat redNumberW = 60;
+    CGFloat redNumberH = title1LableH;
+    UILabel * redNumber = [[UILabel alloc] init];
+    redNumber.backgroundColor = [UIColor redColor];
+    redNumber.frame = CGRectMake(redNumberX, redNumberY, redNumberW, redNumberH);
+    redNumber.font = [UIFont systemFontOfSize:12];
+    redNumber.text = @"123";
+    [statistics addSubview:redNumber];
+    
+    CGFloat blueViewX = redNumberX+redNumberW;
+    CGFloat blueViewW = title1LableH-4;
+    CGFloat blueViewH = title1LableH-4;
+    CGFloat blueViewY = (statisticsH-redViewW)*0.5;
+    UIView * blueView = [[UIView alloc] init];
+    blueView.frame = CGRectMake(blueViewX, blueViewY, blueViewW, blueViewH);
+    blueView.backgroundColor = [UIColor blueColor];
+    [statistics addSubview:blueView];
+    
+    //会员
+    CGFloat fenxiaoX = blueViewX+blueViewW+2;
+    CGFloat fenxiaoY = 2;
+    CGFloat fenxiaoW = 40;
+    CGFloat fenxiaoH = title1LableH;
+    UILabel * fenxiao = [[UILabel alloc] init];
+    fenxiao.text = @"分销商:";
+    fenxiao.frame = CGRectMake(fenxiaoX, fenxiaoY, fenxiaoW, fenxiaoH);
+    fenxiao.font = [UIFont systemFontOfSize:12];
+    [statistics addSubview:fenxiao];
+    
+    CGFloat fenxiaonX = fenxiaoX+fenxiaoW-2;
+    CGFloat fenxiaonY = 2;
+    CGFloat fenxiaonW = 60;
+    CGFloat fenxiaonH = title1LableH;
+    UILabel * fenxiaon = [[UILabel alloc] init];
+    fenxiaon.backgroundColor = [UIColor redColor];
+    fenxiaon.frame = CGRectMake(fenxiaonX, fenxiaonY, fenxiaonW, fenxiaonH);
+    fenxiaon.font = [UIFont systemFontOfSize:12];
+    fenxiaon.text = @"123";
+    [statistics addSubview:fenxiaon];
     
 #warning 加方块和文字
     
