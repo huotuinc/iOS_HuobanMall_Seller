@@ -8,8 +8,11 @@
 
 #import "MoreDataViewController.h"
 #import "HTDataStatisViewController.h"
+#import "MoreDataModel.h"
 
 @interface MoreDataViewController ()
+
+@property (nonatomic, strong) MoreDataModel *more;
 
 @end
 
@@ -20,6 +23,33 @@
     
     [self _initImageView];
     
+    [self getNewData];
+}
+
+#pragma 网络请求
+
+- (void)getNewData {
+    
+    [UserLoginTool loginRequestGet:@"otherStatistics" parame:nil success:^(id json) {
+        NSLog(@"%@", json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
+            self.more = [MoreDataModel objectWithKeyValues:(json[@"resultData"][@"otherInfoList"])];
+            
+            [self _initAllLabels];
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    
+}
+
+
+- (void)_initAllLabels {
+    self.ordorLabel.text = [NSString stringWithFormat:@"%@", self.more.billAmount];
+    self.distributorLabel.text = [NSString stringWithFormat:@"%@", self.more.discributorAmount];
+    self.goodLabel.text = [NSString stringWithFormat:@"%@", self.more.goodsAmount];
+    self.memberLabel.text = [NSString stringWithFormat:@"%@", self.more.memberAmount];
 }
 
 #pragma 设置点击事件
