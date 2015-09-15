@@ -28,12 +28,18 @@
 		8372E4251BA2BA27007146BD /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8372E41B1BA2BA27007146BD /* UIScrollView+MJExtension.m */; };
 		8372E4261BA2BA27007146BD /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 8372E41D1BA2BA27007146BD /* UIScrollView+MJRefresh.m */; };
 		8372E4271BA2BA27007146BD /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8372E41F1BA2BA27007146BD /* UIView+MJExtension.m */; };
+		83737D1E1BA7AFAA000BD2D4 /* OrdorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83737D1D1BA7AFAA000BD2D4 /* OrdorController.m */; };
+		83737D221BA7B4AC000BD2D4 /* OrdorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83737D201BA7B4AC000BD2D4 /* OrdorCell.m */; };
+		83737D231BA7B4AC000BD2D4 /* OrdorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83737D211BA7B4AC000BD2D4 /* OrdorCell.xib */; };
+		83737D261BA7B7AD000BD2D4 /* HeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83737D251BA7B7AD000BD2D4 /* HeadView.m */; };
+		83737D2A1BA7B8F0000BD2D4 /* HeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83737D291BA7B8F0000BD2D4 /* HeadView.xib */; };
+		83737D2D1BA7BA3B000BD2D4 /* FootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83737D2C1BA7BA3B000BD2D4 /* FootView.m */; };
+		83737D2F1BA7BA4B000BD2D4 /* FootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83737D2E1BA7BA4B000BD2D4 /* FootView.xib */; };
 		8389FA0A1B8D59940003FCDE /* AmendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA091B8D59940003FCDE /* AmendController.m */; };
 		8389FA0D1B8D5A380003FCDE /* DescribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA0C1B8D5A380003FCDE /* DescribeController.m */; };
 		8389FA111B8D86710003FCDE /* WebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA101B8D86710003FCDE /* WebController.m */; };
 		83B4F2AC1BA66263009D6631 /* NewTodayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B4F2AB1BA66263009D6631 /* NewTodayModel.m */; };
 		83B4F2B01BA6B47F009D6631 /* MoreDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B4F2AF1BA6B47F009D6631 /* MoreDataModel.m */; };
-		83B4F2B71BA6EE84009D6631 /* OrdorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B4F2B61BA6EE84009D6631 /* OrdorController.m */; };
 		83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA64881B8AC3BB008B5461 /* ManagementModel.m */; };
 		83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA648B1B8AC4E1008B5461 /* ManagementController.m */; };
 		83D390871B9DB92800879569 /* MoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D390861B9DB92800879569 /* MoreDataViewController.m */; };
@@ -131,6 +137,17 @@
 		8372E41D1BA2BA27007146BD /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		8372E41E1BA2BA27007146BD /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		8372E41F1BA2BA27007146BD /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		83737D1C1BA7AFAA000BD2D4 /* OrdorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdorController.h; sourceTree = "<group>"; };
+		83737D1D1BA7AFAA000BD2D4 /* OrdorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdorController.m; sourceTree = "<group>"; };
+		83737D1F1BA7B4AC000BD2D4 /* OrdorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdorCell.h; sourceTree = "<group>"; };
+		83737D201BA7B4AC000BD2D4 /* OrdorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdorCell.m; sourceTree = "<group>"; };
+		83737D211BA7B4AC000BD2D4 /* OrdorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrdorCell.xib; sourceTree = "<group>"; };
+		83737D241BA7B7AD000BD2D4 /* HeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadView.h; sourceTree = "<group>"; };
+		83737D251BA7B7AD000BD2D4 /* HeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadView.m; sourceTree = "<group>"; };
+		83737D291BA7B8F0000BD2D4 /* HeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeadView.xib; sourceTree = "<group>"; };
+		83737D2B1BA7BA3B000BD2D4 /* FootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootView.h; sourceTree = "<group>"; };
+		83737D2C1BA7BA3B000BD2D4 /* FootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootView.m; sourceTree = "<group>"; };
+		83737D2E1BA7BA4B000BD2D4 /* FootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FootView.xib; sourceTree = "<group>"; };
 		8389FA081B8D59940003FCDE /* AmendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmendController.h; sourceTree = "<group>"; };
 		8389FA091B8D59940003FCDE /* AmendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmendController.m; sourceTree = "<group>"; };
 		8389FA0B1B8D5A380003FCDE /* DescribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescribeController.h; sourceTree = "<group>"; };
@@ -141,8 +158,6 @@
 		83B4F2AB1BA66263009D6631 /* NewTodayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewTodayModel.m; path = "HuoBanMall/Classes/management（商品管理）/model/NewTodayModel.m"; sourceTree = SOURCE_ROOT; };
 		83B4F2AE1BA6B47F009D6631 /* MoreDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreDataModel.h; sourceTree = "<group>"; };
 		83B4F2AF1BA6B47F009D6631 /* MoreDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreDataModel.m; sourceTree = "<group>"; };
-		83B4F2B51BA6EE84009D6631 /* OrdorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdorController.h; sourceTree = "<group>"; };
-		83B4F2B61BA6EE84009D6631 /* OrdorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdorController.m; sourceTree = "<group>"; };
 		83CA64871B8AC3BB008B5461 /* ManagementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagementModel.h; sourceTree = "<group>"; };
 		83CA64881B8AC3BB008B5461 /* ManagementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagementModel.m; sourceTree = "<group>"; };
 		83CA648A1B8AC4E1008B5461 /* ManagementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagementController.h; sourceTree = "<group>"; };
@@ -345,8 +360,8 @@
 		83B4F2B21BA6EE36009D6631 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				83B4F2B51BA6EE84009D6631 /* OrdorController.h */,
-				83B4F2B61BA6EE84009D6631 /* OrdorController.m */,
+				83737D1C1BA7AFAA000BD2D4 /* OrdorController.h */,
+				83737D1D1BA7AFAA000BD2D4 /* OrdorController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -361,6 +376,15 @@
 		83B4F2B41BA6EE36009D6631 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				83737D1F1BA7B4AC000BD2D4 /* OrdorCell.h */,
+				83737D201BA7B4AC000BD2D4 /* OrdorCell.m */,
+				83737D211BA7B4AC000BD2D4 /* OrdorCell.xib */,
+				83737D241BA7B7AD000BD2D4 /* HeadView.h */,
+				83737D251BA7B7AD000BD2D4 /* HeadView.m */,
+				83737D291BA7B8F0000BD2D4 /* HeadView.xib */,
+				83737D2B1BA7BA3B000BD2D4 /* FootView.h */,
+				83737D2C1BA7BA3B000BD2D4 /* FootView.m */,
+				83737D2E1BA7BA4B000BD2D4 /* FootView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -799,10 +823,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83737D2F1BA7BA4B000BD2D4 /* FootView.xib in Resources */,
+				83737D2A1BA7B8F0000BD2D4 /* HeadView.xib in Resources */,
 				830778691B9E7BC7002AF0FD /* ManagementCell.xib in Resources */,
 				EF73D17B1B8C02A0004A7B37 /* cityCode.plist in Resources */,
 				EF6AB1881B87241A00C9F114 /* Main.storyboard in Resources */,
 				EF6AB18D1B87241A00C9F114 /* LaunchScreen.xib in Resources */,
+				83737D231BA7B4AC000BD2D4 /* OrdorCell.xib in Resources */,
 				EF6AB18A1B87241A00C9F114 /* Images.xcassets in Resources */,
 				EF7859981BA7F366002A0626 /* HTMidOrderCell.xib in Resources */,
 				836B3AC51B8C077E00813281 /* InfoPlist.strings in Resources */,
@@ -863,6 +890,7 @@
 				83D3EDFA1B93EA2900454A0E /* UIViewController+NAV.m in Sources */,
 				83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */,
 				EF6B32B81B904B2B00A6B46D /* HTHomeViewController.m in Sources */,
+				83737D2D1BA7BA3B000BD2D4 /* FootView.m in Sources */,
 				8372E4251BA2BA27007146BD /* UIScrollView+MJExtension.m in Sources */,
 				834728E71B8C51C6005B72F9 /* ChangePasswordController.m in Sources */,
 				EF61A0C91B93F3FE0008A82C /* MJType.m in Sources */,
@@ -904,8 +932,9 @@
 				8389FA0D1B8D5A380003FCDE /* DescribeController.m in Sources */,
 				EF61A0CD1B93F3FE0008A82C /* NSObject+MJMember.m in Sources */,
 				EF61A0C61B93F3FE0008A82C /* MJIvar.m in Sources */,
-				83B4F2B71BA6EE84009D6631 /* OrdorController.m in Sources */,
+				83737D1E1BA7AFAA000BD2D4 /* OrdorController.m in Sources */,
 				834728EF1B8C66B3005B72F9 /* FMButton.m in Sources */,
+				83737D221BA7B4AC000BD2D4 /* OrdorCell.m in Sources */,
 				830778681B9E7BC7002AF0FD /* ManagementCell.m in Sources */,
 				EF61A0CA1B93F3FE0008A82C /* MJTypeEncoding.m in Sources */,
 				EF73D1771B8C0103004A7B37 /* Base64Util.m in Sources */,
