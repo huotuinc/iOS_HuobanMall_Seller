@@ -72,6 +72,11 @@
 		EF73D1781B8C0103004A7B37 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1731B8C0103004A7B37 /* GTMBase64.m */; };
 		EF73D1791B8C0103004A7B37 /* MD5Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73D1761B8C0103004A7B37 /* MD5Encryption.m */; };
 		EF73D17B1B8C02A0004A7B37 /* cityCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF73D17A1B8C02A0004A7B37 /* cityCode.plist */; };
+		EF78598D1BA7AE4E002A0626 /* OrderManagerDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF78598C1BA7AE4E002A0626 /* OrderManagerDetailsController.m */; };
+		EF7859901BA7B0EC002A0626 /* HTOrderDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = EF78598F1BA7B0EC002A0626 /* HTOrderDetail.m */; };
+		EF7859931BA7BB0B002A0626 /* HTOrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7859921BA7BB0B002A0626 /* HTOrderDetailModel.m */; };
+		EF7859971BA7F366002A0626 /* HTMidOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7859951BA7F366002A0626 /* HTMidOrderCell.m */; };
+		EF7859981BA7F366002A0626 /* HTMidOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7859961BA7F366002A0626 /* HTMidOrderCell.xib */; };
 		EFB67CC81B8B0C5A0037547A /* HTDataStatisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB67CC71B8B0C5A0037547A /* HTDataStatisViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -214,6 +219,15 @@
 		EF73D1751B8C0103004A7B37 /* MD5Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Encryption.h; sourceTree = "<group>"; };
 		EF73D1761B8C0103004A7B37 /* MD5Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Encryption.m; sourceTree = "<group>"; };
 		EF73D17A1B8C02A0004A7B37 /* cityCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cityCode.plist; sourceTree = "<group>"; };
+		EF78598B1BA7AE4E002A0626 /* OrderManagerDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderManagerDetailsController.h; sourceTree = "<group>"; };
+		EF78598C1BA7AE4E002A0626 /* OrderManagerDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderManagerDetailsController.m; sourceTree = "<group>"; };
+		EF78598E1BA7B0EC002A0626 /* HTOrderDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTOrderDetail.h; sourceTree = "<group>"; };
+		EF78598F1BA7B0EC002A0626 /* HTOrderDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTOrderDetail.m; sourceTree = "<group>"; };
+		EF7859911BA7BB0B002A0626 /* HTOrderDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTOrderDetailModel.h; sourceTree = "<group>"; };
+		EF7859921BA7BB0B002A0626 /* HTOrderDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTOrderDetailModel.m; sourceTree = "<group>"; };
+		EF7859941BA7F366002A0626 /* HTMidOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMidOrderCell.h; sourceTree = "<group>"; };
+		EF7859951BA7F366002A0626 /* HTMidOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMidOrderCell.m; sourceTree = "<group>"; };
+		EF7859961BA7F366002A0626 /* HTMidOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTMidOrderCell.xib; sourceTree = "<group>"; };
 		EFB67CC61B8B0C5A0037547A /* HTDataStatisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTDataStatisViewController.h; sourceTree = "<group>"; };
 		EFB67CC71B8B0C5A0037547A /* HTDataStatisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTDataStatisViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -366,6 +380,8 @@
 			children = (
 				83CA648A1B8AC4E1008B5461 /* ManagementController.h */,
 				83CA648B1B8AC4E1008B5461 /* ManagementController.m */,
+				EF78598B1BA7AE4E002A0626 /* OrderManagerDetailsController.h */,
+				EF78598C1BA7AE4E002A0626 /* OrderManagerDetailsController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -375,6 +391,8 @@
 			children = (
 				83CA64871B8AC3BB008B5461 /* ManagementModel.h */,
 				83CA64881B8AC3BB008B5461 /* ManagementModel.m */,
+				EF7859911BA7BB0B002A0626 /* HTOrderDetailModel.h */,
+				EF7859921BA7BB0B002A0626 /* HTOrderDetailModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -385,6 +403,11 @@
 				830778651B9E7BC7002AF0FD /* ManagementCell.h */,
 				830778661B9E7BC7002AF0FD /* ManagementCell.m */,
 				830778671B9E7BC7002AF0FD /* ManagementCell.xib */,
+				EF78598E1BA7B0EC002A0626 /* HTOrderDetail.h */,
+				EF78598F1BA7B0EC002A0626 /* HTOrderDetail.m */,
+				EF7859941BA7F366002A0626 /* HTMidOrderCell.h */,
+				EF7859951BA7F366002A0626 /* HTMidOrderCell.m */,
+				EF7859961BA7F366002A0626 /* HTMidOrderCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -781,6 +804,7 @@
 				EF6AB1881B87241A00C9F114 /* Main.storyboard in Resources */,
 				EF6AB18D1B87241A00C9F114 /* LaunchScreen.xib in Resources */,
 				EF6AB18A1B87241A00C9F114 /* Images.xcassets in Resources */,
+				EF7859981BA7F366002A0626 /* HTMidOrderCell.xib in Resources */,
 				836B3AC51B8C077E00813281 /* InfoPlist.strings in Resources */,
 				834728EB1B8C51C6005B72F9 /* LoginViewController.xib in Resources */,
 				834728E91B8C51C6005B72F9 /* findBackPwViewController.xib in Resources */,
@@ -846,10 +870,13 @@
 				83D4572C1B8AA7910027D452 /* UserLoginTool.m in Sources */,
 				8372E4221BA2BA27007146BD /* MJRefreshConst.m in Sources */,
 				EF6AB1851B87241A00C9F114 /* ViewController.m in Sources */,
+				EF7859901BA7B0EC002A0626 /* HTOrderDetail.m in Sources */,
 				EF6B32AF1B9044AA00A6B46D /* HTHuoBanNavgationViewController.m in Sources */,
+				EF7859931BA7BB0B002A0626 /* HTOrderDetailModel.m in Sources */,
 				834728F21B8C6F61005B72F9 /* PushViewController.m in Sources */,
 				EF73D1791B8C0103004A7B37 /* MD5Encryption.m in Sources */,
 				EF73D16B1B8BFAB6004A7B37 /* NSString+EXTERN.m in Sources */,
+				EF7859971BA7F366002A0626 /* HTMidOrderCell.m in Sources */,
 				836CEAD91B9C2BE7005074DA /* HTupData.m in Sources */,
 				EF61A0CC1B93F3FE0008A82C /* NSObject+MJKeyValue.m in Sources */,
 				8372E4241BA2BA27007146BD /* MJRefreshHeaderView.m in Sources */,
@@ -886,6 +913,7 @@
 				8372E4261BA2BA27007146BD /* UIScrollView+MJRefresh.m in Sources */,
 				EF73D1781B8C0103004A7B37 /* GTMBase64.m in Sources */,
 				EF0790A91B9DAF5A0007C3D3 /* HTToJudgeLoginFlag.m in Sources */,
+				EF78598D1BA7AE4E002A0626 /* OrderManagerDetailsController.m in Sources */,
 				EF61A0C41B93F3FE0008A82C /* MJConst.m in Sources */,
 				83D390871B9DB92800879569 /* MoreDataViewController.m in Sources */,
 				834728D31B8C0D8C005B72F9 /* SettingViewController.m in Sources */,

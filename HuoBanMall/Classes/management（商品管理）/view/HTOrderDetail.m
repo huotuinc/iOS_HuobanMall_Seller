@@ -1,0 +1,137 @@
+//
+//  HTOrderDetail.m
+//  HuoBanMall
+//
+//  Created by lhb on 15/9/15.
+//  Copyright (c) 2015年 HT. All rights reserved.
+//  first    second
+
+#import "HTOrderDetail.h"
+#import "HTOrderDetailModel.h"
+
+
+@interface HTOrderDetail ()
+
+/**购买人*/
+@property(nonatomic,strong) UILabel * buyPersonLable;
+/**购买姓名*/
+@property(nonatomic,strong) UILabel * buyPersonName;
+/**联系人方式*/
+@property(nonatomic,strong) UILabel * contactLable;
+/**联系人号码*/
+@property(nonatomic,strong) UILabel * contactPhoneNumberLable;
+
+/**联系人号码*/
+@property(nonatomic,strong) UILabel * placeLable;
+
+@end
+
+
+@implementation HTOrderDetail
+
+
++ (instancetype)cellWithTableView:(UITableView*)tableview WithIndex:(NSIndexPath *)index{
+    
+    
+    static NSString * Identifier = @"cell";
+    if(index.section == 0 && index.row==0){
+        
+        Identifier = @"first";
+        HTOrderDetail * cell = [tableview dequeueReusableCellWithIdentifier:Identifier];
+        if (cell == nil) {
+            
+            cell = [[HTOrderDetail alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:Identifier];
+        }
+        return cell;
+    }else if (index.section == 1){
+        
+        Identifier = @"second";
+        HTOrderDetail * cell = [tableview dequeueReusableCellWithIdentifier:Identifier];
+        if (cell == nil) {
+            
+            cell = [[HTOrderDetail alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+        }
+        return cell;
+    }else{
+        Identifier = @"cell";
+        HTOrderDetail * cell = [tableview dequeueReusableCellWithIdentifier:Identifier];
+        if (cell == nil) {
+            
+            cell = [[HTOrderDetail alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+        }
+        return cell;
+    }
+    
+}
+
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        NSLog(@"%@",reuseIdentifier);
+        SEL funreuseIdentifier = NSSelectorFromString(reuseIdentifier);
+        [self performSelector:funreuseIdentifier withObject:nil];
+    }
+    return self;
+}
+
+
+- (void)cell{
+    
+    self.textLabel.textAlignment = NSTextAlignmentLeft;
+    _placeLable =  self.textLabel;
+}
+
+- (void)first{
+    
+    self.textLabel.text = @"购买人：";
+    self.textLabel.textAlignment = NSTextAlignmentLeft;
+    _buyPersonName = self.detailTextLabel;
+}
+
+
+- (void)second{
+    
+    UILabel *contactLable = [[UILabel alloc] init];
+    contactLable.text = @"联系方式：";
+    _contactLable = contactLable;
+    _contactLable.textColor = [UIColor blueColor];
+    contactLable.textAlignment = NSTextAlignmentRight;
+    [self addSubview:contactLable];
+    
+    UILabel *number = [[UILabel alloc] init];
+    _contactPhoneNumberLable = number;
+    _contactPhoneNumberLable.textColor = [UIColor blueColor];
+    number.textAlignment = NSTextAlignmentLeft;
+    [self addSubview:number];
+}
+
+
+- (void)setModel:(HTOrderDetailModel *)model{
+    _model = model;
+    _buyPersonName.text = model.buyName;
+    _contactPhoneNumberLable.text = model.phoneNumber;
+    _placeLable.text = model.place;
+}
+
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    
+    CGFloat cellW = self.frame.size.width;
+    CGFloat cellH = self.frame.size.height;
+    
+    CGFloat contactX = 0;
+    CGFloat contactY = 0;
+    CGFloat contactW = cellW * 0.5;
+    CGFloat contactH = cellH;
+    _contactLable.frame = CGRectMake(contactX, contactY, contactW, contactH);
+    
+    CGFloat contactNumberX = contactW;
+    CGFloat contactNumberY = 0;
+    CGFloat contactNumberW = contactW;
+    CGFloat contactNumberH = contactH;
+    _contactPhoneNumberLable.frame = CGRectMake(contactNumberX, contactNumberY, contactNumberW, contactNumberH);
+}
+@end

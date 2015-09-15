@@ -37,7 +37,7 @@
 #import <UIImageView+WebCache.h>
 #import "WebController.h"
 #import <PNChart.h>
-
+#import "OrderManagerDetailsController.h"
 @interface HTHomeViewController () <UIScrollViewDelegate,PNChartDelegate>
 
 
@@ -171,6 +171,12 @@
         
     }];
     
+    
+    [self.orderManager bk_whenTapped:^{
+       
+        OrderManagerDetailsController * orderManager = [[OrderManagerDetailsController alloc] initWithStyle:UITableViewStyleGrouped];
+        [wself.navigationController pushViewController:orderManager animated:YES];
+    }];
 
     
     
