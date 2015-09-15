@@ -31,6 +31,11 @@
 
 - (void) _initScreenView {
     
+    [self.bgView layoutIfNeeded];
+    [self.allView layoutIfNeeded];
+    [self.obligationView layoutIfNeeded];
+    [self.waitView layoutIfNeeded];
+    [self.finishView layoutIfNeeded];
     
     
 }
