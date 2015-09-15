@@ -52,6 +52,14 @@
             cell = [[HTOrderDetail alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
         }
         return cell;
+    }else if(index.section == 3){
+        Identifier = @"last";
+        HTOrderDetail * cell = [tableview dequeueReusableCellWithIdentifier:Identifier];
+        if (cell == nil) {
+            
+            cell = [[HTOrderDetail alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+        }
+        return cell;
     }else{
         Identifier = @"cell";
         HTOrderDetail * cell = [tableview dequeueReusableCellWithIdentifier:Identifier];
@@ -76,7 +84,10 @@
     return self;
 }
 
-
+- (void)last{
+    self.textLabel.textAlignment = NSTextAlignmentCenter;
+    self.textLabel.text = @"查看物流信息";
+}
 - (void)cell{
     
     self.textLabel.textAlignment = NSTextAlignmentLeft;
@@ -86,8 +97,10 @@
 - (void)first{
     
     self.textLabel.text = @"购买人：";
+    self.textLabel.font = [UIFont systemFontOfSize:18];
     self.textLabel.textAlignment = NSTextAlignmentLeft;
     _buyPersonName = self.detailTextLabel;
+    self.detailTextLabel.font = [UIFont systemFontOfSize:18];
 }
 
 
