@@ -276,10 +276,6 @@
     
     
     [self.scrollView layoutIfNeeded];
-    [self.ordorBgView layoutIfNeeded];
-    [self.menBgView layoutIfNeeded];
-    [self.distributorBgView layoutIfNeeded];
-    [self.bgView layoutIfNeeded];
     
     NSLog(@"%f",self.scrollView.bounds.size.width);
     NSLog(@"%f",self.scrollView.bounds.size.height);
@@ -386,19 +382,16 @@
     self.distributorLabel.text = [NSString stringWithFormat:@"%d", [self.homeModel.todayPartnerAmount intValue]];
 }
 
-- (void)setPNChartWithCount:(int) count {
-    if (count == 0) {
-        
-    }else if (count == 1){
-        
-    }else {
-        
-    }
-}
 
 #pragma 设置哈懂视图
 - (void)showScrollView {
     //设置滚动内容范围尺寸
+    
+    [self.bgView layoutIfNeeded];
+    [self.ordorBgView layoutIfNeeded];
+    [self.menBgView layoutIfNeeded];
+    [self.distributorBgView layoutIfNeeded];
+    
     self.scrollView.contentSize = CGSizeMake(ScreenWidth * 3, 0);
     
     
@@ -416,6 +409,9 @@
     CGFloat DISX = self.distributorBgView.frame.size.width / 2 - ScreenWidth * 0.33 * 0.35 + self.distributorBgView.frame.origin.x;
     
     
+    NSLog(@"%f",self.ordorBgView.frame.origin.x);
+    NSLog(@"%f", self.ordorBgView.frame.size.width);
+    
     NSLog(@"%f", ORX);
     NSLog(@"%f", SIY);
     NSLog(@"%f", ScreenWidth * 0.33 * 0.7);
@@ -427,13 +423,14 @@
     [self.bgView addSubview:self.scrollImage];
     
     
+    
     [self.ordorBgView bk_whenTapped:^{
         if (self.scrollImage.frame.origin.x != ORX) {
             [UIView animateWithDuration:0.35 animations:^{
                 self.scrollImage.frame = CGRectMake(ORX, SIY, ScreenWidth * 0.33 * 0.7, 2);
                 self.scrollView.contentOffset = CGPointMake(0, 0);
             }];
-            
+           
         }
     }];
     
@@ -456,7 +453,7 @@
                 self.scrollView.contentOffset = CGPointMake(2 * ScreenWidth, 0);
             }];
             
-            
+           
         }
     }];
 }
