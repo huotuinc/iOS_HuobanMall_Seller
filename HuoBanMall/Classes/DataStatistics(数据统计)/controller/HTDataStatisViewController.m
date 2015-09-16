@@ -100,6 +100,8 @@ static NSString *popAnimation = @"first";
         _titlesArray = @[@"订单",@"销售额",@"会员"];
     }
     
+    self.navigationItem.leftBarButtonItem.title = @"返回";
+    
     [self _initSegment];
     
     
@@ -115,6 +117,8 @@ static NSString *popAnimation = @"first";
     self.segment.selectedSegmentIndex = self.selectIndex;
     
     self.BackScrollerview.contentOffset = CGPointMake(ScreenWidth * self.segment.selectedSegmentIndex, 0);
+    
+    [self getNewData];
     
 }
 
@@ -140,7 +144,7 @@ static NSString *popAnimation = @"first";
     self.BackScrollerview.contentOffset = CGPointMake(ScreenWidth * self.segment.selectedSegmentIndex, 0);
     self.BackScrollerview.frame = CGRectMake(0, 0, self.BackScrollerview.frame.size.width, self.BackScrollerview.frame.size.height);
     }];
-
+    [self getNewData];
 }
 
 
@@ -625,13 +629,14 @@ static NSString *popAnimation = @"first";
     [scr addSubview:explainLabel];
     
     //右侧文字 分销商
-    CGFloat distriX = ScreenWidth * 0.7;
+    CGFloat distriX = ScreenWidth * 0.48;
     CGFloat distriY = titleLableY + titleLableH;
-    CGFloat distriW = ScreenWidth * 0.3;
+    CGFloat distriW = ScreenWidth * 0.5;
     CGFloat distriH = 20;
     UILabel *distriLabel = [[UILabel alloc] initWithFrame:CGRectMake(distriX, distriY, distriW, distriH)];
     distriLabel.text = @"升级为分销商:35786";
     distriLabel.font = [UIFont systemFontOfSize:12];
+    distriLabel.textAlignment = NSTextAlignmentRight;
     [scr addSubview:distriLabel];
     
     //会员
@@ -766,7 +771,7 @@ static NSString *popAnimation = @"first";
     CGFloat title1LableW =  60;
     CGFloat title1LableH =  statisticsH - 4;
     UILabel * title1Lable = [[UILabel alloc] init];
-    title1Lable.backgroundColor = [UIColor greenColor];
+//    title1Lable.backgroundColor = [UIColor greenColor];
     title1Lable.text = @"当前统计:";
     title1Lable.font = [UIFont systemFontOfSize:12];
     title1Lable.frame = CGRectMake(title1LableX,title1LableY, title1LableW, title1LableH);
@@ -809,7 +814,7 @@ static NSString *popAnimation = @"first";
     CGFloat blueViewY = (statisticsH-redViewW)*0.5;
     UIView * blueView = [[UIView alloc] init];
     blueView.frame = CGRectMake(blueViewX, blueViewY, blueViewW, blueViewH);
-//    blueView.backgroundColor = [UIColor blueColor];
+    blueView.backgroundColor = [UIColor blueColor];
     [statistics addSubview:blueView];
     
     //会员
@@ -828,7 +833,7 @@ static NSString *popAnimation = @"first";
     CGFloat fenxiaonW = 60;
     CGFloat fenxiaonH = title1LableH;
     UILabel * fenxiaon = [[UILabel alloc] init];
-    fenxiaon.backgroundColor = [UIColor redColor];
+//    fenxiaon.backgroundColor = [UIColor redColor];
     fenxiaon.frame = CGRectMake(fenxiaonX, fenxiaonY, fenxiaonW, fenxiaonH);
     fenxiaon.font = [UIFont systemFontOfSize:12];
     fenxiaon.text = @"123";
@@ -1154,6 +1159,17 @@ static NSString *popAnimation = @"first";
         temp = @"userReport";
     }
     
+    NSLog(@"%@", temp);
+    
+    [UserLoginTool loginRequestGet:temp parame:nil success:^(id json) {
+        
+        NSLog(@"%@",json);
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        
+    }];
     
 }
 
