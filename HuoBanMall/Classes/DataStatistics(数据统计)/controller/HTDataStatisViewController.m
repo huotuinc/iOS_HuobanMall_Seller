@@ -1138,4 +1138,25 @@ static NSString *popAnimation = @"first";
         self.segment.selectedSegmentIndex = padgeInt;
     }
 }
+
+
+#pragma mark 网络请求
+
+- (void)getNewData {
+    
+    NSString *temp = [[NSString alloc] init];
+    
+    if (self.segment.selectedSegmentIndex == 0) {
+        temp = @"orderReport";
+    }else if (self.segment.selectedSegmentIndex == 1){
+        temp = @"salesReport";
+    }else {
+        temp = @"userReport";
+    }
+    
+    
+}
+
+
+
 @end

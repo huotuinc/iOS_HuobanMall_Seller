@@ -10,6 +10,7 @@
 #import "HeadView.h"
 #import "OrdorCell.h"
 #import "NewFootView.h"
+#import "OrderManagerDetailsController.h"
 
 @interface OrdorController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -29,7 +30,8 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     // Do any additional setup after loading the view.
     
     [self.tableView registerNib:[UINib nibWithNibName:@"OrdorCell" bundle:nil] forCellReuseIdentifier:ordorIdentifier];
-    
+//    self.tableView.separatorColor = [UIColor whiteColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self _initScreenView];
 }
@@ -143,7 +145,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 85;
+    return 82;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -153,7 +155,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 83;
 }
 
 
@@ -169,15 +171,19 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     NewFootView *foot = [[[NSBundle mainBundle] loadNibNamed:@"NewFootView" owner:nil options:nil] lastObject];
     return foot;
 }
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OrdorCell *cell = [tableView dequeueReusableCellWithIdentifier:ordorIdentifier forIndexPath:indexPath];
-    
-    cell.userInteractionEnabled = NO;
     return cell;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    OrderManagerDetailsController *man = [[OrderManagerDetailsController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:man animated:YES];
+}
 
 
 /*
