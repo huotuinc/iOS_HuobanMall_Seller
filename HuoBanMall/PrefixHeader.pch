@@ -16,9 +16,9 @@
 #import "UITableView+CJ.h"
 #import <SVProgressHUD.h>
 
-#define MainUrl @"http://apitest.51flashmall.com:8080/huobanmall/app"
+//#define MainUrl @"http://apitest.51flashmall.com:8080/huobanmall/app"
 
-//#define MainUrl @"http://192.168.1.57:8080/huobanmall/app"
+#define MainUrl @"http://192.168.1.48:8080/huobanmall/app"
 
 
 

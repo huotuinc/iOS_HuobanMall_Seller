@@ -235,7 +235,7 @@
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:nil action:nil];
     }];
     
-    self.navigationItem.title = user.name;
+    self.navigationItem.title = user.title;
 }
 
 #pragma mark
@@ -264,7 +264,7 @@
     }else {
         i = num / 100 + 1;
     }
-    array = @[[NSString stringWithFormat:@"%ld", i * 25],[NSString stringWithFormat:@"%ld", i * 50],[NSString stringWithFormat:@"%ld", i * 75],[NSString stringWithFormat:@"%ld", i * 100]];
+    array = @[[NSString stringWithFormat:@"%d", i * 25],[NSString stringWithFormat:@"%d", i * 50],[NSString stringWithFormat:@"%d", i * 75],[NSString stringWithFormat:@"%d", i * 100]];
     
     return array;
 }
@@ -274,7 +274,7 @@
     NSMutableArray *temp = [NSMutableArray array];
     
     for (int i = 0; i < array.count; i++) {
-        [temp addObject:[NSString stringWithFormat:@"%@", array[i]]];
+        [temp addObject:[NSString stringWithFormat:@"%@时", array[i]]];
     }
     
     NSArray *temp1 = temp;

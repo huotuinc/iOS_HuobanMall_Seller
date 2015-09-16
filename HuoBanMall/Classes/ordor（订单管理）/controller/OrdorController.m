@@ -34,6 +34,13 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self _initScreenView];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"ss"] style:UIBarButtonItemStylePlain handler:^(id sender) {
+       
+        
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
