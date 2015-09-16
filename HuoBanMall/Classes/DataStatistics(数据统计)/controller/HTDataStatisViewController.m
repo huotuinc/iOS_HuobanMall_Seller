@@ -792,12 +792,12 @@ static NSString *popAnimation = @"first";
     vipLable.font = [UIFont systemFontOfSize:12];
     [statistics addSubview:vipLable];
     
-    CGFloat redNumberX = vipLableX+vipLableW-2;
+    CGFloat redNumberX = vipLableX+vipLableW-4;
     CGFloat redNumberY = 2;
     CGFloat redNumberW = 60;
     CGFloat redNumberH = title1LableH;
     UILabel * redNumber = [[UILabel alloc] init];
-    redNumber.backgroundColor = [UIColor redColor];
+//    redNumber.backgroundColor = [UIColor redColor];
     redNumber.frame = CGRectMake(redNumberX, redNumberY, redNumberW, redNumberH);
     redNumber.font = [UIFont systemFontOfSize:12];
     redNumber.text = @"123";
@@ -809,7 +809,7 @@ static NSString *popAnimation = @"first";
     CGFloat blueViewY = (statisticsH-redViewW)*0.5;
     UIView * blueView = [[UIView alloc] init];
     blueView.frame = CGRectMake(blueViewX, blueViewY, blueViewW, blueViewH);
-    blueView.backgroundColor = [UIColor blueColor];
+//    blueView.backgroundColor = [UIColor blueColor];
     [statistics addSubview:blueView];
     
     //会员
@@ -1138,4 +1138,25 @@ static NSString *popAnimation = @"first";
         self.segment.selectedSegmentIndex = padgeInt;
     }
 }
+
+
+#pragma mark 网络请求
+
+- (void)getNewData {
+    
+    NSString *temp = [[NSString alloc] init];
+    
+    if (self.segment.selectedSegmentIndex == 0) {
+        temp = @"orderReport";
+    }else if (self.segment.selectedSegmentIndex == 1){
+        temp = @"salesReport";
+    }else {
+        temp = @"userReport";
+    }
+    
+    
+}
+
+
+
 @end

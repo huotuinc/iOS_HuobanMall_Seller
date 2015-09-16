@@ -106,7 +106,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 2) {
-        return 100;
+        return 83;
     }else{
         return 44;
     }
@@ -115,7 +115,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
     if (section == 2) {
-        return 40;
+        return 30;
     }
     return 0;
     
@@ -123,7 +123,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
     if (section == 2) {
-        return 75;
+        return 62;
     }
     return 0;
 }

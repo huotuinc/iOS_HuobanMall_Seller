@@ -168,7 +168,7 @@
     [self.dataStatics bk_whenTapped:^{
         UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         MoreDataViewController *more = [story instantiateViewControllerWithIdentifier:@"MoreDataViewController"];
-        
+        more.title = @"更多统计";
         [wself.navigationController pushViewController:more animated:YES];
         
     }];

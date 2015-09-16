@@ -28,6 +28,8 @@
     return _mgr;
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
     //开启定位服务
     [self AppLaunchTolocation];
     
