@@ -1,31 +1,21 @@
 //
-//  OrderManagerDetailsController.m
+//  HTCheckLogisticsController.m
 //  HuoBanMall
 //
-//  Created by lhb on 15/9/15.
+//  Created by lhb on 15/9/16.
 //  Copyright (c) 2015年 HT. All rights reserved.
-//  订单管理详情
+//  查看物流
 
-#import "OrderManagerDetailsController.h"
-#import "HTOrderDetail.h"
-#import "HTOrderDetailModel.h"
-#import "OrdorCell.h"
-#import "HeadView.h"
-#import "FootView.h"
+#import "HTCheckLogisticsController.h"
 
-@interface OrderManagerDetailsController ()
+@interface HTCheckLogisticsController ()
 
 @end
 
-@implementation OrderManagerDetailsController
+@implementation HTCheckLogisticsController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = @"订单管理详情";
-    
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"OrdorCell" bundle:nil]   forCellReuseIdentifier:@"OrdorCell"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -42,91 +32,26 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 4;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    if (section == 0) {
-        return 2;
-    }else if (section == 1) {
-        return 1;
-    }else if (section == 2){
-       return 1;
-    }else{
-        return 1;
-    }
-    
+    return 0;
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   
-    if (indexPath.section == 2) {
-        OrdorCell * ord = [[[NSBundle mainBundle] loadNibNamed:@"OrdorCell" owner:nil options:nil] lastObject];
-        ord.userInteractionEnabled = NO;
-        return ord;
-    }else{
-        
-        HTOrderDetail * cell = [HTOrderDetail cellWithTableView:tableView WithIndex:indexPath];
-        HTOrderDetailModel * model = [[HTOrderDetailModel alloc] init];
-        cell.model = model;
-        return cell;
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
+    // Configure the cell...
+    
+    return cell;
 }
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    if (section == 2) {
-        
-        HeadView * headView = [[[NSBundle mainBundle] loadNibNamed:@"HeadView" owner:nil options:nil] lastObject];
-        return headView;
-    }
-    
-    return nil;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    
-    if (section == 2) {
-        
-        FootView * footView = [[[NSBundle mainBundle] loadNibNamed:@"FootView" owner:nil options:nil] lastObject];
-        return footView;
-        
-    }
-    return nil;
-}
-
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.section == 2) {
-        return 100;
-    }else{
-        return 44;
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    if (section == 2) {
-        return 40;
-    }
-    return 0;
-    
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    
-    if (section == 2) {
-        return 75;
-    }
-    return 0;
-}
+*/
 
 /*
 // Override to support conditional editing of the table view.

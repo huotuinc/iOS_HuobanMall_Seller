@@ -9,6 +9,7 @@
 #import "MoreDataViewController.h"
 #import "HTDataStatisViewController.h"
 #import "MoreDataModel.h"
+#import "HTStatisticsController.h"
 
 @interface MoreDataViewController ()
 
@@ -76,17 +77,23 @@
         [self.navigationController pushViewController:dataStatis animated:YES];
     }];
     
-#warning 转跳网页
     [self.marketImage bk_whenTapped:^{
         
+        HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
+        ctl.type = 3;
+        [self.navigationController pushViewController:ctl animated:YES];
     }];
     
     [self.rebateImage bk_whenTapped:^{
-        
+        HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
+        ctl.type = 1;
+        [self.navigationController pushViewController:ctl animated:YES];
     }];
     
     [self.expenseImage bk_whenTapped:^{
-        
+        HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
+        ctl.type = 2;
+        [self.navigationController pushViewController:ctl animated:YES];
     }];
     
 }
