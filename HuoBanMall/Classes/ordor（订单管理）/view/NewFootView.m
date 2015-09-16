@@ -1,14 +1,21 @@
 //
-//  FootView.m
+//  NewFootView.m
 //  HuoBanMall
 //
 //  Created by HuoTu-Mac on 15/9/15.
 //  Copyright (c) 2015年 HT. All rights reserved.
 //
 
-#import "FootView.h"
+#import "NewFootView.h"
 
-@implementation FootView
+@implementation NewFootView
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    
+}
 
 
 

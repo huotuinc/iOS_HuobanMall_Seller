@@ -37,6 +37,7 @@
 #import <UIImageView+WebCache.h>
 #import "WebController.h"
 #import <PNChart.h>
+#import "OrdorController.h"
 
 @interface HTHomeViewController () <UIScrollViewDelegate,PNChartDelegate>
 
@@ -166,11 +167,17 @@
     [self.dataStatics bk_whenTapped:^{
         UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         MoreDataViewController *more = [story instantiateViewControllerWithIdentifier:@"MoreDataViewController"];
-        
+        more.title = @"更多统计";
         [wself.navigationController pushViewController:more animated:YES];
         
     }];
     
+    [self.orderManager bk_whenTapped:^{
+        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        OrdorController *ordor = [story instantiateViewControllerWithIdentifier:@"OrdorController"];
+        ordor.title = @"订单管理";
+        [wself.navigationController pushViewController:ordor animated:YES];
+    }];
 
     
     
