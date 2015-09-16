@@ -40,10 +40,12 @@
         
         UILabel * datelable = [[UILabel alloc] init];
         _datelable = datelable;
+        datelable.textAlignment = NSTextAlignmentCenter;
         [rightView addSubview:datelable];
         
         UILabel * dateType = [[UILabel alloc] init];
         _dateType = dateType;
+        dateType.textAlignment = NSTextAlignmentCenter;
         [rightView addSubview:dateType];
     }
     return self;
