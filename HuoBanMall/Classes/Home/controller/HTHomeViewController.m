@@ -39,6 +39,7 @@
 #import <PNChart.h>
 #import "OrderManagerDetailsController.h"
 #import "HTStatisticsController.h"
+#import "OrdorController.h"
 
 @interface HTHomeViewController () <UIScrollViewDelegate,PNChartDelegate>
 
@@ -175,10 +176,10 @@
     
     
     [self.orderManager bk_whenTapped:^{
-       
-//        OrderManagerDetailsController * orderManager = [[OrderManagerDetailsController alloc] initWithStyle:UITableViewStyleGrouped];
-//        [wself.navigationController pushViewController:orderManager animated:YES];
-        
+        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        OrdorController *ordor = [story instantiateViewControllerWithIdentifier:@"OrdorController"];
+        ordor.title = @"订单管理";
+        [wself.navigationController pushViewController:ordor animated:YES];
     }];
 
     

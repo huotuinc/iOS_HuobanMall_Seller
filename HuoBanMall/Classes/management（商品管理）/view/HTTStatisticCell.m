@@ -75,9 +75,9 @@
     [super layoutSubviews];
     
     _rightView.frame = CGRectMake(self.frame.size.width-100, 0, 100,self.frame.size.height);
-    _rightView.backgroundColor = [UIColor greenColor];
+//    _rightView.backgroundColor = [UIColor greenColor];
     _datelable.frame = CGRectMake(0, 0, _rightView.frame.size.width, _rightView.frame.size.height*0.5);
-    _datelable.backgroundColor = [UIColor redColor];
+//    _datelable.backgroundColor = [UIColor redColor];
     _dateType.frame = CGRectMake(0, _rightView.frame.size.height*0.5,  _rightView.frame.size.width, _rightView.frame.size.height*0.5);
 }
 
