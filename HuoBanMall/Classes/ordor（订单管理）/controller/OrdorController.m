@@ -47,8 +47,8 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     [self.waitView layoutIfNeeded];
     [self.finishView layoutIfNeeded];
     
-    CGFloat SVW = ScreenWidth * 0.075;
-    CGFloat SIY = (ScreenHeight - 64) * 0.06 - 2;
+    CGFloat SVW = ScreenWidth * 0.1;
+    CGFloat SIY = (ScreenHeight - 64) * 0.08 - 2;
     
     CGFloat ALLX = (self.allView.frame.size.width - SVW) / 2 + self.allView.frame.origin.x;
     CGFloat OBX = (self.obligationView.frame.size.width - SVW) / 2 + self.obligationView.frame.origin.x;
@@ -143,17 +143,17 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 90;
+    return 85;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 40;
+    return 30;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 80;
 }
 
 
