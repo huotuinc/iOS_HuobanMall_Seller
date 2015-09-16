@@ -7,7 +7,7 @@
 //  查看物流
 
 #import "HTCheckLogisticsController.h"
-
+#import "ExpressCompany.h"
 @interface HTCheckLogisticsController ()
 
 @end
@@ -16,7 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"物流查看";
     
+     [self.tableView registerNib:[UINib nibWithNibName:@"ExpressCompany" bundle:nil]   forCellReuseIdentifier:@"aa"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -32,26 +34,45 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    if (section == 0 || section == 1) {
+        return 1;
+    }else{
+       return 2;
+    }
+    
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    if (indexPath.section == 0) {
+        ExpressCompany * aa = [tableView dequeueReusableCellWithIdentifier:@"aa"];
+        if (aa == nil) {
+            
+            aa = [[ExpressCompany alloc] init];
+            
+        }
+        [aa setDateWithStatus:0 withCompany:@"顺丰" withOderNumber:@"111" withIconUrl:nil];
+        return aa;
+    }else if (indexPath.section == 1){
+        
+        return nil;
+    }else{
+        
+        
+        
+        return nil;
+    }
     
-    return cell;
+   
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -87,14 +108,12 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+ 
+    return 80;
+ 
+ }
 @end
