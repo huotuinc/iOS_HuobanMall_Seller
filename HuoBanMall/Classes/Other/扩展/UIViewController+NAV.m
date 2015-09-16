@@ -21,6 +21,12 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [self setNeedsStatusBarAppearanceUpdate];
+    
+    
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+                                                         forBarMetrics:UIBarMetricsDefault];
+
+    
 }
 
 - (void)_removeNavBackgroundColor

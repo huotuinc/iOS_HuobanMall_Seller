@@ -10,6 +10,7 @@
 #import <BlocksKit.h>
 #import <PNChart.h>
 #import <POP.h>
+#import "OrdorListModel.h"
 
 
 
@@ -58,6 +59,9 @@
 /**会员vip*/
 @property(nonatomic,strong) PNLineChart * viplineChart;
 
+/**数据模型**/
+/**订单数据模型**/
+@property (nonatomic, strong) OrdorListModel *ordorModel;
 
 
 @end
@@ -100,7 +104,6 @@ static NSString *popAnimation = @"first";
         _titlesArray = @[@"订单",@"销售额",@"会员"];
     }
     
-    self.navigationItem.leftBarButtonItem.title = @"返回";
     
     [self _initSegment];
     
@@ -119,6 +122,7 @@ static NSString *popAnimation = @"first";
     self.BackScrollerview.contentOffset = CGPointMake(ScreenWidth * self.segment.selectedSegmentIndex, 0);
     
     [self getNewData];
+    
     
 }
 
@@ -1164,6 +1168,28 @@ static NSString *popAnimation = @"first";
     [UserLoginTool loginRequestGet:temp parame:nil success:^(id json) {
         
         NSLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            switch (self.segment.selectedSegmentIndex) {
+                case 0:
+                {
+//                    self.ordorModel = [OrdorListModel objectWithKeyValues:json[@"resultData"]];
+                    
+                    break;
+                }
+                case 1:
+                {
+                    break;
+                }
+                case 2:
+                {
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+        
         
     } failure:^(NSError *error) {
         
