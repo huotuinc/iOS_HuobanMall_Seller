@@ -30,4 +30,7 @@
 }
 */
 
+- (IBAction)getLogistics:(UIButton *)sender {
+    NSLog(@"12331231232100");
+}
 @end

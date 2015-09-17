@@ -29,5 +29,6 @@
  *  价格
  */
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+- (IBAction)getLogistics:(UIButton *)sender;
 
 @end
