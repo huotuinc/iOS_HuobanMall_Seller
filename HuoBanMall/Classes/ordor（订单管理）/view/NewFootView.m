@@ -7,7 +7,7 @@
 //
 
 #import "NewFootView.h"
-
+#import "HTCheckLogisticsController.h"
 @implementation NewFootView
 
 - (void)layoutSubviews
@@ -31,6 +31,11 @@
 */
 
 - (IBAction)getLogistics:(UIButton *)sender {
-    NSLog(@"12331231232100");
+    
+    if ([self.delegate respondsToSelector:@selector(NewFootViewCheckMaterialWith:)]) {
+        
+        [self.delegate NewFootViewCheckMaterialWith:self];
+    }
+    
 }
 @end
