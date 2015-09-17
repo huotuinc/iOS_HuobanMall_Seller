@@ -40,6 +40,7 @@
 #import "OrderManagerDetailsController.h"
 #import "HTStatisticsController.h"
 #import "OrdorController.h"
+#import "HTCheckLogisticsController.h"
 
 @interface HTHomeViewController () <UIScrollViewDelegate,PNChartDelegate>
 
@@ -176,6 +177,7 @@
     
     
     [self.orderManager bk_whenTapped:^{
+        
         UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         OrdorController *ordor = [story instantiateViewControllerWithIdentifier:@"OrdorController"];
         ordor.title = @"订单管理";

@@ -10,4 +10,9 @@
 
 @interface ExpressCompany : UITableViewCell
 
+
+
+
+- (void)setDateWithStatus:(int)type withCompany:(NSString *)company withOderNumber:(NSString *) number withIconUrl:(NSString *)url;
+
 @end

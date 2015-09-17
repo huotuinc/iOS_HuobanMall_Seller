@@ -7,6 +7,8 @@
 //  查看物流
 
 #import "HTCheckLogisticsController.h"
+#import "ExpressCompany.h"
+#import "NewOrdorCell.h"
 
 @interface HTCheckLogisticsController ()
 
@@ -16,7 +18,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"物流查看";
     
+     [self.tableView registerNib:[UINib nibWithNibName:@"ExpressCompany" bundle:nil]   forCellReuseIdentifier:@"aa"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"NewOrdorCell" bundle:nil]   forCellReuseIdentifier:@"bb"];
+    
+//    self.tableView.
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -32,26 +39,111 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    if (section == 0 || section == 1) {
+        return 1;
+    }else{
+       return 4;
+    }
+    
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    if (indexPath.section == 0) {
+        ExpressCompany * aa = [tableView dequeueReusableCellWithIdentifier:@"aa"];
+        if (aa == nil) {
+            
+            aa = [[ExpressCompany alloc] init];
+            aa.userInteractionEnabled = NO;
+            
+        }
+        [aa setDateWithStatus:0 withCompany:@"顺丰" withOderNumber:@"111" withIconUrl:nil];
+        return aa;
+    }else if (indexPath.section == 1){
+        
+        NewOrdorCell * bb = [tableView dequeueReusableCellWithIdentifier:@"bb"];
+        if (bb== nil) {
+            
+            bb = [[NewOrdorCell alloc] init];
+            bb.userInteractionEnabled = NO;
+         }
+        [bb setDate:@"xxxcxxxfhahsdasdklasdfkalshfdlkasfhlkafhklafhlkjashflkasfasfasfjdasfjkal" withPrice:@"1999" WithBuyNum:@"x1" withDesc:@"xxxxx" withIconUrl:nil];
+        return bb;
+    }else{
+        
+        static NSString * Id = @"xxxxxxx";
+        UITableViewCell * cc = [tableView dequeueReusableCellWithIdentifier:Id];
+        if (cc == nil) {
+            
+            cc = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:Id];
+            cc.textLabel.numberOfLines = 0;
+            cc.userInteractionEnabled = NO;
+            
+           
+        }
+        if(indexPath.row == 0){
+            
+            cc.imageView.image = [UIImage imageNamed:@"green"];
+//            cc.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        }else if(indexPath.row == 3){
+            
+            cc.imageView.image = [UIImage imageNamed:@"gray-2"];
+        }else{
+            cc.imageView.image = [UIImage imageNamed:@"gray"];
+        }
+        cc.textLabel.text = @"dahasdajsdhasjkdajsd\ndjasdjaskdaksdll";
+        cc.detailTextLabel.text = @"2012-01-11";
+        return cc;
+    }
     
-    return cell;
+   
 }
-*/
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    if (section == 1) {
+        return [self myselfSectionHeadViewWithTitle:@"物品信息"];
+    }else if(section == 2) {
+        
+        return [self myselfSectionHeadViewWithTitle:@"查看物流"];
+    }
+    return nil;
+}
+- (UIView *)myselfSectionHeadViewWithTitle:(NSString *)title{
+    
+    UIView * vi = [[UIView alloc] init];
+    vi.backgroundColor = [UIColor blackColor];
+    vi.bounds = CGRectMake(10, 0,self.tableView.frame.size.width, 60);
+    vi.backgroundColor = [UIColor whiteColor];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, self.tableView.frame.size.width, 20)];
+    label.font = [UIFont systemFontOfSize:16.0f];  //UILabel的字体大小
+    label.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
+    label.textColor = [UIColor colorWithRed:70/255.0 green:72/255.0 blue:76/255.0 alpha:1.000];
+    label.textAlignment = NSTextAlignmentLeft;  //文本对齐方式
+    [label setBackgroundColor:[UIColor clearColor]];
+    label.text = title;
+    [vi addSubview:label];
+    return vi;
+    
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+
+{
+    if (section == 1) {
+        return 30;
+    }else if (section == 2){
+        return 30;
+    }
+    return 2 ;
+    
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -87,14 +179,21 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+ 
+    return 80;
+ 
+ }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    
+    if (section == 1) {
+        
+        return @"物品信息";
+    }
+    return nil;
+}
 @end

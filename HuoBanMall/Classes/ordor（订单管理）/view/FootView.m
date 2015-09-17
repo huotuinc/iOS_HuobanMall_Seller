@@ -8,6 +8,14 @@
 
 #import "FootView.h"
 
+
+
+@interface FootView()
+
+- (IBAction)materialButtonClick:(id)sender;
+
+@end
+
 @implementation FootView
 
 
@@ -20,4 +28,8 @@
 }
 */
 
+- (IBAction)materialButtonClick:(id)sender {
+    
+    NSLog(@"xxxx");
+}
 @end

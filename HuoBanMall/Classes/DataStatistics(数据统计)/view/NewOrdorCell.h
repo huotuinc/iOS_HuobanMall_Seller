@@ -10,4 +10,6 @@
 
 @interface NewOrdorCell : UITableViewCell
 
+
+- (void)setDate:(NSString *)title withPrice:(NSString *)price WithBuyNum:(NSString *)num withDesc:(NSString *)desc withIconUrl:(NSString *)url;
 @end

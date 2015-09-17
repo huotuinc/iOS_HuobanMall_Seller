@@ -7,9 +7,34 @@
 //
 
 #import "NewOrdorCell.h"
+#import <UIImageView+WebCache.h>
+
+
+@interface NewOrdorCell()
+
+@property (weak, nonatomic) IBOutlet UIImageView *iconVIew;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLable;
+
+@property (weak, nonatomic) IBOutlet UILabel *priceNumber;
+
+@property (weak, nonatomic) IBOutlet UILabel *buyNumber;
+
+@property (weak, nonatomic) IBOutlet UILabel *goodStytle;
+
+@end
+
 
 @implementation NewOrdorCell
 
+
+- (void)setDate:(NSString *)title withPrice:(NSString *)price WithBuyNum:(NSString *)num withDesc:(NSString *)desc withIconUrl:(NSString *)url{
+    [self.iconVIew sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageRetryFailed];
+    self.titleLable.text = title;
+    self.priceNumber.text = price;
+    self.buyNumber.text = num;
+    self.goodStytle.text = desc;
+}
 - (void)awakeFromNib {
     // Initialization code
 }
