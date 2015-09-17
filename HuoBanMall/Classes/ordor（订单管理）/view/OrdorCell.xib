@@ -88,6 +88,9 @@
                 </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="bgView" destination="wHa-xv-G0H" id="bWd-ti-zEf"/>
+            </connections>
             <point key="canvasLocation" x="270" y="350.5"/>
         </tableViewCell>
     </objects>

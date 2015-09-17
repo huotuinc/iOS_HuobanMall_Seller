@@ -67,6 +67,7 @@
    
     if (indexPath.section == 2) {
         OrdorCell * ord = [[[NSBundle mainBundle] loadNibNamed:@"OrdorCell" owner:nil options:nil] lastObject];
+        ord.bgView.backgroundColor = [UIColor clearColor];
         ord.userInteractionEnabled = NO;
         return ord;
     }else{
@@ -123,7 +124,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
     if (section == 2) {
-        return 62;
+        return 40;
     }
     return 0;
 }

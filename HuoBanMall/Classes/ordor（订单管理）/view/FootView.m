@@ -18,7 +18,15 @@
 
 @implementation FootView
 
-
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    self.logisticsButton.layer.cornerRadius = 5;
+    self.logisticsButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.logisticsButton.layer.borderWidth = 1;
+    
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

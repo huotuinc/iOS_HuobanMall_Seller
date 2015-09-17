@@ -10,4 +10,6 @@
 
 @interface OrdorCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIView *bgView;
+
 @end
