@@ -510,7 +510,7 @@
     [lineChart setXLabels:xArray];
     lineChart.showCoordinateAxis = YES;
     
-//    lineChart.xLabelWidth =
+
     
     lineChart.yFixedValueMin = 0.0;
     lineChart.yValueMin = 0;

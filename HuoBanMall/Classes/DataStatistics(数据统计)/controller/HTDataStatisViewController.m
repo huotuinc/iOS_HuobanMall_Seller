@@ -26,31 +26,17 @@
 @property(nonatomic,strong) UIScrollView * BackScrollerview;
 
 /**---------------------------------------------------------------------*/
-//订单order
-/**一周7天统计数量*/
-@property(nonatomic,strong) UILabel * orderweekNumberLableValue;
-/**本月统计数量*/
-@property(nonatomic,strong) UILabel * ordermonthNumberLableValue;
-//销售额sale
-/**一周7天统计数量*/
-@property(nonatomic,strong) UILabel * saleweekNumberLableValue;
-/**本月统计数量*/
-@property(nonatomic,strong) UILabel * salemonthNumberLableValue;
-//会员vip
-/**会员一周7天统计数量*/
-@property(nonatomic,strong) UILabel * vipweekNumberLableValue;
-/**小伙伴一周7天统计数量*/
-@property(nonatomic,strong) UILabel * partnerweekNumberLableValue;
-/**会员本月统计数量*/
-@property(nonatomic,strong) UILabel * vipmonthNumberLableValue;
-/**小伙伴本月统计数量*/
-@property(nonatomic,strong) UILabel * partnermonthNumberLableValue;
+/**订单报表背景*/
+@property (nonatomic, strong) UIView *OrdorBgView;
 /**---------------------------------------------------------------------*/
 
+/**订单总数统计*/
+@property (nonatomic, strong) UILabel *ordorTotal;
+/**订单当前统计*/
+@property (nonatomic, strong) UILabel *ordorNewLabel;
 
 
-
-
+/**---------------------------------------------------------------------*/
 /**图表*/
 /**订单*/
 @property(nonatomic,strong) PNLineChart * orderlineChart;
@@ -92,7 +78,7 @@ static NSString *popAnimation = @"first";
     //初始化滚地
     [self setupScrollView];
     //添加分页控件
-//    [self setupPageControll];
+
     // 1、数据统计中第一个订单统计页面
     [self showOrderContrpller];
     // 2、数据统计中第二个销售额统计
@@ -198,11 +184,13 @@ static NSString *popAnimation = @"first";
     CGFloat titleLableY = imageY;
     CGFloat titleLableW = self.view.frame.size.width-2*titleLableX;
     CGFloat titleLableH = 20;
-    UILabel * titleLable = [[UILabel alloc] init];
-    titleLable.font = [UIFont systemFontOfSize:20];
-    titleLable.text = [NSString stringWithFormat:@"123123123"];
-    titleLable.frame = CGRectMake(titleLableX, titleLableY, titleLableW, titleLableH);
-    [scr addSubview:titleLable];
+
+    self.ordorTotal = [[UILabel alloc] init];
+    self.ordorTotal.font = [UIFont systemFontOfSize:20];
+    self.ordorTotal.text = [NSString stringWithFormat:@"123123123"];
+    self.ordorTotal.frame = CGRectMake(titleLableX, titleLableY, titleLableW, titleLableH);
+    [scr addSubview:self.ordorTotal];
+  
     
     //文字解释
     UILabel *explainLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLableX, titleLableY + titleLableH , titleLableW, titleLableH)];
@@ -283,7 +271,7 @@ static NSString *popAnimation = @"first";
     //设置点击事件
     [week bk_whenTapped:^{
         if (selected.frame.origin.x != weekX) {
-            [self changeValue];
+            [self changeOrdorPNChartWithType:1];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(weekX, selectedY, todayW, 3);
             }];
@@ -292,7 +280,7 @@ static NSString *popAnimation = @"first";
     
     [today bk_whenTapped:^{
         if (selected.frame.origin.x != todayX) {
-            [self changeValue];
+            [self changeOrdorPNChartWithType:0];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(todayX, selectedY, todayW, 3);
             }];
@@ -301,7 +289,7 @@ static NSString *popAnimation = @"first";
     
     [month bk_whenTapped:^{
         if (selected.frame.origin.x != monthX) {
-            [self changeValue];
+            [self changeOrdorPNChartWithType:2];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(monthX, selectedY, todayW, 3);
             }];
@@ -329,25 +317,20 @@ static NSString *popAnimation = @"first";
     statistics.backgroundColor = [UIColor colorWithWhite:0.910 alpha:1.000];
     [scr addSubview:statistics];
     
-    UILabel * title1Lable = [[UILabel alloc] init];
-    title1Lable.text = @"当前统计:325600";
-    title1Lable.font = [UIFont systemFontOfSize:12];
-    title1Lable.frame = CGRectMake(ScreenWidth * .05625, 2, ScreenWidth * .5, statisticsH - 4);
-    [statistics addSubview:title1Lable];
+    self.ordorNewLabel = [[UILabel alloc] init];
+    self.ordorNewLabel.text = @"当前统计:325600";
+    self.ordorNewLabel.font = [UIFont systemFontOfSize:12];
+    self.ordorNewLabel.frame = CGRectMake(ScreenWidth * .05625, 2, ScreenWidth * .5, statisticsH - 4);
+    [statistics addSubview:self.ordorNewLabel];
     
     
     CGFloat pnchartX = 2;
     CGFloat pnchartY = statisticsY + statisticsH;
     CGFloat pnchartW = self.view.frame.size.width-4;
     CGFloat pnchartH = self.view.frame.size.height*0.3;
-    UIView * pnchartView = [[UIView alloc] init];
-    pnchartView.frame = CGRectMake(pnchartX, pnchartY, pnchartW, pnchartH);
+    self.OrdorBgView = [[UIView alloc] init];
+    self.OrdorBgView.frame = CGRectMake(pnchartX, pnchartY, pnchartW, pnchartH);
     
-    //创建绘图
-    self.orderlineChart = [self linePNChartWithFrame:pnchartView.frame];
-    self.orderlineChart.tag = 1;
-    [pnchartView addSubview:self.orderlineChart];
-    [scr addSubview:pnchartView];
     
     CGFloat seperateLineX = 5;
     CGFloat seperateLineY = pnchartY+pnchartH+3;
@@ -554,7 +537,7 @@ static NSString *popAnimation = @"first";
     
 #pragma mark 销售额图标
     //创建绘图
-    self.salelineChart = [self linePNChartWithFrame:pnchartView.frame];
+    self.salelineChart = [self linePNChartWithSalePNChartFrame:pnchartView.frame];
     self.salelineChart.tag = 1;
 //    self.salelineChart.backgroundColor 
     [pnchartView addSubview:self.salelineChart];
@@ -932,31 +915,23 @@ static NSString *popAnimation = @"first";
  *
  *  @param frame
  */
-- (PNLineChart *)linePNChartWithFrame:(CGRect)frame{
+- (PNLineChart *)linePNChartWithOodorPNChartFrame:(CGRect)frame{
     
     
-    PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 10, frame.size.width, frame.size.height - 10)];
+    PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 10, frame.size.width, frame.size.height)];
     lineChart.yLabelFormat = @"%1.1f";
     lineChart.backgroundColor = [UIColor clearColor];
-    [lineChart setXLabels:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7"]];
+    [lineChart setXLabels:[self getNSNumberArrayWithArray:self.ordorModel.weekTimes]];
     lineChart.showCoordinateAxis = YES;
     
-    //Use yFixedValueMax and yFixedValueMin to Fix the Max and Min Y Value
-    //Only if you needed
-    lineChart.yFixedValueMax = 300.0;
+    lineChart.yValueMax = [[self getMaxFromArray:self.ordorModel.weekAmounts] floatValue] ;
     lineChart.yFixedValueMin = 0.0;
     lineChart.yValueMin = 0;
     
-    [lineChart setYLabels:@[
-                                 @"50",
-                                 @"100",
-                                 @"150",
-                                 @"200",
-                                 ]
-     ];
+    [lineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.ordorModel.weekAmounts] integerValue]]];
     
-    // Line Chart #1
-    NSArray * data01Array = @[@0,@0, @0, @0, @0.0, @0, @0, @176.2];
+//     Line Chart #1
+    NSArray * data01Array = self.ordorModel.weekAmounts;
     PNLineChartData *data01 = [PNLineChartData new];
     data01.dataTitle = @"Alpha";
     data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
@@ -973,6 +948,47 @@ static NSString *popAnimation = @"first";
     
     return lineChart;
 }
+
+- (PNLineChart *)linePNChartWithSalePNChartFrame:(CGRect)frame{
+    
+    
+    PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 10, frame.size.width, frame.size.height - 10)];
+    lineChart.yLabelFormat = @"%1.1f";
+    lineChart.backgroundColor = [UIColor clearColor];
+    [lineChart setXLabels:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7"]];
+    lineChart.showCoordinateAxis = YES;
+    
+    lineChart.yFixedValueMax = 300.0;
+    lineChart.yFixedValueMin = 0.0;
+    lineChart.yValueMin = 0;
+    
+    [lineChart setYLabels:@[
+                            @"50",
+                            @"100",
+                            @"150",
+                            @"200",
+                            ]
+     ];
+    
+    //     Line Chart #1
+    NSArray * data01Array = @[@0,@0, @0, @0, @0.0, @0, @0, @176.2];
+    PNLineChartData *data01 = [PNLineChartData new];
+    data01.dataTitle = @"Alpha";
+    data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+    //    data01.alpha = 0.3f;
+    data01.itemCount = data01Array.count;
+    data01.inflexionPointStyle = PNLineChartPointStyleTriangle;
+    data01.getData = ^(NSUInteger index) {
+        CGFloat yValue = [data01Array[index] floatValue];
+        return [PNLineChartDataItem dataItemWithY:yValue];
+    };
+    lineChart.chartData = @[data01];
+    [lineChart strokeChart];
+    lineChart.delegate = self;
+    
+    return lineChart;
+}
+
 
 - (PNLineChart *)lineTwoPNChartWithFrame:(CGRect)frame {
     PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 10, frame.size.width, frame.size.height)];
@@ -1040,17 +1056,7 @@ static NSString *popAnimation = @"first";
 #pragma mark PNChart表改变值方法
 - (void)changeValue{
     // Line Chart #1
-    NSArray * data01Array = @[@(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300)];
-    PNLineChartData *data01 = [PNLineChartData new];
-    data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
-    data01.itemCount = data01Array.count;
-    data01.inflexionPointStyle = PNLineChartPointStyleTriangle;
-    data01.getData = ^(NSUInteger index) {
-        CGFloat yValue = [data01Array[index] floatValue];
-        return [PNLineChartDataItem dataItemWithY:yValue];
-    };
-    [self.orderlineChart setXLabels:@[@"1",@"",@"",@"",@"",@"",@"7"]];
-    [self.orderlineChart updateChartData:@[data01]];
+   
 }
 
 - (void)changeValue1{
@@ -1132,7 +1138,7 @@ static NSString *popAnimation = @"first";
 
 
 
-#pragma scorllView 代理方法
+#pragma mark scorllView 代理方法
 
 /**
  *  只要滚地就掉用这个方法
@@ -1147,6 +1153,8 @@ static NSString *popAnimation = @"first";
         self.segment.selectedSegmentIndex = padgeInt;
     }
 }
+
+
 
 
 #pragma mark 网络请求
@@ -1173,8 +1181,24 @@ static NSString *popAnimation = @"first";
             switch (self.segment.selectedSegmentIndex) {
                 case 0:
                 {
-                    self.ordorModel = [OrdorListModel objectWithKeyValues:json[@"resultData"]];
+                    self.ordorModel = [[OrdorListModel alloc] init];
                     
+                    self.ordorModel.totalAmount = json[@"resultData"][@"totalAmount"];
+                    self.ordorModel.todayAmount = json[@"resultData"][@"todayAmount"];
+                    self.ordorModel.weekAmount = json[@"resultData"][@"weekAmount"];
+                    self.ordorModel.monthAmount = json[@"resultData"][@"monthAmount"];
+                    self.ordorModel.todayTimes = json[@"resultData"][@"todayTimes"];
+                    self.ordorModel.todayAmounts = json[@"resultData"][@"todayAmounts"];
+                    self.ordorModel.weekTimes = json[@"resultData"][@"weekTimes"];
+                    self.ordorModel.weekAmounts = json[@"resultData"][@"weekAmounts"];
+                    self.ordorModel.monthTimes = json[@"resultData"][@"monthTimes"];
+                    self.ordorModel.monthAmounts = json[@"resultData"][@"monthAmounts"];
+                    
+                    if (self.orderlineChart) {
+                        
+                    }else {
+                        [self _initOrdorPNchart];
+                    }
                     break;
                 }
                 case 1:
@@ -1189,7 +1213,7 @@ static NSString *popAnimation = @"first";
                     break;
             }
         }
-        
+
         
     } failure:^(NSError *error) {
         
@@ -1200,5 +1224,147 @@ static NSString *popAnimation = @"first";
 }
 
 
+#pragma mark 初始化
+
+- (void)_initOrdorPNchart {
+    //创建绘图
+    
+    UIView * scr = self.scrollerviews[0];
+    
+    [self getNSNumberArrayWithArray:self.ordorModel.weekTimes];
+    
+    self.orderlineChart = [self linePNChartWithOodorPNChartFrame:self.OrdorBgView.frame];
+    self.orderlineChart.tag = 1;
+    [self.OrdorBgView addSubview:self.orderlineChart];
+    [scr addSubview:self.OrdorBgView];
+}
+
+- (void)changeOrdorPNChartWithType: (NSInteger)type {
+    
+    if (type == 0) {
+        
+        self.orderlineChart.yValueMax = [[self getMaxFromArray:self.ordorModel.todayAmounts] floatValue];
+        [self.orderlineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.ordorModel.todayAmounts] integerValue]]];
+        [self.orderlineChart setXLabels:[self getNSStringArrayWithArray:self.ordorModel.todayTimes]];
+  
+        NSArray * data01Array = self.ordorModel.todayAmounts;
+        PNLineChartData *data01 = [PNLineChartData new];
+        data01.dataTitle = @"Alpha";
+        data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+        //    data01.alpha = 0.3f;
+        data01.itemCount = data01Array.count;
+        data01.inflexionPointStyle = PNLineChartPointStyleTriangle;
+        data01.getData = ^(NSUInteger index) {
+            CGFloat yValue = [data01Array[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        self.orderlineChart.chartData = @[data01];
+        [self.orderlineChart strokeChart];
+        
+    }else if (type == 1) {
+        
+        self.orderlineChart.yValueMax = [[self getMaxFromArray:self.ordorModel.weekAmounts] floatValue];
+        [self.orderlineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.ordorModel.weekAmounts] integerValue]]];
+        [self.orderlineChart setXLabels:[self getNSNumberArrayWithArray:self.ordorModel.weekTimes]];
+        
+        NSArray * data01Array = self.ordorModel.weekAmounts;
+        PNLineChartData *data01 = [PNLineChartData new];
+        data01.dataTitle = @"Alpha";
+        data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+        //    data01.alpha = 0.3f;
+        data01.itemCount = data01Array.count;
+        data01.inflexionPointStyle = PNLineChartPointStyleTriangle;
+        data01.getData = ^(NSUInteger index) {
+            CGFloat yValue = [data01Array[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        self.orderlineChart.chartData = @[data01];
+        [self.orderlineChart strokeChart];
+        
+    }else {
+        
+        self.orderlineChart.yValueMax = [[self getMaxFromArray:self.ordorModel.monthAmounts] floatValue];
+        [self.orderlineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.ordorModel.monthAmounts] integerValue]]];
+        [self.orderlineChart setXLabels:[self getNSNumberArrayWithArray:self.ordorModel.monthTimes]];
+        
+        NSArray * data01Array = self.ordorModel.monthAmounts;
+        PNLineChartData *data01 = [PNLineChartData new];
+        data01.dataTitle = @"Alpha";
+        data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+        //    data01.alpha = 0.3f;
+        data01.itemCount = data01Array.count;
+        data01.inflexionPointStyle = PNLineChartPointStyleTriangle;
+        data01.getData = ^(NSUInteger index) {
+            CGFloat yValue = [data01Array[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        self.orderlineChart.chartData = @[data01];
+        [self.orderlineChart strokeChart];
+        
+    }
+    
+}
+
+
+#pragma mark 计算操作
+- (NSNumber *)getMaxFromArray:(NSArray *)array {
+    
+    NSNumber *a = 0;
+    
+    for (NSNumber *num in array) {
+        
+        if (num > a) {
+            a = num;
+        }
+    }
+    
+    return a;
+}
+
+- (NSArray *)getArrayWithY:(NSInteger) num {
+    NSArray *array = [NSArray array];
+    
+    NSInteger i;
+    
+    if (num % 100 == 0) {
+        i = num / 100;
+    }else {
+        i = num / 100 + 1;
+    }
+    array = @[[NSString stringWithFormat:@"%d", i * 25],[NSString stringWithFormat:@"%d", i * 50],[NSString stringWithFormat:@"%d", i * 75],[NSString stringWithFormat:@"%d", i * 100]];
+    
+    return array;
+}
+
+- (NSArray *)getNSStringArrayWithArray:(NSArray *)array {
+    
+    NSMutableArray *temp = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        [temp addObject:[NSString stringWithFormat:@"%@时", array[i]]];
+    }
+    
+    NSArray *temp1 = temp;
+    
+    return temp1;
+}
+
+- (NSArray *)getNSNumberArrayWithArray:(NSArray *) array {
+    
+    NSMutableArray *temp = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:[array[i] doubleValue] / 1000];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd"];
+        NSString *str = [dateFormatter stringFromDate:date];
+        
+        [temp addObject:str];
+    }
+    
+    return temp;
+}
 
 @end

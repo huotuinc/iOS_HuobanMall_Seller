@@ -10,10 +10,7 @@
 
 @implementation OrdorListModel
 
-- (NSDictionary *)objectClassInArray
-{
-    return @{@"todayTimes":[NSNumber class],@"todayAmounts":[NSNumber class],@"weekTimes":[NSNumber class],@"weekAmounts":[NSNumber class],@"monthTimes":[NSNumber class],@"monthAmounts":[NSNumber class]};
-}
+
 
 
 @end
