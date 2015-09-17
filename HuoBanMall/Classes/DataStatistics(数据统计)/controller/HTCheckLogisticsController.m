@@ -23,6 +23,7 @@
      [self.tableView registerNib:[UINib nibWithNibName:@"ExpressCompany" bundle:nil]   forCellReuseIdentifier:@"aa"];
     [self.tableView registerNib:[UINib nibWithNibName:@"NewOrdorCell" bundle:nil]   forCellReuseIdentifier:@"bb"];
     
+//    self.tableView.userInteractionEnabled = NO;
 //    self.tableView.
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -65,6 +66,7 @@
             
         }
         [aa setDateWithStatus:0 withCompany:@"顺丰" withOderNumber:@"111" withIconUrl:nil];
+        aa.userInteractionEnabled = NO;
         return aa;
     }else if (indexPath.section == 1){
         
@@ -72,9 +74,10 @@
         if (bb== nil) {
             
             bb = [[NewOrdorCell alloc] init];
-            bb.userInteractionEnabled = NO;
-         }
+                     }
         [bb setDate:@"xxxcxxxfhahsdasdklasdfkalshfdlkasfhlkafhklafhlkjashflkasfasfasfjdasfjkal" withPrice:@"1999" WithBuyNum:@"x1" withDesc:@"xxxxx" withIconUrl:nil];
+        bb.userInteractionEnabled = NO;
+
         return bb;
     }else{
         
@@ -84,7 +87,6 @@
             
             cc = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:Id];
             cc.textLabel.numberOfLines = 0;
-            cc.userInteractionEnabled = NO;
             
            
         }
@@ -100,6 +102,8 @@
         }
         cc.textLabel.text = @"dahasdajsdhasjkdajsd\ndjasdjaskdaksdll";
         cc.detailTextLabel.text = @"2012-01-11";
+        cc.userInteractionEnabled = NO;
+
         return cc;
     }
     

@@ -11,8 +11,8 @@
 #import "OrdorCell.h"
 #import "NewFootView.h"
 #import "OrderManagerDetailsController.h"
-
-@interface OrdorController ()<UITableViewDelegate,UITableViewDataSource>
+#import "HTCheckLogisticsController.h"
+@interface OrdorController ()<UITableViewDelegate,UITableViewDataSource,NewFootViewDelegate>
 
 /**
  *  滑块视图
@@ -178,6 +178,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     NewFootView *foot = [[[NSBundle mainBundle] loadNibNamed:@"NewFootView" owner:nil options:nil] lastObject];
+    foot.delegate = self;
     return foot;
 }
 
@@ -195,14 +196,10 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)NewFootViewCheckMaterialWith:(NewFootView *)newfootView{
+    
+    HTCheckLogisticsController * vc = [[HTCheckLogisticsController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:vc animated:YES];
 }
-*/
 
 @end

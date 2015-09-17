@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class NewFootView;
+
+@protocol NewFootViewDelegate <NSObject>
+
+@optional
+- (void)NewFootViewCheckMaterialWith:(NewFootView *)newfootView;
+
+
+@end
+
+
+
 @interface NewFootView : UIView
 
 /**
@@ -31,4 +44,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 - (IBAction)getLogistics:(UIButton *)sender;
 
+
+@property(nonatomic,weak) id<NewFootViewDelegate>delegate;
 @end
