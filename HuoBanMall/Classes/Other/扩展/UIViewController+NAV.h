@@ -20,4 +20,11 @@
  */
 - (void)_removeNavBackgroundColor;
 
+/**
+ *  处理网络请求问题
+ *
+ *  @param json <#json description#>
+ */
+- (void)showErrorWithConnetSuccess:(NSDictionary *)json;
+
 @end

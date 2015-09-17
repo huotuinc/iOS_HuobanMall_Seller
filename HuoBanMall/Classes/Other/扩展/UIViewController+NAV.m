@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+NAV.h"
+#import "LoginViewController.h"
 
 @implementation UIViewController (NAV)
 
@@ -34,6 +35,16 @@
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     
     
+}
+
+- (void)showErrorWithConnetSuccess:(NSDictionary *)json
+{
+    if ([json[@"resultCode"] intValue] == 56001) {
+        LoginViewController *login = [[LoginViewController alloc] init];
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+        
+        [self presentViewController:nav animated:YES completion:nil];
+    }
 }
 
 
