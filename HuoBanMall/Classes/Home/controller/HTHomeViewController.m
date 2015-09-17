@@ -312,6 +312,7 @@
                 NSInteger max = [[self getMaxFromArray:self.homeModel.orderAmount] integerValue];
                 self.ordorChart.yValueMax = max;
                 self.ordorChart = [self PNChartWithView:sc AndXArray:[self getNSStringArrayWithArray:self.homeModel.orderHour] AndYArray:[self getArrayWithY:max] AndDataArray:self.homeModel.orderAmount];
+                self.ordorChart.showLabel = YES;
                 sc.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.000];
                 [sc addSubview:self.ordorChart];
                 break;

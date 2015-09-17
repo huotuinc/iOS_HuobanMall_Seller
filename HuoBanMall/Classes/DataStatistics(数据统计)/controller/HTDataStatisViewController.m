@@ -11,6 +11,7 @@
 #import <PNChart.h>
 #import <POP.h>
 #import "OrdorListModel.h"
+#import "SaleModel.h"
 
 
 
@@ -28,6 +29,9 @@
 /**---------------------------------------------------------------------*/
 /**订单报表背景*/
 @property (nonatomic, strong) UIView *OrdorBgView;
+
+@property (nonatomic, strong) UIView *SaleBgView;
+
 /**---------------------------------------------------------------------*/
 
 /**订单总数统计*/
@@ -35,6 +39,10 @@
 /**订单当前统计*/
 @property (nonatomic, strong) UILabel *ordorNewLabel;
 
+/**销售额总数统计*/
+@property (nonatomic, strong) UILabel *saleTotal;
+/**订单当前统计*/
+@property (nonatomic, strong) UILabel *saleNewLabel;
 
 /**---------------------------------------------------------------------*/
 /**图表*/
@@ -48,7 +56,8 @@
 /**数据模型**/
 /**订单数据模型**/
 @property (nonatomic, strong) OrdorListModel *ordorModel;
-
+/**销售额数据模型**/
+@property (nonatomic, strong) SaleModel *saleModel;
 
 @end
 
@@ -475,7 +484,7 @@ static NSString *popAnimation = @"first";
     //设置点击事件
     [week bk_whenTapped:^{
         if (selected.frame.origin.x != weekX) {
-            [self changeValue1];
+            [self changeSalePNChartWithType:1];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(weekX, selectedY, todayW, 3);
             }];
@@ -484,7 +493,7 @@ static NSString *popAnimation = @"first";
     
     [today bk_whenTapped:^{
         if (selected.frame.origin.x != todayX) {
-            [self changeValue1];
+            [self changeSalePNChartWithType:0];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(todayX, selectedY, todayW, 3);
             }];
@@ -493,7 +502,7 @@ static NSString *popAnimation = @"first";
     
     [month bk_whenTapped:^{
         if (selected.frame.origin.x != monthX) {
-            [self changeValue1];
+            [self changeSalePNChartWithType:2];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(monthX, selectedY, todayW, 3);
             }];
@@ -532,16 +541,9 @@ static NSString *popAnimation = @"first";
     CGFloat pnchartY = statisticsY + statisticsH;
     CGFloat pnchartW = self.view.frame.size.width-4;
     CGFloat pnchartH = self.view.frame.size.height*0.3;
-    UIView * pnchartView = [[UIView alloc] init];
-    pnchartView.frame = CGRectMake(pnchartX, pnchartY, pnchartW, pnchartH);
-    
-#pragma mark 销售额图标
-    //创建绘图
-    self.salelineChart = [self linePNChartWithSalePNChartFrame:pnchartView.frame];
-    self.salelineChart.tag = 1;
-//    self.salelineChart.backgroundColor 
-    [pnchartView addSubview:self.salelineChart];
-    [scr addSubview:pnchartView];
+    self.SaleBgView = [[UIView alloc] init];
+    self.SaleBgView.frame = CGRectMake(pnchartX, pnchartY, pnchartW, pnchartH);
+
     
     CGFloat seperateLineX = 5;
     CGFloat seperateLineY = pnchartY+pnchartH+3;
@@ -952,26 +954,20 @@ static NSString *popAnimation = @"first";
 - (PNLineChart *)linePNChartWithSalePNChartFrame:(CGRect)frame{
     
     
-    PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 10, frame.size.width, frame.size.height - 10)];
+    PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 10, frame.size.width, frame.size.height)];
     lineChart.yLabelFormat = @"%1.1f";
     lineChart.backgroundColor = [UIColor clearColor];
-    [lineChart setXLabels:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7"]];
+    [lineChart setXLabels:[self getNSNumberArrayWithArray:self.saleModel.weekTimes]];
     lineChart.showCoordinateAxis = YES;
     
-    lineChart.yFixedValueMax = 300.0;
+    lineChart.yValueMax = [[self getMaxFromArray:self.saleModel.weekAmounts] floatValue] ;
     lineChart.yFixedValueMin = 0.0;
     lineChart.yValueMin = 0;
     
-    [lineChart setYLabels:@[
-                            @"50",
-                            @"100",
-                            @"150",
-                            @"200",
-                            ]
-     ];
+    [lineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.saleModel.weekAmounts] integerValue]]];
     
     //     Line Chart #1
-    NSArray * data01Array = @[@0,@0, @0, @0, @0.0, @0, @0, @176.2];
+    NSArray * data01Array = self.saleModel.weekAmounts;
     PNLineChartData *data01 = [PNLineChartData new];
     data01.dataTitle = @"Alpha";
     data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
@@ -1054,10 +1050,6 @@ static NSString *popAnimation = @"first";
 }
 
 #pragma mark PNChart表改变值方法
-- (void)changeValue{
-    // Line Chart #1
-   
-}
 
 - (void)changeValue1{
     // Line Chart #1
@@ -1203,6 +1195,25 @@ static NSString *popAnimation = @"first";
                 }
                 case 1:
                 {
+                    self.saleModel = [[SaleModel alloc] init];
+                    
+                    self.saleModel.totalAmount = json[@"resultData"][@"totalAmount"];
+                    self.saleModel.todayAmount = json[@"resultData"][@"todayAmount"];
+                    self.saleModel.weekAmount = json[@"resultData"][@"weekAmount"];
+                    self.saleModel.monthAmount = json[@"resultData"][@"monthAmount"];
+                    self.saleModel.todayTimes = json[@"resultData"][@"todayTimes"];
+                    self.saleModel.todayAmounts = json[@"resultData"][@"todayAmounts"];
+                    self.saleModel.weekTimes = json[@"resultData"][@"weekTimes"];
+                    self.saleModel.weekAmounts = json[@"resultData"][@"weekAmounts"];
+                    self.saleModel.monthTimes = json[@"resultData"][@"monthTimes"];
+                    self.saleModel.monthAmounts = json[@"resultData"][@"monthAmounts"];
+                    
+                    if (self.salelineChart) {
+                        
+                    }else {
+                        [self _initSalePNchart];
+                    }
+                    
                     break;
                 }
                 case 2:
@@ -1226,6 +1237,85 @@ static NSString *popAnimation = @"first";
 
 #pragma mark 初始化
 
+- (void)_initSalePNchart {
+    //创建绘图
+    
+    UIView * scr = self.scrollerviews[1];
+    
+    [self getNSNumberArrayWithArray:self.saleModel.weekTimes];
+    
+    self.salelineChart = [self linePNChartWithSalePNChartFrame:self.SaleBgView.frame];
+    self.salelineChart.tag = 2;
+    [self.SaleBgView addSubview:self.salelineChart];
+    [scr addSubview:self.SaleBgView];
+}
+
+- (void)changeSalePNChartWithType: (NSInteger)type {
+    
+    if (type == 0) {
+        
+        self.salelineChart.yValueMax = [[self getMaxFromArray:self.saleModel.todayAmounts] floatValue];
+        [self.salelineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.saleModel.todayAmounts] integerValue]]];
+        [self.salelineChart setXLabels:[self getNSStringArrayWithArray:self.saleModel.todayTimes]];
+  
+        NSArray * data01Array = self.saleModel.todayAmounts;
+        PNLineChartData *data01 = [PNLineChartData new];
+        data01.dataTitle = @"Alpha";
+        data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+        //    data01.alpha = 0.3f;
+        data01.itemCount = data01Array.count;
+        data01.inflexionPointStyle = PNLineChartPointStyleTriangle;
+        data01.getData = ^(NSUInteger index) {
+            CGFloat yValue = [data01Array[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        self.salelineChart.chartData = @[data01];
+        [self.salelineChart strokeChart];
+        
+    }else if (type == 1) {
+        
+        self.salelineChart.yValueMax = [[self getMaxFromArray:self.saleModel.weekAmounts] floatValue];
+        [self.salelineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.saleModel.weekAmounts] integerValue]]];
+        [self.salelineChart setXLabels:[self getNSNumberArrayWithArray:self.saleModel.weekTimes]];
+        
+        NSArray * data01Array = self.saleModel.weekAmounts;
+        PNLineChartData *data01 = [PNLineChartData new];
+        data01.dataTitle = @"Alpha";
+        data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+        //    data01.alpha = 0.3f;
+        data01.itemCount = data01Array.count;
+        data01.inflexionPointStyle = PNLineChartPointStyleTriangle;
+        data01.getData = ^(NSUInteger index) {
+            CGFloat yValue = [data01Array[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        self.salelineChart.chartData = @[data01];
+        [self.salelineChart strokeChart];
+        
+    }else {
+        
+        self.salelineChart.yValueMax = [[self getMaxFromArray:self.saleModel.monthAmounts] floatValue];
+        [self.salelineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.saleModel.monthAmounts] integerValue]]];
+        [self.salelineChart setXLabels:[self getNSNumberArrayWithArray:self.saleModel.monthTimes]];
+        
+        NSArray * data01Array = self.saleModel.monthAmounts;
+        PNLineChartData *data01 = [PNLineChartData new];
+        data01.dataTitle = @"Alpha";
+        data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+        //    data01.alpha = 0.3f;
+        data01.itemCount = data01Array.count;
+        data01.inflexionPointStyle = PNLineChartPointStyleTriangle;
+        data01.getData = ^(NSUInteger index) {
+            CGFloat yValue = [data01Array[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        self.salelineChart.chartData = @[data01];
+        [self.salelineChart strokeChart];
+        
+    }
+    
+}
+
 - (void)_initOrdorPNchart {
     //创建绘图
     
@@ -1246,7 +1336,7 @@ static NSString *popAnimation = @"first";
         self.orderlineChart.yValueMax = [[self getMaxFromArray:self.ordorModel.todayAmounts] floatValue];
         [self.orderlineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.ordorModel.todayAmounts] integerValue]]];
         [self.orderlineChart setXLabels:[self getNSStringArrayWithArray:self.ordorModel.todayTimes]];
-  
+        
         NSArray * data01Array = self.ordorModel.todayAmounts;
         PNLineChartData *data01 = [PNLineChartData new];
         data01.dataTitle = @"Alpha";

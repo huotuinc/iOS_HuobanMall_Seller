@@ -37,6 +37,7 @@
 		83737D2F1BA7BA4B000BD2D4 /* FootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83737D2E1BA7BA4B000BD2D4 /* FootView.xib */; };
 		83737D321BA816C6000BD2D4 /* NewFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83737D311BA816C6000BD2D4 /* NewFootView.m */; };
 		83737D341BA816E4000BD2D4 /* NewFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83737D331BA816E4000BD2D4 /* NewFootView.xib */; };
+		838895C61BAAAFC1008408AE /* SaleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 838895C51BAAAFC1008408AE /* SaleModel.m */; };
 		8389FA0A1B8D59940003FCDE /* AmendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA091B8D59940003FCDE /* AmendController.m */; };
 		8389FA0D1B8D5A380003FCDE /* DescribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA0C1B8D5A380003FCDE /* DescribeController.m */; };
 		8389FA111B8D86710003FCDE /* WebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8389FA101B8D86710003FCDE /* WebController.m */; };
@@ -162,6 +163,8 @@
 		83737D301BA816C6000BD2D4 /* NewFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFootView.h; sourceTree = "<group>"; };
 		83737D311BA816C6000BD2D4 /* NewFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFootView.m; sourceTree = "<group>"; };
 		83737D331BA816E4000BD2D4 /* NewFootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFootView.xib; sourceTree = "<group>"; };
+		838895C41BAAAFC1008408AE /* SaleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleModel.h; sourceTree = "<group>"; };
+		838895C51BAAAFC1008408AE /* SaleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaleModel.m; sourceTree = "<group>"; };
 		8389FA081B8D59940003FCDE /* AmendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmendController.h; sourceTree = "<group>"; };
 		8389FA091B8D59940003FCDE /* AmendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmendController.m; sourceTree = "<group>"; };
 		8389FA0B1B8D5A380003FCDE /* DescribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescribeController.h; sourceTree = "<group>"; };
@@ -375,6 +378,8 @@
 				83B4F2AF1BA6B47F009D6631 /* MoreDataModel.m */,
 				839E6E061BA96C590084A08D /* OrdorListModel.h */,
 				839E6E071BA96C590084A08D /* OrdorListModel.m */,
+				838895C41BAAAFC1008408AE /* SaleModel.h */,
+				838895C51BAAAFC1008408AE /* SaleModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -946,6 +951,7 @@
 				83737D2D1BA7BA3B000BD2D4 /* FootView.m in Sources */,
 				8372E4251BA2BA27007146BD /* UIScrollView+MJExtension.m in Sources */,
 				834728E71B8C51C6005B72F9 /* ChangePasswordController.m in Sources */,
+				838895C61BAAAFC1008408AE /* SaleModel.m in Sources */,
 				EF61A0C91B93F3FE0008A82C /* MJType.m in Sources */,
 				EF73D16C1B8BFAB6004A7B37 /* UITableView+CJ.m in Sources */,
 				83D4572C1B8AA7910027D452 /* UserLoginTool.m in Sources */,
