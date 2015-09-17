@@ -35,6 +35,8 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     
     [self _initScreenView];
     
+    self.tableView.tableFooterView.userInteractionEnabled = YES;
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"ss"] style:UIBarButtonItemStylePlain handler:^(id sender) {
        
         

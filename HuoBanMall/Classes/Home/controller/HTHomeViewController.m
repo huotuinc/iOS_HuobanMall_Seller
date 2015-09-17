@@ -178,12 +178,10 @@
     
     [self.orderManager bk_whenTapped:^{
         
-        HTCheckLogisticsController * ctl = [[HTCheckLogisticsController alloc] initWithStyle:UITableViewStyleGrouped];
-        [wself.navigationController pushViewController:ctl animated:YES];
-//        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        OrdorController *ordor = [story instantiateViewControllerWithIdentifier:@"OrdorController"];
-//        ordor.title = @"订单管理";
-//        [wself.navigationController pushViewController:ordor animated:YES];
+        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        OrdorController *ordor = [story instantiateViewControllerWithIdentifier:@"OrdorController"];
+        ordor.title = @"订单管理";
+        [wself.navigationController pushViewController:ordor animated:YES];
     }];
 
     
