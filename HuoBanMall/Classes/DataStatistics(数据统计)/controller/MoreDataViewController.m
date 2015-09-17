@@ -27,6 +27,12 @@
     [self getNewData];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.title = @"更多统计";
+}
+
 #pragma 网络请求
 
 - (void)getNewData {
@@ -59,21 +65,25 @@
     
     [self.ordorView bk_whenTapped:^{
         dataStatis.selectIndex = 0;
+        self.title = nil;
         [self.navigationController pushViewController:dataStatis animated:YES];
     }];
     
     [self.distributorImage bk_whenTapped:^{
         dataStatis.selectIndex = 2;
+        self.title = nil;
         [self.navigationController pushViewController:dataStatis animated:YES];
     }];
     
     [self.memberImage bk_whenTapped:^{
         dataStatis.selectIndex = 2;
+        self.title = nil;
         [self.navigationController pushViewController:dataStatis animated:YES];
     }];
     
     [self.saleImage bk_whenTapped:^{
         dataStatis.selectIndex = 1;
+        self.title = nil;
         [self.navigationController pushViewController:dataStatis animated:YES];
     }];
     
