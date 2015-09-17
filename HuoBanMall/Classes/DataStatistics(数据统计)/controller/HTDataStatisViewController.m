@@ -1173,7 +1173,7 @@ static NSString *popAnimation = @"first";
             switch (self.segment.selectedSegmentIndex) {
                 case 0:
                 {
-//                    self.ordorModel = [OrdorListModel objectWithKeyValues:json[@"resultData"]];
+                    self.ordorModel = [OrdorListModel objectWithKeyValues:json[@"resultData"]];
                     
                     break;
                 }
