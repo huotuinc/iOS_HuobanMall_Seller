@@ -96,6 +96,8 @@
 		EF7859A41BA939D1002A0626 /* HTCheckLogisticsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7859A31BA939D1002A0626 /* HTCheckLogisticsController.m */; };
 		EF7859A81BA93A5F002A0626 /* ExpressCompany.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7859A61BA93A5F002A0626 /* ExpressCompany.m */; };
 		EF7859A91BA93A5F002A0626 /* ExpressCompany.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7859A71BA93A5F002A0626 /* ExpressCompany.xib */; };
+		EF7C4C4A1BAD347400DB4ABD /* HTXQFLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7C4C481BAD347400DB4ABD /* HTXQFLCell.m */; };
+		EF7C4C4B1BAD347400DB4ABD /* HTXQFLCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7C4C491BAD347400DB4ABD /* HTXQFLCell.xib */; };
 		EF98A8271BAC35DD0087BB60 /* HTTopTenGoodsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF98A8261BAC35DD0087BB60 /* HTTopTenGoodsController.m */; };
 		EF98A82A1BAC36E00087BB60 /* HTTopTenGoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF98A8291BAC36E00087BB60 /* HTTopTenGoodCell.m */; };
 		EFB67CC81B8B0C5A0037547A /* HTDataStatisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB67CC71B8B0C5A0037547A /* HTDataStatisViewController.m */; };
@@ -281,6 +283,9 @@
 		EF7859A51BA93A5F002A0626 /* ExpressCompany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressCompany.h; sourceTree = "<group>"; };
 		EF7859A61BA93A5F002A0626 /* ExpressCompany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressCompany.m; sourceTree = "<group>"; };
 		EF7859A71BA93A5F002A0626 /* ExpressCompany.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpressCompany.xib; sourceTree = "<group>"; };
+		EF7C4C471BAD347400DB4ABD /* HTXQFLCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTXQFLCell.h; sourceTree = "<group>"; };
+		EF7C4C481BAD347400DB4ABD /* HTXQFLCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTXQFLCell.m; sourceTree = "<group>"; };
+		EF7C4C491BAD347400DB4ABD /* HTXQFLCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTXQFLCell.xib; sourceTree = "<group>"; };
 		EF98A8251BAC35DD0087BB60 /* HTTopTenGoodsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTopTenGoodsController.h; sourceTree = "<group>"; };
 		EF98A8261BAC35DD0087BB60 /* HTTopTenGoodsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTopTenGoodsController.m; sourceTree = "<group>"; };
 		EF98A8281BAC36E00087BB60 /* HTTopTenGoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTopTenGoodCell.h; sourceTree = "<group>"; };
@@ -493,6 +498,9 @@
 				EF78599D1BA8FE26002A0626 /* HTTStatisticCell.m */,
 				EF98A8281BAC36E00087BB60 /* HTTopTenGoodCell.h */,
 				EF98A8291BAC36E00087BB60 /* HTTopTenGoodCell.m */,
+				EF7C4C471BAD347400DB4ABD /* HTXQFLCell.h */,
+				EF7C4C481BAD347400DB4ABD /* HTXQFLCell.m */,
+				EF7C4C491BAD347400DB4ABD /* HTXQFLCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -904,6 +912,7 @@
 				EF6AB18A1B87241A00C9F114 /* Images.xcassets in Resources */,
 				EF7859981BA7F366002A0626 /* HTMidOrderCell.xib in Resources */,
 				836B3AC51B8C077E00813281 /* InfoPlist.strings in Resources */,
+				EF7C4C4B1BAD347400DB4ABD /* HTXQFLCell.xib in Resources */,
 				834728EB1B8C51C6005B72F9 /* LoginViewController.xib in Resources */,
 				834728E91B8C51C6005B72F9 /* findBackPwViewController.xib in Resources */,
 				EF7859A91BA93A5F002A0626 /* ExpressCompany.xib in Resources */,
@@ -985,6 +994,7 @@
 				EF73D16B1B8BFAB6004A7B37 /* NSString+EXTERN.m in Sources */,
 				EF7859971BA7F366002A0626 /* HTMidOrderCell.m in Sources */,
 				EF78599E1BA8FE26002A0626 /* HTTStatisticCell.m in Sources */,
+				EF7C4C4A1BAD347400DB4ABD /* HTXQFLCell.m in Sources */,
 				836CEAD91B9C2BE7005074DA /* HTupData.m in Sources */,
 				EF61A0CC1B93F3FE0008A82C /* NSObject+MJKeyValue.m in Sources */,
 				8372E4241BA2BA27007146BD /* MJRefreshHeaderView.m in Sources */,

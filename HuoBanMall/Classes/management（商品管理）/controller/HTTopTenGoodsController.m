@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"商品销量前十";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -40,7 +41,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    HTTopTenGoodCell * cell = [HTTopTenGoodCell cellWithTableView:tableView];
+    HTTopTenGoodCell * cell = [HTTopTenGoodCell cellWithTableView:tableView cellForRowAtIndexPath:indexPath];
     cell.model = nil;
     return cell;
  
@@ -49,7 +50,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 60;
+    return 75;
 }
 
 
