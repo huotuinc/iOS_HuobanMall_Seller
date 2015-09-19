@@ -196,7 +196,7 @@ static NSString *popAnimation = @"first";
 
     self.ordorTotal = [[UILabel alloc] init];
     self.ordorTotal.font = [UIFont systemFontOfSize:20];
-    self.ordorTotal.text = [NSString stringWithFormat:@"123123123"];
+    self.ordorTotal.text = [NSString stringWithFormat:@""];
     self.ordorTotal.frame = CGRectMake(titleLableX, titleLableY, titleLableW, titleLableH);
     [scr addSubview:self.ordorTotal];
   
@@ -281,6 +281,7 @@ static NSString *popAnimation = @"first";
     [week bk_whenTapped:^{
         if (selected.frame.origin.x != weekX) {
             [self changeOrdorPNChartWithType:1];
+            self.ordorNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.ordorModel.weekAmount];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(weekX, selectedY, todayW, 3);
             }];
@@ -290,6 +291,7 @@ static NSString *popAnimation = @"first";
     [today bk_whenTapped:^{
         if (selected.frame.origin.x != todayX) {
             [self changeOrdorPNChartWithType:0];
+            self.ordorNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.ordorModel.todayAmount];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(todayX, selectedY, todayW, 3);
             }];
@@ -299,6 +301,7 @@ static NSString *popAnimation = @"first";
     [month bk_whenTapped:^{
         if (selected.frame.origin.x != monthX) {
             [self changeOrdorPNChartWithType:2];
+            self.ordorNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.ordorModel.monthAmount];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(monthX, selectedY, todayW, 3);
             }];
@@ -327,7 +330,7 @@ static NSString *popAnimation = @"first";
     [scr addSubview:statistics];
     
     self.ordorNewLabel = [[UILabel alloc] init];
-    self.ordorNewLabel.text = @"当前统计:325600";
+    self.ordorNewLabel.text = @"当前统计:";
     self.ordorNewLabel.font = [UIFont systemFontOfSize:12];
     self.ordorNewLabel.frame = CGRectMake(ScreenWidth * .05625, 2, ScreenWidth * .5, statisticsH - 4);
     [statistics addSubview:self.ordorNewLabel];
@@ -399,11 +402,11 @@ static NSString *popAnimation = @"first";
     CGFloat titleLableY = imageY;
     CGFloat titleLableW = self.view.frame.size.width-2*titleLableX;
     CGFloat titleLableH = 20;
-    UILabel * titleLable = [[UILabel alloc] init];
-    titleLable.font = [UIFont systemFontOfSize:20];
-    titleLable.text = [NSString stringWithFormat:@"123123123"];
-    titleLable.frame = CGRectMake(titleLableX, titleLableY, titleLableW, titleLableH);
-    [scr addSubview:titleLable];
+    self.saleTotal = [[UILabel alloc] init];
+    self.saleTotal.font = [UIFont systemFontOfSize:20];
+    self.saleTotal.text = [NSString stringWithFormat:@""];
+    self.saleTotal.frame = CGRectMake(titleLableX, titleLableY, titleLableW, titleLableH);
+    [scr addSubview:self.saleTotal];
     
     //文字解释
     UILabel *explainLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLableX, titleLableY + titleLableH , titleLableW, titleLableH)];
@@ -485,6 +488,7 @@ static NSString *popAnimation = @"first";
     [week bk_whenTapped:^{
         if (selected.frame.origin.x != weekX) {
             [self changeSalePNChartWithType:1];
+            self.saleNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.saleModel.weekAmount];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(weekX, selectedY, todayW, 3);
             }];
@@ -494,6 +498,7 @@ static NSString *popAnimation = @"first";
     [today bk_whenTapped:^{
         if (selected.frame.origin.x != todayX) {
             [self changeSalePNChartWithType:0];
+            self.saleNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.saleModel.todayAmount];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(todayX, selectedY, todayW, 3);
             }];
@@ -503,6 +508,7 @@ static NSString *popAnimation = @"first";
     [month bk_whenTapped:^{
         if (selected.frame.origin.x != monthX) {
             [self changeSalePNChartWithType:2];
+            self.saleNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.saleModel.monthAmount];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(monthX, selectedY, todayW, 3);
             }];
@@ -530,11 +536,11 @@ static NSString *popAnimation = @"first";
     statistics.backgroundColor = [UIColor colorWithWhite:0.910 alpha:1.000];
     [scr addSubview:statistics];
     
-    UILabel * title1Lable = [[UILabel alloc] init];
-    title1Lable.text = @"当前统计:325600";
-    title1Lable.font = [UIFont systemFontOfSize:12];
-    title1Lable.frame = CGRectMake(ScreenWidth * .05625, 2, ScreenWidth * .5, statisticsH - 4);
-    [statistics addSubview:title1Lable];
+    self.saleNewLabel = [[UILabel alloc] init];
+    self.saleNewLabel.text = @"当前统计:";
+    self.saleNewLabel.font = [UIFont systemFontOfSize:12];
+    self.saleNewLabel.frame = CGRectMake(ScreenWidth * .05625, 2, ScreenWidth * .5, statisticsH - 4);
+    [statistics addSubview:self.saleNewLabel];
     
     
     CGFloat pnchartX = 2;
@@ -1143,7 +1149,9 @@ static NSString *popAnimation = @"first";
     int padgeInt = (int)(padgeDouble + 0.5);
     if (self.segment.selectedSegmentIndex != padgeInt) {
         self.segment.selectedSegmentIndex = padgeInt;
+        [self getNewData];
     }
+    
 }
 
 
@@ -1186,11 +1194,16 @@ static NSString *popAnimation = @"first";
                     self.ordorModel.monthTimes = json[@"resultData"][@"monthTimes"];
                     self.ordorModel.monthAmounts = json[@"resultData"][@"monthAmounts"];
                     
+                    self.ordorTotal.text = [NSString stringWithFormat:@"%@", self.ordorModel.totalAmount];
+                    
                     if (self.orderlineChart) {
                         
                     }else {
                         [self _initOrdorPNchart];
                     }
+                    
+                    
+                    
                     break;
                 }
                 case 1:
@@ -1207,6 +1220,8 @@ static NSString *popAnimation = @"first";
                     self.saleModel.weekAmounts = json[@"resultData"][@"weekAmounts"];
                     self.saleModel.monthTimes = json[@"resultData"][@"monthTimes"];
                     self.saleModel.monthAmounts = json[@"resultData"][@"monthAmounts"];
+                    
+                    self.saleTotal.text = [NSString stringWithFormat:@"%@", self.saleModel.totalAmount];
                     
                     if (self.salelineChart) {
                         
@@ -1239,6 +1254,8 @@ static NSString *popAnimation = @"first";
 
 - (void)_initSalePNchart {
     //创建绘图
+    
+    self.saleNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.saleModel.weekAmount];
     
     UIView * scr = self.scrollerviews[1];
     
@@ -1318,6 +1335,8 @@ static NSString *popAnimation = @"first";
 
 - (void)_initOrdorPNchart {
     //创建绘图
+    
+    self.ordorNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.ordorModel.weekAmount];
     
     UIView * scr = self.scrollerviews[0];
     
@@ -1450,8 +1469,8 @@ static NSString *popAnimation = @"first";
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"dd"];
         NSString *str = [dateFormatter stringFromDate:date];
-        
-        [temp addObject:str];
+        NSString *str1 = [NSString stringWithFormat:@"%@日", str];
+        [temp addObject:str1];
     }
     
     return temp;
