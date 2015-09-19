@@ -12,7 +12,7 @@
 #import <POP.h>
 #import "OrdorListModel.h"
 #import "SaleModel.h"
-
+#import "HTTopTenGoodsController.h"
 
 
 #define StatisesCount 3
@@ -365,6 +365,13 @@ static NSString *popAnimation = @"first";
     topGoodView.layer.borderWidth = 1;
     topGoodView.layer.borderColor = [UIColor colorWithWhite:0.890 alpha:1.000].CGColor;
     topGoodView.layer.cornerRadius = 5;
+    
+    topGoodView.userInteractionEnabled = YES;
+    [topGoodView bk_whenTapped:^{
+        HTTopTenGoodsController *top = [[HTTopTenGoodsController alloc] init];
+        [self.navigationController pushViewController:top animated:YES];
+    }];
+    
     [scr addSubview:topGoodView];
     
     
