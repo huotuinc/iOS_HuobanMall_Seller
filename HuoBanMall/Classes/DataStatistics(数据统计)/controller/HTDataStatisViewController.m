@@ -12,6 +12,7 @@
 #import <POP.h>
 #import "OrdorListModel.h"
 #import "SaleModel.h"
+#import "MenListModel.h"
 #import "HTTopTenGoodsController.h"
 
 
@@ -32,6 +33,8 @@
 
 @property (nonatomic, strong) UIView *SaleBgView;
 
+@property (nonatomic, strong) UIView *MemBgView;
+
 /**---------------------------------------------------------------------*/
 
 /**订单总数统计*/
@@ -39,9 +42,18 @@
 /**订单当前统计*/
 @property (nonatomic, strong) UILabel *ordorNewLabel;
 
+/**会员总数统计*/
+@property (nonatomic, strong) UILabel *parTotal;
+/**新增分销商数统计*/
+@property (nonatomic, strong) UILabel *upLabel;
+/**会员当前统计*/
+@property (nonatomic, strong) UILabel *parNewLabel;
+/**分销商当前统计*/
+@property (nonatomic, strong) UILabel *memNewlabel;
+
 /**销售额总数统计*/
 @property (nonatomic, strong) UILabel *saleTotal;
-/**订单当前统计*/
+/**销售额当前统计*/
 @property (nonatomic, strong) UILabel *saleNewLabel;
 
 /**---------------------------------------------------------------------*/
@@ -58,6 +70,8 @@
 @property (nonatomic, strong) OrdorListModel *ordorModel;
 /**销售额数据模型**/
 @property (nonatomic, strong) SaleModel *saleModel;
+/**会员数据模型**/
+@property (nonatomic, strong) MenListModel *memModel;
 
 @end
 
@@ -618,11 +632,11 @@ static NSString *popAnimation = @"first";
     CGFloat titleLableY = imageY;
     CGFloat titleLableW = self.view.frame.size.width-2*titleLableX;
     CGFloat titleLableH = 20;
-    UILabel * titleLable = [[UILabel alloc] init];
-    titleLable.font = [UIFont systemFontOfSize:20];
-    titleLable.text = [NSString stringWithFormat:@"123123123"];
-    titleLable.frame = CGRectMake(titleLableX, titleLableY, titleLableW, titleLableH);
-    [scr addSubview:titleLable];
+    self.parTotal = [[UILabel alloc] init];
+    self.parTotal.font = [UIFont systemFontOfSize:20];
+    self.parTotal.text = [NSString stringWithFormat:@""];
+    self.parTotal.frame = CGRectMake(titleLableX, titleLableY, titleLableW, titleLableH);
+    [scr addSubview:self.parTotal];
     
     //文字解释
     UILabel *explainLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLableX, titleLableY + titleLableH , titleLableW, titleLableH)];
@@ -635,11 +649,11 @@ static NSString *popAnimation = @"first";
     CGFloat distriY = titleLableY + titleLableH;
     CGFloat distriW = ScreenWidth * 0.5;
     CGFloat distriH = 20;
-    UILabel *distriLabel = [[UILabel alloc] initWithFrame:CGRectMake(distriX, distriY, distriW, distriH)];
-    distriLabel.text = @"升级为分销商:35786";
-    distriLabel.font = [UIFont systemFontOfSize:12];
-    distriLabel.textAlignment = NSTextAlignmentRight;
-    [scr addSubview:distriLabel];
+    self.upLabel = [[UILabel alloc] initWithFrame:CGRectMake(distriX, distriY, distriW, distriH)];
+    self.upLabel.text = @"升级为分销商:";
+    self.upLabel.font = [UIFont systemFontOfSize:12];
+    self.upLabel.textAlignment = NSTextAlignmentRight;
+    [scr addSubview:self.upLabel];
     
     //会员
 //    UILabel *memLabel = [[UILabel alloc] initWithFrame:CGRectMake(distriX, distriY + distriH + 2, distriW, distriH)];
@@ -721,7 +735,7 @@ static NSString *popAnimation = @"first";
     //设置点击事件
     [week bk_whenTapped:^{
         if (selected.frame.origin.x != weekX) {
-            [self changeValue2];
+            [self changeMemPNChartWithType:1];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(weekX, selectedY, todayW, 3);
             }];
@@ -730,7 +744,7 @@ static NSString *popAnimation = @"first";
     
     [today bk_whenTapped:^{
         if (selected.frame.origin.x != todayX) {
-            [self changeValue2];
+            [self changeMemPNChartWithType:0];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(todayX, selectedY, todayW, 3);
             }];
@@ -739,7 +753,7 @@ static NSString *popAnimation = @"first";
     
     [month bk_whenTapped:^{
         if (selected.frame.origin.x != monthX) {
-            [self changeValue2];
+            [self changeMemPNChartWithType:2];
             [UIView animateWithDuration:0.35 animations:^{
                 selected.frame = CGRectMake(monthX, selectedY, todayW, 3);
             }];
@@ -785,13 +799,13 @@ static NSString *popAnimation = @"first";
     CGFloat redViewY = (statisticsH-redViewW)*0.5;
     UIView * redView = [[UIView alloc] init];
     redView.frame = CGRectMake(redViewX, redViewY, redViewW, redViewH);
-    redView.backgroundColor = [UIColor redColor];
+    redView.backgroundColor = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
     [statistics addSubview:redView];
     
     //会员
     CGFloat vipLableX = redViewX+redViewW+2;
     CGFloat vipLableY = 2;
-    CGFloat vipLableW = 40;
+    CGFloat vipLableW = 30;
     CGFloat vipLableH = title1LableH;
     UILabel * vipLable = [[UILabel alloc] init];
     vipLable.text = @"会员:";
@@ -799,16 +813,16 @@ static NSString *popAnimation = @"first";
     vipLable.font = [UIFont systemFontOfSize:12];
     [statistics addSubview:vipLable];
     
-    CGFloat redNumberX = vipLableX+vipLableW-4;
+    CGFloat redNumberX = vipLableX+vipLableW-2;
     CGFloat redNumberY = 2;
     CGFloat redNumberW = 60;
     CGFloat redNumberH = title1LableH;
-    UILabel * redNumber = [[UILabel alloc] init];
+    self.memNewlabel = [[UILabel alloc] init];
 //    redNumber.backgroundColor = [UIColor redColor];
-    redNumber.frame = CGRectMake(redNumberX, redNumberY, redNumberW, redNumberH);
-    redNumber.font = [UIFont systemFontOfSize:12];
-    redNumber.text = @"123";
-    [statistics addSubview:redNumber];
+    self.memNewlabel.frame = CGRectMake(redNumberX, redNumberY, redNumberW, redNumberH);
+    self.memNewlabel.font = [UIFont systemFontOfSize:12];
+    self.memNewlabel.text = @"";
+    [statistics addSubview:self.memNewlabel];
     
     CGFloat blueViewX = redNumberX+redNumberW;
     CGFloat blueViewW = title1LableH-4;
@@ -816,7 +830,7 @@ static NSString *popAnimation = @"first";
     CGFloat blueViewY = (statisticsH-redViewW)*0.5;
     UIView * blueView = [[UIView alloc] init];
     blueView.frame = CGRectMake(blueViewX, blueViewY, blueViewW, blueViewH);
-    blueView.backgroundColor = [UIColor blueColor];
+    blueView.backgroundColor = [UIColor colorWithRed:0.004 green:0.553 blue:1.000 alpha:1.000];
     [statistics addSubview:blueView];
     
     //会员
@@ -830,16 +844,16 @@ static NSString *popAnimation = @"first";
     fenxiao.font = [UIFont systemFontOfSize:12];
     [statistics addSubview:fenxiao];
     
-    CGFloat fenxiaonX = fenxiaoX+fenxiaoW-2;
+    CGFloat fenxiaonX = fenxiaoX+fenxiaoW;
     CGFloat fenxiaonY = 2;
     CGFloat fenxiaonW = 60;
     CGFloat fenxiaonH = title1LableH;
-    UILabel * fenxiaon = [[UILabel alloc] init];
+    self.parNewLabel = [[UILabel alloc] init];
 //    fenxiaon.backgroundColor = [UIColor redColor];
-    fenxiaon.frame = CGRectMake(fenxiaonX, fenxiaonY, fenxiaonW, fenxiaonH);
-    fenxiaon.font = [UIFont systemFontOfSize:12];
-    fenxiaon.text = @"123";
-    [statistics addSubview:fenxiaon];
+    self.parNewLabel.frame = CGRectMake(fenxiaonX, fenxiaonY, fenxiaonW, fenxiaonH);
+    self.parNewLabel.font = [UIFont systemFontOfSize:12];
+    self.parNewLabel.text = @"";
+    [statistics addSubview:self.parNewLabel];
     
 #warning 加方块和文字
     
@@ -847,14 +861,9 @@ static NSString *popAnimation = @"first";
     CGFloat pnchartY = statisticsY + statisticsH;
     CGFloat pnchartW = self.view.frame.size.width-4;
     CGFloat pnchartH = self.view.frame.size.height*0.3;
-    UIView * pnchartView = [[UIView alloc] init];
-    pnchartView.frame = CGRectMake(pnchartX, pnchartY, pnchartW, pnchartH);
+    self.MemBgView = [[UIView alloc] init];
+    self.MemBgView .frame = CGRectMake(pnchartX, pnchartY, pnchartW, pnchartH);
     
-    //创建绘图
-    self.viplineChart = [self lineTwoPNChartWithFrame:pnchartView.frame];
-    self.viplineChart.tag = 1;
-    [pnchartView addSubview:self.viplineChart];
-    [scr addSubview:pnchartView];
     
     CGFloat seperateLineX = 5;
     CGFloat seperateLineY = pnchartY+pnchartH+3;
@@ -934,7 +943,7 @@ static NSString *popAnimation = @"first";
     
     
     PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 10, frame.size.width, frame.size.height)];
-    lineChart.yLabelFormat = @"%1.1f";
+    lineChart.yLabelFormat = @"%1.0f";
     lineChart.backgroundColor = [UIColor clearColor];
     [lineChart setXLabels:[self getNSNumberArrayWithArray:self.ordorModel.weekTimes]];
     lineChart.showCoordinateAxis = YES;
@@ -968,7 +977,7 @@ static NSString *popAnimation = @"first";
     
     
     PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 10, frame.size.width, frame.size.height)];
-    lineChart.yLabelFormat = @"%1.1f";
+    lineChart.yLabelFormat = @"%1.0f";
     lineChart.backgroundColor = [UIColor clearColor];
     [lineChart setXLabels:[self getNSNumberArrayWithArray:self.saleModel.weekTimes]];
     lineChart.showCoordinateAxis = YES;
@@ -999,46 +1008,41 @@ static NSString *popAnimation = @"first";
 }
 
 
-- (PNLineChart *)lineTwoPNChartWithFrame:(CGRect)frame {
+- (PNLineChart *)linePNChartWithMemPNchartFrame:(CGRect)frame {
     PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 10, frame.size.width, frame.size.height)];
-    lineChart.yLabelFormat = @"%1.1f";
+    lineChart.yLabelFormat = @"%1.0f";
     lineChart.backgroundColor = [UIColor clearColor];
-    [lineChart setXLabels:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7"]];
     lineChart.showCoordinateAxis = YES;
     
-    //Use yFixedValueMax and yFixedValueMin to Fix the Max and Min Y Value
-    //Only if you needed
-    lineChart.yFixedValueMax = 300.0;
     lineChart.yFixedValueMin = 0.0;
     lineChart.yValueMin = 0;
     
-    [lineChart setYLabels:@[
-                            @"50",
-                            @"100",
-                            @"150",
-                            @"200",
-                            ]
-     ];
+     lineChart.yValueMax = [[self getMaxFromArray:self.memModel.weekMemberAmounts AndNext:self.memModel.weekPartnerAmounts] floatValue];
+    [lineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.memModel.weekMemberAmounts AndNext:self.memModel.weekPartnerAmounts] integerValue]]];
     
-    // Line Chart #1
-    NSArray * data01Array = @[@0,@0, @0, @0, @0.0, @0, @0, @176.2];
+    [lineChart setXLabels:[self getNSNumberArrayWithArray:self.memModel.weekTimes]];
+    
+    
+    //     Line Chart #1
+    NSArray * data01Array = self.memModel.weekMemberAmounts;
     PNLineChartData *data01 = [PNLineChartData new];
     data01.dataTitle = @"Alpha";
     data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
-//    data01.alpha = 0.3f;
+    //    data01.alpha = 0.3f;
     data01.itemCount = data01Array.count;
-    data01.inflexionPointStyle = PNLineChartPointStyleSquare;
+    data01.inflexionPointStyle = PNLineChartPointStyleTriangle;
     data01.getData = ^(NSUInteger index) {
         CGFloat yValue = [data01Array[index] floatValue];
         return [PNLineChartDataItem dataItemWithY:yValue];
     };
-    NSArray *data02Array = @[@1,@1,@1,@1, @1,@1,@1,@136];
+    
+    NSArray * data02Array = self.memModel.weekPartnerAmounts;
     PNLineChartData *data02 = [PNLineChartData new];
-    data02.dataTitle = @"Alphb";
+    data02.dataTitle = @"sds";
     data02.color = [UIColor colorWithRed:0.004 green:0.553 blue:1.000 alpha:1.000];
-//    data02.alpha = 0.3f;
+    //    data01.alpha = 0.3f;
     data02.itemCount = data02Array.count;
-    data02.inflexionPointStyle = PNLineChartPointStyleCircle;
+    data02.inflexionPointStyle = PNLineChartPointStyleTriangle;
     data02.getData = ^(NSUInteger index) {
         CGFloat yValue = [data02Array[index] floatValue];
         return [PNLineChartDataItem dataItemWithY:yValue];
@@ -1047,6 +1051,7 @@ static NSString *popAnimation = @"first";
     lineChart.chartData = @[data01,data02];
     [lineChart strokeChart];
     lineChart.delegate = self;
+    
     
     return lineChart;
 }
@@ -1064,44 +1069,7 @@ static NSString *popAnimation = @"first";
 
 #pragma mark PNChart表改变值方法
 
-- (void)changeValue1{
-    // Line Chart #1
-    NSArray * data01Array = @[@(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300)];
-    PNLineChartData *data01 = [PNLineChartData new];
-    data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
-    data01.itemCount = data01Array.count;
-    data01.inflexionPointStyle = PNLineChartPointStyleTriangle;
-    data01.getData = ^(NSUInteger index) {
-        CGFloat yValue = [data01Array[index] floatValue];
-        return [PNLineChartDataItem dataItemWithY:yValue];
-    };
-    [self.salelineChart setXLabels:@[@"1",@"",@"",@"",@"",@"",@"7"]];
-    [self.salelineChart updateChartData:@[data01]];
-}
 
-- (void)changeValue2{
-    // Line Chart #1
-    NSArray * data01Array = @[@(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300)];
-    PNLineChartData *data01 = [PNLineChartData new];
-    data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];;
-    data01.itemCount = data01Array.count;
-    data01.inflexionPointStyle = PNLineChartPointStyleSquare;
-    data01.getData = ^(NSUInteger index) {
-        CGFloat yValue = [data01Array[index] floatValue];
-        return [PNLineChartDataItem dataItemWithY:yValue];
-    };
-    NSArray * data02Array = @[@(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300), @(arc4random() % 300)];
-    PNLineChartData *data02 = [PNLineChartData new];
-    data02.color = [UIColor colorWithRed:0.004 green:0.553 blue:1.000 alpha:1.000];
-    data02.itemCount = data01Array.count;
-    data02.inflexionPointStyle = PNLineChartPointStyleCircle;
-    data02.getData = ^(NSUInteger index) {
-        CGFloat yValue = [data02Array[index] floatValue];
-        return [PNLineChartDataItem dataItemWithY:yValue];
-    };
-    [self.viplineChart setXLabels:@[@"1",@"",@"",@"",@"",@"",@"7"]];
-    [self.viplineChart updateChartData:@[data01,data02]];
-}
 
 #pragma mark 添加滚地视图
 /**
@@ -1240,6 +1208,32 @@ static NSString *popAnimation = @"first";
                 }
                 case 2:
                 {
+                    self.memModel = [[MenListModel alloc] init];
+                    
+                    self.memModel.monthMemberAmount = json[@"resultData"][@"monthMemberAmount"];
+                    self.memModel.monthMemberAmounts = json[@"resultData"][@"monthMemberAmounts"];
+                    self.memModel.monthPartnerAmount = json[@"resultData"][@"monthPartnerAmount"];
+                    self.memModel.monthPartnerAmounts = json[@"resultData"][@"monthPartnerAmounts"];
+                    self.memModel.monthTimes = json[@"resultData"][@"monthTimes"];
+                    self.memModel.todayMemberAmount = json[@"resultData"][@"todayMemberAmount"];
+                    self.memModel.todayMemberAmounts = json[@"resultData"][@"todayMemberAmounts"];
+                    self.memModel.todayPartnerAmount = json[@"resultData"][@"todayPartnerAmount"];
+                    self.memModel.todayPartnerAmounts = json[@"resultData"][@"todayPartnerAmounts"];
+                    self.memModel.todayTimes = json[@"resultData"][@"todayTimes"];
+                    self.memModel.totalMember = json[@"resultData"][@"totalMember"];
+                    self.memModel.totalPartner = json[@"resultData"][@"totalPartner"];
+                    self.memModel.weekMemberAmount = json[@"resultData"][@"weekMemberAmount"];
+                    self.memModel.weekMemberAmounts = json[@"resultData"][@"weekMemberAmounts"];
+                    self.memModel.weekPartnerAmount = json[@"resultData"][@"weekPartnerAmount"];
+                    self.memModel.weekPartnerAmounts = json[@"resultData"][@"weekPartnerAmounts"];
+                    self.memModel.weekTimes = json[@"resultData"][@"weekTimes"];
+                    
+                    if (self.viplineChart) {
+                        
+                    }else {
+                        [self _initMemPNchart];
+                    }
+                    
                     break;
                 }
                 default:
@@ -1278,6 +1272,8 @@ static NSString *popAnimation = @"first";
     
     if (type == 0) {
         
+        self.saleNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.saleModel.todayAmount];
+        
         self.salelineChart.yValueMax = [[self getMaxFromArray:self.saleModel.todayAmounts] floatValue];
         [self.salelineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.saleModel.todayAmounts] integerValue]]];
         [self.salelineChart setXLabels:[self getNSStringArrayWithArray:self.saleModel.todayTimes]];
@@ -1298,6 +1294,8 @@ static NSString *popAnimation = @"first";
         
     }else if (type == 1) {
         
+        self.saleNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.saleModel.weekAmount];
+        
         self.salelineChart.yValueMax = [[self getMaxFromArray:self.saleModel.weekAmounts] floatValue];
         [self.salelineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.saleModel.weekAmounts] integerValue]]];
         [self.salelineChart setXLabels:[self getNSNumberArrayWithArray:self.saleModel.weekTimes]];
@@ -1317,6 +1315,8 @@ static NSString *popAnimation = @"first";
         [self.salelineChart strokeChart];
         
     }else {
+        
+        self.saleNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.saleModel.monthAmount];
         
         self.salelineChart.yValueMax = [[self getMaxFromArray:self.saleModel.monthAmounts] floatValue];
         [self.salelineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.saleModel.monthAmounts] integerValue]]];
@@ -1359,6 +1359,8 @@ static NSString *popAnimation = @"first";
     
     if (type == 0) {
         
+        self.ordorNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.ordorModel.todayAmount];
+        
         self.orderlineChart.yValueMax = [[self getMaxFromArray:self.ordorModel.todayAmounts] floatValue];
         [self.orderlineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.ordorModel.todayAmounts] integerValue]]];
         [self.orderlineChart setXLabels:[self getNSStringArrayWithArray:self.ordorModel.todayTimes]];
@@ -1379,6 +1381,8 @@ static NSString *popAnimation = @"first";
         
     }else if (type == 1) {
         
+        self.ordorNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.ordorModel.weekAmount];
+        
         self.orderlineChart.yValueMax = [[self getMaxFromArray:self.ordorModel.weekAmounts] floatValue];
         [self.orderlineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.ordorModel.weekAmounts] integerValue]]];
         [self.orderlineChart setXLabels:[self getNSNumberArrayWithArray:self.ordorModel.weekTimes]];
@@ -1398,6 +1402,8 @@ static NSString *popAnimation = @"first";
         [self.orderlineChart strokeChart];
         
     }else {
+        
+        self.ordorNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.ordorModel.monthAmount];
         
         self.orderlineChart.yValueMax = [[self getMaxFromArray:self.ordorModel.monthAmounts] floatValue];
         [self.orderlineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.ordorModel.monthAmounts] integerValue]]];
@@ -1422,19 +1428,169 @@ static NSString *popAnimation = @"first";
 }
 
 
+- (void)_initMemPNchart {
+    //创建绘图
+    
+    self.memNewlabel.text = [NSString stringWithFormat:@"%@", self.memModel.weekMemberAmount];
+    self.parNewLabel.text = [NSString stringWithFormat:@"%@", self.memModel.weekPartnerAmount];
+    
+    self.parTotal.text = [NSString stringWithFormat:@"%@", self.memModel.totalMember];
+    self.upLabel.text = [NSString stringWithFormat:@"升级分销商:%@", self.memModel.totalPartner];
+    
+    UIView * scr = self.scrollerviews[2];
+    
+    [self getNSNumberArrayWithArray:self.memModel.weekTimes];
+    
+    self.viplineChart = [self linePNChartWithMemPNchartFrame:self.MemBgView.frame];
+    self.viplineChart.tag = 1;
+    [self.MemBgView addSubview:self.viplineChart];
+    [scr addSubview:self.MemBgView];
+}
+
+- (void)changeMemPNChartWithType: (NSInteger)type {
+    
+    if (type == 0) {
+        
+        self.parNewLabel.text = [NSString stringWithFormat:@"%@", self.memModel.todayPartnerAmount];
+        self.memNewlabel.text = [NSString stringWithFormat:@"%@", self.memModel.todayMemberAmount];
+        
+        self.viplineChart.yValueMax = [[self getMaxFromArray:self.memModel.todayMemberAmounts AndNext:self.memModel.todayPartnerAmounts] floatValue];
+        [self.viplineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.memModel.todayMemberAmounts AndNext:self.memModel.todayPartnerAmounts] integerValue]]];
+        
+        [self.viplineChart setXLabels:[self getNSStringArrayWithArray:self.memModel.todayTimes]];
+        
+        NSArray * data01Array = self.memModel.todayMemberAmounts;
+        PNLineChartData *data01 = [PNLineChartData new];
+        data01.dataTitle = @"Alpha";
+        data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+        //    data01.alpha = 0.3f;
+        data01.itemCount = data01Array.count;
+        data01.inflexionPointStyle = PNLineChartPointStyleTriangle;
+        data01.getData = ^(NSUInteger index) {
+            CGFloat yValue = [data01Array[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        
+        NSArray * data02Array = self.memModel.todayPartnerAmounts;
+        PNLineChartData *data02 = [PNLineChartData new];
+        data02.dataTitle = @"Alpha";
+        data02.color = [UIColor colorWithRed:0.004 green:0.553 blue:1.000 alpha:1.000];
+        //    data01.alpha = 0.3f;
+        data02.itemCount = data02Array.count;
+        data02.inflexionPointStyle = PNLineChartPointStyleTriangle;
+        data02.getData = ^(NSUInteger index) {
+            CGFloat yValue = [data02Array[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        
+        self.viplineChart.chartData = @[data01,data02];
+        [self.viplineChart strokeChart];
+        
+    }else if (type == 1) {
+        
+        self.parNewLabel.text = [NSString stringWithFormat:@"%@", self.memModel.weekPartnerAmount];
+        self.memNewlabel.text = [NSString stringWithFormat:@"%@", self.memModel.weekMemberAmount];
+        
+        self.viplineChart.yValueMax = [[self getMaxFromArray:self.memModel.weekMemberAmounts AndNext:self.memModel.weekPartnerAmounts] floatValue];
+        [self.viplineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.memModel.weekMemberAmounts AndNext:self.memModel.weekPartnerAmounts] integerValue]]];
+        
+        [self.viplineChart setXLabels:[self getNSNumberArrayWithArray:self.memModel.weekTimes]];
+        
+        NSArray * data01Array = self.memModel.weekMemberAmounts;
+        PNLineChartData *data01 = [PNLineChartData new];
+        data01.dataTitle = @"Alpha";
+        data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+        //    data01.alpha = 0.3f;
+        data01.itemCount = data01Array.count;
+        data01.inflexionPointStyle = PNLineChartPointStyleTriangle;
+        data01.getData = ^(NSUInteger index) {
+            CGFloat yValue = [data01Array[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        
+        NSArray * data02Array = self.memModel.weekPartnerAmounts;
+        PNLineChartData *data02 = [PNLineChartData new];
+        data02.dataTitle = @"Alpha";
+        data02.color = [UIColor colorWithRed:0.004 green:0.553 blue:1.000 alpha:1.000];
+        //    data01.alpha = 0.3f;
+        data02.itemCount = data02Array.count;
+        data02.inflexionPointStyle = PNLineChartPointStyleTriangle;
+        data02.getData = ^(NSUInteger index) {
+            CGFloat yValue = [data02Array[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        
+        self.viplineChart.chartData = @[data01,data02];
+        [self.viplineChart strokeChart];
+        
+    }else {
+        
+        self.parNewLabel.text = [NSString stringWithFormat:@"%@", self.memModel.monthPartnerAmount];
+        self.memNewlabel.text = [NSString stringWithFormat:@"%@", self.memModel.monthMemberAmount];
+        
+        self.viplineChart.yValueMax = [[self getMaxFromArray:self.memModel.monthMemberAmounts AndNext:self.memModel.monthPartnerAmounts] floatValue];
+        [self.viplineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.memModel.monthMemberAmounts AndNext:self.memModel.monthPartnerAmounts] integerValue]]];
+        
+        [self.viplineChart setXLabels:[self getNSNumberArrayWithArray:self.memModel.monthTimes]];
+        
+        NSArray * data01Array = self.memModel.monthMemberAmounts;
+        PNLineChartData *data01 = [PNLineChartData new];
+        data01.dataTitle = @"Alpha";
+        data01.color = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+        //    data01.alpha = 0.3f;
+        data01.itemCount = data01Array.count;
+        data01.inflexionPointStyle = PNLineChartPointStyleTriangle;
+        data01.getData = ^(NSUInteger index) {
+            CGFloat yValue = [data01Array[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        
+        NSArray * data02Array = self.memModel.monthPartnerAmounts;
+        PNLineChartData *data02 = [PNLineChartData new];
+        data02.dataTitle = @"Alpha";
+        data02.color = [UIColor colorWithRed:0.004 green:0.553 blue:1.000 alpha:1.000];
+        //    data01.alpha = 0.3f;
+        data02.itemCount = data02Array.count;
+        data02.inflexionPointStyle = PNLineChartPointStyleTriangle;
+        data02.getData = ^(NSUInteger index) {
+            CGFloat yValue = [data02Array[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        
+        self.viplineChart.chartData = @[data01,data02];
+        [self.viplineChart strokeChart];
+        
+    }
+    
+}
+
 #pragma mark 计算操作
 - (NSNumber *)getMaxFromArray:(NSArray *)array {
     
-    NSNumber *a = 0;
+    NSNumber *a = @0;
     
     for (NSNumber *num in array) {
         
-        if (num > a) {
+        if ([num compare:a] == NSOrderedDescending) {
             a = num;
         }
     }
+
     
     return a;
+}
+
+- (NSNumber *)getMaxFromArray:(NSArray *)array1 AndNext:(NSArray * ) array2 {
+    
+    NSNumber *a = [self getMaxFromArray:array1];
+    NSNumber *b = [self getMaxFromArray:array2];
+    
+    if ([a compare:b] == NSOrderedDescending) {
+        return a;
+    }else {
+        return  b;
+    }
+    
 }
 
 - (NSArray *)getArrayWithY:(NSInteger) num {
@@ -1447,7 +1603,14 @@ static NSString *popAnimation = @"first";
     }else {
         i = num / 100 + 1;
     }
-    array = @[[NSString stringWithFormat:@"%d", i * 25],[NSString stringWithFormat:@"%d", i * 50],[NSString stringWithFormat:@"%d", i * 75],[NSString stringWithFormat:@"%d", i * 100]];
+    
+//    if (i) {
+        array = @[[NSString stringWithFormat:@"%d", i * 25],[NSString stringWithFormat:@"%d", i * 50],[NSString stringWithFormat:@"%d", i * 75],[NSString stringWithFormat:@"%d", i * 100]];
+//    }else  {
+//        array = @[[NSString stringWithFormat:@"5"],[NSString stringWithFormat:@"10"],[NSString stringWithFormat:@"15"],[NSString stringWithFormat:@"20"]];
+//    }
+    
+    
     
     return array;
 }

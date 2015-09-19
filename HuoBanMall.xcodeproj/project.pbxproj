@@ -17,6 +17,7 @@
 		834728EB1B8C51C6005B72F9 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834728E61B8C51C6005B72F9 /* LoginViewController.xib */; };
 		834728EF1B8C66B3005B72F9 /* FMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 834728EE1B8C66B3005B72F9 /* FMButton.m */; };
 		834728F21B8C6F61005B72F9 /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834728F11B8C6F61005B72F9 /* PushViewController.m */; };
+		8354C0111BAD267900A51EB9 /* MenListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354C0101BAD267900A51EB9 /* MenListModel.m */; };
 		836B3AC51B8C077E00813281 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 836B3AC41B8C077E00813281 /* InfoPlist.strings */; };
 		836CEAD61B9C2B48005074DA /* HTResultData.m in Sources */ = {isa = PBXBuildFile; fileRef = 836CEAD51B9C2B48005074DA /* HTResultData.m */; };
 		836CEAD91B9C2BE7005074DA /* HTupData.m in Sources */ = {isa = PBXBuildFile; fileRef = 836CEAD81B9C2BE7005074DA /* HTupData.m */; };
@@ -130,6 +131,8 @@
 		834728EE1B8C66B3005B72F9 /* FMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMButton.m; sourceTree = "<group>"; };
 		834728F01B8C6F61005B72F9 /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
 		834728F11B8C6F61005B72F9 /* PushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushViewController.m; sourceTree = "<group>"; };
+		8354C00F1BAD267900A51EB9 /* MenListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenListModel.h; sourceTree = "<group>"; };
+		8354C0101BAD267900A51EB9 /* MenListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenListModel.m; sourceTree = "<group>"; };
 		836B3AC41B8C077E00813281 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		836CEAD41B9C2B48005074DA /* HTResultData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTResultData.h; sourceTree = "<group>"; };
 		836CEAD51B9C2B48005074DA /* HTResultData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTResultData.m; sourceTree = "<group>"; };
@@ -386,6 +389,8 @@
 				839E6E071BA96C590084A08D /* OrdorListModel.m */,
 				838895C41BAAAFC1008408AE /* SaleModel.h */,
 				838895C51BAAAFC1008408AE /* SaleModel.m */,
+				8354C00F1BAD267900A51EB9 /* MenListModel.h */,
+				8354C0101BAD267900A51EB9 /* MenListModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -957,6 +962,7 @@
 				83D3EDFA1B93EA2900454A0E /* UIViewController+NAV.m in Sources */,
 				EF98A8271BAC35DD0087BB60 /* HTTopTenGoodsController.m in Sources */,
 				EF78599B1BA81A32002A0626 /* HTStatisticsController.m in Sources */,
+				8354C0111BAD267900A51EB9 /* MenListModel.m in Sources */,
 				83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */,
 				EF6B32B81B904B2B00A6B46D /* HTHomeViewController.m in Sources */,
 				83737D2D1BA7BA3B000BD2D4 /* FootView.m in Sources */,
