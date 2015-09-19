@@ -10,7 +10,7 @@
 @class HTStatisticsModel;
 @interface HTTopTenGoodCell : UITableViewCell
 
-+ (HTTopTenGoodCell *)cellWithTableView:(UITableView *)tablew;
++ (HTTopTenGoodCell *)cellWithTableView:(UITableView *)tablew cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @property(nonatomic,strong)UIImageView * topImageView;
 @property(nonatomic,strong) HTStatisticsModel * model;
