@@ -44,7 +44,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
     // Return the number of sections.
-    return 4;
+    return 8;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -56,8 +56,10 @@
         return 1;
     }else if (section == 2){
        return 1;
-    }else{
+    }else if(section == 3){
         return 1;
+    }else{
+        return 0;
     }
     
 }
@@ -70,12 +72,15 @@
         ord.bgView.backgroundColor = [UIColor clearColor];
         ord.userInteractionEnabled = NO;
         return ord;
-    }else{
-        
+    }else if (indexPath.section == 0||indexPath.section == 1||indexPath.section == 3||indexPath.section == 7){
         HTOrderDetail * cell = [HTOrderDetail cellWithTableView:tableView WithIndex:indexPath];
         HTOrderDetailModel * model = [[HTOrderDetailModel alloc] init];
         cell.model = model;
         return cell;
+        
+    }else{
+        
+        return nil;
     }
     
 }
@@ -87,6 +92,7 @@
         HeadView * headView = [[[NSBundle mainBundle] loadNibNamed:@"HeadView" owner:nil options:nil] lastObject];
         return headView;
     }
+    
     
     return nil;
 }
@@ -115,6 +121,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
+    if (section == 0) {
+        return 5;
+    }
     if (section == 2) {
         return 30;
     }

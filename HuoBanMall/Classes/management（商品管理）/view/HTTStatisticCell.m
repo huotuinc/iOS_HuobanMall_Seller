@@ -40,6 +40,7 @@
         
         UILabel * datelable = [[UILabel alloc] init];
         _datelable = datelable;
+        datelable.textColor = [UIColor colorWithRed:0.996 green:0.129 blue:0.129 alpha:1.000];
         datelable.textAlignment = NSTextAlignmentCenter;
         [rightView addSubview:datelable];
         
@@ -56,13 +57,13 @@
     UIImage * placeIcon = nil;
     if(model.Type == 1){
         _dateType.text = @"总返利";
-        placeIcon = [UIImage imageNamed:@"ddzs"];
+        placeIcon = [UIImage imageNamed:@"zchyzrs"];
     }else if(model.Type == 2){
         _dateType.text = @"总消费(元)";
-        placeIcon = [UIImage imageNamed:@"ddzs"];
+        placeIcon = [UIImage imageNamed:@"zchyzrs"];
     }else{
         _dateType.text = @"消费额(元)";
-        placeIcon = [UIImage imageNamed:@"hytj"];
+        placeIcon = [UIImage imageNamed:@"zchyzrs"];
     }
     _datelable.text = [model.num stringValue];
     
