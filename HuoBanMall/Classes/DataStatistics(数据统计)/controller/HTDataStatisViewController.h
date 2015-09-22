@@ -21,6 +21,6 @@
 /**
  *  标记
  */
-@property (nonatomic, assign) int selectIndex;
+@property (nonatomic, assign) NSInteger selectIndex;
 
 @end

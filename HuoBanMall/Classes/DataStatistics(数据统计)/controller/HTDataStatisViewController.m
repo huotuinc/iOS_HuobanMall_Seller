@@ -14,7 +14,7 @@
 #import "SaleModel.h"
 #import "MenListModel.h"
 #import "HTTopTenGoodsController.h"
-
+#import "HTStatisticsController.h"
 
 #define StatisesCount 3
 #define PageControllerHeight 20
@@ -157,6 +157,7 @@ static NSString *popAnimation = @"first";
     self.BackScrollerview.contentOffset = CGPointMake(ScreenWidth * self.segment.selectedSegmentIndex, 0);
     self.BackScrollerview.frame = CGRectMake(0, 0, self.BackScrollerview.frame.size.width, self.BackScrollerview.frame.size.height);
     }];
+    self.selectIndex = self.segment.selectedSegmentIndex;
     [self getNewData];
 }
 
@@ -593,6 +594,12 @@ static NSString *popAnimation = @"first";
     topGoodView.layer.borderWidth = 1;
     topGoodView.layer.borderColor = [UIColor colorWithWhite:0.890 alpha:1.000].CGColor;
     topGoodView.layer.cornerRadius = 5;
+    topGoodView.userInteractionEnabled = YES;
+    [topGoodView bk_whenTapped:^{
+        HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
+        ctl.type = 3;
+        [self.navigationController pushViewController:ctl animated:YES];
+    }];
     [scr addSubview:topGoodView];
     
     //箭头位置
@@ -886,6 +893,12 @@ static NSString *popAnimation = @"first";
     topGoodView.layer.borderWidth = 1;
     topGoodView.layer.borderColor = [UIColor colorWithWhite:0.890 alpha:1.000].CGColor;
     topGoodView.layer.cornerRadius = 5;
+    topGoodView.userInteractionEnabled = YES;
+    [topGoodView bk_whenTapped:^{
+        HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
+        ctl.type = 1;
+        [self.navigationController pushViewController:ctl animated:YES];
+    }];
     [scr addSubview:topGoodView];
     
     //箭头位置
@@ -915,6 +928,12 @@ static NSString *popAnimation = @"first";
     topGood2View.layer.borderWidth = 1;
     topGood2View.layer.borderColor = [UIColor colorWithWhite:0.890 alpha:1.000].CGColor;
     topGood2View.layer.cornerRadius = 5;
+    topGood2View.userInteractionEnabled = YES;
+    [topGood2View bk_whenTapped:^{
+        HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
+        ctl.type = 2;
+        [self.navigationController pushViewController:ctl animated:YES];
+    }];
     [scr addSubview:topGood2View];
     
     //箭头位置
@@ -1124,6 +1143,7 @@ static NSString *popAnimation = @"first";
     int padgeInt = (int)(padgeDouble + 0.5);
     if (self.segment.selectedSegmentIndex != padgeInt) {
         self.segment.selectedSegmentIndex = padgeInt;
+        self.selectIndex = self.segment.selectedSegmentIndex;
         [self getNewData];
     }
     
