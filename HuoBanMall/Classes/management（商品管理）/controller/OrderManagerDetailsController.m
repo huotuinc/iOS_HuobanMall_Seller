@@ -13,19 +13,38 @@
 #import "HeadView.h"
 #import "FootView.h"
 #import "HTXQFLCell.h"
+#import "UserLoginTool.h"
 
 @interface OrderManagerDetailsController ()
 
+
+@property(nonatomic,strong) NSArray * logisticsDetail;
 @end
 
 @implementation OrderManagerDetailsController
 
+
+- (NSArray *)logisticsDetail{
+    
+    if (_logisticsDetail == nil) {
+        
+        
+        _logisticsDetail = [NSArray array];
+        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+        dict[@"orderNo"] = @(201505061723033841);
+        [UserLoginTool loginRequestGet:@"orderDetail" parame:dict success:^(NSDictionary * json) {
+            NSLog(@"xx  orderDetail  %@",json);
+        } failure:^(NSError *error) {
+            NSLog(@"ss  orderDetail%@",error.description);
+        }];
+        
+    }
+    return _logisticsDetail;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"订单管理详情";
-    
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"OrdorCell" bundle:nil]   forCellReuseIdentifier:@"OrdorCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"HTXQFLCell" bundle:nil] forCellReuseIdentifier:@"HTXQFLCell"];
     // Uncomment the following line to preserve selection between presentations.
@@ -33,6 +52,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+    self.logisticsDetail;
 }
 
 
@@ -78,10 +100,12 @@
     }else{
         
         HTXQFLCell * fanli = [[[NSBundle mainBundle] loadNibNamed:@"HTXQFLCell" owner:nil options:nil] lastObject];
+        fanli.userInteractionEnabled = NO;
         return fanli;
     }
     
 }
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
@@ -89,6 +113,9 @@
         
         HeadView * headView = [[[NSBundle mainBundle] loadNibNamed:@"HeadView" owner:nil options:nil] lastObject];
         return headView;
+    }else if(section == 0 ||section == 1||section == 3){
+        
+        return nil;
     }else{
         
         UIView * head = [[UIView alloc] init];
@@ -117,6 +144,7 @@
     if (section == 2) {
         
         FootView * footView = [[[NSBundle mainBundle] loadNibNamed:@"FootView" owner:nil options:nil] lastObject];
+//        footView.backgroundColor = [UIColor redColor];
         return footView;
         
     }
@@ -137,10 +165,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
     if (section == 0) {
-        return 5;
-    }
-    if (section == 2) {
+        return 1;
+    }else if(section == 1){
+        return 2;
+    }else if (section == 2) {
         return 30;
+    }else if(section == 3){
+        return 5;
     }
     return 30;
     

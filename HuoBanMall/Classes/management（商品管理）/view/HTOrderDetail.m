@@ -4,7 +4,7 @@
 //
 //  Created by lhb on 15/9/15.
 //  Copyright (c) 2015年 HT. All rights reserved.
-//  first    second
+//  first    second  订单管理详情cell
 
 #import "HTOrderDetail.h"
 #import "HTOrderDetailModel.h"
@@ -14,6 +14,8 @@
 
 /**购买人*/
 @property(nonatomic,strong) UILabel * buyPersonLable;
+
+@property(nonatomic,strong) UILabel * shoujianLable;
 /**购买姓名*/
 @property(nonatomic,strong) UILabel * buyPersonName;
 /**联系人方式*/
@@ -96,11 +98,22 @@
 
 - (void)first{
     
-    self.textLabel.text = @"购买人：";
-    self.textLabel.font = [UIFont systemFontOfSize:18];
-    self.textLabel.textAlignment = NSTextAlignmentLeft;
-    _buyPersonName = self.detailTextLabel;
-    self.detailTextLabel.font = [UIFont systemFontOfSize:18];
+    
+    UILabel * buyperson = [[UILabel alloc] init];
+    buyperson.text = @"购买人:小明名";
+    _buyPersonLable = buyperson;
+    [self addSubview:buyperson];
+    
+    
+    UILabel * shoujian = [[UILabel alloc] init];
+    shoujian.text = @"收件人:小李";
+    _shoujianLable = shoujian;
+    [self addSubview:shoujian];
+//    self.textLabel.text = @"购买人:小明";
+//    self.textLabel.font = [UIFont systemFontOfSize:18];
+//    self.textLabel.textAlignment = NSTextAlignmentLeft;
+//    _buyPersonName = self.detailTextLabel;
+////    self.detailTextLabel.font = [UIFont systemFontOfSize:18];
 }
 
 
@@ -146,5 +159,9 @@
     CGFloat contactNumberW = contactW;
     CGFloat contactNumberH = contactH;
     _contactPhoneNumberLable.frame = CGRectMake(contactNumberX, contactNumberY, contactNumberW, contactNumberH);
+    
+    
+    _buyPersonLable.frame = CGRectMake(15, 0, self.frame.size.width*0.5-15, self.frame.size.height);
+    _shoujianLable.frame = CGRectMake(_buyPersonLable.frame.size.width-30, 0, self.frame.size.width-_buyPersonLable.frame.size.width, self.frame.size.height);
 }
 @end
