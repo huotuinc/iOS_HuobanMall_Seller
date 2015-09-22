@@ -12,7 +12,8 @@
 #import "NewFootView.h"
 #import "OrderManagerDetailsController.h"
 #import "HTCheckLogisticsController.h"
-@interface OrdorController ()<UITableViewDelegate,UITableViewDataSource,NewFootViewDelegate>
+#import "MJRefresh.h"
+@interface OrdorController ()<UITableViewDelegate,UITableViewDataSource,NewFootViewDelegate, UIAlertViewDelegate>
 
 /**
  *  滑块视图
@@ -24,6 +25,9 @@
 
 //全部的x值
 @property (nonatomic, assign) CGFloat ALLX;
+
+//状态
+@property (nonatomic, assign) NSInteger type;
 
 @end
 
@@ -39,15 +43,45 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 //    self.tableView.separatorColor = [UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    [self setupRefresh];
+    
     [self _initScreenView];
     
     self.tableView.tableFooterView.userInteractionEnabled = YES;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"ss"] style:UIBarButtonItemStylePlain handler:^(id sender) {
- 
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"搜索订单" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"搜索", nil];
+        
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        
+        [alert show];
     }];
     
     [self getNewOrdorList];
+    
+}
+
+///**
+// *  集成刷新控件
+// */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(getNewOrdorList)];
+    //#warning 自动刷新(一进入程序就下拉刷新)
+    //    [self.tableView headerBeginRefreshing];
+    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
+    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
+    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
+    self.tableView.headerRefreshingText = @"正在刷新最新数据,请稍等";
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(getMoreOrdorList)];
+    
+    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
+    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
+    self.tableView.footerRefreshingText = @"正在加载更多数据,请稍等";
     
 }
 
@@ -60,19 +94,34 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     
     NSMutableDictionary * dic = [NSMutableDictionary dictionary];
     
-    dic[@"status"] = @0;
+    dic[@"status"] = @(self.type);
     
-    [UserLoginTool loginRequestGet:@"" parame:nil success:^(id json) {
+    [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
         
         NSLog(@"%@", json);
         
+        [self.tableView headerEndRefreshing];
     } failure:^(NSError *error) {
         
         NSLog(@"%@", error);
         
     }];
+}
+
+- (void)getMoreOrdorList {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    dic[@"status"] = @(self.type);
+    dic[@"id"] = nil;
+    [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
+        NSLog(@"%@", json);
+        [self.tableView headerEndRefreshing];
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
     
 }
+
 
 - (void)_initScreenView {
     
@@ -81,6 +130,8 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     [self.obligationView layoutIfNeeded];
     [self.waitView layoutIfNeeded];
     [self.finishView layoutIfNeeded];
+    
+    self.type = 0;
     
     CGFloat SVW = ScreenWidth * 0.1;
     CGFloat SIY = (ScreenHeight - 64) * 0.08 - 2;
@@ -100,44 +151,52 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     [self.allView bk_whenTapped:^{
         if (self.screenView.frame.origin.x != self.ALLX) {
             
+            self.type = 0;
             [UIView animateWithDuration:0.35 animations:^{
                 [self setLabelsColorBlack];
                 self.allLabel.textColor = NavBackgroundColor;
                 self.screenView.frame = CGRectMake(self.ALLX, SIY, SVW, 2);
             }];
+            [self getNewOrdorList];
         }
     }];
     
     [self.obligationView bk_whenTapped:^{
         if (self.screenView.frame.origin.x != OBX) {
             
+            self.type = 1;
             [UIView animateWithDuration:0.35 animations:^{
                 [self setLabelsColorBlack];
                 self.obligationLabel.textColor = NavBackgroundColor;
                 self.screenView.frame = CGRectMake(OBX, SIY, SVW, 2);
             }];
+            [self getNewOrdorList];
         }
     }];
     
     [self.waitView bk_whenTapped:^{
         if (self.screenView.frame.origin.x != WTX) {
             
+            self.type = 2;
             [UIView animateWithDuration:0.35 animations:^{
                 [self setLabelsColorBlack];
                 self.waitLabel.textColor = NavBackgroundColor;
                 self.screenView.frame = CGRectMake(WTX, SIY, SVW, 2);
             }];
+            [self getNewOrdorList];
         }
     }];
     
     [self.finishView bk_whenTapped:^{
         if (self.screenView.frame.origin.x != FIX) {
             
+            self.type = 3;
             [UIView animateWithDuration:0.35 animations:^{
                 [self setLabelsColorBlack];
                 self.finishLabel.textColor = NavBackgroundColor;
                 self.screenView.frame = CGRectMake(FIX, SIY, SVW, 2);
             }];
+            [self getNewOrdorList];
         }
     }];
     
@@ -178,7 +237,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 60;
+    return 85;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -224,6 +283,11 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     
     HTCheckLogisticsController * vc = [[HTCheckLogisticsController alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
 }
 
 @end
