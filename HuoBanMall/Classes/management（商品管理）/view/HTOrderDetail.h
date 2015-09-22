@@ -4,7 +4,7 @@
 //
 //  Created by lhb on 15/9/15.
 //  Copyright (c) 2015年 HT. All rights reserved.
-//
+//   订单管理详情cell
 
 #import <UIKit/UIKit.h>
 @class HTOrderDetailModel;
