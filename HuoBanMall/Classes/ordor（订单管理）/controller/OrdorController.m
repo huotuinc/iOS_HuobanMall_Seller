@@ -19,6 +19,12 @@
  */
 @property (nonatomic, strong) UIView *screenView;
 
+//订单数组
+@property (nonatomic, strong) NSArray *ordors;
+
+//全部的x值
+@property (nonatomic, assign) CGFloat ALLX;
+
 @end
 
 @implementation OrdorController
@@ -38,16 +44,34 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     self.tableView.tableFooterView.userInteractionEnabled = YES;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"ss"] style:UIBarButtonItemStylePlain handler:^(id sender) {
-       
-        
-        
+ 
     }];
+    
+    [self getNewOrdorList];
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)getNewOrdorList {
+    
+    NSMutableDictionary * dic = [NSMutableDictionary dictionary];
+    
+    dic[@"status"] = @0;
+    
+    [UserLoginTool loginRequestGet:@"" parame:nil success:^(id json) {
+        
+        NSLog(@"%@", json);
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@", error);
+        
+    }];
+    
 }
 
 - (void)_initScreenView {
@@ -61,25 +85,25 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     CGFloat SVW = ScreenWidth * 0.1;
     CGFloat SIY = (ScreenHeight - 64) * 0.08 - 2;
     
-    CGFloat ALLX = (self.allView.frame.size.width - SVW) / 2 + self.allView.frame.origin.x;
+    self.ALLX = (self.allView.frame.size.width - SVW) / 2 + self.allView.frame.origin.x;
     CGFloat OBX = (self.obligationView.frame.size.width - SVW) / 2 + self.obligationView.frame.origin.x;
     CGFloat WTX = (self.waitView.frame.size.width - SVW) / 2 + self.waitView.frame.origin.x;
     CGFloat FIX = (self.finishView.frame.size.width - SVW) / 2 + self.finishView.frame.origin.x;
     
     
-    self.screenView = [[UIView alloc] initWithFrame:CGRectMake(ALLX, SIY, SVW, 2)];
+    self.screenView = [[UIView alloc] initWithFrame:CGRectMake(self.ALLX, SIY, SVW, 2)];
     self.screenView.backgroundColor = NavBackgroundColor;
     
     [self.bgView addSubview:self.screenView];
     
     
     [self.allView bk_whenTapped:^{
-        if (self.screenView.frame.origin.x != ALLX) {
+        if (self.screenView.frame.origin.x != self.ALLX) {
             
             [UIView animateWithDuration:0.35 animations:^{
                 [self setLabelsColorBlack];
                 self.allLabel.textColor = NavBackgroundColor;
-                self.screenView.frame = CGRectMake(ALLX, SIY, SVW, 2);
+                self.screenView.frame = CGRectMake(self.ALLX, SIY, SVW, 2);
             }];
         }
     }];
