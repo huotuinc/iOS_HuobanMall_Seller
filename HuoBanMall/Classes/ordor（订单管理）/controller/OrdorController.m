@@ -13,7 +13,7 @@
 #import "OrderManagerDetailsController.h"
 #import "HTCheckLogisticsController.h"
 #import "MJRefresh.h"
-@interface OrdorController ()<UITableViewDelegate,UITableViewDataSource,NewFootViewDelegate, UIAlertViewDelegate>
+@interface OrdorController ()<UITableViewDelegate,UITableViewDataSource,NewFootViewDelegate, UISearchBarDelegate>
 
 /**
  *  滑块视图
@@ -28,6 +28,14 @@
 
 //状态
 @property (nonatomic, assign) NSInteger type;
+
+/**
+ *  搜索保存数据
+ */
+@property (nonatomic, strong) NSString *searchStr;
+
+/**搜索栏*/
+@property (nonatomic, strong) UISearchBar *searchBar;
 
 @end
 
@@ -47,15 +55,20 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     
     [self _initScreenView];
     
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(5, 0, ScreenWidth - 10, 44)];
+    [self.searchBar setBackgroundColor:NavBackgroundColor];
+    [self.searchBar setBarTintColor:[UIColor whiteColor]];
+    self.searchBar.showsCancelButton = YES;
+    self.searchBar.delegate = self;
+    
     self.tableView.tableFooterView.userInteractionEnabled = YES;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"ss"] style:UIBarButtonItemStylePlain handler:^(id sender) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"搜索订单" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"搜索", nil];
+        [self.navigationController.navigationBar addSubview:self.searchBar];
         
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [self.searchBar becomeFirstResponder];
         
-        [alert show];
     }];
     
     [self getNewOrdorList];
@@ -112,7 +125,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
     dic[@"status"] = @(self.type);
-    dic[@"id"] = nil;
+//    dic[@"id"] = nil;
     [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
         NSLog(@"%@", json);
         [self.tableView headerEndRefreshing];
@@ -287,6 +300,15 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchBar resignFirstResponder];
+    
+    [self.searchBar removeFromSuperview];
+    
     
 }
 

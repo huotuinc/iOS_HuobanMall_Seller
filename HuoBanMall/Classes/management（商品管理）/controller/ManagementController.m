@@ -43,7 +43,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     
     self.selectGoods = [NSMutableArray array];
     

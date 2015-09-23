@@ -133,6 +133,7 @@
 #pragma mark 网络请求
 
 - (void)getUserInformation {
+    
     [UserLoginTool loginRequestGet:@"getMerchantProfile" parame:nil success:^(id json) {
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
@@ -228,7 +229,7 @@
         }
         
         [self.navigationController pushViewController:web animated:YES];
-    }else if (indexPath.section) {
+    }else if (indexPath.section == 4) {
         UIAlertView * ac = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定要退出吗?" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
         [ac show];
     }

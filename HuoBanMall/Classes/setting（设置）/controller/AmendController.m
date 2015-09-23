@@ -47,7 +47,7 @@
             dic[@"profileType"] = @3;
         }
         
-        [SVProgressHUD showWithStatus:nil];
+        [SVProgressHUD showWithStatus:@"数据上传中"];
         
         [UserLoginTool loginRequestPost:@"updateMerchantProfile" parame:dic success:^(id json) {
             

@@ -89,9 +89,15 @@
                 fileName = [path stringByAppendingPathComponent:LocalUserDate];
                 [NSKeyedArchiver archiveRootObject:resultData.user toFile:fileName]; //保存用户信息
             }
+        }else {
+            LoginViewController *login = [[LoginViewController alloc] init];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+            self.window.rootViewController = nav;
         }
     } failure:^(NSError *error) {
-        NSLog(@"%@",error.description);
+        LoginViewController *login = [[LoginViewController alloc] init];
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+        self.window.rootViewController = nav;
     }];
     
 }

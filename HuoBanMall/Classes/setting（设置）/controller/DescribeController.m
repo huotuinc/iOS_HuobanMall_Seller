@@ -43,10 +43,12 @@
         dic[@"profileData"] = self.textView.text;
         dic[@"profileType"] = @1;
         
-        [SVProgressHUD showWithStatus:nil];
+        [SVProgressHUD showWithStatus:@"数据上传中"];
         
         [UserLoginTool loginRequestPost:@"updateMerchantProfile" parame:dic success:^(id json) {
-            NSLog(@"%@",json);
+
+            [SVProgressHUD dismiss];
+            
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
                 
                 HTUser *user = [HTUser objectWithKeyValues:(json[@"resultData"][@"user"])];
@@ -56,6 +58,8 @@
                 
                 if ([self.delegate respondsToSelector:@selector(DescribeControllerpickDescribe:)]) {
                     [self.delegate DescribeControllerpickDescribe:self.textView.text];
+                    
+                    
                 }
             }
             

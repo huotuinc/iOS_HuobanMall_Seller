@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -54,7 +54,7 @@
     dic[@"profileType"] = @(swich.tag);
     dic[@"profileData"] = @(swich.on);
     
-    [SVProgressHUD showWithStatus:nil];
+    [SVProgressHUD showWithStatus:@"数据上传中"];
     
     [UserLoginTool loginRequestPost:@"updateMerchantProfile" parame:dic success:^(id json) {
         

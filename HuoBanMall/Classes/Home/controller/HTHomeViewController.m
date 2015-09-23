@@ -147,7 +147,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     
     HTHomeViewController * wself = self;
     
@@ -262,7 +262,7 @@
     }else {
         i = num / 100 + 1;
     }
-    array = @[[NSString stringWithFormat:@"%d", i * 25],[NSString stringWithFormat:@"%d", i * 50],[NSString stringWithFormat:@"%d", i * 75],[NSString stringWithFormat:@"%d", i * 100]];
+    array = @[[NSString stringWithFormat:@"%ld", i * 25],[NSString stringWithFormat:@"%ld", i * 50],[NSString stringWithFormat:@"%ld", i * 75],[NSString stringWithFormat:@"%ld", i * 100]];
     
     return array;
 }
