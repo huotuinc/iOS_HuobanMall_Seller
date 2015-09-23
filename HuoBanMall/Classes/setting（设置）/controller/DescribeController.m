@@ -20,6 +20,8 @@
     
     self.textView.textAlignment = NSTextAlignmentLeft;
     
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -41,6 +43,8 @@
         dic[@"profileData"] = self.textView.text;
         dic[@"profileType"] = @1;
         
+        [SVProgressHUD showWithStatus:nil];
+        
         [UserLoginTool loginRequestPost:@"updateMerchantProfile" parame:dic success:^(id json) {
             NSLog(@"%@",json);
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
@@ -54,8 +58,22 @@
                     [self.delegate DescribeControllerpickDescribe:self.textView.text];
                 }
             }
+            
+            if ([json[@"resultCode"] intValue] == 56001) {
+                
+                [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"%@",json[@"resultDescription"]]];
+                
+                LoginViewController *login = [[LoginViewController alloc] init];
+                UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+                [self presentViewController:nav animated:YES completion:^{
+                    [SVProgressHUD dismiss];
+                }];
+            }
+            
         } failure:^(NSError *error) {
-            NSLog(@"%@", error);
+            
+            [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
+            
         }];
     }
 }

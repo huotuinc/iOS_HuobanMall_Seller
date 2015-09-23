@@ -47,8 +47,14 @@
             dic[@"profileType"] = @3;
         }
         
+        [SVProgressHUD showWithStatus:nil];
+        
         [UserLoginTool loginRequestPost:@"updateMerchantProfile" parame:dic success:^(id json) {
+            
             NSLog(@"%@",json);
+            
+            [SVProgressHUD dismiss];
+            
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
                 
                 HTUser *user = [HTUser objectWithKeyValues:(json[@"resultData"][@"user"])];
@@ -66,8 +72,22 @@
                     }
                 }
             }
+            
+            if ([json[@"resultCode"] intValue] == 56001) {
+                
+                [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"%@",json[@"resultDescription"]]];
+                
+                LoginViewController *login = [[LoginViewController alloc] init];
+                UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+                [self presentViewController:nav animated:YES completion:^{
+                    [SVProgressHUD dismiss];
+                }];
+            }
+            
         } failure:^(NSError *error) {
-            NSLog(@"%@", error);
+            
+            [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
+            
         }];
         
         

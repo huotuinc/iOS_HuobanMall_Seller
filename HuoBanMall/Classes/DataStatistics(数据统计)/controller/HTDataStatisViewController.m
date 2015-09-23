@@ -1166,14 +1166,17 @@ static NSString *popAnimation = @"first";
         temp = @"userReport";
     }
     
-    NSLog(@"%@", temp);
+    
+    [SVProgressHUD showWithStatus:@"数据加载中"];
     
     [UserLoginTool loginRequestGet:temp parame:nil success:^(id json) {
         
-        NSLog(@"%@",json);
+        [SVProgressHUD dismiss];
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             switch (self.segment.selectedSegmentIndex) {
+                
+                    
                 case 0:
                 {
                     self.ordorModel = [[OrdorListModel alloc] init];
@@ -1196,8 +1199,6 @@ static NSString *popAnimation = @"first";
                     }else {
                         [self _initOrdorPNchart];
                     }
-                    
-                    
                     
                     break;
                 }
@@ -1264,7 +1265,7 @@ static NSString *popAnimation = @"first";
         
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
+        [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
         
     }];
     

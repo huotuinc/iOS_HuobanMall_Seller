@@ -279,7 +279,7 @@
 		EF78599F1BA904AE002A0626 /* HTStatisticsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTStatisticsModel.h; sourceTree = "<group>"; };
 		EF7859A01BA904AE002A0626 /* HTStatisticsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTStatisticsModel.m; sourceTree = "<group>"; };
 		EF7859A21BA939D1002A0626 /* HTCheckLogisticsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTCheckLogisticsController.h; sourceTree = "<group>"; };
-		EF7859A31BA939D1002A0626 /* HTCheckLogisticsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTCheckLogisticsController.m; sourceTree = "<group>"; };
+		EF7859A31BA939D1002A0626 /* HTCheckLogisticsController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 5; lastKnownFileType = sourcecode.c.objc; path = HTCheckLogisticsController.m; sourceTree = "<group>"; };
 		EF7859A51BA93A5F002A0626 /* ExpressCompany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressCompany.h; sourceTree = "<group>"; };
 		EF7859A61BA93A5F002A0626 /* ExpressCompany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressCompany.m; sourceTree = "<group>"; };
 		EF7859A71BA93A5F002A0626 /* ExpressCompany.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpressCompany.xib; sourceTree = "<group>"; };

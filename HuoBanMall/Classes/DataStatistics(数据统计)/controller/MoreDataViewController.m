@@ -22,9 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    
     [self _initImageView];
     
     [self getNewData];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -37,16 +41,33 @@
 
 - (void)getNewData {
     
+    [SVProgressHUD showWithStatus:@"数据加载中"];
+    
     [UserLoginTool loginRequestGet:@"otherStatistics" parame:nil success:^(id json) {
-        NSLog(@"%@", json);
+        
+        [SVProgressHUD dismiss];
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
             self.more = [MoreDataModel objectWithKeyValues:(json[@"resultData"][@"otherInfoList"])];
             
             [self _initAllLabels];
         }
+        
+        if ([json[@"resultCode"] intValue] == 56001) {
+            
+            [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"%@",json[@"resultDescription"]]];
+            
+            LoginViewController *login = [[LoginViewController alloc] init];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+            [self presentViewController:nav animated:YES completion:^{
+                [SVProgressHUD dismiss];
+            }];
+        }
+        
     } failure:^(NSError *error) {
-        NSLog(@"%@", error);
+        
+        [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
+        
     }];
     
 }
