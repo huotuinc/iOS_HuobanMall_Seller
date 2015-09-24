@@ -13,6 +13,6 @@
 
 
 
-- (void)setDateWithStatus:(int)type withCompany:(NSString *)company withOderNumber:(NSString *) number withIconUrl:(NSString *)url;
+- (void)setDateWithStatus:(NSString *)type withCompany:(NSString *)company withOderNumber:(NSString *) number withIconUrl:(NSString *)url;
 
 @end

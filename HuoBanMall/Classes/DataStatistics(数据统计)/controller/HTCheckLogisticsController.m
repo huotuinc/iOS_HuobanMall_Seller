@@ -9,8 +9,12 @@
 #import "HTCheckLogisticsController.h"
 #import "ExpressCompany.h"
 #import "NewOrdorCell.h"
-
+#import "HTWuliuModel.h"
+#import "GoodModel.h"
+#import "HTWuLiuStatus.h"
 @interface HTCheckLogisticsController ()
+
+@property(nonatomic,strong) HTWuliuModel * dateModel;
 
 @end
 
@@ -36,10 +40,18 @@
 }
 
 - (void)toGetMaterialDetailData{
+     
+     __weak HTCheckLogisticsController *wself = self;
      NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-     dict[@"orderNo"] = @"111ec76e-fe08-45a8-a13c-782e290c5ba1";
-     [UserLoginTool loginRequestGet:@"logisticsDetail" parame:dict success:^(NSDictionary * json) {
-          NSLog(@"xx  orderDetail  %@",json);
+     dict[@"orderNo"] = self.ordorNumber;
+     [UserLoginTool loginRequestGet:@"logisticsDetail" parame:dict success:^(NSDictionary * json){
+         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
+               
+               wself.dateModel = [HTWuliuModel objectWithKeyValues:json[@"resultData"][@"data"]];
+               [wself.tableView reloadData];
+
+          }
+         
      } failure:^(NSError *error) {
           NSLog(@"ss  orderDetail%@",error.description);
      }];
@@ -52,10 +64,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    if (section == 0 || section == 1) {
+
+    if (section == 0) {
         return 1;
-    }else{
+    }else if(section ==1){
+         
+         return self.dateModel.list.count;
+    }
+    else{
        return 4;
     }
     
@@ -72,7 +88,7 @@
             aa.userInteractionEnabled = NO;
             
         }
-        [aa setDateWithStatus:0 withCompany:@"顺丰" withOderNumber:@"111" withIconUrl:nil];
+        [aa setDateWithStatus:self.dateModel.status withCompany:self.dateModel.source withOderNumber:self.dateModel.no withIconUrl:self.dateModel.pictureURL];
         aa.userInteractionEnabled = NO;
         return aa;
     }else if (indexPath.section == 1){
@@ -82,7 +98,9 @@
             
             bb = [[NewOrdorCell alloc] init];
                      }
-        [bb setDate:@"xxxcxxxfhahsdasdklasdfkalshfdlkasfhlkafhklafhlkjashflkasfasfasfjdasfjkal" withPrice:@"1999" WithBuyNum:@"x1" withDesc:@"xxxxx" withIconUrl:nil];
+         
+         GoodModel * aamodel = self.dateModel.list[indexPath.row];
+        [bb setDate:aamodel.title withPrice:[aamodel.money stringValue] WithBuyNum:[aamodel.amount stringValue] withDesc:aamodel.spec withIconUrl:aamodel.pictureUrl];
         bb.userInteractionEnabled = NO;
 
         return bb;
@@ -94,6 +112,7 @@
             
             cc = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:Id];
             cc.textLabel.numberOfLines = 0;
+             cc.textLabel.font = [UIFont systemFontOfSize:13];
             
            
         }
@@ -107,8 +126,11 @@
         }else{
             cc.imageView.image = [UIImage imageNamed:@"gray"];
         }
-        cc.textLabel.text = @"dahasdajsdhasjkdajsd\ndjasdjaskdaksdll";
-        cc.detailTextLabel.text = @"2012-01-11";
+         
+         HTWuLiuStatus * status = self.dateModel.track[indexPath.row];
+     
+        cc.textLabel.text = status.context;
+        cc.detailTextLabel.text = status.times;
         cc.userInteractionEnabled = NO;
 
         return cc;
@@ -161,6 +183,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
  
+     if (indexPath.section == 0) {
+          return 80;
+     }else if (indexPath.section == 2){
+          return 60;
+     }
     return 80;
  
  }
