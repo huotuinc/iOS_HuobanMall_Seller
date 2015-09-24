@@ -45,7 +45,7 @@
    [paramsOption removeObjectForKey:@"appSecret"];
 
     [manager GET:url parameters:paramsOption success:^(AFHTTPRequestOperation *operation, id responseObject){
-//        NSLog(@"%@",operation);
+        NSLog(@"%@",operation);
         success(responseObject);
         
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

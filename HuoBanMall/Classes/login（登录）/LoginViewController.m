@@ -171,7 +171,9 @@
             
         }
     } failure:^(NSError *error) {
-        NSLog(@"%@", error.description);
+        [SVProgressHUD dismiss];
+        
+        [SVProgressHUD showInfoWithStatus:@"请检查网络"];
     }];
     
 }

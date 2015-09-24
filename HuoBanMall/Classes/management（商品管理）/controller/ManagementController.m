@@ -98,7 +98,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 {
     [super viewWillAppear:animated];
     
-    [self getNewGoodList];
+    [self fristGetNewGoodList];
     
 }
 
@@ -135,14 +135,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 
 #pragma mark 网络访问
 
-- (void)getNewGoodList {
-    
-    if (self.tableView.editing) {
-        self.selectImage.image = [UIImage imageNamed:@"wxz"];
-        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height - self.buttomView.frame.size.height);
-    }
-    
-    [self.selectGoods removeAllObjects];
+- (void)fristGetNewGoodList {
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if (self.segment.selectedSegmentIndex) {
@@ -158,7 +151,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
         [SVProgressHUD dismiss];
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
-
+            
             NSArray *temp = [ManagementModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             
             [self.goods removeAllObjects];
@@ -183,6 +176,64 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
         }
         
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
+        [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
+        
+    }];
+    
+}
+
+
+- (void)getNewGoodList {
+    
+    if (self.tableView.editing) {
+        self.selectImage.image = [UIImage imageNamed:@"wxz"];
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height - self.buttomView.frame.size.height);
+    }
+    
+    [self.selectGoods removeAllObjects];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    if (self.segment.selectedSegmentIndex) {
+        dic[@"type"] = @2;
+    }else {
+        dic[@"type"] = @1;
+    }
+    
+//    [SVProgressHUD showWithStatus:@"数据加载中"];
+    
+    [UserLoginTool loginRequestGet:@"goodsList" parame:dic success:^(id json) {
+        
+//        [SVProgressHUD dismiss];
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+
+            NSArray *temp = [ManagementModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            
+            [self.goods removeAllObjects];
+            
+            [self.goods addObjectsFromArray:temp];
+            
+            [self.tableView reloadData];
+            
+            
+            [self.tableView headerEndRefreshing];
+        }
+        
+        if ([json[@"resultCode"] intValue] == 56001) {
+            
+            [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"%@",json[@"resultDescription"]]];
+            
+            LoginViewController *login = [[LoginViewController alloc] init];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+            [self presentViewController:nav animated:YES completion:^{
+
+            }];
+        }
+        
+    } failure:^(NSError *error) {
+
+        [self.tableView headerEndRefreshing];
         
         [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
         
@@ -199,7 +250,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     ManagementModel *model = self.goods.lastObject;
     dic[@"lastProductId"] = model.goodsId;
     
-    [SVProgressHUD showWithStatus:@"数据加载中"];
+//    [SVProgressHUD showWithStatus:@"数据加载中"];
     
     [UserLoginTool loginRequestPost:@"goodsList" parame:dic success:^(id json) {
         
@@ -238,6 +289,8 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
         
         
     } failure:^(NSError *error) {
+        
+        [self.tableView footerEndRefreshing];
         
         [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
         

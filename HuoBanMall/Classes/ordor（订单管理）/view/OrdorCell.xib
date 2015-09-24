@@ -90,6 +90,11 @@
             <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="bgView" destination="wHa-xv-G0H" id="bWd-ti-zEf"/>
+                <outlet property="goodAmount" destination="VN0-SM-cv2" id="THe-Ox-nfs"/>
+                <outlet property="goodImage" destination="aqV-Ra-2KN" id="I4K-iK-s5e"/>
+                <outlet property="goodOther" destination="CNS-yQ-I1A" id="52Y-RD-mY2"/>
+                <outlet property="goodPrice" destination="JGI-td-UMP" id="cfx-Cu-nZu"/>
+                <outlet property="goosTitle" destination="vNh-Ni-LqR" id="UPt-T7-ybZ"/>
             </connections>
             <point key="canvasLocation" x="270" y="350.5"/>
         </tableViewCell>

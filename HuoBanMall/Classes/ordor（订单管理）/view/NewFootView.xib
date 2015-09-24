@@ -69,7 +69,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9R-zX-Rhe">
                             <rect key="frame" x="-140" y="69" width="600" height="1"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line" translatesAutoresizingMaskIntoConstraints="NO" id="oxn-jC-0yT">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line1" translatesAutoresizingMaskIntoConstraints="NO" id="oxn-jC-0yT">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
                                 </imageView>
                             </subviews>
@@ -163,5 +163,6 @@
     </objects>
     <resources>
         <image name="line" width="600" height="2"/>
+        <image name="line1" width="600" height="2"/>
     </resources>
 </document>
