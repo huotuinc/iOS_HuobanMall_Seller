@@ -8,12 +8,62 @@
 
 #import "HTStatisticsController.h"
 #import "HTTStatisticCell.h"
+#import "HTStatisticsModel.h"
+#import "MJRefresh.h"
 
-@interface HTStatisticsController ()
+@interface HTStatisticsController ()<UISearchBarDelegate>
 
+
+/**明细分析*/
+@property(nonatomic,strong) NSMutableArray * dateStat;
+
+
+@property(nonatomic,strong) NSMutableArray * liushui;
+
+@property(nonatomic,strong) NSMutableArray * Topliushui;
+
+
+@property(nonatomic,strong) UISearchBar * mysearch;
+
+
+@property(nonatomic,strong) UISegmentedControl * mySegmented;
 @end
 
 @implementation HTStatisticsController
+
+/**
+ *  模型数据
+ *
+ *  @return <#return value description#>
+ */
+- (NSMutableArray *)dateStat{
+    if (_dateStat == nil) {
+        _dateStat = [NSMutableArray array];
+    }
+    return _dateStat;
+}
+
+- (NSMutableArray *)liushui{
+    
+    if (_liushui == nil) {
+        
+        _liushui = [NSMutableArray array];
+    }
+    
+    return _liushui;
+}
+
+
+- (NSMutableArray *)Topliushui{
+    if (_Topliushui == nil) {
+
+        _Topliushui = [NSMutableArray array];
+    }
+    
+    return _Topliushui;
+    
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,25 +71,58 @@
     //初始化一些
     [self setup];
     
-    [self xx];
-    self.tableView.tableFooterView = [[UIView alloc] init];
+    [self toGetInitializeDataWithSearchKey:nil];
+    
+    //获取前十数据
+    [self toGetTop];
+    
+    /**集成刷新控件*/
+    [self setupRefresh];
  }
 
+/**
+ *  获取前十数据
+ */
+- (void)toGetTop{
+    
+    NSString * StatisticsControllerJieKous = nil;
+    if(self.type == 1){
+        StatisticsControllerJieKous = @"topScore";
+    }else if(self.type ==  2){
+        StatisticsControllerJieKous = @"topConsume";
+    }else{
+        StatisticsControllerJieKous = @"topSales";
+    }
+    [UserLoginTool loginRequestGet:StatisticsControllerJieKous parame:nil success:^(id json) {
 
-- (void)SegmentedControlValueChange:(UISegmentedControl *) seg{
-    
-    NSLog(@"%ld",(long)seg.selectedSegmentIndex);
-    
-    
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
+            NSArray * models = [HTStatisticsModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            if (models.count) {
+                [self.Topliushui removeAllObjects];
+                [self.Topliushui addObjectsFromArray:models];
+            }
+            
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error.description);
+    }];
 }
+
 - (void)setup{
+    
+    
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    UIButton * searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [searchBtn setBackgroundImage:[UIImage imageNamed:@"ss"] forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBtn];
+    [searchBtn addTarget:self action:@selector(searchBarItems:) forControlEvents:UIControlEventTouchUpInside];
     
     UISegmentedControl * aa = [[UISegmentedControl alloc] initWithItems:@[@"明细",@"top"]];
     aa.frame =  CGRectMake(0, 0, 120, 30);
+    self.mySegmented = aa;
     aa.selectedSegmentIndex = 0;
     self.navigationItem.titleView = aa;
     [aa addTarget:self action:@selector(SegmentedControlValueChange:) forControlEvents:UIControlEventValueChanged];
-    
     
     if(self.type == 1){
         self.title = @"返利统计";
@@ -48,6 +131,17 @@
     }else{
         self.title = @"销售明细";
     }
+    
+    UISearchBar *mySearchBar = [[UISearchBar alloc] init];
+    mySearchBar.showsCancelButton = YES;
+    mySearchBar.placeholder = @"搜索条件";
+    mySearchBar.frame = CGRectMake(8, 0, self.navigationController.navigationBar.frame.size.width-16, 44);
+    mySearchBar.backgroundColor = NavBackgroundColor;
+    [mySearchBar setDelegate:self];
+    mySearchBar.hidden = YES;
+    _mysearch = mySearchBar;
+    [self.navigationController.navigationBar addSubview:mySearchBar];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,14 +153,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 10;
+    return self.dateStat.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HTTStatisticCell * cell = [HTTStatisticCell cellWithTableView:tableView];
-    cell.model = nil;
+    HTStatisticsModel * model = self.dateStat[indexPath.row];
+    model.Type = self.type;
+    cell.model = model;
     return cell;
 }
 
@@ -77,148 +173,163 @@
 }
 
 
-///**
-// *  集成刷新控件
-// */
-//- (void)setupRefresh
-//{
-//    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
-//    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
-//    //#warning 自动刷新(一进入程序就下拉刷新)
+
+#pragma mark 集成刷新空间
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //#warning 自动刷新(一进入程序就下拉刷新)
 //    [self.tableView headerBeginRefreshing];
-//    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
-//    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
-//    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
-//    self.tableView.headerRefreshingText = @"正在刷新最新数据,请稍等";
-//    
-//    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
-//    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
-//    
-//    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
-//    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
-//    self.tableView.footerRefreshingText = @"正在加载更多数据,请稍等";
-//    
-//}
+    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
+    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
+    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
+    self.tableView.headerRefreshingText = @"正在刷新最新数据,请稍等";
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+    
+    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
+    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
+    self.tableView.footerRefreshingText = @"正在加载更多数据,请稍等";
+    
+}
 //
 //
 //
-////头部刷新
-//- (void)headerRereshing  //加载最新数据
-//{
+//头部刷新
+- (void)headerRereshing  //加载最新数据
+{
 //    NSMutableDictionary * params = [NSMutableDictionary dictionary];
 //    params[@"pagingTag"] = @"";
 //    params[@"pagingSize"] = @(pageSize);
-//    [self getNewMoreData:params];
-//    // 2.(最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
-//    [self.tableView headerEndRefreshing];
-//}
-//
-////尾部刷新
-//- (void)footerRereshing{  //加载更多数据数据
-//    
-//    TaskGrouoModel * bbbs = [self.taskGroup lastObject];
-//    taskData * task = [bbbs.tasks lastObject];
-//    NSMutableDictionary * params = [NSMutableDictionary dictionary];
-//    params[@"pagingTag"] =[NSString stringWithFormat:@"%lld",task.taskOrder];
-//    //    NSLog(@"尾部刷新%ld",task.taskOrder);
-//    params[@"pagingSize"] = @(pageSize);
-//    [self getMoreData:params];
-//    // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
-//    [self.tableView footerEndRefreshing];
-//}
-//
-///**
-// *   上拉加载更多
-// *
-// *
-// */
-//- (void)getMoreData:(NSMutableDictionary *) params{
-//    NSString * usrStr = [MainURL stringByAppendingPathComponent:@"taskList"];
-//    
-//    //    [MBProgressHUD showMessage:nil];
-//    __weak HomeViewController *wself = self;
-//    [UserLoginTool loginRequestGet:usrStr parame:params success:^(id json) {
-//        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==56001){
-//            [[NSUserDefaults standardUserDefaults] setObject:@"wrong" forKey:loginFlag];
-//            [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:AppToken];
-//            
-//            UIAlertView * aaa = [[UIAlertView alloc] initWithTitle:@"账号提示" message:@"当前账号被登录，是否重新登录?" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
-//            aaa.tag = 1;
-//            [aaa show];
-//            return ;
-//        }
-//        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {//访问成果
-//            NSArray * taskArray = [taskData objectArrayWithKeyValuesArray:json[@"resultData"][@"task"]];
-//            if (taskArray.count > 0) {
-//                [wself toGroupsByTime:taskArray];  //分组
-//                [wself.tableView reloadData];    //刷新数据
-//            }
-//            
-//        }
-//        
-//    } failure:^(NSError *error) {
-//        [MBProgressHUD showError:@"粉猫服务器连接异常"];
-//    }];
-//    
-//}
-///**
-// *  下拉加载更新数据
-// */
-//-(void)getNewMoreData:(NSMutableDictionary *)params{
-//    
-//    NSString * usrStr = [MainURL stringByAppendingPathComponent:@"taskList"];
-//    __weak HomeViewController *wself = self;
-//    if (IsIos8) {
-//        [MBProgressHUD showMessage:nil];
-//    }
-//    [UserLoginTool loginRequestGet:usrStr parame:params success:^(id json) {
-//        [MBProgressHUD hideHUD];
-//        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==56001){
-//            [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:AppToken];
-//            [[NSUserDefaults standardUserDefaults] setObject:@"wrong" forKey:loginFlag];
-//            UIAlertView * aaa = [[UIAlertView alloc] initWithTitle:@"账号提示" message:@"当前账号被登录，是否重新登录?" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
-//            [aaa show];
-//            return ;
-//        }
-//        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==56000){
-//            [MBProgressHUD showSuccess:json[@"resultDescription"]];
-//            [self.taskDatas removeAllObjects];
-//            
-//            return ;
-//        }
-//        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {//访问成果
-//            [MBProgressHUD hideHUD];
-//            NSArray * taskArray = [taskData objectArrayWithKeyValuesArray:json[@"resultData"][@"task"]];
-//            [wself.taskGroup removeAllObjects];
-//            
-//            [wself toGroupWithTopTask:taskArray];
-//            refreshCount = (int)[taskArray count];
-//            //            [wself showHomeRefershCount];
-//            if (taskArray.count > 0) {
-//                [self setWiteBackground];
-//            }else {
-//                [self setWiteBackground];
-//            }
-//            [MBProgressHUD hideHUD];
-//            [wself.tableView reloadData];    //刷新数据
-//        }
-//        
-//        [MBProgressHUD hideHUD];
-//    } failure:^(NSError *error) {
-//        [MBProgressHUD hideHUD];
-//        [MBProgressHUD showError:@"粉猫服务器连接异常"];
-//        
-//    }];
-//    
-//}
-
-- (void)xx{
-    
-    NSDate * ptime = [[NSDate alloc] init];;
-    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy/MM/dd hh:mm:ss"];
-    NSString * publishtime = [formatter stringFromDate:ptime];
-    NSLog(@"%@",publishtime);
+    if (self.mySegmented.selectedSegmentIndex == 0) {
+        [self toGetInitializeDataWithSearchKey:nil];
+    }else{
+        [self Topliushui];
+    }
+    // 2.(最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+    [self.tableView headerEndRefreshing];
 }
 
+//
+//尾部刷新
+- (void)footerRereshing{  //加载更多数据数据
+    
+    HTStatisticsModel * bbbs = [self.dateStat lastObject];
+    NSMutableDictionary * params = [NSMutableDictionary dictionary];
+    if (self.type == 1) {
+        params[@"lastId"] = @(bbbs.pid);
+    }else{
+        params[@"lastDate"] = @(bbbs.time);
+    }
+    [self getMoreData:params];
+    // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+    [self.tableView footerEndRefreshing];
+}
+
+/**
+ *   上拉加载更多
+ *
+ *
+ */
+- (void)getMoreData:(NSMutableDictionary *) params{
+    NSString * StatisticsControllerJieKou = nil;
+    if(self.type == 1){
+        StatisticsControllerJieKou = @"userScoreList";
+    }else if(self.type ==  2){
+        StatisticsControllerJieKou = @"userConsumeList";
+    }else{
+        StatisticsControllerJieKou = @"salesList";
+    }
+    __weak HTStatisticsController *wself = self;
+    [UserLoginTool loginRequestGet:StatisticsControllerJieKou parame:params success:^(id json) {
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
+            NSArray * models = [HTStatisticsModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            if (models.count) {
+                //纪录数据
+                [wself.liushui addObjectsFromArray:models];
+                [wself.dateStat addObjectsFromArray:models];
+                [wself.tableView reloadData];
+            }
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error.description);
+ 
+    }];
+    
+}
+
+- (void)toGetInitializeDataWithSearchKey:(NSString * )key{
+    
+    NSString * StatisticsControllerJieKou = nil;
+    if(self.type == 1){
+        StatisticsControllerJieKou = @"userScoreList";
+    }else if(self.type ==  2){
+        StatisticsControllerJieKou = @"userConsumeList";
+    }else{
+        StatisticsControllerJieKou = @"salesList";
+    }
+    NSMutableDictionary * paramess= [NSMutableDictionary dictionary];
+    if ([key length]) {
+        paramess[@"key"] = key;
+    }
+    __weak HTStatisticsController *wself = self;
+    [UserLoginTool loginRequestGet:StatisticsControllerJieKou parame:paramess success:^(id json) {
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
+            NSArray * models = [HTStatisticsModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            if (models.count) {
+                [wself.liushui removeAllObjects];
+                [wself.liushui addObjectsFromArray:models];
+                [self.dateStat removeAllObjects];
+                [self.dateStat addObjectsFromArray:models];
+                [self.tableView reloadData];
+            }
+            
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error.description);
+    }];
+}
+
+
+#pragma mark 监听搜索按钮点击
+
+- (void)searchBarItems:(UIButton *)btn{
+    
+    [self.mysearch becomeFirstResponder];
+    self.mysearch.hidden = !self.mysearch.hidden;
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar endEditing:YES];
+    self.mysearch.hidden = YES;
+    
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [searchBar endEditing:YES];
+    [self toGetInitializeDataWithSearchKey:searchBar.text];
+     self.mysearch.hidden = YES;
+}
+
+#pragma mark segmentChange
+- (void)SegmentedControlValueChange:(UISegmentedControl *) seg{
+  
+    if(seg.selectedSegmentIndex == 0) {
+
+        [self.dateStat removeAllObjects];
+        [self.dateStat addObjectsFromArray:self.liushui];
+        [self.tableView reloadData];
+    }else if(seg.selectedSegmentIndex == 1){
+
+        [self.dateStat removeAllObjects];
+        [self.dateStat addObjectsFromArray:self.Topliushui];
+        [self.tableView reloadData];
+    }
+    
+}
 @end

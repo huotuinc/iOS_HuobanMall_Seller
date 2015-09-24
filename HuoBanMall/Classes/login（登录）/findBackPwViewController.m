@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+     
     
     
     self.title = @"找回密码";
