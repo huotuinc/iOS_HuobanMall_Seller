@@ -30,13 +30,7 @@
         
         
         _logisticsDetail = [NSArray array];
-        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-        dict[@"orderNo"] = @(201505061723033841);
-        [UserLoginTool loginRequestGet:@"orderDetail" parame:dict success:^(NSDictionary * json) {
-            NSLog(@"xx  orderDetail  %@",json);
-        } failure:^(NSError *error) {
-            NSLog(@"ss  orderDetail%@",error.description);
-        }];
+        
         
     }
     return _logisticsDetail;
@@ -47,6 +41,10 @@
     self.title = @"订单管理详情";
     [self.tableView registerNib:[UINib nibWithNibName:@"OrdorCell" bundle:nil]   forCellReuseIdentifier:@"OrdorCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"HTXQFLCell" bundle:nil] forCellReuseIdentifier:@"HTXQFLCell"];
+    
+    
+    //获取物流详细信息
+    [self toGetMaterialDetailData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -54,7 +52,18 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    self.logisticsDetail;
+}
+
+
+
+- (void)toGetMaterialDetailData{
+    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+    dict[@"orderNo"] = @"111ec76e-fe08-45a8-a13c-782e290c5ba1";
+    [UserLoginTool loginRequestGet:@"logisticsDetail" parame:dict success:^(NSDictionary * json) {
+        NSLog(@"xx  orderDetail  %@",json);
+    } failure:^(NSError *error) {
+        NSLog(@"ss  orderDetail%@",error.description);
+    }];
 }
 
 
@@ -160,7 +169,9 @@
     }else if (indexPath.section == 1) {
         return 40;
     }else if (indexPath.section == 2) {
-        return 8;
+        return 83;
+    }else if (indexPath.section == 3) {
+        return 44;
     }else{
         return 60;
     }

@@ -102,6 +102,8 @@
 		EF7859A91BA93A5F002A0626 /* ExpressCompany.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7859A71BA93A5F002A0626 /* ExpressCompany.xib */; };
 		EF7C4C4A1BAD347400DB4ABD /* HTXQFLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7C4C481BAD347400DB4ABD /* HTXQFLCell.m */; };
 		EF7C4C4B1BAD347400DB4ABD /* HTXQFLCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7C4C491BAD347400DB4ABD /* HTXQFLCell.xib */; };
+		EF8B72E31BB3C93C00B9105B /* HTWuliuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8B72E21BB3C93C00B9105B /* HTWuliuModel.m */; };
+		EF8B72E61BB3CAFA00B9105B /* HTWuLiuStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8B72E51BB3CAFA00B9105B /* HTWuLiuStatus.m */; };
 		EF98A8271BAC35DD0087BB60 /* HTTopTenGoodsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF98A8261BAC35DD0087BB60 /* HTTopTenGoodsController.m */; };
 		EF98A82A1BAC36E00087BB60 /* HTTopTenGoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF98A8291BAC36E00087BB60 /* HTTopTenGoodCell.m */; };
 		EFB67CC81B8B0C5A0037547A /* HTDataStatisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB67CC71B8B0C5A0037547A /* HTDataStatisViewController.m */; };
@@ -298,6 +300,10 @@
 		EF7C4C471BAD347400DB4ABD /* HTXQFLCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTXQFLCell.h; sourceTree = "<group>"; };
 		EF7C4C481BAD347400DB4ABD /* HTXQFLCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTXQFLCell.m; sourceTree = "<group>"; };
 		EF7C4C491BAD347400DB4ABD /* HTXQFLCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTXQFLCell.xib; sourceTree = "<group>"; };
+		EF8B72E11BB3C93C00B9105B /* HTWuliuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTWuliuModel.h; sourceTree = "<group>"; };
+		EF8B72E21BB3C93C00B9105B /* HTWuliuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTWuliuModel.m; sourceTree = "<group>"; };
+		EF8B72E41BB3CAFA00B9105B /* HTWuLiuStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTWuLiuStatus.h; sourceTree = "<group>"; };
+		EF8B72E51BB3CAFA00B9105B /* HTWuLiuStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTWuLiuStatus.m; sourceTree = "<group>"; };
 		EF98A8251BAC35DD0087BB60 /* HTTopTenGoodsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTopTenGoodsController.h; sourceTree = "<group>"; };
 		EF98A8261BAC35DD0087BB60 /* HTTopTenGoodsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTopTenGoodsController.m; sourceTree = "<group>"; };
 		EF98A8281BAC36E00087BB60 /* HTTopTenGoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTopTenGoodCell.h; sourceTree = "<group>"; };
@@ -408,6 +414,10 @@
 				838895C51BAAAFC1008408AE /* SaleModel.m */,
 				8354C00F1BAD267900A51EB9 /* MenListModel.h */,
 				8354C0101BAD267900A51EB9 /* MenListModel.m */,
+				EF8B72E11BB3C93C00B9105B /* HTWuliuModel.h */,
+				EF8B72E21BB3C93C00B9105B /* HTWuliuModel.m */,
+				EF8B72E41BB3CAFA00B9105B /* HTWuLiuStatus.h */,
+				EF8B72E51BB3CAFA00B9105B /* HTWuLiuStatus.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -999,6 +1009,7 @@
 				8372E4251BA2BA27007146BD /* UIScrollView+MJExtension.m in Sources */,
 				834728E71B8C51C6005B72F9 /* ChangePasswordController.m in Sources */,
 				838895C61BAAAFC1008408AE /* SaleModel.m in Sources */,
+				EF8B72E31BB3C93C00B9105B /* HTWuliuModel.m in Sources */,
 				EF61A0C91B93F3FE0008A82C /* MJType.m in Sources */,
 				EF73D16C1B8BFAB6004A7B37 /* UITableView+CJ.m in Sources */,
 				83D4572C1B8AA7910027D452 /* UserLoginTool.m in Sources */,
@@ -1054,6 +1065,7 @@
 				83737D221BA7B4AC000BD2D4 /* OrdorCell.m in Sources */,
 				830778681B9E7BC7002AF0FD /* ManagementCell.m in Sources */,
 				EF61A0CA1B93F3FE0008A82C /* MJTypeEncoding.m in Sources */,
+				EF8B72E61BB3CAFA00B9105B /* HTWuLiuStatus.m in Sources */,
 				EF73D1771B8C0103004A7B37 /* Base64Util.m in Sources */,
 				83B4F2AC1BA66263009D6631 /* NewTodayModel.m in Sources */,
 				EF7859A81BA93A5F002A0626 /* ExpressCompany.m in Sources */,

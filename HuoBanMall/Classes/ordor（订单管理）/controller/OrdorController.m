@@ -336,12 +336,4 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 }
 
 
-
-//- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-//    if (range.location > 15) {
-//        return NO;
-//    }
-//    return YES;
-//}
-
 @end
