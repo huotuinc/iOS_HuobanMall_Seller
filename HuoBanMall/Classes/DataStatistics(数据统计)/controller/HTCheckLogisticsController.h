@@ -10,4 +10,6 @@
 
 @interface HTCheckLogisticsController : UITableViewController
 
+@property (nonatomic, strong) NSString *ordorNumber;
+
 @end

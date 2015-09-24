@@ -15,4 +15,16 @@
 
 @property (nonatomic, strong) GoodModel *model;
 
+
+@property (weak, nonatomic) IBOutlet UIImageView *goodImage;
+
+@property (weak, nonatomic) IBOutlet UILabel *goosTitle;
+
+@property (weak, nonatomic) IBOutlet UILabel *goodPrice;
+@property (weak, nonatomic) IBOutlet UILabel *goodAmount;
+/**
+ *  颜色 尺码信息
+ */
+@property (weak, nonatomic) IBOutlet UILabel *goodOther;
+
 @end

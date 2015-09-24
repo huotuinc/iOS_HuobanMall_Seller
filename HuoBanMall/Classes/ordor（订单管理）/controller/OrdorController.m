@@ -14,6 +14,7 @@
 #import "HTCheckLogisticsController.h"
 #import "MJRefresh.h"
 #import "OrdorModel.h"
+#import "GoodModel.h"
 
 @interface OrdorController ()<UITableViewDelegate,UITableViewDataSource,NewFootViewDelegate, UISearchBarDelegate>
 
@@ -23,7 +24,7 @@
 @property (nonatomic, strong) UIView *screenView;
 
 //订单数组
-@property (nonatomic, strong) NSArray *ordors;
+@property (nonatomic, strong) NSMutableArray *ordors;
 
 //全部的x值
 @property (nonatomic, assign) CGFloat ALLX;
@@ -48,6 +49,9 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.ordors = [NSMutableArray array];
+    
     
     [self.tableView registerNib:[UINib nibWithNibName:@"OrdorCell" bundle:nil] forCellReuseIdentifier:ordorIdentifier];
 //    self.tableView.separatorColor = [UIColor whiteColor];
@@ -81,7 +85,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
         
     }];
     
-    [self getNewOrdorList];
+    [self fristGetNewList];
     
 }
 
@@ -113,35 +117,122 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ *  第一次进入页面的方法
+ */
+- (void)fristGetNewList {
+    
+    NSMutableDictionary * dic = [NSMutableDictionary dictionary];
+    
+    dic[@"status"] = @(self.type);
+    
+    [SVProgressHUD showWithStatus:@"数据加载中"];
+    [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
+        
+        [SVProgressHUD dismiss];
+        
+        NSLog(@"%@", json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            NSArray *temp = [OrdorModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            
+            [self.ordors addObjectsFromArray:temp];
+            
+            [self.tableView reloadData];
+        }
+        if ([json[@"resultCode"] intValue] == 56001) {
+            
+            [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"%@",json[@"resultDescription"]]];
+            
+            LoginViewController *login = [[LoginViewController alloc] init];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+            [self presentViewController:nav animated:YES completion:^{
+                [SVProgressHUD dismiss];
+            }];
+        }
+        
+    } failure:^(NSError *error) {
+
+        [SVProgressHUD dismiss];
+        [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
+        
+    }];
+    
+}
+
 - (void)getNewOrdorList {
     
     NSMutableDictionary * dic = [NSMutableDictionary dictionary];
     
     dic[@"status"] = @(self.type);
     
+
     [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
         [self.tableView headerEndRefreshing];
         
-        NSLog(@"%@", json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            [self.ordors removeAllObjects];
+            
+            NSArray *temp = [OrdorModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            
+            [self.ordors addObjectsFromArray:temp];
+        
+//            [self.tableView reloadData];
+        }
+        if ([json[@"resultCode"] intValue] == 56001) {
+            
+            [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"%@",json[@"resultDescription"]]];
+            
+            LoginViewController *login = [[LoginViewController alloc] init];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+            [self presentViewController:nav animated:YES completion:^{
+                
+            }];
+        }
+        
+    } failure:^(NSError *error) {
         
         [self.tableView headerEndRefreshing];
-    } failure:^(NSError *error) {
-        [self.tableView headerEndRefreshing];
-        NSLog(@"%@", error);
+        
+        [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
         
     }];
 }
 
 - (void)getMoreOrdorList {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    
+
+    OrdorModel *model = [self.ordors lastObject];
+
     dic[@"status"] = @(self.type);
-//    dic[@"id"] = nil;
+    dic[@"lastDate"] = model.time;
     [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
         NSLog(@"%@", json);
         [self.tableView headerEndRefreshing];
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
+            
+            NSArray *temp = [OrdorModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            
+            [self.ordors addObjectsFromArray:temp];
+            
+        }
+        if ([json[@"resultCode"] intValue] == 56001) {
+            
+            [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"%@",json[@"resultDescription"]]];
+            
+            LoginViewController *login = [[LoginViewController alloc] init];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+            [self presentViewController:nav animated:YES completion:^{
+                
+            }];
+        }
     } failure:^(NSError *error) {
+        [self.tableView headerEndRefreshing];
         NSLog(@"%@", error);
+        [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
     }];
     
 }
@@ -242,21 +333,14 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return self.ordors.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
-            return 1;
-            break;
-        case 1:
-            return 2;
-        default:
-            return 3;
-            break;
-    }
+    OrdorModel *model = self.ordors[section];
+    
+    return model.list.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -278,6 +362,9 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     HeadView *head = [[[NSBundle mainBundle] loadNibNamed:@"HeadView" owner:nil options:nil] lastObject];
+    
+    head.model = self.ordors[section];
+    
     return head;
 }
 
@@ -286,12 +373,20 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 {
     NewFootView *foot = [[[NSBundle mainBundle] loadNibNamed:@"NewFootView" owner:nil options:nil] lastObject];
     foot.delegate = self;
+    
+    foot.model = self.ordors[section];
+    
     return foot;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OrdorCell *cell = [tableView dequeueReusableCellWithIdentifier:ordorIdentifier forIndexPath:indexPath];
+    
+    OrdorModel *ordorModel = self.ordors[indexPath.section];
+    
+    cell.model = ordorModel.list[indexPath.row];
+    
     return cell;
 }
 
@@ -306,6 +401,9 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 - (void)NewFootViewCheckMaterialWith:(NewFootView *)newfootView{
     
     HTCheckLogisticsController * vc = [[HTCheckLogisticsController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    vc.ordorNumber = newfootView.model.orderNo;
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 

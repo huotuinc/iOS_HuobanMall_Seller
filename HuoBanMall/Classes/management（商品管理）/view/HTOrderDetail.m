@@ -125,12 +125,14 @@
     contactLable.text = @"联系方式：";
     _contactLable = contactLable;
     _contactLable.textColor = [UIColor blueColor];
+    _contactLable.font = [UIFont systemFontOfSize:14];
     contactLable.textAlignment = NSTextAlignmentRight;
     [self addSubview:contactLable];
     
     UILabel *number = [[UILabel alloc] init];
     _contactPhoneNumberLable = number;
     _contactPhoneNumberLable.textColor = [UIColor blueColor];
+    _contactPhoneNumberLable.font = [UIFont systemFontOfSize:14];
     number.textAlignment = NSTextAlignmentLeft;
     [self addSubview:number];
 }

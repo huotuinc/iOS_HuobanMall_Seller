@@ -10,6 +10,9 @@
 
 @implementation OrdorModel
 
-
+- (NSDictionary *)objectClassInArray
+{
+    return @{@"list":[GoodModel class]};
+}
 
 @end

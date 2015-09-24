@@ -10,4 +10,6 @@
 
 @implementation GoodModel
 
+
+
 @end

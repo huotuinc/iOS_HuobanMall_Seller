@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GoodModel.h"
 
 @interface OrdorModel : NSObject
 
 /**订单商品总数量*/
 @property (nonatomic, strong) NSNumber *amount;
 /**规格数据*/
-@property (nonatomic, strong) NSArray *goods;
+@property (nonatomic, strong) NSArray *list;
 /**订单号*/
 @property (nonatomic, strong) NSString *orderNo;
 /**实付金额*/
@@ -21,7 +22,7 @@
 /**订单状态*/
 @property (nonatomic, strong) NSNumber *status;
 /**下单时间*/
-@property (nonatomic, strong) NSNumber *date;
+@property (nonatomic, strong) NSNumber *time;
 
 
 @end
