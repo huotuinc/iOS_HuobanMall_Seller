@@ -104,6 +104,8 @@
 		EF7C4C4B1BAD347400DB4ABD /* HTXQFLCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7C4C491BAD347400DB4ABD /* HTXQFLCell.xib */; };
 		EF8B72E31BB3C93C00B9105B /* HTWuliuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8B72E21BB3C93C00B9105B /* HTWuliuModel.m */; };
 		EF8B72E61BB3CAFA00B9105B /* HTWuLiuStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8B72E51BB3CAFA00B9105B /* HTWuLiuStatus.m */; };
+		EF8B72E91BB3F41100B9105B /* HTJiFenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8B72E81BB3F41100B9105B /* HTJiFenModel.m */; };
+		EF8B72EC1BB4181100B9105B /* HTTopTenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8B72EB1BB4181100B9105B /* HTTopTenModel.m */; };
 		EF98A8271BAC35DD0087BB60 /* HTTopTenGoodsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF98A8261BAC35DD0087BB60 /* HTTopTenGoodsController.m */; };
 		EF98A82A1BAC36E00087BB60 /* HTTopTenGoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF98A8291BAC36E00087BB60 /* HTTopTenGoodCell.m */; };
 		EFB67CC81B8B0C5A0037547A /* HTDataStatisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB67CC71B8B0C5A0037547A /* HTDataStatisViewController.m */; };
@@ -304,6 +306,10 @@
 		EF8B72E21BB3C93C00B9105B /* HTWuliuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTWuliuModel.m; sourceTree = "<group>"; };
 		EF8B72E41BB3CAFA00B9105B /* HTWuLiuStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTWuLiuStatus.h; sourceTree = "<group>"; };
 		EF8B72E51BB3CAFA00B9105B /* HTWuLiuStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTWuLiuStatus.m; sourceTree = "<group>"; };
+		EF8B72E71BB3F41100B9105B /* HTJiFenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTJiFenModel.h; sourceTree = "<group>"; };
+		EF8B72E81BB3F41100B9105B /* HTJiFenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTJiFenModel.m; sourceTree = "<group>"; };
+		EF8B72EA1BB4181100B9105B /* HTTopTenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTopTenModel.h; sourceTree = "<group>"; };
+		EF8B72EB1BB4181100B9105B /* HTTopTenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTopTenModel.m; sourceTree = "<group>"; };
 		EF98A8251BAC35DD0087BB60 /* HTTopTenGoodsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTopTenGoodsController.h; sourceTree = "<group>"; };
 		EF98A8261BAC35DD0087BB60 /* HTTopTenGoodsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTopTenGoodsController.m; sourceTree = "<group>"; };
 		EF98A8281BAC36E00087BB60 /* HTTopTenGoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTopTenGoodCell.h; sourceTree = "<group>"; };
@@ -509,6 +515,10 @@
 				EF6A82CD1BB27689005094B1 /* HTBaseModel.m */,
 				EF6A82CF1BB289F0005094B1 /* HTXiaoShouModel.h */,
 				EF6A82D01BB289F0005094B1 /* HTXiaoShouModel.m */,
+				EF8B72E71BB3F41100B9105B /* HTJiFenModel.h */,
+				EF8B72E81BB3F41100B9105B /* HTJiFenModel.m */,
+				EF8B72EA1BB4181100B9105B /* HTTopTenModel.h */,
+				EF8B72EB1BB4181100B9105B /* HTTopTenModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1003,6 +1013,7 @@
 				EF78599B1BA81A32002A0626 /* HTStatisticsController.m in Sources */,
 				8354C0111BAD267900A51EB9 /* MenListModel.m in Sources */,
 				83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */,
+				EF8B72E91BB3F41100B9105B /* HTJiFenModel.m in Sources */,
 				83497D031BB38A47001E5DB7 /* OrdorModel.m in Sources */,
 				EF6B32B81B904B2B00A6B46D /* HTHomeViewController.m in Sources */,
 				83737D2D1BA7BA3B000BD2D4 /* FootView.m in Sources */,
@@ -1020,6 +1031,7 @@
 				83737D261BA7B7AD000BD2D4 /* HeadView.m in Sources */,
 				EF6B32AF1B9044AA00A6B46D /* HTHuoBanNavgationViewController.m in Sources */,
 				EF7859931BA7BB0B002A0626 /* HTOrderDetailModel.m in Sources */,
+				EF8B72EC1BB4181100B9105B /* HTTopTenModel.m in Sources */,
 				EF98A82A1BAC36E00087BB60 /* HTTopTenGoodCell.m in Sources */,
 				834728F21B8C6F61005B72F9 /* PushViewController.m in Sources */,
 				EF73D1791B8C0103004A7B37 /* MD5Encryption.m in Sources */,

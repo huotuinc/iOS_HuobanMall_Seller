@@ -7,17 +7,13 @@
 //
 
 #import "HTOrderDetailModel.h"
+#import "GoodModel.h"
+#import "HTJiFenModel.h"
+@implementation HTOrderDetailModel : NSObject 
 
-@implementation HTOrderDetailModel
-
-
-- (instancetype)init{
-    
-    if (self = [super init]) {
-        self.buyName = @"小明";
-        self.place = @"杭州市滨江区";
-        self.phoneNumber  = @"13857560740";
-    }
-    return self;
+- (NSDictionary *)objectClassInArray
+{
+    return @{@"scoreList":[HTJiFenModel class],@"list":[GoodModel class]};
 }
+
 @end

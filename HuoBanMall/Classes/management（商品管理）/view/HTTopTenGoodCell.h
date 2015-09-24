@@ -7,12 +7,12 @@
 //  商品前十展示cell
 
 #import <UIKit/UIKit.h>
-@class HTStatisticsModel;
+@class HTTopTenModel;
 @interface HTTopTenGoodCell : UITableViewCell
 
 + (HTTopTenGoodCell *)cellWithTableView:(UITableView *)tablew cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @property(nonatomic,strong)UIImageView * topImageView;
-@property(nonatomic,strong) HTStatisticsModel * model;
+@property(nonatomic,strong) HTTopTenModel * model;
 
 @end

@@ -7,8 +7,8 @@
 //  商品前十展示cell
 
 #import "HTTopTenGoodCell.h"
-#import "HTStatisticsModel.h"
-
+#import "HTTopTenModel.h"
+#import <UIImageView+WebCache.h>
 
 @interface HTTopTenGoodCell()
 
@@ -34,7 +34,8 @@
     }else{
         cell.topImageView.image = [UIImage imageNamed:@"red-4"];
     }
-    cell.numLable.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
+    //排名
+    cell.numLable.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
     return cell;
 }
 
@@ -44,11 +45,11 @@
         
         self.textLabel.numberOfLines = 0;
         UIImageView * top = [[UIImageView alloc] init];
-//        top.contentMode = UIViewContentModeScaleAspectFit;
+        top.contentMode = UIViewContentModeScaleAspectFit;
         _topImageView = top;
 //        _topImageView.backgroundColor = [UIColor redColor];
         self.accessoryView = top;
-        
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
         
         UILabel * num = [[UILabel alloc] init];
         _numLable = num;
@@ -63,12 +64,20 @@
 }
 
 
-- (void)setModel:(HTStatisticsModel *)model{
+- (void)setModel:(HTTopTenModel *)model{
  
-    self.textLabel.text = @"dasdasdasdasdasdasdasdasdasddaxxxdsadsdasdas";
-    self.imageView.image = [UIImage imageNamed:@"yellow"];
-    NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"aaaaa dasdas"];
-    [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:0.941 green:0.227 blue:0.098 alpha:1.000] range:NSMakeRange(0,5)];
+    _model = model;
+    self.textLabel.text = model.title;
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.picture] placeholderImage:[UIImage imageNamed:@"wl-1"] options:SDWebImageRetryFailed];
+    
+    NSString * redStrs = [NSString stringWithFormat:@"￥%@",[model.price stringValue]];
+//    NSString * buyStr = [NSString stringWithFormat:@"%@人已购买",[model.amount stringValue]];
+    
+    NSMutableString * redStr = [NSMutableString stringWithFormat:@"￥%@ %@人已购买",[model.price stringValue],[model.amount stringValue]];
+    
+    NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:redStr];
+   
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:0.941 green:0.227 blue:0.098 alpha:1.000] range:NSMakeRange(0,redStrs.length)];
     self.detailTextLabel.attributedText = str;
   
 }
@@ -77,9 +86,9 @@
     [super layoutSubviews];
     CGFloat cellW = self.frame.size.width;
     CGFloat cellH = self.frame.size.height;
-    _topImageView.frame = CGRectMake(cellW - 52+12, 12, 32, 52);
+    _topImageView.frame = CGRectMake(cellW - 52+12, 0, 32, cellH);
     
-    _numLable.frame = CGRectMake(0, 0, 32, 52);
+    _numLable.frame = CGRectMake(0, 0, 32, cellH);
 }
 
 

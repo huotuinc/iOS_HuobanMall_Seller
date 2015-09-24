@@ -19,6 +19,8 @@
 
 
 @property(nonatomic,strong) NSArray * logisticsDetail;
+
+@property(nonatomic,strong) HTOrderDetailModel * orderDetailModel;
 @end
 
 @implementation OrderManagerDetailsController
@@ -61,6 +63,12 @@
     dict[@"orderNo"] = @"665d1d4e-4f49-4586-acae-e7a49618af17";
     [UserLoginTool loginRequestGet:@"orderDetail" parame:dict success:^(NSDictionary * json) {
         NSLog(@"xx  orderDetail  %@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
+            
+            self.orderDetailModel = [HTOrderDetailModel objectWithKeyValues:json[@"resultData"][@"data"]];
+        }
+        
+        
     } failure:^(NSError *error) {
         NSLog(@"ss  orderDetail%@",error.description);
     }];
@@ -83,7 +91,7 @@
     }else if (section == 1) {
         return 1;
     }else if (section == 2){
-       return 1;
+       return self.orderDetailModel.list.count;
     }else if(section == 3){
         return 1;
     }else{

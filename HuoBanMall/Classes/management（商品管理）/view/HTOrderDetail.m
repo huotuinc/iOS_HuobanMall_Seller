@@ -140,9 +140,9 @@
 
 - (void)setModel:(HTOrderDetailModel *)model{
     _model = model;
-    _buyPersonName.text = model.buyName;
-    _contactPhoneNumberLable.text = model.phoneNumber;
-    _placeLable.text = model.place;
+//    _buyPersonName.text = model.buyName;
+//    _contactPhoneNumberLable.text = model.phoneNumber;
+//    _placeLable.text = model.place;
 }
 
 
