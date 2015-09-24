@@ -107,7 +107,7 @@
     
     
     NSLog(@"xxxx");
-//    self.userNameTextFiled.text = @"htxx2";
+//    self.userNameTextFiled.text = @"lc";
 //    self.passwdTextField.text = @"123456";
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
