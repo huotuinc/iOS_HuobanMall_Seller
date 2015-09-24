@@ -29,10 +29,11 @@
 
 
 - (void)setDate:(NSString *)title withPrice:(NSString *)price WithBuyNum:(NSString *)num withDesc:(NSString *)desc withIconUrl:(NSString *)url{
-    [self.iconVIew sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageRetryFailed];
+    
+    [self.iconVIew sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"wl-1"] options:SDWebImageRetryFailed];
     self.titleLable.text = title;
-    self.priceNumber.text = price;
-    self.buyNumber.text = num;
+    self.priceNumber.text = [NSString stringWithFormat:@"￥%@",price];
+    self.buyNumber.text = [NSString stringWithFormat:@"x%@",num];
     self.goodStytle.text = desc;
 }
 - (void)awakeFromNib {

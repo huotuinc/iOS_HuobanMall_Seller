@@ -39,13 +39,29 @@
 }
 
 
-- (void)setDateWithStatus:(int)type withCompany:(NSString *)company withOderNumber:(NSString *) number withIconUrl:(NSString *)url{
+- (void)setDateWithStatus:(NSString *)type withCompany:(NSString *)company withOderNumber:(NSString *) number withIconUrl:(NSString *)url{
     
-    if (type == 0) {
-        self.statusLable.text = @"未签收";
+    if ([type isEqualToString:@"succ"]) {
+        self.statusLable.text  =  @"成功到达";
+    }else if([type isEqualToString:@"failed"]){
+        self.statusLable.text =  @"发货失败";
+    }else if([type isEqualToString:@"cancel"]){
+        self.statusLable.text =  @"已取消";
+    }else if([type isEqualToString:@"lost"]){
+        self.statusLable.text = @"货物丢失";
+    }else if([type isEqualToString:@"progress"]){
+        self.statusLable.text = @"运送中";
+    }else if([type isEqualToString:@"timeout"]){
+        self.statusLable.text =  @"超时";
+    }else if([type isEqualToString:@"ready"]){
+        self.statusLable.text =  @"准备发货";
+    }else{
+        self.statusLable.text = type;
     }
+    
     self.wuliuCompany.text = company;
     self.orderNumber.text = number;
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageRetryFailed];
+    
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"wl-2"] options:SDWebImageRetryFailed];
 }
 @end

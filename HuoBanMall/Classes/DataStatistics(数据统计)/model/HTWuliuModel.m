@@ -9,12 +9,14 @@
 #import "HTWuliuModel.h"
 #import "HTWuLiuStatus.h"
 #import "GoodModel.h"
+#import "HTWuLiuStatus.h"
+
 @implementation HTWuliuModel
 
 
 - (NSDictionary *)objectClassInArray
 {
-    return @{@"track":[HTWuliuModel class],@"list":[GoodModel class]};
+    return @{@"track":[HTWuLiuStatus class],@"list":[GoodModel class]};
 }
 
 
