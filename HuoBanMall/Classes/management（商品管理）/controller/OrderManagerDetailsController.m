@@ -58,8 +58,8 @@
 
 - (void)toGetMaterialDetailData{
     NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-    dict[@"orderNo"] = @"111ec76e-fe08-45a8-a13c-782e290c5ba1";
-    [UserLoginTool loginRequestGet:@"logisticsDetail" parame:dict success:^(NSDictionary * json) {
+    dict[@"orderNo"] = @"665d1d4e-4f49-4586-acae-e7a49618af17";
+    [UserLoginTool loginRequestGet:@"orderDetail" parame:dict success:^(NSDictionary * json) {
         NSLog(@"xx  orderDetail  %@",json);
     } failure:^(NSError *error) {
         NSLog(@"ss  orderDetail%@",error.description);
