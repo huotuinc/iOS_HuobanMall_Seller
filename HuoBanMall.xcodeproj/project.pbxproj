@@ -67,6 +67,8 @@
 		EF61A0CB1B93F3FE0008A82C /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61A0BE1B93F3FE0008A82C /* NSObject+MJCoding.m */; };
 		EF61A0CC1B93F3FE0008A82C /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61A0C01B93F3FE0008A82C /* NSObject+MJKeyValue.m */; };
 		EF61A0CD1B93F3FE0008A82C /* NSObject+MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61A0C21B93F3FE0008A82C /* NSObject+MJMember.m */; };
+		EF6A82CE1BB27689005094B1 /* HTBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6A82CD1BB27689005094B1 /* HTBaseModel.m */; };
+		EF6A82D11BB289F0005094B1 /* HTXiaoShouModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6A82D01BB289F0005094B1 /* HTXiaoShouModel.m */; };
 		EF6AB17F1B87241900C9F114 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB17E1B87241900C9F114 /* main.m */; };
 		EF6AB1821B87241900C9F114 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB1811B87241900C9F114 /* AppDelegate.m */; };
 		EF6AB1851B87241A00C9F114 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6AB1841B87241A00C9F114 /* ViewController.m */; };
@@ -227,6 +229,10 @@
 		EF61A0C01B93F3FE0008A82C /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
 		EF61A0C11B93F3FE0008A82C /* NSObject+MJMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJMember.h"; sourceTree = "<group>"; };
 		EF61A0C21B93F3FE0008A82C /* NSObject+MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJMember.m"; sourceTree = "<group>"; };
+		EF6A82CC1BB27689005094B1 /* HTBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTBaseModel.h; sourceTree = "<group>"; };
+		EF6A82CD1BB27689005094B1 /* HTBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTBaseModel.m; sourceTree = "<group>"; };
+		EF6A82CF1BB289F0005094B1 /* HTXiaoShouModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTXiaoShouModel.h; sourceTree = "<group>"; };
+		EF6A82D01BB289F0005094B1 /* HTXiaoShouModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTXiaoShouModel.m; sourceTree = "<group>"; };
 		EF6AB1791B87241900C9F114 /* HuoBanMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HuoBanMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6AB17D1B87241900C9F114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF6AB17E1B87241900C9F114 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -479,6 +485,10 @@
 				EF7859921BA7BB0B002A0626 /* HTOrderDetailModel.m */,
 				EF78599F1BA904AE002A0626 /* HTStatisticsModel.h */,
 				EF7859A01BA904AE002A0626 /* HTStatisticsModel.m */,
+				EF6A82CC1BB27689005094B1 /* HTBaseModel.h */,
+				EF6A82CD1BB27689005094B1 /* HTBaseModel.m */,
+				EF6A82CF1BB289F0005094B1 /* HTXiaoShouModel.h */,
+				EF6A82D01BB289F0005094B1 /* HTXiaoShouModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1015,6 +1025,7 @@
 				834728E81B8C51C6005B72F9 /* findBackPwViewController.m in Sources */,
 				EF61A08D1B93E4B00008A82C /* HTUser.m in Sources */,
 				EF73D1691B8BFAB6004A7B37 /* NSData+NSDataDeal.m in Sources */,
+				EF6A82CE1BB27689005094B1 /* HTBaseModel.m in Sources */,
 				EF6AB17F1B87241900C9F114 /* main.m in Sources */,
 				83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */,
 				834728EA1B8C51C6005B72F9 /* LoginViewController.m in Sources */,
@@ -1039,6 +1050,7 @@
 				EF0790A91B9DAF5A0007C3D3 /* HTToJudgeLoginFlag.m in Sources */,
 				EF78598D1BA7AE4E002A0626 /* OrderManagerDetailsController.m in Sources */,
 				EF61A0C41B93F3FE0008A82C /* MJConst.m in Sources */,
+				EF6A82D11BB289F0005094B1 /* HTXiaoShouModel.m in Sources */,
 				83D390871B9DB92800879569 /* MoreDataViewController.m in Sources */,
 				834728D31B8C0D8C005B72F9 /* SettingViewController.m in Sources */,
 				8389FA0A1B8D59940003FCDE /* AmendController.m in Sources */,

@@ -101,11 +101,13 @@
     
     UILabel * buyperson = [[UILabel alloc] init];
     buyperson.text = @"购买人:小明名";
+     buyperson.font = [UIFont systemFontOfSize:13];
     _buyPersonLable = buyperson;
     [self addSubview:buyperson];
     
     
     UILabel * shoujian = [[UILabel alloc] init];
+    shoujian.font = [UIFont systemFontOfSize:13];
     shoujian.text = @"收件人:小李";
     _shoujianLable = shoujian;
     [self addSubview:shoujian];

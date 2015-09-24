@@ -10,4 +10,10 @@
 
 @implementation HTStatisticsModel
 
+- (void)setOrderNo:(NSString *)orderNo{
+    
+    _orderNo = [NSString stringWithFormat:@"订单号:%@",orderNo];
+    
+}
+
 @end
