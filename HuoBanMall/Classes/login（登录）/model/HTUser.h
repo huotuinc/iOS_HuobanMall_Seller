@@ -36,5 +36,7 @@
 @property(nonatomic,strong) NSString * title;
 /**欢迎语*/
 @property(nonatomic,strong) NSString * welcomeTip;
+/**首页url*/
+@property(nonatomic,strong) NSString *indexUrl;
 
 @end

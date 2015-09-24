@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GoodModel.h"
 
 @interface OrdorCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+
+@property (nonatomic, strong) GoodModel *model;
 
 @end

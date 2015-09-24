@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrdorModel.h"
 
 @interface HeadView : UIView
 
@@ -19,5 +20,10 @@
  *  订单状态
  */
 @property (weak, nonatomic) IBOutlet UILabel *ordorType;
+
+/**
+ *  订单model
+ */
+@property (nonatomic, strong) OrdorModel *model;
 
 @end

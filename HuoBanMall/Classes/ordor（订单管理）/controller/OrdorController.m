@@ -13,6 +13,8 @@
 #import "OrderManagerDetailsController.h"
 #import "HTCheckLogisticsController.h"
 #import "MJRefresh.h"
+#import "OrdorModel.h"
+
 @interface OrdorController ()<UITableViewDelegate,UITableViewDataSource,NewFootViewDelegate, UISearchBarDelegate>
 
 /**
@@ -55,11 +57,13 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     
     [self _initScreenView];
     
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(5, 0, ScreenWidth - 10, 44)];
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(8, 0, ScreenWidth - 10, 44)];
     [self.searchBar setBackgroundColor:NavBackgroundColor];
-    [self.searchBar setBarTintColor:[UIColor whiteColor]];
+//    [self.searchBar setBarTintColor:[UIColor whiteColor]];
     self.searchBar.showsCancelButton = YES;
+    self.searchBar.tintColor = [UIColor whiteColor];
     self.searchBar.delegate = self;
+    self.searchBar.keyboardType = UIKeyboardTypeNumberPad;
     
     self.tableView.tableFooterView.userInteractionEnabled = YES;
     
@@ -68,6 +72,12 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
         [self.navigationController.navigationBar addSubview:self.searchBar];
         
         [self.searchBar becomeFirstResponder];
+        
+        [self.tableView removeHeader];
+        
+        self.screenView.frame = CGRectMake(self.ALLX, self.screenView.frame.origin.y, self.screenView.frame.size.width, self.screenView.frame.size.height);
+        
+        self.type = 0;
         
     }];
     
@@ -303,13 +313,34 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     
 }
 
+#pragma mark searchbar
+
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [self.searchBar resignFirstResponder];
     
     [self.searchBar removeFromSuperview];
     
+    [self.tableView addHeaderWithTarget:self action:@selector(getNewOrdorList)];
     
 }
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    if (searchBar.text.length < 6) {
+        [SVProgressHUD showWithStatus:@"请输入至少6位订单号"];
+    }else {
+#warning 搜索网络请求
+    }
+}
+
+
+
+//- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+//    if (range.location > 15) {
+//        return NO;
+//    }
+//    return YES;
+//}
 
 @end

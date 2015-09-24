@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OrdorModel.h"
 
 @class NewFootView;
 
@@ -23,10 +23,7 @@
 
 @interface NewFootView : UIView
 
-/**
- *  返回积分
- */
-@property (weak, nonatomic) IBOutlet UILabel *integralLabel;
+@property (nonatomic, strong) OrdorModel *model;
 
 /**
  *  查看物流
@@ -41,6 +38,8 @@
 /**
  *  价格
  */
+
+
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 - (IBAction)getLogistics:(UIButton *)sender;
 
