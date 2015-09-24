@@ -152,8 +152,10 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="dateLabel" destination="vpA-GJ-Ohx" id="0Ck-89-JN5"/>
                 <outlet property="goodCount" destination="RIG-ao-pU5" id="YzO-Vn-6Wg"/>
                 <outlet property="logisticsButton" destination="fhf-x9-SKq" id="qZg-uo-ar7"/>
+                <outlet property="mainOrdor" destination="KH6-BX-KNb" id="3wM-XZ-isQ"/>
                 <outlet property="priceLabel" destination="pGF-wN-Oh6" id="mj7-UJ-gAL"/>
             </connections>
             <point key="canvasLocation" x="320" y="335.5"/>

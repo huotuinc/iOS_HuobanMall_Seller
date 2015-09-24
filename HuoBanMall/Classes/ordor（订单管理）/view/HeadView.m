@@ -10,6 +10,35 @@
 
 @implementation HeadView
 
+- (void)layoutSubviews {
+    
+    [super layoutSubviews];
+    
+    self.ordorLabel.text = [NSString stringWithFormat:@"订单:%@", self.model.orderNo];
+    
+    switch ([self.model.status intValue]) {
+        case 0:
+        {
+            break;
+        }
+        case 1:
+        {
+            break;
+        }
+        case 2:
+        {
+            break;
+        }
+        case 3:
+        {
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

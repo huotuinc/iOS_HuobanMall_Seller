@@ -23,6 +23,14 @@
 
 @interface NewFootView : UIView
 
+/**
+ *  主订单号
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mainOrdor;
+
+/**
+ *  数据模型
+ */
 @property (nonatomic, strong) OrdorModel *model;
 
 /**
@@ -38,9 +46,14 @@
 /**
  *  价格
  */
-
-
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+
+/**
+ *  下单时间
+ */
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
+
 - (IBAction)getLogistics:(UIButton *)sender;
 
 
