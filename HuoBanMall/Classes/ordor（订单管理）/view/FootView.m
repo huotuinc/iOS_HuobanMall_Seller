@@ -22,9 +22,7 @@
 {
     [super layoutSubviews];
     
-    self.logisticsButton.layer.cornerRadius = 5;
-    self.logisticsButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.logisticsButton.layer.borderWidth = 1;
+   
     
 }
 

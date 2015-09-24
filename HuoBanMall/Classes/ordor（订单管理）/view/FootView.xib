@@ -11,20 +11,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Whb-Bd-oKZ">
-                    <rect key="frame" x="15" y="4" width="70" height="29"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="70" id="HBa-vF-uR7"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="查看物流">
-                        <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="materialButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="gZq-gq-Ea4"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="共1件商品" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9km-1l-M9z">
                     <rect key="frame" x="155" y="14" width="55" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -60,12 +46,10 @@
                 <constraint firstItem="6C8-mY-aPR" firstAttribute="centerY" secondItem="H29-eP-OQi" secondAttribute="centerY" constant="-1" id="8EV-Mc-Xk0"/>
                 <constraint firstItem="6C8-mY-aPR" firstAttribute="leading" secondItem="k4d-uh-Jp6" secondAttribute="trailing" id="ALL-G3-9Mc"/>
                 <constraint firstItem="9km-1l-M9z" firstAttribute="centerY" secondItem="H29-eP-OQi" secondAttribute="centerY" id="I13-9C-i4u"/>
-                <constraint firstItem="6C8-mY-aPR" firstAttribute="bottom" secondItem="Whb-Bd-oKZ" secondAttribute="bottom" constant="-3" id="MX4-FO-X4b"/>
-                <constraint firstAttribute="bottom" secondItem="Whb-Bd-oKZ" secondAttribute="bottom" constant="7" id="RT3-uJ-8ka"/>
                 <constraint firstAttribute="bottom" secondItem="k4d-uh-Jp6" secondAttribute="bottom" id="Tp5-Qh-vzn"/>
                 <constraint firstAttribute="trailing" secondItem="k4d-uh-Jp6" secondAttribute="trailing" id="VWj-b5-aOF"/>
                 <constraint firstAttribute="trailing" secondItem="6C8-mY-aPR" secondAttribute="trailing" constant="5" id="hMN-yk-UX0"/>
-                <constraint firstItem="Whb-Bd-oKZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="qXm-SB-gPG"/>
+                <constraint firstItem="k4d-uh-Jp6" firstAttribute="top" secondItem="6C8-mY-aPR" secondAttribute="bottom" constant="9" id="ncc-7i-pee"/>
                 <constraint firstItem="6C8-mY-aPR" firstAttribute="leading" secondItem="H29-eP-OQi" secondAttribute="trailing" constant="-3" id="v1J-pz-zGU"/>
                 <constraint firstItem="6C8-mY-aPR" firstAttribute="centerY" secondItem="9km-1l-M9z" secondAttribute="centerY" id="vyy-Oa-7n9"/>
                 <constraint firstItem="k4d-uh-Jp6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="x4g-MN-QcK"/>
@@ -79,7 +63,6 @@
             </variation>
             <connections>
                 <outlet property="goodCount" destination="9km-1l-M9z" id="Ohf-bE-ORN"/>
-                <outlet property="logisticsButton" destination="Whb-Bd-oKZ" id="a7R-3k-cAX"/>
                 <outlet property="priceLabel" destination="6C8-mY-aPR" id="aPg-9t-0SJ"/>
             </connections>
             <point key="canvasLocation" x="209" y="245"/>

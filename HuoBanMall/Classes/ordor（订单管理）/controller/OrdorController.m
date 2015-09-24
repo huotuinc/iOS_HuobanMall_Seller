@@ -211,7 +211,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     dic[@"lastDate"] = model.time;
     [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
         NSLog(@"%@", json);
-        [self.tableView headerEndRefreshing];
+        [self.tableView footerEndRefreshing];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
             
             NSArray *temp = [OrdorModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
@@ -230,7 +230,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
             }];
         }
     } failure:^(NSError *error) {
-        [self.tableView headerEndRefreshing];
+        [self.tableView footerEndRefreshing];
         NSLog(@"%@", error);
         [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
     }];
