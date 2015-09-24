@@ -43,7 +43,7 @@
      
      __weak HTCheckLogisticsController *wself = self;
      NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-     dict[@"orderNo"] = @"665d1d4e-4f49-4586-acae-e7a49618af17";
+     dict[@"orderNo"] = self.ordorNumber;
      [UserLoginTool loginRequestGet:@"logisticsDetail" parame:dict success:^(NSDictionary * json){
          if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
                
@@ -64,7 +64,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
+
     if (section == 0) {
         return 1;
     }else if(section ==1){
