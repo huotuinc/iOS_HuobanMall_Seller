@@ -43,6 +43,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    
     //1、设置控件属性
     [self setweigtAttribute];
         //3、设置键盘弹出
@@ -115,28 +118,28 @@
     
     __weak LoginViewController * wself = self;
     
-//    [SVProgressHUD showWithStatus:@"登录ing"];
+    [SVProgressHUD showWithStatus:@"登录ing"];
     [UserLoginTool loginRequestGet:@"login" parame:dic success:^(id json) {
         [SVProgressHUD dismiss];
         NSLog(@"%@", json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 54003) {
 
-            [SVProgressHUD setStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
+            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
             return ;
         }
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 57001) {
 
-            [SVProgressHUD setStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
+            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
             return ;
         }
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 57002) {
 
-            [SVProgressHUD setStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
+            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
             return ;
         }
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 53011) {
 
-            [SVProgressHUD setStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
+            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
             return ;
         }
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {

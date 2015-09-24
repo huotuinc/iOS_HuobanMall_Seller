@@ -13,7 +13,9 @@
 #import "OrderManagerDetailsController.h"
 #import "HTCheckLogisticsController.h"
 #import "MJRefresh.h"
-@interface OrdorController ()<UITableViewDelegate,UITableViewDataSource,NewFootViewDelegate, UIAlertViewDelegate>
+#import "OrdorModel.h"
+
+@interface OrdorController ()<UITableViewDelegate,UITableViewDataSource,NewFootViewDelegate, UISearchBarDelegate>
 
 /**
  *  滑块视图
@@ -28,6 +30,14 @@
 
 //状态
 @property (nonatomic, assign) NSInteger type;
+
+/**
+ *  搜索保存数据
+ */
+@property (nonatomic, strong) NSString *searchStr;
+
+/**搜索栏*/
+@property (nonatomic, strong) UISearchBar *searchBar;
 
 @end
 
@@ -47,15 +57,28 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     
     [self _initScreenView];
     
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(8, 0, ScreenWidth - 10, 44)];
+    [self.searchBar setBackgroundColor:NavBackgroundColor];
+//    [self.searchBar setBarTintColor:[UIColor whiteColor]];
+    self.searchBar.showsCancelButton = YES;
+    self.searchBar.tintColor = [UIColor whiteColor];
+    self.searchBar.delegate = self;
+    self.searchBar.keyboardType = UIKeyboardTypeNumberPad;
+    
     self.tableView.tableFooterView.userInteractionEnabled = YES;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"ss"] style:UIBarButtonItemStylePlain handler:^(id sender) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"搜索订单" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"搜索", nil];
+        [self.navigationController.navigationBar addSubview:self.searchBar];
         
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [self.searchBar becomeFirstResponder];
         
-        [alert show];
+        [self.tableView removeHeader];
+        
+        self.screenView.frame = CGRectMake(self.ALLX, self.screenView.frame.origin.y, self.screenView.frame.size.width, self.screenView.frame.size.height);
+        
+        self.type = 0;
+        
     }];
     
     [self getNewOrdorList];
@@ -112,7 +135,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
     dic[@"status"] = @(self.type);
-    dic[@"id"] = nil;
+//    dic[@"id"] = nil;
     [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
         NSLog(@"%@", json);
         [self.tableView headerEndRefreshing];
@@ -289,5 +312,35 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 {
     
 }
+
+#pragma mark searchbar
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchBar resignFirstResponder];
+    
+    [self.searchBar removeFromSuperview];
+    
+    [self.tableView addHeaderWithTarget:self action:@selector(getNewOrdorList)];
+    
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    if (searchBar.text.length < 6) {
+        [SVProgressHUD showWithStatus:@"请输入至少6位订单号"];
+    }else {
+#warning 搜索网络请求
+    }
+}
+
+
+
+//- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+//    if (range.location > 15) {
+//        return NO;
+//    }
+//    return YES;
+//}
 
 @end

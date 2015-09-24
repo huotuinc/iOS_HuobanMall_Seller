@@ -17,6 +17,8 @@
 		834728EB1B8C51C6005B72F9 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834728E61B8C51C6005B72F9 /* LoginViewController.xib */; };
 		834728EF1B8C66B3005B72F9 /* FMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 834728EE1B8C66B3005B72F9 /* FMButton.m */; };
 		834728F21B8C6F61005B72F9 /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834728F11B8C6F61005B72F9 /* PushViewController.m */; };
+		83497D031BB38A47001E5DB7 /* OrdorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83497D021BB38A47001E5DB7 /* OrdorModel.m */; };
+		83497D061BB38D8B001E5DB7 /* GoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83497D051BB38D8B001E5DB7 /* GoodModel.m */; };
 		8354C0111BAD267900A51EB9 /* MenListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354C0101BAD267900A51EB9 /* MenListModel.m */; };
 		836B3AC51B8C077E00813281 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 836B3AC41B8C077E00813281 /* InfoPlist.strings */; };
 		836CEAD61B9C2B48005074DA /* HTResultData.m in Sources */ = {isa = PBXBuildFile; fileRef = 836CEAD51B9C2B48005074DA /* HTResultData.m */; };
@@ -135,6 +137,10 @@
 		834728EE1B8C66B3005B72F9 /* FMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMButton.m; sourceTree = "<group>"; };
 		834728F01B8C6F61005B72F9 /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
 		834728F11B8C6F61005B72F9 /* PushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushViewController.m; sourceTree = "<group>"; };
+		83497D011BB38A47001E5DB7 /* OrdorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdorModel.h; sourceTree = "<group>"; };
+		83497D021BB38A47001E5DB7 /* OrdorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdorModel.m; sourceTree = "<group>"; };
+		83497D041BB38D8B001E5DB7 /* GoodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodModel.h; sourceTree = "<group>"; };
+		83497D051BB38D8B001E5DB7 /* GoodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodModel.m; sourceTree = "<group>"; };
 		8354C00F1BAD267900A51EB9 /* MenListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenListModel.h; sourceTree = "<group>"; };
 		8354C0101BAD267900A51EB9 /* MenListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenListModel.m; sourceTree = "<group>"; };
 		836B3AC41B8C077E00813281 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -285,7 +291,7 @@
 		EF78599F1BA904AE002A0626 /* HTStatisticsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTStatisticsModel.h; sourceTree = "<group>"; };
 		EF7859A01BA904AE002A0626 /* HTStatisticsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTStatisticsModel.m; sourceTree = "<group>"; };
 		EF7859A21BA939D1002A0626 /* HTCheckLogisticsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTCheckLogisticsController.h; sourceTree = "<group>"; };
-		EF7859A31BA939D1002A0626 /* HTCheckLogisticsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTCheckLogisticsController.m; sourceTree = "<group>"; };
+		EF7859A31BA939D1002A0626 /* HTCheckLogisticsController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 5; lastKnownFileType = sourcecode.c.objc; path = HTCheckLogisticsController.m; sourceTree = "<group>"; };
 		EF7859A51BA93A5F002A0626 /* ExpressCompany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressCompany.h; sourceTree = "<group>"; };
 		EF7859A61BA93A5F002A0626 /* ExpressCompany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressCompany.m; sourceTree = "<group>"; };
 		EF7859A71BA93A5F002A0626 /* ExpressCompany.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpressCompany.xib; sourceTree = "<group>"; };
@@ -428,6 +434,10 @@
 		83B4F2B31BA6EE36009D6631 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				83497D011BB38A47001E5DB7 /* OrdorModel.h */,
+				83497D021BB38A47001E5DB7 /* OrdorModel.m */,
+				83497D041BB38D8B001E5DB7 /* GoodModel.h */,
+				83497D051BB38D8B001E5DB7 /* GoodModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -983,6 +993,7 @@
 				EF78599B1BA81A32002A0626 /* HTStatisticsController.m in Sources */,
 				8354C0111BAD267900A51EB9 /* MenListModel.m in Sources */,
 				83CA648C1B8AC4E1008B5461 /* ManagementController.m in Sources */,
+				83497D031BB38A47001E5DB7 /* OrdorModel.m in Sources */,
 				EF6B32B81B904B2B00A6B46D /* HTHomeViewController.m in Sources */,
 				83737D2D1BA7BA3B000BD2D4 /* FootView.m in Sources */,
 				8372E4251BA2BA27007146BD /* UIScrollView+MJExtension.m in Sources */,
@@ -1029,6 +1040,7 @@
 				EF6AB17F1B87241900C9F114 /* main.m in Sources */,
 				83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */,
 				834728EA1B8C51C6005B72F9 /* LoginViewController.m in Sources */,
+				83497D061BB38D8B001E5DB7 /* GoodModel.m in Sources */,
 				EF61A0CB1B93F3FE0008A82C /* NSObject+MJCoding.m in Sources */,
 				8372E4271BA2BA27007146BD /* UIView+MJExtension.m in Sources */,
 				EF61A0C81B93F3FE0008A82C /* MJMethod.m in Sources */,

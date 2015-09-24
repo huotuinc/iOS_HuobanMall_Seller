@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -52,9 +53,13 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"profileType"] = @(swich.tag);
     dic[@"profileData"] = @(swich.on);
+    
+    [SVProgressHUD showWithStatus:@"数据上传中"];
+    
     [UserLoginTool loginRequestPost:@"updateMerchantProfile" parame:dic success:^(id json) {
         
-        NSLog(@"%@",json);
+        [SVProgressHUD dismiss];
+        
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             self.user = [HTUser objectWithKeyValues:(json[@"resultData"][@"user"])];
@@ -63,12 +68,23 @@
             [NSKeyedArchiver archiveRootObject:self.user toFile:fileName];
         }
         
+        if ([json[@"resultCode"] intValue] == 56001) {
+            
+            [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"%@",json[@"resultDescription"]]];
+            
+            LoginViewController *login = [[LoginViewController alloc] init];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+            [self presentViewController:nav animated:YES completion:^{
+                [SVProgressHUD dismiss];
+            }];
+        }
         
     } failure:^(NSError *error) {
         
         swich.on = !swich.on;
         
-        NSLog(@"%@", error);
+        [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
+        
     }];
 }
 

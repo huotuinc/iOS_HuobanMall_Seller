@@ -15,6 +15,7 @@
 #import "MJExtension.h"
 #import "UITableView+CJ.h"
 #import <SVProgressHUD.h>
+#import "LoginViewController.h"
 
 #define MainUrl @"http://apitest.51flashmall.com:8080/huobanmall/app"
 
@@ -35,7 +36,7 @@
 
 #define LocalHuoBanMallAppVersion @"LocalAppVersion"  //4、伙伴商场卖家版本地存储的版本号
 
-#define OPERATION_parame @"FM2015AP"  //5、伙伴商场卖家版平台
+#define OPERATION_parame @"HB2015AP"  //5、伙伴商场卖家版平台
 
 #define  DeviceNo ([[UIDevice currentDevice].identifierForVendor UUIDString])  //6、伙伴商场卖家版设备唯一号
 

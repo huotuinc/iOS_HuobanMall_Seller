@@ -9,7 +9,8 @@
 #import "ChangePasswordController.h"
 #import <SVProgressHUD.h>
 #import "UserLoginTool.h"
-
+#import "MD5Encryption.h"
+#import "HTUser.h"
 @interface ChangePasswordController ()
 
 /**手机号*/
@@ -55,11 +56,38 @@
         return;
     }
     NSMutableDictionary * parames = [NSMutableDictionary dictionary];
-    parames[@"oldPassword"] = self.oldPassWordTextField.text;
-    parames[@"newPassword"] = self.firstPassWord.text;
-
+    parames[@"oldPassword"] = [MD5Encryption md5by32:self.oldPassWordTextField.text];
+    parames[@"newPassword"] = [MD5Encryption md5by32:self.firstPassWord.text];
+    
+    __weak ChangePasswordController *wself = self;
+    
     [UserLoginTool loginRequestGet:@"modifyPassword" parame:parames success:^(id json) {
         NSLog(@"%@",json);
+        
+        
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            HTUser *user = [HTUser objectWithKeyValues:(json[@"resultData"][@"user"])];
+            
+            //1、登入成功用户数据本地化
+            NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+            NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+            [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+            
+            //2、保存手机号和密码
+            
+            [[NSUserDefaults standardUserDefaults] setObject:wself.firstPassWord.text forKey:loginPassword];
+            
+            NSLog(@"用户登录后返回的token%@",user.token);
+            //保存新的token
+            [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:HuoBanMallAppToken];
+            
+            [SVProgressHUD showSuccessWithStatus:@"密码修改成功"];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
     } failure:^(NSError *error) {
         NSLog(@"%@",error.description);
     }];

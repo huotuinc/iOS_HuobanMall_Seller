@@ -147,7 +147,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     
     HTHomeViewController * wself = self;
     
@@ -262,7 +262,7 @@
     }else {
         i = num / 100 + 1;
     }
-    array = @[[NSString stringWithFormat:@"%d", i * 25],[NSString stringWithFormat:@"%d", i * 50],[NSString stringWithFormat:@"%d", i * 75],[NSString stringWithFormat:@"%d", i * 100]];
+    array = @[[NSString stringWithFormat:@"%ld", i * 25],[NSString stringWithFormat:@"%ld", i * 50],[NSString stringWithFormat:@"%ld", i * 75],[NSString stringWithFormat:@"%ld", i * 100]];
     
     return array;
 }
@@ -353,9 +353,11 @@
 
 - (void)getNewToday {
     
+    [SVProgressHUD showWithStatus:@"数据加载中"];
+    
     [UserLoginTool loginRequestGet:@"newToday" parame:nil success:^(id json) {
         
-        NSLog(@"%@",json);
+        [SVProgressHUD dismiss];
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
             
@@ -371,11 +373,20 @@
             [self _initScrollView];
         }
         
-     
+        if ([json[@"resultCode"] intValue] == 56001) {
+            
+            [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"%@",json[@"resultDescription"]]];
+            
+            LoginViewController *login = [[LoginViewController alloc] init];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+            [self presentViewController:nav animated:YES completion:^{
+                [SVProgressHUD dismiss];
+            }];
+        }
         
     } failure:^(NSError *error) {
         
-        NSLog(@"%@", error);
+        [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
         
     }];
 }

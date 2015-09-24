@@ -8,6 +8,7 @@
 
 #import "WebController.h"
 #import "HTGlobal.h"
+#import "HTUser.h"
 
 @interface WebController ()<UIWebViewDelegate>
 
@@ -24,6 +25,9 @@
     NSString *fileName = [path stringByAppendingPathComponent:InitGlobalDate];
     HTGlobal* glob = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
     self.webView.backgroundColor = [UIColor whiteColor];
+    
+    NSString *fileName1 = [path stringByAppendingPathComponent:LocalUserDate];
+    HTUser* user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName1];
     
     switch (self.type) {
             /**
@@ -58,7 +62,10 @@
         }
         case 4:
         {
-            
+            NSURL *url = [NSURL URLWithString:user.indexUrl];
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            [self.webView loadRequest:request];
+            break;
         }
         default:
             break;

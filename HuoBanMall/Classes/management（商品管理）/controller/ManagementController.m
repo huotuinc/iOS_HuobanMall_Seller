@@ -43,6 +43,8 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    
     self.selectGoods = [NSMutableArray array];
     
     self.goods = [NSMutableArray array];
@@ -131,7 +133,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 }
 
 
-#pragma 网络访问
+#pragma mark 网络访问
 
 - (void)getNewGoodList {
     
@@ -149,9 +151,11 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
         dic[@"type"] = @1;
     }
     
+    [SVProgressHUD showWithStatus:@"数据加载中"];
     
     [UserLoginTool loginRequestGet:@"goodsList" parame:dic success:^(id json) {
-        NSLog(@"%@",json);
+        
+        [SVProgressHUD dismiss];
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
 
@@ -167,8 +171,21 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
             [self.tableView headerEndRefreshing];
         }
         
+        if ([json[@"resultCode"] intValue] == 56001) {
+            
+            [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"%@",json[@"resultDescription"]]];
+            
+            LoginViewController *login = [[LoginViewController alloc] init];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+            [self presentViewController:nav animated:YES completion:^{
+                [SVProgressHUD dismiss];
+            }];
+        }
+        
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+        
+        [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
+        
     }];
 }
 
@@ -181,6 +198,8 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     }
     ManagementModel *model = self.goods.lastObject;
     dic[@"lastProductId"] = model.goodsId;
+    
+    [SVProgressHUD showWithStatus:@"数据加载中"];
     
     [UserLoginTool loginRequestPost:@"goodsList" parame:dic success:^(id json) {
         
@@ -204,17 +223,31 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
             if (self.tableView.editing && self.selectGoods != self.goods) {
                 self.selectImage.image = [UIImage imageNamed:@"wxz"];
             }
+        }
+        
+        if ([json[@"resultCode"] intValue] == 56001) {
             
+            [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"%@",json[@"resultDescription"]]];
+            
+            LoginViewController *login = [[LoginViewController alloc] init];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+            [self presentViewController:nav animated:YES completion:^{
+                [SVProgressHUD dismiss];
+            }];
         }
         
         
     } failure:^(NSError *error) {
-        NSLog(@"%@", error);
+        
+        [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
+        
     }];
     
 }
 
 - (void)exchangeGoodWithType:(int) type {
+    
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
     NSMutableString *string = [NSMutableString string];
@@ -227,9 +260,12 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     dic[@"type"] = @(type);
     dic[@"goods"] = toserverStr;
     
+    [SVProgressHUD showWithStatus:@"商品处理中"];
+    
     [UserLoginTool loginRequestPost:@"operGoods" parame:dic success:^(id json) {
         
-        NSLog(@"%@", json);
+        [SVProgressHUD dismiss];
+        
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             for (ManagementModel *model in self.selectGoods) {
                 [self.goods removeObject:model];
@@ -238,13 +274,26 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
             [self.tableView reloadData];
         }
         
+        if ([json[@"resultCode"] intValue] == 56001) {
+            
+            [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"%@",json[@"resultDescription"]]];
+            
+            LoginViewController *login = [[LoginViewController alloc] init];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
+            [self presentViewController:nav animated:YES completion:^{
+                [SVProgressHUD dismiss];
+            }];
+        }
+        
     } failure:^(NSError *error) {
+        
+        [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
         
     }];
     
 }
 
-#pragma tableView
+#pragma mark tableView
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -345,7 +394,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     return YES;
 }
 
-#pragma 按钮操作
+#pragma  mark 按钮操作
 
 - (void)segmentChanged {
     if (self.segment.selectedSegmentIndex == 0) {
