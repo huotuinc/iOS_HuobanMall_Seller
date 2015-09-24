@@ -107,8 +107,8 @@
     
     
     NSLog(@"xxxx");
-    self.userNameTextFiled.text = @"htxx2";
-    self.passwdTextField.text = @"123456";
+//    self.userNameTextFiled.text = @"htxx2";
+//    self.passwdTextField.text = @"123456";
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"username"] = self.userNameTextFiled.text;
@@ -171,7 +171,9 @@
             
         }
     } failure:^(NSError *error) {
-        NSLog(@"%@", error.description);
+        [SVProgressHUD dismiss];
+        
+        [SVProgressHUD showInfoWithStatus:@"请检查网络"];
     }];
     
 }

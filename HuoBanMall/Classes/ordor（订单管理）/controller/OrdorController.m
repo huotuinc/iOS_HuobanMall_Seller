@@ -120,12 +120,13 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     dic[@"status"] = @(self.type);
     
     [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
+        [self.tableView headerEndRefreshing];
         
         NSLog(@"%@", json);
         
         [self.tableView headerEndRefreshing];
     } failure:^(NSError *error) {
-        
+        [self.tableView headerEndRefreshing];
         NSLog(@"%@", error);
         
     }];
