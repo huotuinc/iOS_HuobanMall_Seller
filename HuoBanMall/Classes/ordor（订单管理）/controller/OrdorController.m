@@ -52,6 +52,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     
     self.ordors = [NSMutableArray array];
     
+    self.searchStr = [NSString string];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"OrdorCell" bundle:nil] forCellReuseIdentifier:ordorIdentifier];
 //    self.tableView.separatorColor = [UIColor whiteColor];
@@ -67,7 +68,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     self.searchBar.showsCancelButton = YES;
     self.searchBar.tintColor = [UIColor whiteColor];
     self.searchBar.delegate = self;
-    self.searchBar.keyboardType = UIKeyboardTypeNumberPad;
+    self.searchBar.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     
     self.tableView.tableFooterView.userInteractionEnabled = YES;
     
@@ -79,9 +80,9 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
         
         [self.tableView removeHeader];
         
-        self.screenView.frame = CGRectMake(self.ALLX, self.screenView.frame.origin.y, self.screenView.frame.size.width, self.screenView.frame.size.height);
-        
-        self.type = 0;
+//        self.screenView.frame = CGRectMake(self.ALLX, self.screenView.frame.origin.y, self.screenView.frame.size.width, self.screenView.frame.size.height);
+//        
+//        self.type = 0;
         
     }];
     
@@ -151,7 +152,11 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
                 [SVProgressHUD dismiss];
             }];
         }
-        
+        if (self.ordors.count == 0) {
+            [self.tableView setTabelViewListIsZero];
+        }else {
+            [self.tableView setTableViewNormal];
+        }
     } failure:^(NSError *error) {
 
         [SVProgressHUD dismiss];
@@ -163,24 +168,30 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 
 - (void)getNewOrdorList {
     
+    [self.ordors removeAllObjects];
+    
     NSMutableDictionary * dic = [NSMutableDictionary dictionary];
     
     dic[@"status"] = @(self.type);
     
-
+    if (self.searchStr.length != 0) {
+        dic[@"keyword"] = self.searchStr;
+    }
+    
+    
+    
     [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
         [self.tableView headerEndRefreshing];
-        
+        NSLog(@"%@", json);
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
-            
-            [self.ordors removeAllObjects];
             
             NSArray *temp = [OrdorModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             
             [self.ordors addObjectsFromArray:temp];
+            
+            [self.tableView reloadData];
         
-//            [self.tableView reloadData];
         }
         if ([json[@"resultCode"] intValue] == 56001) {
             
@@ -191,6 +202,11 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
             [self presentViewController:nav animated:YES completion:^{
                 
             }];
+        }
+        if (self.ordors.count == 0) {
+            [self.tableView setTabelViewListIsZero];
+        }else {
+            [self.tableView setTableViewNormal];
         }
         
     } failure:^(NSError *error) {
@@ -209,14 +225,23 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 
     dic[@"status"] = @(self.type);
     dic[@"lastDate"] = model.time;
+    
+    if (self.searchStr.length != 0) {
+        dic[@"keyword"] = self.searchStr;
+    }
+    
     [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
         NSLog(@"%@", json);
         [self.tableView footerEndRefreshing];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
             
+            NSLog(@"%@", json);
+            
             NSArray *temp = [OrdorModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             
             [self.ordors addObjectsFromArray:temp];
+            
+            
             
         }
         if ([json[@"resultCode"] intValue] == 56001) {
@@ -229,6 +254,12 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
                 
             }];
         }
+        
+        if (self.ordors.count == 0) {
+            [self.tableView setTabelViewListIsZero];
+        }else {
+            [self.tableView setTableViewNormal];
+        }
     } failure:^(NSError *error) {
         [self.tableView footerEndRefreshing];
         NSLog(@"%@", error);
@@ -236,6 +267,22 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     }];
     
 }
+
+//- (void)getNewSearchOrdor {
+//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//    dic[@"key"] = self.searchStr;
+//    dic[@"status"] = @(self.type);
+//    
+//    [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
+//        
+//        NSLog(@"%@", json);
+//        
+//    } failure:^(NSError *error) {
+//        
+//        NSLog(@"%@", error);
+//        
+//    }];
+//}
 
 
 - (void)_initScreenView {
@@ -416,20 +463,29 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
+    self.searchStr = nil;
+    
+    self.searchBar.text = nil;
+    
     [self.searchBar resignFirstResponder];
     
     [self.searchBar removeFromSuperview];
     
     [self.tableView addHeaderWithTarget:self action:@selector(getNewOrdorList)];
     
+    [self getNewOrdorList];
+    
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     if (searchBar.text.length < 6) {
-        [SVProgressHUD showWithStatus:@"请输入至少6位订单号"];
+        [SVProgressHUD showErrorWithStatus:@"请输入至少6位订单号"];
     }else {
-#warning 搜索网络请求
+        
+        self.searchStr = self.searchBar.text;
+        
+        [self getNewOrdorList];
     }
 }
 

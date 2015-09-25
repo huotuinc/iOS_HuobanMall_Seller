@@ -175,6 +175,12 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
             }];
         }
         
+        if (self.goods.count == 0) {
+            [self.tableView setTabelViewListIsZero];
+        }else {
+            [self.tableView setTableViewNormal];
+        }
+        
     } failure:^(NSError *error) {
         [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
@@ -229,6 +235,12 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
             [self presentViewController:nav animated:YES completion:^{
 
             }];
+        }
+        
+        if (self.goods.count == 0) {
+            [self.tableView setTabelViewListIsZero];
+        }else {
+            [self.tableView setTableViewNormal];
         }
         
     } failure:^(NSError *error) {
@@ -287,6 +299,11 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
             }];
         }
         
+        if (self.goods.count == 0) {
+            [self.tableView setTabelViewListIsZero];
+        }else {
+            [self.tableView setTableViewNormal];
+        }
         
     } failure:^(NSError *error) {
         
