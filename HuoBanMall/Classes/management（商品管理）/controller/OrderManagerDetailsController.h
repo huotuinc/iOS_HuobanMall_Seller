@@ -12,5 +12,7 @@
 @interface OrderManagerDetailsController : UITableViewController
 
 
+/**订单号*/
+@property(nonatomic,strong) NSString * orderNo;
 
 @end

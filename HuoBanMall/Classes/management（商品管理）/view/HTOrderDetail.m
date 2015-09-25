@@ -21,7 +21,7 @@
 /**联系人方式*/
 @property(nonatomic,strong) UILabel * contactLable;
 /**联系人号码*/
-@property(nonatomic,strong) UILabel * contactPhoneNumberLable;
+//@property(nonatomic,strong) UILabel * contactPhoneNumberLable;
 
 /**联系人号码*/
 @property(nonatomic,strong) UILabel * placeLable;
@@ -140,9 +140,12 @@
 
 - (void)setModel:(HTOrderDetailModel *)model{
     _model = model;
+    
+    _buyPersonLable.text =[NSString stringWithFormat:@"购买人: %@",model.buyer];
+    _shoujianLable.text = [NSString stringWithFormat:@"收件人: %@",model.receiver];
 //    _buyPersonName.text = model.buyName;
 //    _contactPhoneNumberLable.text = model.phoneNumber;
-//    _placeLable.text = model.place;
+    _placeLable.text = model.address;
 }
 
 

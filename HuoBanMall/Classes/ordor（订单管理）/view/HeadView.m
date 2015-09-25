@@ -14,7 +14,6 @@
     
     [super layoutSubviews];
     
-    self.ordorLabel.text = [NSString stringWithFormat:@"订单:%@", self.model.orderNo];
     
     switch ([self.model.status intValue]) {
         case 0:
@@ -39,6 +38,18 @@
     }
 }
 
+- (void)awakeFromNib{
+    
+    self.ordorLabel.adjustsFontSizeToFitWidth = YES;
+}
+
+- (void)setModel:(OrdorModel *)model{
+    
+    _model = model;
+    if (_model.orderNo.length) {
+        self.ordorLabel.text = [NSString stringWithFormat:@"订单:%@", self.model.orderNo];
+    }
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
