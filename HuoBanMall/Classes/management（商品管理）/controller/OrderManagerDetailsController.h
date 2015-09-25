@@ -11,6 +11,6 @@
 
 @interface OrderManagerDetailsController : UITableViewController
 
-
+@property (nonatomic, strong) NSString *ordorNumber;
 
 @end

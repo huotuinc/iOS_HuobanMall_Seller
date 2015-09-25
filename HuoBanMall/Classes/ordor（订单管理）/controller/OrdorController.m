@@ -441,6 +441,11 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     OrderManagerDetailsController *man = [[OrderManagerDetailsController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    OrdorModel *ordorModel = self.ordors[indexPath.section];
+    
+    man.ordorNumber = ordorModel.orderNo;
+    
     [self.navigationController pushViewController:man animated:YES];
 }
 

@@ -82,7 +82,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Gd-b0-INY">
-                            <rect key="frame" x="-140" y="45" width="600" height="1"/>
+                            <rect key="frame" x="-140" y="48" width="600" height="1"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line" translatesAutoresizingMaskIntoConstraints="NO" id="X8w-1B-sRD">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
@@ -103,8 +103,8 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-6-26 16:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpA-GJ-Ohx">
-                            <rect key="frame" x="217" y="50" width="93" height="15"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <rect key="frame" x="232" y="53" width="78" height="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>

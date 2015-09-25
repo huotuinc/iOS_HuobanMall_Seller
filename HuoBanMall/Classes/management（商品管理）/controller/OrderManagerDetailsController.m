@@ -60,7 +60,7 @@
 
 - (void)toGetMaterialDetailData{
     NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-    dict[@"orderNo"] = @"665d1d4e-4f49-4586-acae-e7a49618af17";
+    dict[@"orderNo"] = self.ordorNumber;
     [UserLoginTool loginRequestGet:@"orderDetail" parame:dict success:^(NSDictionary * json) {
         NSLog(@"xx  orderDetail  %@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
