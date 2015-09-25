@@ -7,7 +7,7 @@
 //  
 
 #import <UIKit/UIKit.h>
-
+@class HTJiFenModel;
 @interface HTXQFLCell : UITableViewCell
-
+@property(nonatomic,strong) HTJiFenModel * model;
 @end

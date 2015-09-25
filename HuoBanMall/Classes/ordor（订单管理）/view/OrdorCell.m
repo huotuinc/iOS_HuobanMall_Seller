@@ -28,7 +28,7 @@
 
     NSURL *url = [NSURL URLWithString:self.model.pictureUrl];
     
-    [self.goodImage sd_setImageWithURL:url placeholderImage:nil options:SDWebImageRetryFailed];
+    [self.goodImage sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"wl-1"] options:SDWebImageRetryFailed];
     
     self.goodPrice.text = [NSString stringWithFormat:@"%@", self.model.money];
     

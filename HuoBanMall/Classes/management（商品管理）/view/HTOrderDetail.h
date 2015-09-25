@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 @class HTOrderDetailModel;
 @interface HTOrderDetail : UITableViewCell
+/**联系人号码*/
+@property(nonatomic,strong) UILabel * contactPhoneNumberLable;
+
 
 + (instancetype)cellWithTableView:(UITableView*)tableview WithIndex:(NSIndexPath *)index;
 
