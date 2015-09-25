@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aqV-Ra-2KN">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wl-1" translatesAutoresizingMaskIntoConstraints="NO" id="aqV-Ra-2KN">
                         <rect key="frame" x="15" y="13" width="59" height="59"/>
                         <color key="backgroundColor" red="0.79433047739999996" green="1" blue="0.244025886" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -99,4 +99,7 @@
             <point key="canvasLocation" x="270" y="350.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="wl-1" width="80" height="80"/>
+    </resources>
 </document>

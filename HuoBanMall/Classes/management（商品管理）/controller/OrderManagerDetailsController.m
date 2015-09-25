@@ -276,9 +276,9 @@
         [aaa show];
         
     }else if(indexPath.section == 3){
-#warning 订单号
+
         HTCheckLogisticsController * av = [[HTCheckLogisticsController alloc] init];
-        av.ordorNumber = @"4cbf500e-40a1-4d38-9bb7-c875c92664cd";;
+        av.ordorNumber = self.ordorNumber;;
         [self.navigationController pushViewController:av animated:YES];
         
     }

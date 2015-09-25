@@ -229,9 +229,13 @@
     }];
     
     UIImageView *image = [[UIImageView alloc] init];
-    [image sd_setImageWithURL:[NSURL URLWithString:user.logo] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:nil action:nil];
+    [image sd_setImageWithURL:[NSURL URLWithString:user.logo] placeholderImage:[UIImage imageNamed:@"txzw"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+
+        
+        
     }];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image.image style:UIBarButtonItemStylePlain target:nil action:nil];
     
     self.navigationItem.title = user.title;
 }
