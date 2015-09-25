@@ -21,4 +21,14 @@
  */
 -(void)cleanSelection;
 
+/**
+ *  设置空表图片
+ */
+- (void)setTabelViewListIsZero;
+
+/**
+ *  设置正常背景
+ */
+- (void)setTableViewNormal;
+
 @end

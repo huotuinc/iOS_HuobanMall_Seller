@@ -75,6 +75,11 @@
                 [self.tableView reloadData];
             }
         }
+        if (self.datasArray.count == 0) {
+            [self.tableView setTabelViewListIsZero];
+        }else {
+            [self.tableView setTableViewNormal];
+        }
         
     } failure:^(NSError *error) {
         

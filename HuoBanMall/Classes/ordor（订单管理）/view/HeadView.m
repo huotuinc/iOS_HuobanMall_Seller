@@ -15,27 +15,7 @@
     [super layoutSubviews];
     
     
-    switch ([self.model.status intValue]) {
-        case 0:
-        {
-            break;
-        }
-        case 1:
-        {
-            break;
-        }
-        case 2:
-        {
-            break;
-        }
-        case 3:
-        {
-            break;
-        }
-            
-        default:
-            break;
-    }
+//    self.ordorType.text = self.model.status;
 }
 
 - (void)awakeFromNib{
