@@ -163,11 +163,13 @@
             cc.imageView.image = [UIImage imageNamed:@"gray"];
         }
          
-         HTWuLiuStatus * status = self.dateModel.track[indexPath.row];
-     
-        cc.textLabel.text = status.context;
-        cc.detailTextLabel.text = status.times;
-        cc.userInteractionEnabled = NO;
+         if (self.dateModel.track.count) {
+              
+              HTWuLiuStatus * status = self.dateModel.track[indexPath.row];
+              cc.textLabel.text = status.context;
+              cc.detailTextLabel.text = status.times;
+              cc.userInteractionEnabled = NO;
+         }
 
         return cc;
     }

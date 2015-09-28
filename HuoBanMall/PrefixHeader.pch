@@ -24,6 +24,7 @@
 
 
 //判断ios8
+#define IsIos7 ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0)
 #define IsIos8 ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0)
 #define AppDefauftColorr ([UIColor colorWithRed:0.242 green:0.384 blue:1.000 alpha:1.000])
 

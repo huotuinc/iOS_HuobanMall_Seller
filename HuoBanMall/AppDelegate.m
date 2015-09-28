@@ -47,8 +47,26 @@
         self.window.rootViewController = nav;
     }
     [self.window makeKeyAndVisible];
+    
+    [self registRemoteNotification:application];
     return YES;
 }
+
+/**
+ *  注册远程通知
+ */
+- (void)registRemoteNotification:(UIApplication *)application{
+    if (IsIos7) { //iOS 8 remoteNotification
+        UIRemoteNotificationType type = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeNewsstandContentAvailability;
+        [application registerForRemoteNotificationTypes:type];
+    }else{
+        UIUserNotificationType type = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+        UIUserNotificationSettings * settings = [UIUserNotificationSettings settingsForTypes:type categories:nil];
+        [application registerUserNotificationSettings:settings];
+    }
+}
+
+
 
 #pragma mark 初始化接口
 

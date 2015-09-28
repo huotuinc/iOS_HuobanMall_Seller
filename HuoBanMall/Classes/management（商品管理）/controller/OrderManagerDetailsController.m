@@ -279,7 +279,7 @@
         
     }else if(indexPath.section == 3){
 
-        HTCheckLogisticsController * av = [[HTCheckLogisticsController alloc] init];
+        HTCheckLogisticsController * av = [[HTCheckLogisticsController alloc] initWithStyle:UITableViewStyleGrouped];
         av.ordorNumber = self.ordorNumber;;
         [self.navigationController pushViewController:av animated:YES];
         
