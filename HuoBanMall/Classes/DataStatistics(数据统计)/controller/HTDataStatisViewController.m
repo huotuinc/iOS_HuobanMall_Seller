@@ -641,9 +641,15 @@ static NSString *popAnimation = @"first";
     topGoodView.layer.cornerRadius = 5;
     topGoodView.userInteractionEnabled = YES;
     [topGoodView bk_whenTapped:^{
-        HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
-        ctl.type = 3;
-        [self.navigationController pushViewController:ctl animated:YES];
+        
+        if ([self.authority containsObject:@"7" ] || [self.authority[0] isEqualToString:@"*"]){
+            HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
+            ctl.type = 3;
+            [self.navigationController pushViewController:ctl animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+        
     }];
     [scr addSubview:topGoodView];
     
@@ -940,9 +946,15 @@ static NSString *popAnimation = @"first";
     topGoodView.layer.cornerRadius = 5;
     topGoodView.userInteractionEnabled = YES;
     [topGoodView bk_whenTapped:^{
-        HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
-        ctl.type = 1;
-        [self.navigationController pushViewController:ctl animated:YES];
+        
+        if ([self.authority containsObject:@"8" ] || [self.authority[0] isEqualToString:@"*"]){
+            HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
+            ctl.type = 1;
+            [self.navigationController pushViewController:ctl animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+        
     }];
     [scr addSubview:topGoodView];
     
@@ -975,9 +987,13 @@ static NSString *popAnimation = @"first";
     topGood2View.layer.cornerRadius = 5;
     topGood2View.userInteractionEnabled = YES;
     [topGood2View bk_whenTapped:^{
-        HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
-        ctl.type = 2;
-        [self.navigationController pushViewController:ctl animated:YES];
+        if ([self.authority containsObject:@"9" ] || [self.authority[0] isEqualToString:@"*"]){
+            HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
+            ctl.type = 2;
+            [self.navigationController pushViewController:ctl animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
     }];
     [scr addSubview:topGood2View];
     
@@ -1194,6 +1210,7 @@ static NSString *popAnimation = @"first";
                 self.selectIndex = self.segment.selectedSegmentIndex;
                 [self getNewData];
             }else {
+                [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
                 scrollView.contentOffset = CGPointMake(ScreenWidth * self.selectIndex, 0);
             }
         }
@@ -1204,6 +1221,7 @@ static NSString *popAnimation = @"first";
                 self.selectIndex = self.segment.selectedSegmentIndex;
                 [self getNewData];
             }else {
+                [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
                 scrollView.contentOffset = CGPointMake(ScreenWidth * self.selectIndex, 0);
             }
         }
@@ -1213,6 +1231,7 @@ static NSString *popAnimation = @"first";
                 self.selectIndex = self.segment.selectedSegmentIndex;
                 [self getNewData];
             }else {
+                [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
                 scrollView.contentOffset = CGPointMake(ScreenWidth * self.selectIndex, 0);
             }
         }
