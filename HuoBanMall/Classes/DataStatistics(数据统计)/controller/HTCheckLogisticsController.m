@@ -191,7 +191,7 @@
     vi.backgroundColor = [UIColor blackColor];
     vi.bounds = CGRectMake(10, 0,self.tableView.frame.size.width, 60);
     vi.backgroundColor = [UIColor whiteColor];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, self.tableView.frame.size.width, 20)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 5, self.tableView.frame.size.width, 20)];
     label.font = [UIFont systemFontOfSize:16.0f];  //UILabel的字体大小
     label.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
     label.textColor = [UIColor colorWithRed:70/255.0 green:72/255.0 blue:76/255.0 alpha:1.000];
