@@ -43,6 +43,7 @@
         if (cell == nil) {
             
             cell = [[HTOrderDetail alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:Identifier];
+             cell.textLabel.font = [UIFont systemFontOfSize:13];
         }
         return cell;
     }else if (index.section == 1){
@@ -124,8 +125,8 @@
     UILabel *contactLable = [[UILabel alloc] init];
     contactLable.text = @"联系方式：";
     _contactLable = contactLable;
-    _contactLable.textColor = [UIColor blueColor];
-    _contactLable.font = [UIFont systemFontOfSize:14];
+    _contactLable.textColor = [UIColor colorWithRed:0.220 green:0.580 blue:0.992 alpha:1.000];
+    _contactLable.font = [UIFont systemFontOfSize:13];
     contactLable.textAlignment = NSTextAlignmentRight;
     [self addSubview:contactLable];
     

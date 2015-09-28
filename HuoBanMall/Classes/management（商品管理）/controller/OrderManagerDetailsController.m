@@ -46,8 +46,6 @@
     self.title = @"订单管理详情";
     [self.tableView registerNib:[UINib nibWithNibName:@"OrdorCell" bundle:nil]   forCellReuseIdentifier:@"OrdorCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"HTXQFLCell" bundle:nil] forCellReuseIdentifier:@"HTXQFLCell"];
-    
-    
     //获取物流详细信息
     [self toGetMaterialDetailData];
     
@@ -66,8 +64,10 @@
 - (void)toGetMaterialDetailData{
     NSMutableDictionary * dict = [NSMutableDictionary dictionary];
     dict[@"orderNo"] = self.ordorNumber;
+    [SVProgressHUD showWithStatus:@"数据加载中"];
     [UserLoginTool loginRequestGet:@"orderDetail" parame:dict success:^(NSDictionary * json) {
         NSLog(@"xx  orderDetail  %@",json);
+        [SVProgressHUD dismiss];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
             
             self.orderDetailModel = [HTOrderDetailModel objectWithKeyValues:json[@"resultData"][@"data"]];
@@ -76,6 +76,7 @@
         
         
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         NSLog(@"ss  orderDetail%@",error.description);
     }];
 }
@@ -153,6 +154,7 @@
         }else{
             cell.userInteractionEnabled = YES;
         }
+        cell.textLabel.font = [UIFont systemFontOfSize:14];
         return cell;
         
     }else{
@@ -239,7 +241,7 @@
     }else if (indexPath.section == 3) {
         return 44;
     }else{
-        return 60;
+        return 68;
     }
 }
 

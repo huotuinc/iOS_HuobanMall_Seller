@@ -93,8 +93,9 @@
     }else{
         StatisticsControllerJieKous = @"topSales";
     }
+    [SVProgressHUD showWithStatus:@"数据加载中"];
     [UserLoginTool loginRequestGet:StatisticsControllerJieKous parame:nil success:^(id json) {
-
+        [SVProgressHUD dismiss];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
             NSArray * models = [HTStatisticsModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             if (models.count) {
@@ -105,6 +106,7 @@
         }
 
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         NSLog(@"%@",error.description);
     }];
 }
