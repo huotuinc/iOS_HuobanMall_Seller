@@ -12,6 +12,7 @@
 #import "HTResultData.h"
 #import "HTHuoBanNavgationViewController.h"
 #import "HTToJudgeLoginFlag.h"
+#import "NSData+NSDataDeal.h"
 
 @interface AppDelegate ()<CLLocationManagerDelegate>
 /**定位管理者*/
@@ -177,6 +178,25 @@
         }
         
     }];
+}
+
+
+/**
+ *  获取deviceToken
+ */
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    
+    
+    NSString * aa = [[deviceToken hexadecimalString] copy];
+    NSString * urlstr = [MainUrl stringByAppendingPathComponent:@"updateDeviceToken"];
+    NSMutableDictionary * parame = [NSMutableDictionary dictionary];
+    parame[@"deviceToken"] = aa;
+    [UserLoginTool loginRequestGet:urlstr parame:parame success:^(id json) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
+    
 }
 
 @end

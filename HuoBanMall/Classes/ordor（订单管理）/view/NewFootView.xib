@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HTh-C9-odk" customClass="FootView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zXj-JR-XNp">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
@@ -67,7 +67,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9R-zX-Rhe">
-                            <rect key="frame" x="-140" y="69" width="600" height="1"/>
+                            <rect key="frame" x="-140" y="71" width="600" height="1"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line1" translatesAutoresizingMaskIntoConstraints="NO" id="oxn-jC-0yT">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
@@ -82,7 +82,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Gd-b0-INY">
-                            <rect key="frame" x="-140" y="48" width="600" height="1"/>
+                            <rect key="frame" x="-140" y="46" width="600" height="1"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line" translatesAutoresizingMaskIntoConstraints="NO" id="X8w-1B-sRD">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
@@ -97,7 +97,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="主订单号：1234567899638527" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KH6-BX-KNb">
-                            <rect key="frame" x="10" y="51" width="143" height="12"/>
+                            <rect key="frame" x="10" y="53" width="143" height="12"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -111,7 +111,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="vpA-GJ-Ohx" firstAttribute="top" secondItem="1Gd-b0-INY" secondAttribute="bottom" constant="4" id="1VZ-91-f9D"/>
+                        <constraint firstItem="vpA-GJ-Ohx" firstAttribute="top" secondItem="1Gd-b0-INY" secondAttribute="bottom" constant="6" id="1VZ-91-f9D"/>
                         <constraint firstItem="q9R-zX-Rhe" firstAttribute="top" secondItem="KH6-BX-KNb" secondAttribute="bottom" constant="6" id="2Re-W3-I5i"/>
                         <constraint firstItem="pGF-wN-Oh6" firstAttribute="leading" secondItem="94r-oc-MX5" secondAttribute="trailing" constant="-3" id="4xG-p1-hIB"/>
                         <constraint firstAttribute="bottom" secondItem="q9R-zX-Rhe" secondAttribute="bottom" id="5z6-XF-6Av"/>
@@ -119,7 +119,7 @@
                         <constraint firstAttribute="trailing" secondItem="vpA-GJ-Ohx" secondAttribute="trailing" constant="10" id="AH2-kq-Px6"/>
                         <constraint firstItem="fhf-x9-SKq" firstAttribute="centerY" secondItem="pGF-wN-Oh6" secondAttribute="centerY" id="BCl-9f-7TO"/>
                         <constraint firstItem="zXj-JR-XNp" firstAttribute="leading" secondItem="HTh-C9-odk" secondAttribute="leading" id="H1Y-5A-tCT"/>
-                        <constraint firstItem="q9R-zX-Rhe" firstAttribute="top" secondItem="vpA-GJ-Ohx" secondAttribute="bottom" constant="4" id="LBY-w3-Sv5"/>
+                        <constraint firstItem="q9R-zX-Rhe" firstAttribute="top" secondItem="vpA-GJ-Ohx" secondAttribute="bottom" constant="6" id="LBY-w3-Sv5"/>
                         <constraint firstItem="fhf-x9-SKq" firstAttribute="leading" secondItem="HTh-C9-odk" secondAttribute="leading" constant="15" id="MfA-zP-c0r"/>
                         <constraint firstItem="zXj-JR-XNp" firstAttribute="top" secondItem="HTh-C9-odk" secondAttribute="top" id="PIe-AS-9Gz"/>
                         <constraint firstAttribute="trailing" secondItem="pGF-wN-Oh6" secondAttribute="trailing" constant="5" id="RiT-Yp-P3w"/>
@@ -148,7 +148,7 @@
                 <constraint firstItem="HTh-C9-odk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2xU-Qt-0pE"/>
                 <constraint firstItem="HTh-C9-odk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Mgc-QD-KxI"/>
                 <constraint firstAttribute="trailing" secondItem="HTh-C9-odk" secondAttribute="trailing" id="SJf-VM-7vZ"/>
-                <constraint firstAttribute="bottom" secondItem="HTh-C9-odk" secondAttribute="bottom" constant="15" id="tKA-Te-9cw"/>
+                <constraint firstAttribute="bottom" secondItem="HTh-C9-odk" secondAttribute="bottom" constant="13" id="tKA-Te-9cw"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

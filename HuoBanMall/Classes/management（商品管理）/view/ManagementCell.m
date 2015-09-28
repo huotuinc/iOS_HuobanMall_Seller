@@ -21,9 +21,10 @@
 {
     [super layoutSubviews];
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.model.pictureUrl] placeholderImage:nil options:SDWebImageRetryFailed];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.model.pictureUrl] placeholderImage:nil options:SDWebImageProgressiveDownload];
     
     self.introduceLabel.text = self.model.title;
+    self.introduceLabel.textAlignment = NSTextAlignmentLeft;
     
     self.priceLabel.text = [NSString stringWithFormat:@"¥：%@",self.model.price];
     
