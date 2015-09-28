@@ -82,49 +82,101 @@
 
 #pragma 设置点击事件
 - (void)_initImageView {
+    
+    /**获取用户的权限*/
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+    HTUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    NSArray *authorityArray = [user.authority componentsSeparatedByString:@","];
+    
+    
     HTDataStatisViewController *dataStatis = [[HTDataStatisViewController alloc] init];;
     
     [self.ordorView bk_whenTapped:^{
-        dataStatis.selectIndex = 0;
-        self.title = nil;
-        [self.navigationController pushViewController:dataStatis animated:YES];
+        
+        if ([authorityArray containsObject:@"10" ] || [user.authority isEqualToString:@"*"]) {
+            dataStatis.selectIndex = 0;
+            self.title = nil;
+            [self.navigationController pushViewController:dataStatis animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+   
     }];
     
     [self.distributorImage bk_whenTapped:^{
-        dataStatis.selectIndex = 2;
-        self.title = nil;
-        [self.navigationController pushViewController:dataStatis animated:YES];
+        
+        if ([authorityArray containsObject:@"5" ] || [user.authority isEqualToString:@"*"]) {
+            dataStatis.selectIndex = 2;
+            self.title = nil;
+            [self.navigationController pushViewController:dataStatis animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+        
+        
     }];
     
     [self.memberImage bk_whenTapped:^{
-        dataStatis.selectIndex = 2;
-        self.title = nil;
-        [self.navigationController pushViewController:dataStatis animated:YES];
+        if ([authorityArray containsObject:@"5" ] || [user.authority isEqualToString:@"*"]) {
+            dataStatis.selectIndex = 2;
+            self.title = nil;
+            [self.navigationController pushViewController:dataStatis animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
     }];
     
     [self.saleImage bk_whenTapped:^{
-        dataStatis.selectIndex = 1;
-        self.title = nil;
-        [self.navigationController pushViewController:dataStatis animated:YES];
+        
+        if ([authorityArray containsObject:@"6" ] || [user.authority isEqualToString:@"*"]) {
+            dataStatis.selectIndex = 1;
+            self.title = nil;
+            [self.navigationController pushViewController:dataStatis animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+
     }];
     
     [self.marketImage bk_whenTapped:^{
         
-        HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
-        ctl.type = 3;
-        [self.navigationController pushViewController:ctl animated:YES];
+        if ([authorityArray containsObject:@"7" ] || [user.authority isEqualToString:@"*"]) {
+            HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
+            ctl.type = 3;
+            [self.navigationController pushViewController:ctl animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+
+        
+        
     }];
     
     [self.rebateImage bk_whenTapped:^{
-        HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
-        ctl.type = 1;
-        [self.navigationController pushViewController:ctl animated:YES];
+        
+        if ([authorityArray containsObject:@"8" ] || [user.authority isEqualToString:@"*"]) {
+            HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
+            ctl.type = 1;
+            [self.navigationController pushViewController:ctl animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+        
+        
     }];
     
     [self.expenseImage bk_whenTapped:^{
-        HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
-        ctl.type = 2;
-        [self.navigationController pushViewController:ctl animated:YES];
+        
+        if ([authorityArray containsObject:@"9" ] || [user.authority isEqualToString:@"*"]) {
+            HTStatisticsController * ctl = [[HTStatisticsController alloc] init];
+            ctl.type = 2;
+            [self.navigationController pushViewController:ctl animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+        
+        
     }];
     
 }
