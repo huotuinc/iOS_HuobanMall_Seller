@@ -67,8 +67,8 @@
 - (void)setModel:(HTTopTenModel *)model{
  
     _model = model;
-    self.textLabel.text = model.title;
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.picture] placeholderImage:[UIImage imageNamed:@"wl-1"] options:SDWebImageRetryFailed];
+    self.textLabel.text = [NSString stringWithFormat:@" %@",model.title];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.picture] placeholderImage:[UIImage imageNamed:@"tpzwx"] options:SDWebImageRetryFailed];
     
     NSString * redStrs = [NSString stringWithFormat:@"￥%@",[model.price stringValue]];
 //    NSString * buyStr = [NSString stringWithFormat:@"%@人已购买",[model.amount stringValue]];
