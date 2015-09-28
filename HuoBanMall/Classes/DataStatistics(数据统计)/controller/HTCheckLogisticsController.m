@@ -12,6 +12,7 @@
 #import "HTWuliuModel.h"
 #import "GoodModel.h"
 #import "HTWuLiuStatus.h"
+#import "MJRefresh.h"
 @interface HTCheckLogisticsController ()
 
 @property(nonatomic,strong) HTWuliuModel * dateModel;
@@ -30,6 +31,8 @@
     
      //获取物流详情
      [self toGetMaterialDetailData];
+     
+     [self setupRefresh];
 //    self.tableView.userInteractionEnabled = NO;
 //    self.tableView.
     // Uncomment the following line to preserve selection between presentations.
@@ -39,13 +42,42 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
+#pragma mark 集成刷新空间
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+     [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+     //#warning 自动刷新(一进入程序就下拉刷新)
+     //    [self.tableView headerBeginRefreshing];
+     // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
+     self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
+     self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
+     self.tableView.headerRefreshingText = @"正在刷新最新数据,请稍等";
+     
+}
+
+//头部刷新
+- (void)headerRereshing  //加载最新数据
+{
+     [self toGetMaterialDetailData];
+     // 2.(最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+     [self.tableView headerEndRefreshing];
+}
+
+
 - (void)toGetMaterialDetailData{
      
      __weak HTCheckLogisticsController *wself = self;
      NSMutableDictionary * dict = [NSMutableDictionary dictionary];
      dict[@"orderNo"] = self.ordorNumber;
+     [SVProgressHUD showWithStatus:@"数据加载中"];
      [UserLoginTool loginRequestGet:@"logisticsDetail" parame:dict success:^(NSDictionary * json){
-         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
+          [SVProgressHUD dismiss];
+          if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
                
                wself.dateModel = [HTWuliuModel objectWithKeyValues:json[@"resultData"][@"data"]];
                [wself.tableView reloadData];
@@ -53,6 +85,7 @@
           }
          
      } failure:^(NSError *error) {
+          [SVProgressHUD dismiss];
           NSLog(@"ss  orderDetail%@",error.description);
      }];
 }
