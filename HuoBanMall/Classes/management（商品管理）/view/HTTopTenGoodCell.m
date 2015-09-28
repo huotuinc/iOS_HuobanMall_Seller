@@ -35,7 +35,7 @@
         cell.topImageView.image = [UIImage imageNamed:@"red-4"];
     }
     //排名
-    cell.numLable.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
+    cell.numLable.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
     return cell;
 }
 
@@ -43,6 +43,7 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        self.userInteractionEnabled = NO;
         self.textLabel.numberOfLines = 0;
         UIImageView * top = [[UIImageView alloc] init];
         top.contentMode = UIViewContentModeScaleAspectFit;
@@ -73,7 +74,7 @@
     NSString * redStrs = [NSString stringWithFormat:@"￥%@",[model.price stringValue]];
 //    NSString * buyStr = [NSString stringWithFormat:@"%@人已购买",[model.amount stringValue]];
     
-    NSMutableString * redStr = [NSMutableString stringWithFormat:@"￥%@ %@人已购买",[model.price stringValue],[model.amount stringValue]];
+    NSMutableString * redStr = [NSMutableString stringWithFormat:@"￥%@ 已售出%@件",[model.price stringValue],[model.amount stringValue]];
     
     NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:redStr];
    
