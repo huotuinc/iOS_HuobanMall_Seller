@@ -166,6 +166,7 @@
     HTStatisticsModel * model = self.dateStat[indexPath.row];
     model.Type = self.type;
     cell.model = model;
+    cell.userInteractionEnabled = NO;
     return cell;
 }
 
