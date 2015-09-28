@@ -73,6 +73,9 @@
 /**会员数据模型**/
 @property (nonatomic, strong) MenListModel *memModel;
 
+/**权限*/
+@property (nonatomic, strong) NSArray *authority;
+
 @end
 
 @implementation HTDataStatisViewController
@@ -93,9 +96,20 @@ static NSString *popAnimation = @"first";
     return _scrollerviews;
 }
 
+- (NSArray *)authority {
+    if (_authority == nil) {
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+        HTUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+        _authority = [user.authority componentsSeparatedByString:@","];
+    }
+    return _authority;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     //初始化滚地
@@ -152,10 +166,41 @@ static NSString *popAnimation = @"first";
  */
 - (void)segmentChanged {
     
+    if (self.segment.selectedSegmentIndex == 0) {
+        if ([self.authority containsObject:@"10"] || [self.authority[0] isEqualToString:@"*"]) {
+            [self doSegemtChange];
+        }else {
+            self.segment.selectedSegmentIndex = self.selectIndex;
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+    }
+    if (self.segment.selectedSegmentIndex == 1) {
+        if ([self.authority containsObject:@"6"] || [self.authority[0] isEqualToString:@"*"]) {
+            [self doSegemtChange];
+        }else {
+            self.segment.selectedSegmentIndex = self.selectIndex;
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+    }
+    if (self.segment.selectedSegmentIndex == 2) {
+        if ([self.authority containsObject:@"5"] || [self.authority[0] isEqualToString:@"*"]) {
+            [self doSegemtChange];
+        }else {
+            self.segment.selectedSegmentIndex = self.selectIndex;
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+    }
 
+    
+}
+
+/**
+ *  执行点击滑动
+ */
+- (void)doSegemtChange {
     [UIView animateWithDuration:0.35 animations:^{
-    self.BackScrollerview.contentOffset = CGPointMake(ScreenWidth * self.segment.selectedSegmentIndex, 0);
-    self.BackScrollerview.frame = CGRectMake(0, 0, self.BackScrollerview.frame.size.width, self.BackScrollerview.frame.size.height);
+        self.BackScrollerview.contentOffset = CGPointMake(ScreenWidth * self.segment.selectedSegmentIndex, 0);
+        self.BackScrollerview.frame = CGRectMake(0, 0, self.BackScrollerview.frame.size.width, self.BackScrollerview.frame.size.height);
     }];
     self.selectIndex = self.segment.selectedSegmentIndex;
     [self getNewData];
@@ -1142,9 +1187,37 @@ static NSString *popAnimation = @"first";
     double padgeDouble = x / scrollView.frame.size.width;
     int padgeInt = (int)(padgeDouble + 0.5);
     if (self.segment.selectedSegmentIndex != padgeInt) {
-        self.segment.selectedSegmentIndex = padgeInt;
-        self.selectIndex = self.segment.selectedSegmentIndex;
-        [self getNewData];
+        
+        if (padgeInt == 0) {
+            if ([self.authority containsObject:@"10"] || [self.authority[0] isEqualToString:@"*"]) {
+                self.segment.selectedSegmentIndex = padgeInt;
+                self.selectIndex = self.segment.selectedSegmentIndex;
+                [self getNewData];
+            }else {
+                scrollView.contentOffset = CGPointMake(ScreenWidth * self.selectIndex, 0);
+            }
+        }
+        
+        if (padgeInt == 1) {
+            if ([self.authority containsObject:@"6"] || [self.authority[0] isEqualToString:@"*"]) {
+                self.segment.selectedSegmentIndex = padgeInt;
+                self.selectIndex = self.segment.selectedSegmentIndex;
+                [self getNewData];
+            }else {
+                scrollView.contentOffset = CGPointMake(ScreenWidth * self.selectIndex, 0);
+            }
+        }
+        if (padgeInt == 2) {
+            if ([self.authority containsObject:@"5"] || [self.authority[0] isEqualToString:@"*"]) {
+                self.segment.selectedSegmentIndex = padgeInt;
+                self.selectIndex = self.segment.selectedSegmentIndex;
+                [self getNewData];
+            }else {
+                scrollView.contentOffset = CGPointMake(ScreenWidth * self.selectIndex, 0);
+            }
+        }
+        
+        
     }
     
 }
