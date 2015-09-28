@@ -52,7 +52,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
 
 }
 
@@ -84,7 +83,7 @@
 //头部刷新
 - (void)headerRereshing  //加载最新数据
 {
-    //    startIndex = @1;
+
    
     [self getNewMoreData];
     //    // 2.(最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
@@ -126,6 +125,9 @@
         }
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {//访问成果
             NSArray * taskArray = [Message objectArrayWithKeyValuesArray:json[@"resultData"][@"messages"]];
+            
+            
+            
             if (taskArray.count > 0) {
                 for (Message * aa in taskArray) {
                     //                    NSLog(@"%@  %lld",aa.context,aa.date);
@@ -159,12 +161,19 @@
 //    [MBProgressHUD showMessage:nil];
     __weak MCController * wself = self;
     [UserLoginTool loginRequestGet:@"messages" parame:parame success:^(id json) {
-        //        NSLog(@"%@",json);
+            NSLog(@"%@",json);
 //        [MBProgressHUD hideHUD];
         NSMutableArray * aaframe = [NSMutableArray array];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             NSArray *messageArrays = [Message objectArrayWithKeyValuesArray:json[@"resultData"][@"messages"]];
+            
+            if (messageArrays.count == 0) {
+                [self.tableView setTabelViewListIsZero];
+            }else {
+                [self.tableView setTableViewNormal];
+            }
+            
             if (messageArrays.count) {
                 
                 for (Message *aa in messageArrays) {
@@ -188,6 +197,8 @@
         }
 //        [MBProgressHUD hideHUD];
     } failure:^(NSError *error) {
+        
+//        NSLog(@"%@",error);
 //        [MBProgressHUD hideHUD];
     }];
     

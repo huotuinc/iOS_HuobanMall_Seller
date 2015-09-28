@@ -16,25 +16,25 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wl-1" translatesAutoresizingMaskIntoConstraints="NO" id="CHi-uS-rp7">
-                        <rect key="frame" x="20" y="8" width="82" height="82"/>
+                        <rect key="frame" x="20" y="10" width="78" height="78"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="CHi-uS-rp7" secondAttribute="height" multiplier="1:1" id="zTx-wC-nWM"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="产品分类：干果" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpi-yO-zet">
-                        <rect key="frame" x="116" y="46" width="84" height="15"/>
+                        <rect key="frame" x="112" y="46" width="84" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 299" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUz-KC-kfT">
-                        <rect key="frame" x="116" y="73" width="37" height="17"/>
+                        <rect key="frame" x="112" y="71" width="37" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人生观豪华大礼包产品只要299元内有小核桃、葡萄干" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHw-0e-KIP">
-                        <rect key="frame" x="116" y="8" width="184" height="35"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人生观豪华大礼包产品只要299元内有小核桃、葡萄干" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHw-0e-KIP">
+                        <rect key="frame" x="112" y="10" width="188" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="183" id="3XY-Pa-iQs"/>
                             <constraint firstAttribute="height" constant="35" id="tJD-8g-wN7"/>
@@ -45,11 +45,12 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="3XY-Pa-iQs"/>
+                                <exclude reference="tJD-8g-wN7"/>
                             </mask>
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="库存 :3000件" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awj-Hd-ojH">
-                        <rect key="frame" x="217" y="73" width="83" height="17"/>
+                        <rect key="frame" x="217" y="71" width="83" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -58,14 +59,14 @@
                 <constraints>
                     <constraint firstItem="eUz-KC-kfT" firstAttribute="bottom" secondItem="CHi-uS-rp7" secondAttribute="bottom" id="3dC-No-uwg"/>
                     <constraint firstItem="eUz-KC-kfT" firstAttribute="leading" secondItem="CHi-uS-rp7" secondAttribute="trailing" constant="14" id="3hA-rO-wHl"/>
-                    <constraint firstItem="CHi-uS-rp7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="CFo-0k-GZd"/>
+                    <constraint firstItem="CHi-uS-rp7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="CFo-0k-GZd"/>
                     <constraint firstItem="xHw-0e-KIP" firstAttribute="leading" secondItem="CHi-uS-rp7" secondAttribute="trailing" constant="14" id="DeB-F6-OLJ"/>
                     <constraint firstAttribute="trailing" secondItem="xHw-0e-KIP" secondAttribute="trailing" constant="20" id="Jmv-bl-j09"/>
                     <constraint firstAttribute="trailing" secondItem="awj-Hd-ojH" secondAttribute="trailing" constant="20" id="PD9-25-sBX"/>
                     <constraint firstItem="CHi-uS-rp7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="hJ2-z6-8Yl"/>
                     <constraint firstItem="awj-Hd-ojH" firstAttribute="centerY" secondItem="eUz-KC-kfT" secondAttribute="centerY" id="nWL-TZ-QLC"/>
                     <constraint firstItem="Mpi-yO-zet" firstAttribute="leading" secondItem="CHi-uS-rp7" secondAttribute="trailing" constant="14" id="noI-lF-xgU"/>
-                    <constraint firstAttribute="bottom" secondItem="CHi-uS-rp7" secondAttribute="bottom" constant="8" id="oTv-6d-isE"/>
+                    <constraint firstAttribute="bottom" secondItem="CHi-uS-rp7" secondAttribute="bottom" constant="10" id="oTv-6d-isE"/>
                     <constraint firstItem="xHw-0e-KIP" firstAttribute="top" secondItem="CHi-uS-rp7" secondAttribute="top" id="pkG-3h-QGh"/>
                     <constraint firstAttribute="centerY" secondItem="Mpi-yO-zet" secondAttribute="centerY" constant="-4" id="uhh-QN-uCk"/>
                 </constraints>
