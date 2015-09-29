@@ -409,6 +409,11 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 {
     ManagementModel *model = nil;
     
+    if (self.tableView.editing == NO) {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        cell.selected = NO;
+    }
+    
     if (self.tableView.editing == YES) {
         
         model = self.goods[indexPath.row];
@@ -423,6 +428,12 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
             
             cell.selected = YES;
             
+        }
+    }
+    
+    if (self.tableView.editing == YES) {
+        if (self.goods.count == self.selectGoods.count) {
+            self.selectImage.image = [UIImage imageNamed:@"yxz"];
         }
     }
 
@@ -447,6 +458,12 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
         
 //        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 //        [cell setSelected:NO animated:YES];
+    }
+    
+    if (self.tableView.editing == YES) {
+        if (self.goods.count != self.selectGoods.count) {
+            self.selectImage.image = [UIImage imageNamed:@"wxz"];
+        }
     }
 }
 
