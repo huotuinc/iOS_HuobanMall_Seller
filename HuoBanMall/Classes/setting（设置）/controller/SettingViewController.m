@@ -63,6 +63,17 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+}
+
+- (HTUser *)user {
+    if (_user == nil) {
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+        self.user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    }
+    return _user;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,9 +124,7 @@
 #pragma mark 设置初始的用户信息
 
 - (void)_initUserInfo {
-    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
-    self.user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+
     
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:self.user.logo] placeholderImage:nil options:SDWebImageRetryFailed];
     
@@ -297,13 +306,39 @@
         data = UIImagePNGRepresentation(photoImage);
     }
     
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    NSString * imagefile = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        NSMutableDictionary * params = [NSMutableDictionary dictionary];
+        params[@"profileType"] = @(0);
+        params[@"profileData"] = imagefile;
+        
+        [SVProgressHUD showWithStatus:@"头像上传中，请稍候"];
+        
+        [UserLoginTool loginRequestPostWithFile:@"updateMerchantProfile" parame:params success:^(id json) {
+            [SVProgressHUD dismiss];
+            NSLog(@"%@", json);
+            if ([json[@"systemResultCode"] intValue] ==1&&[json[@"resultCode"] intValue] == 1) {
+                HTUser * user1 = [HTUser objectWithKeyValues:json[@"resultData"][@"user"]];
+                NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+                NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+                [NSKeyedArchiver archiveRootObject:user1 toFile:fileName];
+            }
+            [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+            [self _initUserInfo];
+            
+        } failure:^(NSError *error) {
+            [SVProgressHUD dismiss];
+            [SVProgressHUD showErrorWithStatus:@"头像上传失败"];
+            NSLog(@"%@",error.description);
+        } withFileKey:@"profileData"];
+        
+    }];
 }
 
 /**
  *  取消拍照
  *
- *  @param picker <#picker description#>
+ *  @param picker
  */
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     

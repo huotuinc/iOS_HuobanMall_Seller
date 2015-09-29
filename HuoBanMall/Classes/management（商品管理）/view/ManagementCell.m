@@ -28,7 +28,7 @@
     
     self.priceLabel.text = [NSString stringWithFormat:@"¥:%@",self.model.price];
     
-    if (self.model.stock < 0) {
+    if ([self.model.stock integerValue] < 0) {
         self.repertoryLabel.text = @"库存:无限制";
     }else {
         self.repertoryLabel.text = [NSString stringWithFormat:@"库存:%@", self.model.stock];

@@ -309,7 +309,7 @@
 }
 
 
-#pragma 初始化滑动视图
+#pragma mark 初始化滑动视图
 
 - (void)_initScrollView
 {
@@ -377,7 +377,7 @@
     
 }
 
-#pragma 网络访问
+#pragma mark 网络访问
 
 - (void)getNewToday {
     

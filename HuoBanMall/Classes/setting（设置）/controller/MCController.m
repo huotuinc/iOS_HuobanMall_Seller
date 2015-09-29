@@ -118,6 +118,7 @@
     __weak MCController * wself = self;
     [UserLoginTool loginRequestGet:@"messages" parame:params success:^(id json) {
         
+        
 
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==56001){
 
@@ -142,7 +143,9 @@
         }
 
     } failure:^(NSError *error) {
-
+        
+        [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
+        
     }];
     
 }
@@ -158,11 +161,11 @@
     NSMutableDictionary *parame = [NSMutableDictionary dictionary];
     parame[@"pagingSize"] = @(pageSize);
     parame[@"pagingTag"] = @"";
-//    [MBProgressHUD showMessage:nil];
     __weak MCController * wself = self;
     [UserLoginTool loginRequestGet:@"messages" parame:parame success:^(id json) {
-            NSLog(@"%@",json);
-//        [MBProgressHUD hideHUD];
+        
+        NSLog(@"%@",json);
+        
         NSMutableArray * aaframe = [NSMutableArray array];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
@@ -177,7 +180,6 @@
             if (messageArrays.count) {
                 
                 for (Message *aa in messageArrays) {
-                    //                    NSLog(@"%@  %lld",aa.context,aa.date);
                     MessageFrame *aas = [[MessageFrame alloc] init];
                     aas.message = aa;
                     [aaframe addObject:aas];
@@ -195,11 +197,11 @@
             
             
         }
-//        [MBProgressHUD hideHUD];
+
     } failure:^(NSError *error) {
         
-//        NSLog(@"%@",error);
-//        [MBProgressHUD hideHUD];
+        [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
+        
     }];
     
 }
