@@ -151,18 +151,36 @@
     
     HTHomeViewController * wself = self;
     
+    /**获取用户的权限*/
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+    HTUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    NSArray *authorityArray = [user.authority componentsSeparatedByString:@","];
+    
+    
     [self.productManager bk_whenTapped:^{
-        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        ManagementController * management = [story instantiateViewControllerWithIdentifier:@"ManagementController"];
-        [wself.navigationController pushViewController:management animated:YES];
+        if ([authorityArray containsObject:@"1" ] || [user.authority isEqualToString:@"*"]) {
+            UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            ManagementController * management = [story instantiateViewControllerWithIdentifier:@"ManagementController"];
+            [wself.navigationController pushViewController:management animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+        
     }];
     
     [self.settingManager bk_whenTapped:^{
        
-        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        SettingViewController * setvc = [story instantiateViewControllerWithIdentifier:@"SettingViewController"];
-        setvc.title = @"设置中心";
-        [wself.navigationController pushViewController:setvc animated:YES];
+        if ([authorityArray containsObject:@"100" ] || [user.authority isEqualToString:@"*"]) {
+            UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            SettingViewController * setvc = [story instantiateViewControllerWithIdentifier:@"SettingViewController"];
+            setvc.title = @"设置中心";
+            [wself.navigationController pushViewController:setvc animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+        
+        
         
     }];
     
@@ -178,10 +196,16 @@
     
     [self.orderManager bk_whenTapped:^{
         
-        UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        OrdorController *ordor = [story instantiateViewControllerWithIdentifier:@"OrdorController"];
-        ordor.title = @"订单管理";
-        [wself.navigationController pushViewController:ordor animated:YES];
+        if ([authorityArray containsObject:@"2" ] || [user.authority isEqualToString:@"*"]) {
+            UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            OrdorController *ordor = [story instantiateViewControllerWithIdentifier:@"OrdorController"];
+            ordor.title = @"订单管理";
+            [wself.navigationController pushViewController:ordor animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"你没有此权限"];
+        }
+        
+        
     }];
 
     
@@ -285,7 +309,7 @@
 }
 
 
-#pragma 初始化滑动视图
+#pragma mark 初始化滑动视图
 
 - (void)_initScrollView
 {
@@ -353,7 +377,7 @@
     
 }
 
-#pragma 网络访问
+#pragma mark 网络访问
 
 - (void)getNewToday {
     
