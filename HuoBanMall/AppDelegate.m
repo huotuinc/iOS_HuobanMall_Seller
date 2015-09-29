@@ -22,6 +22,7 @@
 
 @implementation AppDelegate
 
+
 - (CLLocationManager *)mgr{
     if (_mgr == nil) {
         _mgr = [[CLLocationManager alloc] init];
@@ -30,6 +31,18 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    
+    application.applicationIconBadgeNumber = 0;
+
+    
+    if (launchOptions) {
+        NSDictionary *dicRemote = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (dicRemote) {
+            
+            NSLog(@"0000xxxx000-----%@",dicRemote);
+        }
+
+    }
     
     //开启定位服务
     [self AppLaunchTolocation];
@@ -49,6 +62,7 @@
     [self.window makeKeyAndVisible];
     
     [self registRemoteNotification:application];
+    
     return YES;
 }
 
@@ -56,13 +70,66 @@
  *  注册远程通知
  */
 - (void)registRemoteNotification:(UIApplication *)application{
-    if (IsIos7) { //iOS 8 remoteNotification
-        UIRemoteNotificationType type = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeNewsstandContentAvailability;
-        [application registerForRemoteNotificationTypes:type];
-    }else{
+        if (IsIos8) { //iOS 8 remoteNotification
         UIUserNotificationType type = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
         UIUserNotificationSettings * settings = [UIUserNotificationSettings settingsForTypes:type categories:nil];
         [application registerUserNotificationSettings:settings];
+    }else{
+        
+        UIRemoteNotificationType type = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeNewsstandContentAvailability;
+        [application registerForRemoteNotificationTypes:type];
+        
+    }
+}
+
+/**
+ *  ios8
+ *
+ *  @param application          <#application description#>
+ *  @param notificationSettings <#notificationSettings description#>
+ */
+-(void)application:(UIApplication*)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
+    [application registerForRemoteNotifications];
+}
+
+
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"注册推送服务时，发生以下错误： %@",error.description);
+}
+
+/**
+ *  获取deviceToken
+ */
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    
+    NSLog(@"%@",deviceToken);
+    NSString * aa = [[deviceToken hexadecimalString] copy];
+    //    NSString * urlstr = [MainUrl stringByAppendingPathComponent:@"updateDeviceToken"];
+    NSMutableDictionary * parame = [NSMutableDictionary dictionary];
+    parame[@"deviceToken"] = aa;
+    NSLog(@"deviceToken===%@",aa);
+    [UserLoginTool loginRequestGet:@"updateDeviceToken" parame:parame success:^(id json) {
+        NSLog(@"%@",json);
+    } failure:^(NSError *error) {
+        
+    }];
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    
+    NSLog(@"didReceiveRemoteNotification ------ %@",userInfo);
+    NSLog(@"%@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
+    //以警告框的方式来显示推送消息
+    if ([[userInfo objectForKey:@"aps"] objectForKey:@"alert"]!=NULL) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"经过推送发送过来的消息"
+                                                        message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                                       delegate:self
+                                              cancelButtonTitle:@"关闭"
+                                              otherButtonTitles:@"处理",nil];
+        [alert show];
     }
 }
 
@@ -199,22 +266,6 @@
 }
 
 
-/**
- *  获取deviceToken
- */
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
-    
-    
-    NSString * aa = [[deviceToken hexadecimalString] copy];
-    NSString * urlstr = [MainUrl stringByAppendingPathComponent:@"updateDeviceToken"];
-    NSMutableDictionary * parame = [NSMutableDictionary dictionary];
-    parame[@"deviceToken"] = aa;
-    [UserLoginTool loginRequestGet:urlstr parame:parame success:^(id json) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
-    
-}
+
 
 @end

@@ -118,6 +118,7 @@
     __weak MCController * wself = self;
     [UserLoginTool loginRequestGet:@"messages" parame:params success:^(id json) {
         
+        NSLog(@"%@",json);
 
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==56001){
 
@@ -125,9 +126,6 @@
         }
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {//访问成果
             NSArray * taskArray = [Message objectArrayWithKeyValuesArray:json[@"resultData"][@"messages"]];
-            
-            
-            
             if (taskArray.count > 0) {
                 for (Message * aa in taskArray) {
                     //                    NSLog(@"%@  %lld",aa.context,aa.date);
@@ -182,14 +180,9 @@
                     aas.message = aa;
                     [aaframe addObject:aas];
                 }
+                [wself.messageF removeAllObjects];
                 [wself.messageF addObjectsFromArray:aaframe];
-                
-                if (self.messageF.count > 0) {
-                    [self setWiteBackground];
-                }else {
-                    [self setClearBackground];
-                }
-                
+ 
                 [wself.tableView reloadData];
             }
             
