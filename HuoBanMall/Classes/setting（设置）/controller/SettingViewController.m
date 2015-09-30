@@ -296,7 +296,7 @@
         }
     }
     self.iconView.image = photoImage;
-    NSData *data;
+    NSData *data = nil;
     if (UIImagePNGRepresentation(photoImage) == nil) {
         
         data = UIImageJPEGRepresentation(photoImage, 1);
@@ -311,9 +311,9 @@
         NSMutableDictionary * params = [NSMutableDictionary dictionary];
         params[@"profileType"] = @(0);
         params[@"profileData"] = imagefile;
-        
         [SVProgressHUD showWithStatus:@"头像上传中，请稍候"];
         
+      
         [UserLoginTool loginRequestPostWithFile:@"updateMerchantProfile" parame:params success:^(id json) {
             [SVProgressHUD dismiss];
             NSLog(@"%@", json);
@@ -334,10 +334,10 @@
             [SVProgressHUD showErrorWithStatus:@"头像上传失败"];
             NSLog(@"%@",error.description);
         } withFileKey:@"profileData"];
-        
-    }];
-}
 
+    }];
+    
+}
 /**
  *  取消拍照
  *

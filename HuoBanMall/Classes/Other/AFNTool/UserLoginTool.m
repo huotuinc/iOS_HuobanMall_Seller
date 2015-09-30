@@ -122,27 +122,24 @@
       [paramsOption addEntriesFromDictionary:params];
    }
    
+
+   
    paramsOption[@"sign"] = [NSDictionary asignWithMutableDictionary:paramsOption];
    [paramsOption removeObjectForKey:@"appSecret"];
 
+//   NSLog(@"%@",paramsOption);
     NSData * data = [[paramsOption objectForKey:key] dataUsingEncoding:NSUTF8StringEncoding];
     [paramsOption removeObjectForKey:key];
-//    //    NSArray * parameaaa = [paramsOption allKeys];
-//    //    NSMutableString * aaa = [[NSMutableString alloc] init];
-//    //    for (NSString * a in parameaaa) {
-//    //        [aaa appendString:[NSString stringWithFormat:@"%@=%@&",a,[paramsOption objectForKey:a]]];
-//    //    }
-//    //    [aaa substringToIndex:aaa.length];
-//    //    NSLog(@"--------------------%@",aaa);
-//    //    NSLog(@"xxxxxx-----网络请求get参数parame%@",paramsOption);
-//    //    NSLog(@"网络请求－－－－post参数%@",paramsOption);
+ 
     [manager POST:url parameters:paramsOption constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFormData:data name:key];
+         [formData appendPartWithFormData:data name:@"profileData"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
+       NSLog(@"%@",operation);
+       success(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error);
+       NSLog(@"%@",error.description);
+       failure(error);
     }];
 //    [manager POST:url parameters:paramsOption success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"-------%@",operation);
