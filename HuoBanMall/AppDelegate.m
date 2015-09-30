@@ -39,7 +39,17 @@
         NSDictionary *dicRemote = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         if (dicRemote) {
             
-            NSLog(@"0000xxxx000-----%@",dicRemote);
+            NSLog(@"launch-------Remote%@",dicRemote);
+            NSDictionary * dict = [[dicRemote objectForKey:@"aps"] objectForKey:@"alert"];
+            if (dict != NULL) {
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:dict[@"body"]
+                                                                message:dict[@"title"]
+                                                               delegate:self
+                                                      cancelButtonTitle:@"关闭"
+                                                      otherButtonTitles:@"处理",nil];
+                [alert show];
+            }
+
         }
 
     }
@@ -123,9 +133,10 @@
     NSLog(@"didReceiveRemoteNotification ------ %@",userInfo);
     NSLog(@"%@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
     //以警告框的方式来显示推送消息
-    if ([[userInfo objectForKey:@"aps"] objectForKey:@"alert"]!=NULL) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"经过推送发送过来的消息"
-                                                        message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+    NSDictionary * dict = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    if (dict != NULL) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:dict[@"body"]
+                                                        message:dict[@"title"]
                                                        delegate:self
                                               cancelButtonTitle:@"关闭"
                                               otherButtonTitles:@"处理",nil];
