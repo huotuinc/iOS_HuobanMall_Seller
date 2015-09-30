@@ -322,9 +322,12 @@
                 NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
                 NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
                 [NSKeyedArchiver archiveRootObject:user1 toFile:fileName];
+                [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+                
+                self.user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+                
+                [self _initUserInfo];
             }
-            [SVProgressHUD showSuccessWithStatus:@"上传成功"];
-            [self _initUserInfo];
             
         } failure:^(NSError *error) {
             [SVProgressHUD dismiss];
