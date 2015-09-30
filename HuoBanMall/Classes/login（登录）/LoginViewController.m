@@ -169,6 +169,9 @@
             UIWindow * mainview = [UIApplication sharedApplication].keyWindow;
             mainview.rootViewController = home;
             
+            [self.passwdTextField resignFirstResponder];
+            [self.userNameTextFiled resignFirstResponder];
+            
         }
     } failure:^(NSError *error) {
         [SVProgressHUD dismiss];
