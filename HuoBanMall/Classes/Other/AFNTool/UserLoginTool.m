@@ -9,6 +9,7 @@
 #import "UserLoginTool.h"
 #import <AFNetworking.h>
 #import "NSDictionary+EXTERN.h"
+#import <MKNetworkKit.h>
 
 @interface UserLoginTool()
 
@@ -104,7 +105,7 @@
     
    NSString *url = [MainUrl stringByAppendingPathComponent:urlStr];
    
-   AFHTTPRequestOperationManager * manager  = [AFHTTPRequestOperationManager manager];
+//   AFHTTPRequestOperationManager * manager  = [AFHTTPRequestOperationManager manager];
    NSMutableDictionary * paramsOption = [NSMutableDictionary dictionary];
    paramsOption[@"appKey"] = HuoBanMallAPPKEY;
    paramsOption[@"appSecret"] = HuoBanMallSecretKey;
@@ -118,36 +119,50 @@
    paramsOption[@"version"] = HuoBanMallAppVersion;
    paramsOption[@"timestamp"] = apptimesSince1970;
    
+   
+
    if (params != nil) {
       [paramsOption addEntriesFromDictionary:params];
    }
+//
    
-
+   NSData *data = [[paramsOption objectForKey:key] dataUsingEncoding:NSUTF8StringEncoding];
+   NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+   [paramsOption removeObjectForKey:key];
+//
+   paramsOption[@"profileData"] = str;
    
    paramsOption[@"sign"] = [NSDictionary asignWithMutableDictionary:paramsOption];
    [paramsOption removeObjectForKey:@"appSecret"];
+   
+   MKNetworkEngine *engine = [[MKNetworkEngine alloc] initWithHostName:MainUrlMK customHeaderFields:nil];
+   
+   MKNetworkOperation *op = [engine operationWithPath:urlStr params:paramsOption httpMethod:@"POST"];
+   
+   [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+      success(completedOperation.responseJSON);
+   } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+      failure(error);
+   }];
+   
+   [engine enqueueOperation:op];
+//   NSData * data = [[paramsOption objectForKey:key] dataUsingEncoding:NSUTF8StringEncoding];
+   
 
 //   NSLog(@"%@",paramsOption);
-    NSData * data = [[paramsOption objectForKey:key] dataUsingEncoding:NSUTF8StringEncoding];
-    [paramsOption removeObjectForKey:key];
+//   [paramsOption removeObjectForKey:@"profileData"];
  
-    [manager POST:url parameters:paramsOption constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-         [formData appendPartWithFormData:data name:@"profileData"];
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-       NSLog(@"%@",operation);
-       success(responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-       NSLog(@"%@",error.description);
-       failure(error);
-    }];
-//    [manager POST:url parameters:paramsOption success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"-------%@",operation);
-//        success(responseObject);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//   [manager POST:url parameters:paramsOption constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//      [formData appendPartWithFormData:data name:@"profileData"];
+//   } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//      NSLog(@"%@",operation);
+//      success(responseObject);
 //        
-//        failure(error);
-//    }];
+//   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//      NSLog(@"%@",error.description);
+//      failure(error);
+//   }];
+
     
 }
 @end

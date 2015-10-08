@@ -309,7 +309,7 @@
     NSString * imagefile = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     [picker dismissViewControllerAnimated:YES completion:^{
         NSMutableDictionary * params = [NSMutableDictionary dictionary];
-        params[@"profileType"] = @(0);
+        params[@"profileType"] = @(2);
         params[@"profileData"] = imagefile;
         [SVProgressHUD showWithStatus:@"头像上传中，请稍候"];
         
