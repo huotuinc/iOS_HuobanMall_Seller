@@ -225,6 +225,21 @@
 {
     [super viewWillAppear:animated];
     
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+    HTUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    
+    
+    
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:user.logo] placeholderImage:[UIImage imageNamed:@"txzw"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
+    imageView.layer.cornerRadius = 15;
+    imageView.clipsToBounds = YES;
+    UIBarButtonItem *bar = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    self.navigationItem.leftBarButtonItem = bar;
     
 }
 /**
@@ -252,14 +267,7 @@
         [self.navigationController pushViewController:web animated:YES];
     }];
     
-    UIImageView *image = [[UIImageView alloc] init];
-    [image sd_setImageWithURL:[NSURL URLWithString:user.logo] placeholderImage:[UIImage imageNamed:@"txzw"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-
-        
-        
-    }];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image.image style:UIBarButtonItemStylePlain target:nil action:nil];
     
     self.navigationItem.title = user.title;
 }

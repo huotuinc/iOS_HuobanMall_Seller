@@ -64,7 +64,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    
+    self.iconView.layer.cornerRadius = self.iconView.bounds.size.width / 2;
+    self.iconView.clipsToBounds = YES;
 }
 
 - (HTUser *)user {
