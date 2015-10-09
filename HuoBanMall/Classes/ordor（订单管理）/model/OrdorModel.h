@@ -20,7 +20,7 @@
 /**实付金额*/
 @property (nonatomic, strong) NSNumber *paid;
 /**订单状态*/
-//@property (nonatomic, strong) NSString *status;
+@property (nonatomic, strong) NSString *status;
 /**下单时间*/
 @property (nonatomic, strong) NSNumber *time;
 

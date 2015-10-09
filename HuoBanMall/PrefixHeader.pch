@@ -22,7 +22,10 @@
 
 //#define MainUrl @"http://192.168.1.48:8080/huobanmall/app"
 
+
 #define MainUrlMK @"apitest.51flashmall.com:8080/huobanmall/app"
+//#define MainUrlMK @"192.168.1.48:8080/huobanmall/app"
+
 
 
 //判断ios8
