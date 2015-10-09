@@ -33,7 +33,7 @@
                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line" translatesAutoresizingMaskIntoConstraints="NO" id="k4d-uh-Jp6">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line1" translatesAutoresizingMaskIntoConstraints="NO" id="k4d-uh-Jp6">
                     <rect key="frame" x="0.0" y="39" width="320" height="1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="cbQ-oM-LQ7"/>
@@ -69,6 +69,6 @@
         </view>
     </objects>
     <resources>
-        <image name="line" width="600" height="2"/>
+        <image name="line1" width="600" height="2"/>
     </resources>
 </document>

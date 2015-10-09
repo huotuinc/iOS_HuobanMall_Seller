@@ -189,7 +189,7 @@
         
         if (self.orderDetailModel.scoreList.count) {
             UIView * head = [[UIView alloc] init];
-            head.frame = CGRectMake(0, 0, tableView.frame.size.width, 30);
+            head.frame = CGRectMake(10, 0, tableView.frame.size.width, 30);
             head.backgroundColor = [UIColor whiteColor];
             UILabel * nameLable = [[UILabel alloc] init];
             if (section == 4) {
@@ -208,6 +208,7 @@
             }
             nameLable.textColor = [UIColor colorWithRed:1.000 green:0.294 blue:0.145 alpha:1.000];
             nameLable.frame = head.frame;
+            nameLable.font = [UIFont systemFontOfSize:14];
             [head addSubview:nameLable];
             return head;
         }
@@ -241,7 +242,7 @@
     }else if (indexPath.section == 3) {
         return 44;
     }else{
-        return 68;
+        return 62;
     }
 }
 
