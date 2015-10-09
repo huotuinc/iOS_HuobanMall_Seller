@@ -170,6 +170,6 @@
     
     
     _buyPersonLable.frame = CGRectMake(15, 0, self.frame.size.width*0.5-15, self.frame.size.height);
-    _shoujianLable.frame = CGRectMake(_buyPersonLable.frame.size.width-30, 0, self.frame.size.width-_buyPersonLable.frame.size.width, self.frame.size.height);
+    _shoujianLable.frame = CGRectMake(_buyPersonLable.frame.size.width + 20, 0, self.frame.size.width-_buyPersonLable.frame.size.width, self.frame.size.height);
 }
 @end
