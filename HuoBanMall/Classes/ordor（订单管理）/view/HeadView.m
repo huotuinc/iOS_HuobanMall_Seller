@@ -15,7 +15,7 @@
     [super layoutSubviews];
     
     
-//    self.ordorType.text = self.model.status;
+    self.ordorType.text = self.model.status;
 }
 
 - (void)awakeFromNib{
