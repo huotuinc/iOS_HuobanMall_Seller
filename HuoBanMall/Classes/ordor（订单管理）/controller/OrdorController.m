@@ -168,7 +168,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
 
 - (void)getNewOrdorList {
     
-    [self.ordors removeAllObjects];
+    
     
     NSMutableDictionary * dic = [NSMutableDictionary dictionary];
     
@@ -185,6 +185,8 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
         NSLog(@"%@", json);
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            [self.ordors removeAllObjects];
             
             NSArray *temp = [OrdorModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             
