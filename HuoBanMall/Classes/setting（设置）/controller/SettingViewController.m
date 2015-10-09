@@ -19,6 +19,7 @@
 #import "WebController.h"
 #import "HTGlobal.h"
 #import "LoginViewController.h"
+#import "FeedBackViewController.h"
 
 @interface SettingViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UIAlertViewDelegate, AmendControllerdelegate ,DescribeControllerdelegate>
 
@@ -229,18 +230,22 @@
             
             web.title = @"关于我们";
             web.type = 1;
-            
+            [self.navigationController pushViewController:web animated:YES];
         }else if (indexPath.row == 1){
             
             web.title = @"实用帮助";
             web.type = 2;
+            [self.navigationController pushViewController:web animated:YES];
         }else if (indexPath.row == 2){
             
-            web.title = @"问题反馈";
-            web.type = 3;
+            FeedBackViewController *feed = [[FeedBackViewController alloc] init];
+            feed.title = @"问题反馈";
+            [self.navigationController pushViewController:feed animated:YES];
+            
+            
         }
         
-        [self.navigationController pushViewController:web animated:YES];
+        
     }else if (indexPath.section == 4) {
         UIAlertView * ac = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定要退出吗?" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
         [ac show];
@@ -251,7 +256,7 @@
 /**
  *  退出账号提示按钮
  *
- *  @param alertView   <#alertView description#>
+ *  @param alertView
  *  @param buttonIndex <#buttonIndex description#>
  */
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

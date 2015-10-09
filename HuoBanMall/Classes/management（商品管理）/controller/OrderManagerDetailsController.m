@@ -144,6 +144,7 @@
         ord.model = model;
         ord.bgView.backgroundColor = [UIColor clearColor];
         ord.userInteractionEnabled = NO;
+        ord.backgroundColor = [UIColor whiteColor];
         return ord;
     }else if (indexPath.section == 0||indexPath.section == 1||indexPath.section == 3){
         HTOrderDetail * cell = [HTOrderDetail cellWithTableView:tableView WithIndex:indexPath];
@@ -264,12 +265,18 @@
     
     if (section == 2) {
         return 40;
+    }else if (section == 3){
+        return 5;
+    }else if (section == 1) {
+        return 20;
     }
     return 0;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section==1) {
         

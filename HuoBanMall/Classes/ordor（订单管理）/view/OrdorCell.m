@@ -30,7 +30,7 @@
     
     [self.goodImage sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"wl-1"] options:SDWebImageRetryFailed];
     
-    self.goodPrice.text = [NSString stringWithFormat:@"%@", self.model.money];
+    self.goodPrice.text = [NSString stringWithFormat:@"¥:%@", self.model.money];
     
     self.goodAmount.text = [NSString stringWithFormat:@"x%@", self.model.amount];
     

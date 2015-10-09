@@ -51,6 +51,8 @@
 		839E6E041BA95B910084A08D /* NewOrdorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 839E6E021BA95B910084A08D /* NewOrdorCell.m */; };
 		839E6E051BA95B910084A08D /* NewOrdorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 839E6E031BA95B910084A08D /* NewOrdorCell.xib */; };
 		839E6E081BA96C590084A08D /* OrdorListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 839E6E071BA96C590084A08D /* OrdorListModel.m */; };
+		83AA7FBC1BC789F200EF5919 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA7FBA1BC789F200EF5919 /* FeedBackViewController.m */; };
+		83AA7FBD1BC789F200EF5919 /* FeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83AA7FBB1BC789F200EF5919 /* FeedBackViewController.xib */; };
 		83B4F2AC1BA66263009D6631 /* NewTodayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B4F2AB1BA66263009D6631 /* NewTodayModel.m */; };
 		83B4F2B01BA6B47F009D6631 /* MoreDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B4F2AF1BA6B47F009D6631 /* MoreDataModel.m */; };
 		83CA64891B8AC3BB008B5461 /* ManagementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CA64881B8AC3BB008B5461 /* ManagementModel.m */; };
@@ -207,6 +209,9 @@
 		839E6E031BA95B910084A08D /* NewOrdorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewOrdorCell.xib; sourceTree = "<group>"; };
 		839E6E061BA96C590084A08D /* OrdorListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdorListModel.h; sourceTree = "<group>"; };
 		839E6E071BA96C590084A08D /* OrdorListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdorListModel.m; sourceTree = "<group>"; };
+		83AA7FB91BC789F200EF5919 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
+		83AA7FBA1BC789F200EF5919 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
+		83AA7FBB1BC789F200EF5919 /* FeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackViewController.xib; sourceTree = "<group>"; };
 		83B4F2AA1BA66263009D6631 /* NewTodayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewTodayModel.h; path = "HuoBanMall/Classes/management（商品管理）/model/NewTodayModel.h"; sourceTree = SOURCE_ROOT; };
 		83B4F2AB1BA66263009D6631 /* NewTodayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewTodayModel.m; path = "HuoBanMall/Classes/management（商品管理）/model/NewTodayModel.m"; sourceTree = SOURCE_ROOT; };
 		83B4F2AE1BA6B47F009D6631 /* MoreDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreDataModel.h; sourceTree = "<group>"; };
@@ -362,6 +367,9 @@
 				8389FA0C1B8D5A380003FCDE /* DescribeController.m */,
 				834D13C81BB518C000893120 /* MCController.h */,
 				834D13C91BB518C000893120 /* MCController.m */,
+				83AA7FB91BC789F200EF5919 /* FeedBackViewController.h */,
+				83AA7FBA1BC789F200EF5919 /* FeedBackViewController.m */,
+				83AA7FBB1BC789F200EF5919 /* FeedBackViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -966,6 +974,7 @@
 				83737D341BA816E4000BD2D4 /* NewFootView.xib in Resources */,
 				83737D2A1BA7B8F0000BD2D4 /* HeadView.xib in Resources */,
 				830778691B9E7BC7002AF0FD /* ManagementCell.xib in Resources */,
+				83AA7FBD1BC789F200EF5919 /* FeedBackViewController.xib in Resources */,
 				EF73D17B1B8C02A0004A7B37 /* cityCode.plist in Resources */,
 				EF6AB1881B87241A00C9F114 /* Main.storyboard in Resources */,
 				EF6AB18D1B87241A00C9F114 /* LaunchScreen.xib in Resources */,
@@ -1115,6 +1124,7 @@
 				834D13D01BB5191C00893120 /* MessageFrame.m in Sources */,
 				834728D31B8C0D8C005B72F9 /* SettingViewController.m in Sources */,
 				8389FA0A1B8D59940003FCDE /* AmendController.m in Sources */,
+				83AA7FBC1BC789F200EF5919 /* FeedBackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
