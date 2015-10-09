@@ -132,7 +132,7 @@
     
     UILabel *number = [[UILabel alloc] init];
     _contactPhoneNumberLable = number;
-    _contactPhoneNumberLable.textColor = [UIColor blueColor];
+    _contactPhoneNumberLable.textColor = [UIColor colorWithRed:0.220 green:0.580 blue:0.992 alpha:1.000];
     _contactPhoneNumberLable.font = [UIFont systemFontOfSize:14];
     number.textAlignment = NSTextAlignmentLeft;
     [self addSubview:number];
@@ -145,7 +145,7 @@
     _buyPersonLable.text =[NSString stringWithFormat:@"购买人: %@",model.buyer];
     _shoujianLable.text = [NSString stringWithFormat:@"收件人: %@",model.receiver];
 //    _buyPersonName.text = model.buyName;
-//    _contactPhoneNumberLable.text = model.phoneNumber;
+    _contactPhoneNumberLable.text = model.contact;
     _placeLable.text = model.address;
 }
 
