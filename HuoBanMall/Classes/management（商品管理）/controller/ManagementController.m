@@ -139,7 +139,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if (self.segment.selectedSegmentIndex) {
-        dic[@"type"] = @2;
+        dic[@"type"] = @0;
     }else {
         dic[@"type"] = @1;
     }
@@ -201,7 +201,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if (self.segment.selectedSegmentIndex) {
-        dic[@"type"] = @2;
+        dic[@"type"] = @0;
     }else {
         dic[@"type"] = @1;
     }
@@ -255,7 +255,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 - (void)getMoreGoodList {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if (self.segment.selectedSegmentIndex) {
-        dic[@"type"] = @2;
+        dic[@"type"] = @0;
     }else {
         dic[@"type"] = @1;
     }

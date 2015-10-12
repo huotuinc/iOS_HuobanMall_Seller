@@ -63,7 +63,7 @@
     NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
     HTUser * userInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
     //1、接口
-    NSString *urlStr = [MainUrl stringByAppendingPathComponent:@"feedback"];
+//    NSString *urlStr = [MainUrl stringByAppendingPathComponent:@"feedback"];
     
     //2、参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -71,9 +71,9 @@
     params[@"contact"] = userInfo.mobile;
     params[@"content"] = self.feedBackTextView.text;
     
-    [UserLoginTool loginRequestPost:urlStr parame:params success:^(id json) {
+    [UserLoginTool loginRequestPost:@"feedback" parame:params success:^(id json) {
         
-//        NSLog(@"sdasd%@",json);
+        NSLog(@"sdasd%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==56001){
             [SVProgressHUD showErrorWithStatus:@"账号被登入"];
             return ;
@@ -85,7 +85,8 @@
         }
         
     } failure:^(NSError *error) {
-//        NSLog(@"意见反馈出错");
+        NSLog(@"%@",error);
+        NSLog(@"意见反馈出错");
     }];
 }
 @end
