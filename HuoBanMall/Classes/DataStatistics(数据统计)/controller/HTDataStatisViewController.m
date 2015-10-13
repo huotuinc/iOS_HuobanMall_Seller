@@ -290,7 +290,7 @@ static NSString *popAnimation = @"first";
     [timeView addSubview:week];
     
     UILabel * weekLable = [[UILabel alloc] init];
-    weekLable.text = @"七日";
+    weekLable.text = @"本周";
     weekLable.textColor = [UIColor blackColor];
     weekLable.frame = CGRectMake(0, 0, weekW, weekH);
     weekLable.textAlignment = NSTextAlignmentCenter;
@@ -504,7 +504,7 @@ static NSString *popAnimation = @"first";
     [timeView addSubview:week];
     
     UILabel * weekLable = [[UILabel alloc] init];
-    weekLable.text = @"七日";
+    weekLable.text = @"本周";
     weekLable.textColor = [UIColor blackColor];
     weekLable.frame = CGRectMake(0, 0, weekW, weekH);
     weekLable.textAlignment = NSTextAlignmentCenter;
@@ -777,7 +777,7 @@ static NSString *popAnimation = @"first";
     [timeView addSubview:week];
     
     UILabel * weekLable = [[UILabel alloc] init];
-    weekLable.text = @"七日";
+    weekLable.text = @"本周";
     weekLable.textColor = [UIColor blackColor];
     weekLable.frame = CGRectMake(0, 0, weekW, weekH);
     weekLable.textAlignment = NSTextAlignmentCenter;
