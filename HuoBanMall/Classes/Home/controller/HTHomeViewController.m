@@ -283,11 +283,11 @@
     
     for (NSNumber *num in array) {
         
-        if (num > a) {
+        if ([num compare:a] == NSOrderedDescending) {
             a = num;
         }
     }
-    if ([a compare:@100] == NSOrderedDescending) {
+    if ([a compare:@100] == NSOrderedDescending ) {
         return a;
     }else {
         return @100;
