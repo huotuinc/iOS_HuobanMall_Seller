@@ -15,6 +15,12 @@
  */
 @property (nonatomic, strong) NSString *pictureUrl;
 
+
+/**
+ *  分类
+ */
+@property (nonatomic, strong) NSString *category;
+
 /**
  *  价格
  */

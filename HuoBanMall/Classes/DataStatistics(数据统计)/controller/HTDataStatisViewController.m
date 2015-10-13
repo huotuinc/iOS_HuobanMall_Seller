@@ -399,7 +399,7 @@ static NSString *popAnimation = @"first";
     CGFloat pnchartX = 2;
     CGFloat pnchartY = statisticsY + statisticsH;
     CGFloat pnchartW = self.view.frame.size.width-4;
-    CGFloat pnchartH = self.view.frame.size.height*0.3;
+    CGFloat pnchartH = self.view.frame.size.height*0.3 + 20;
     self.OrdorBgView = [[UIView alloc] init];
     self.OrdorBgView.frame = CGRectMake(pnchartX, pnchartY, pnchartW, pnchartH);
     
@@ -703,8 +703,39 @@ static NSString *popAnimation = @"first";
     [scr addSubview:explainLabel];
     
     //右侧文字 分销商
-    CGFloat distriX = ScreenWidth * 0.48;
-    CGFloat distriY = titleLableY + titleLableH;
+    
+    
+    CGFloat memberX = ScreenWidth * 0.78;
+    CGFloat memberY = imageY - 10;
+    CGFloat memberW = 48;
+    CGFloat memberH = 15;
+    UILabel *memLabel = [[UILabel alloc] initWithFrame:CGRectMake(memberX, memberY, memberW, memberH)];
+    memLabel.text = @"普通会员";
+    memLabel.font = [UIFont systemFontOfSize:12];
+//    memLabel.textAlignment = NSTextAlignmentRight;
+    [scr addSubview:memLabel];
+    
+    CGFloat redMemX = memberX - ScreenHeight * .03257 + 5;
+    CGFloat redMemY = memberY;
+    CGFloat redMemW = ScreenHeight * .03257 - 8;
+    CGFloat redMemH = ScreenHeight * .03257 - 8;
+    UIView *redView1 = [[UIView alloc] initWithFrame:CGRectMake(redMemX, redMemY, redMemW, redMemH)];
+    redView1.backgroundColor = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+    [scr addSubview:redView1];
+    
+    CGFloat vipY = memberY + 20;
+    UILabel *vipLabel = [[UILabel alloc] initWithFrame:CGRectMake(memberX, vipY, memberW, memberH)];
+    vipLabel.text = @"分销商";
+    vipLabel.font = [UIFont systemFontOfSize:12];
+//    vipLabel.textAlignment = NSTextAlignmentRight;
+    [scr addSubview:vipLabel];
+    
+    UIView *blueView1 = [[UIView alloc] initWithFrame:CGRectMake(redMemX, vipY, redMemW, redMemH)];
+    blueView1.backgroundColor = [UIColor colorWithRed:0.004 green:0.553 blue:1.000 alpha:1.000];
+    [scr addSubview:blueView1];
+    
+    CGFloat distriX = ScreenWidth * 0.44;
+    CGFloat distriY = vipY + memberH;
     CGFloat distriW = ScreenWidth * 0.5;
     CGFloat distriH = 20;
     self.upLabel = [[UILabel alloc] initWithFrame:CGRectMake(distriX, distriY, distriW, distriH)];
@@ -712,6 +743,9 @@ static NSString *popAnimation = @"first";
     self.upLabel.font = [UIFont systemFontOfSize:12];
     self.upLabel.textAlignment = NSTextAlignmentRight;
     [scr addSubview:self.upLabel];
+    
+    
+    
     
     //会员
 //    UILabel *memLabel = [[UILabel alloc] initWithFrame:CGRectMake(distriX, distriY + distriH + 2, distriW, distriH)];
@@ -863,26 +897,26 @@ static NSString *popAnimation = @"first";
     //会员
     CGFloat vipLableX = redViewX+redViewW+2;
     CGFloat vipLableY = 2;
-    CGFloat vipLableW = 30;
+    CGFloat vipLableW = 50;
     CGFloat vipLableH = title1LableH;
-    UILabel * vipLable = [[UILabel alloc] init];
-    vipLable.text = @"会员:";
-    vipLable.frame = CGRectMake(vipLableX, vipLableY, vipLableW, vipLableH);
-    vipLable.font = [UIFont systemFontOfSize:12];
-    [statistics addSubview:vipLable];
+//    UILabel * vipLable = [[UILabel alloc] init];
+//    vipLable.text =nil;
+//    vipLable.frame = CGRectMake(vipLableX, vipLableY, vipLableW, vipLableH);
+//    vipLable.font = [UIFont systemFontOfSize:12];
+//    [statistics addSubview:vipLable];
     
-    CGFloat redNumberX = vipLableX+vipLableW-2;
-    CGFloat redNumberY = 2;
-    CGFloat redNumberW = 60;
-    CGFloat redNumberH = title1LableH;
+//    CGFloat redNumberX = vipLableX+vipLableW-2;
+//    CGFloat redNumberY = 2;
+//    CGFloat redNumberW = 60;
+//    CGFloat redNumberH = title1LableH;
     self.memNewlabel = [[UILabel alloc] init];
 //    redNumber.backgroundColor = [UIColor redColor];
-    self.memNewlabel.frame = CGRectMake(redNumberX, redNumberY, redNumberW, redNumberH);
+    self.memNewlabel.frame = CGRectMake(vipLableX, vipLableY, vipLableW, vipLableH);
     self.memNewlabel.font = [UIFont systemFontOfSize:12];
     self.memNewlabel.text = @"";
     [statistics addSubview:self.memNewlabel];
     
-    CGFloat blueViewX = redNumberX+redNumberW;
+    CGFloat blueViewX = vipLableX+vipLableW+ 20;
     CGFloat blueViewW = title1LableH-4;
     CGFloat blueViewH = title1LableH-4;
     CGFloat blueViewY = (statisticsH-redViewW)*0.5;
@@ -894,21 +928,16 @@ static NSString *popAnimation = @"first";
     //会员
     CGFloat fenxiaoX = blueViewX+blueViewW+2;
     CGFloat fenxiaoY = 2;
-    CGFloat fenxiaoW = 40;
+    CGFloat fenxiaoW = 50;
     CGFloat fenxiaoH = title1LableH;
-    UILabel * fenxiao = [[UILabel alloc] init];
-    fenxiao.text = @"分销商:";
-    fenxiao.frame = CGRectMake(fenxiaoX, fenxiaoY, fenxiaoW, fenxiaoH);
-    fenxiao.font = [UIFont systemFontOfSize:12];
-    [statistics addSubview:fenxiao];
     
-    CGFloat fenxiaonX = fenxiaoX+fenxiaoW;
-    CGFloat fenxiaonY = 2;
-    CGFloat fenxiaonW = 60;
-    CGFloat fenxiaonH = title1LableH;
+//    CGFloat fenxiaonX = fenxiaoX+fenxiaoW;
+//    CGFloat fenxiaonY = 2;
+//    CGFloat fenxiaonW = 60;
+//    CGFloat fenxiaonH = title1LableH;
+    
     self.parNewLabel = [[UILabel alloc] init];
-//    fenxiaon.backgroundColor = [UIColor redColor];
-    self.parNewLabel.frame = CGRectMake(fenxiaonX, fenxiaonY, fenxiaonW, fenxiaonH);
+    self.parNewLabel.frame = CGRectMake(fenxiaoX, fenxiaoY, fenxiaoW, fenxiaoH);
     self.parNewLabel.font = [UIFont systemFontOfSize:12];
     self.parNewLabel.text = @"";
     [statistics addSubview:self.parNewLabel];
@@ -918,7 +947,7 @@ static NSString *popAnimation = @"first";
     CGFloat pnchartX = 2;
     CGFloat pnchartY = statisticsY + statisticsH;
     CGFloat pnchartW = self.view.frame.size.width-4;
-    CGFloat pnchartH = self.view.frame.size.height*0.3;
+    CGFloat pnchartH = self.view.frame.size.height*0.3 + 20;
     self.MemBgView = [[UIView alloc] init];
     self.MemBgView .frame = CGRectMake(pnchartX, pnchartY, pnchartW, pnchartH);
     
@@ -1029,6 +1058,7 @@ static NSString *popAnimation = @"first";
     lineChart.showCoordinateAxis = YES;
     
     lineChart.yValueMax = [[self getMaxFromArray:self.ordorModel.weekAmounts] floatValue] ;
+    lineChart.yFixedValueMax = lineChart.yValueMax;
     lineChart.yFixedValueMin = 0.0;
     lineChart.yValueMin = 0;
     
@@ -1098,6 +1128,8 @@ static NSString *popAnimation = @"first";
     lineChart.yValueMin = 0;
     
      lineChart.yValueMax = [[self getMaxFromArray:self.memModel.weekMemberAmounts AndNext:self.memModel.weekPartnerAmounts] floatValue];
+    lineChart.yFixedValueMax = lineChart.yValueMax;
+    
     [lineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.memModel.weekMemberAmounts AndNext:self.memModel.weekPartnerAmounts] integerValue]]];
     
     [lineChart setXLabels:[self getNSNumberArrayWithArray:self.memModel.weekTimes]];
@@ -1642,6 +1674,7 @@ static NSString *popAnimation = @"first";
         self.memNewlabel.text = [NSString stringWithFormat:@"%@", self.memModel.monthMemberAmount];
         
         self.viplineChart.yValueMax = [[self getMaxFromArray:self.memModel.monthMemberAmounts AndNext:self.memModel.monthPartnerAmounts] floatValue];
+        
         [self.viplineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.memModel.monthMemberAmounts AndNext:self.memModel.monthPartnerAmounts] integerValue]]];
         
         [self.viplineChart setXLabels:[self getNSNumberArrayWithArray:self.memModel.monthTimes]];
@@ -1688,9 +1721,13 @@ static NSString *popAnimation = @"first";
             a = num;
         }
     }
-
     
-    return a;
+    if ([a compare:@100] == NSOrderedDescending ) {
+        return a;
+    }else {
+        return @100;
+    }
+    
 }
 
 - (NSNumber *)getMaxFromArray:(NSArray *)array1 AndNext:(NSArray * ) array2 {
@@ -1701,7 +1738,7 @@ static NSString *popAnimation = @"first";
     if ([a compare:b] == NSOrderedDescending) {
         return a;
     }else {
-        return  b;
+        return b;
     }
     
 }
@@ -1718,7 +1755,7 @@ static NSString *popAnimation = @"first";
     }
     
 //    if (i) {
-        array = @[[NSString stringWithFormat:@"%d", i * 25],[NSString stringWithFormat:@"%d", i * 50],[NSString stringWithFormat:@"%d", i * 75],[NSString stringWithFormat:@"%d", i * 100]];
+        array = @[@"0",[NSString stringWithFormat:@"%d", i * 25],[NSString stringWithFormat:@"%d", i * 50],[NSString stringWithFormat:@"%d", i * 75],[NSString stringWithFormat:@"%d", i * 100]];
 //    }else  {
 //        array = @[[NSString stringWithFormat:@"5"],[NSString stringWithFormat:@"10"],[NSString stringWithFormat:@"15"],[NSString stringWithFormat:@"20"]];
 //    }

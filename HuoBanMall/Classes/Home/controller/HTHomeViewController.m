@@ -208,6 +208,9 @@
         
     }];
 
+    /**去掉导航栏黑线*/
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
     
     
     
@@ -284,8 +287,11 @@
             a = num;
         }
     }
-    
-    return a;
+    if ([a compare:@100] == NSOrderedDescending) {
+        return a;
+    }else {
+        return @100;
+    }
 }
 
 - (NSArray *)getArrayWithY:(NSInteger) num {
@@ -298,7 +304,7 @@
     }else {
         i = num / 100 + 1;
     }
-    array = @[[NSString stringWithFormat:@"%ld", i * 25],[NSString stringWithFormat:@"%ld", i * 50],[NSString stringWithFormat:@"%ld", i * 75],[NSString stringWithFormat:@"%ld", i * 100]];
+    array = @[@"0",[NSString stringWithFormat:@"%ld", i * 25],[NSString stringWithFormat:@"%ld", i * 50],[NSString stringWithFormat:@"%ld", i * 75],[NSString stringWithFormat:@"%ld", i * 100]];
     
     return array;
 }
@@ -335,7 +341,7 @@
 //    [self.SBgView addSubview:_scrollView];
     //2、添加图片
     CGFloat scrollW = self.scrollView.bounds.size.width;
-    CGFloat scrollH = self.scrollView.bounds.size.height;
+    CGFloat scrollH = self.scrollView.bounds.size.height + 20;
     for (int index = 0; index < 3; index++) {
         CGFloat scX = scrollW * index;
         CGFloat scY = 0;

@@ -40,6 +40,8 @@
 /**搜索栏*/
 @property (nonatomic, strong) UISearchBar *searchBar;
 
+@property (nonatomic, strong) UIView *searchBgView;
+
 @end
 
 @implementation OrdorController
@@ -63,18 +65,27 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     [self _initScreenView];
     
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(8, 0, ScreenWidth - 10, 44)];
-    [self.searchBar setBackgroundColor:NavBackgroundColor];
+    [[[[self.searchBar.subviews objectAtIndex:0] subviews] objectAtIndex:0] removeFromSuperview];
 //    [self.searchBar setBarTintColor:[UIColor whiteColor]];
     self.searchBar.showsCancelButton = YES;
-    self.searchBar.tintColor = [UIColor whiteColor];
+    self.searchBar.tintColor = [UIColor blackColor];
     self.searchBar.delegate = self;
     self.searchBar.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    
+    self.searchBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+    self.searchBgView.backgroundColor = NavBackgroundColor;
+    self.searchBgView.userInteractionEnabled = YES;
+    [self.searchBgView addSubview:self.searchBar];
     
     self.tableView.tableFooterView.userInteractionEnabled = YES;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"ss"] style:UIBarButtonItemStylePlain handler:^(id sender) {
         
-        [self.navigationController.navigationBar addSubview:self.searchBar];
+//        self.navigationItem.leftBarButtonItem = nil;
+        
+        [self.navigationController.navigationBar addSubview:self.searchBgView
+         ];
+        
         
         [self.searchBar becomeFirstResponder];
         
@@ -88,6 +99,15 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     
     [self fristGetNewList];
     
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.searchBar resignFirstResponder];
+    
+    [self.searchBgView removeFromSuperview];
 }
 
 ///**
@@ -224,12 +244,18 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
 
     OrdorModel *model = [self.ordors lastObject];
-
-    dic[@"status"] = @(self.type);
-    dic[@"lastDate"] = model.time;
+    
+    if (self.ordors.count != 0) {
+        dic[@"status"] = @(self.type);
+        dic[@"lastDate"] = model.time;
+    }
+    
     
     if (self.searchStr.length != 0) {
         dic[@"keyword"] = self.searchStr;
+    }else {
+        [self.tableView footerEndRefreshing];
+        return;
     }
     
     [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
@@ -476,7 +502,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     
     [self.searchBar resignFirstResponder];
     
-    [self.searchBar removeFromSuperview];
+    [self.searchBgView removeFromSuperview];
     
     [self.tableView addHeaderWithTarget:self action:@selector(getNewOrdorList)];
     

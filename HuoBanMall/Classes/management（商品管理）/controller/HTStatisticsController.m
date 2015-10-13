@@ -25,6 +25,7 @@
 
 @property(nonatomic,strong) UISearchBar * mysearch;
 
+@property (nonatomic, strong) UIView *searchView;
 
 @property(nonatomic,strong) UISegmentedControl * mySegmented;
 @end
@@ -34,7 +35,7 @@
 /**
  *  模型数据
  *
- *  @return <#return value description#>
+ *  @return
  */
 - (NSMutableArray *)dateStat{
     if (_dateStat == nil) {
@@ -139,12 +140,26 @@
     mySearchBar.showsCancelButton = YES;
     mySearchBar.placeholder = @"搜索条件";
     mySearchBar.frame = CGRectMake(8, 0, self.navigationController.navigationBar.frame.size.width-16, 44);
-    mySearchBar.backgroundColor = NavBackgroundColor;
-    [mySearchBar setDelegate:self];
-    mySearchBar.hidden = YES;
-    _mysearch = mySearchBar;
-    [self.navigationController.navigationBar addSubview:mySearchBar];
     
+    [mySearchBar setDelegate:self];
+//    mySearchBar.hidden = YES;
+    _mysearch = mySearchBar;
+    [[[[_mysearch.subviews objectAtIndex:0] subviews] objectAtIndex:0] removeFromSuperview];
+    
+    
+    self.searchView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+    self.searchView.backgroundColor = NavBackgroundColor;
+    [self.searchView addSubview:mySearchBar];
+    self.searchView.hidden = YES;
+    
+    [self.navigationController.navigationBar addSubview:self.searchView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.mysearch resignFirstResponder];
+    self.searchView.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -305,19 +320,19 @@
 - (void)searchBarItems:(UIButton *)btn{
     
     [self.mysearch becomeFirstResponder];
-    self.mysearch.hidden = !self.mysearch.hidden;
+    self.searchView.hidden = !self.searchView.hidden;
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar endEditing:YES];
-    self.mysearch.hidden = YES;
+    self.searchView.hidden = YES;
     
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar endEditing:YES];
     [self toGetInitializeDataWithSearchKey:searchBar.text];
-     self.mysearch.hidden = YES;
+     self.searchView.hidden = YES;
 }
 
 #pragma mark segmentChange

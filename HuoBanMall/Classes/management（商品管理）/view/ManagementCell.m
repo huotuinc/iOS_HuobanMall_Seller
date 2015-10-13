@@ -21,17 +21,21 @@
 {
     [super layoutSubviews];
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.model.pictureUrl] placeholderImage:nil options:SDWebImageProgressiveDownload];
+
+    
+    [self.commodityImage sd_setImageWithURL:[NSURL URLWithString:self.model.pictureUrl] placeholderImage:nil options:SDWebImageDelayPlaceholder];
     
     self.introduceLabel.text = self.model.title;
     self.introduceLabel.textAlignment = NSTextAlignmentLeft;
-    
+    self.classifyLabel.text = self.model.category;
     self.priceLabel.text = [NSString stringWithFormat:@"¥:%@",self.model.price];
     
     if ([self.model.stock integerValue] < 0) {
-        self.repertoryLabel.text = @"库存:无限制";
+        self.repertoryLabel.text = @"库存:充足";
+    }else if ([self.model.stock integerValue] < 5){
+        self.repertoryLabel.text = @"库存:不充足";
     }else {
-        self.repertoryLabel.text = [NSString stringWithFormat:@"库存:%@", self.model.stock];
+        self.repertoryLabel.text = @"库存:充足";
     }
 }
 

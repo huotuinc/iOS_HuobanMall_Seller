@@ -192,10 +192,11 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 
 - (void)getNewGoodList {
     
-    if (self.tableView.editing) {
-        self.selectImage.image = [UIImage imageNamed:@"wxz"];
-        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height - self.buttomView.frame.size.height);
-    }
+//    if (self.tableView.editing) {
+//        self.selectImage.image = [UIImage imageNamed:@"wxz"];
+//        
+//        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, ScreenHeight - self.buttomView.frame.size.height);
+//    }
     
     [self.selectGoods removeAllObjects];
     
@@ -260,7 +261,12 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
         dic[@"type"] = @1;
     }
     ManagementModel *model = self.goods.lastObject;
-    dic[@"lastProductId"] = model.goodsId;
+    if (model) {
+        dic[@"lastProductId"] = model.goodsId;
+    }else {
+        [self.tableView footerEndRefreshing];
+        return;
+    }
     
 //    [SVProgressHUD showWithStatus:@"数据加载中"];
     
@@ -499,7 +505,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     if (self.tableView.editing) {
         [UIView animateWithDuration:0.5 animations:^{
             self.buttomView.hidden = NO;
-            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height - self.buttomView.frame.size.height);
+            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, ScreenHeight - self.buttomView.frame.size.height - 64);
         }];
     }else {
         [UIView animateWithDuration:0.35 animations:^{
