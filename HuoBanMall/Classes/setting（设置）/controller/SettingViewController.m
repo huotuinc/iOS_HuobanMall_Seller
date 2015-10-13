@@ -211,16 +211,6 @@
             describe.string = self.user.title;
             [self.navigationController pushViewController:describe animated:YES];
         }
-    }else if (indexPath.section == 1) {
-        if (indexPath.row == 1) {
-            UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            AmendController *describe = [story instantiateViewControllerWithIdentifier:@"AmendController"];
-            describe.title = @"昵称修改";
-            describe.delegate = self;
-#pragma  设置昵称
-            describe.string = self.user.nickName;
-            [self.navigationController pushViewController:describe animated:YES];
-        }
     }else if (indexPath.section == 3) {
         UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         WebController *web = [story instantiateViewControllerWithIdentifier:@"WebController"];

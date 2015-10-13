@@ -261,32 +261,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="VRO-k2-53s">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VRO-k2-53s" id="bSt-N3-Mtm">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yaF-Ki-y3r">
-                                                    <rect key="frame" x="20" y="11" width="34" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtC-1o-U4g">
-                                                    <rect key="frame" x="300" y="22" width="0.0" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="yaF-Ki-y3r" firstAttribute="leading" secondItem="bSt-N3-Mtm" secondAttribute="leading" constant="20" id="Mgq-YN-jSb"/>
-                                                <constraint firstAttribute="centerY" secondItem="wtC-1o-U4g" secondAttribute="centerY" id="RHY-HP-jXF"/>
-                                                <constraint firstAttribute="centerY" secondItem="yaF-Ki-y3r" secondAttribute="centerY" id="W2h-GN-FeU"/>
-                                                <constraint firstAttribute="trailing" secondItem="wtC-1o-U4g" secondAttribute="trailing" constant="20" id="bSV-9K-h38"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="bIs-j5-Xys">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bIs-j5-Xys" id="Buu-g8-zoe">
@@ -449,7 +423,6 @@
                         <outlet property="iconView" destination="gKe-AO-bUV" id="DsO-el-GOj"/>
                         <outlet property="introLabel" destination="5gE-Fk-Yqq" id="tpb-3Z-7it"/>
                         <outlet property="nameLabel" destination="IuV-si-D4L" id="qiU-j7-3Dj"/>
-                        <outlet property="nickname" destination="wtC-1o-U4g" id="USO-wq-BGO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gd9-Z5-Lml" userLabel="First Responder" sceneMemberID="firstResponder"/>
