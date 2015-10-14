@@ -710,28 +710,28 @@ static NSString *popAnimation = @"first";
     CGFloat memberW = 48;
     CGFloat memberH = 15;
     UILabel *memLabel = [[UILabel alloc] initWithFrame:CGRectMake(memberX, memberY, memberW, memberH)];
-    memLabel.text = @"普通会员";
+    memLabel.text = @"分销商";
     memLabel.font = [UIFont systemFontOfSize:12];
 //    memLabel.textAlignment = NSTextAlignmentRight;
     [scr addSubview:memLabel];
     
     CGFloat redMemX = memberX - ScreenHeight * .03257 + 5;
-    CGFloat redMemY = memberY;
+    CGFloat redMemY = memberY + 2;
     CGFloat redMemW = ScreenHeight * .03257 - 8;
     CGFloat redMemH = ScreenHeight * .03257 - 8;
     UIView *redView1 = [[UIView alloc] initWithFrame:CGRectMake(redMemX, redMemY, redMemW, redMemH)];
-    redView1.backgroundColor = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
+    redView1.backgroundColor = [UIColor colorWithRed:0.004 green:0.553 blue:1.000 alpha:1.000];
     [scr addSubview:redView1];
     
     CGFloat vipY = memberY + 20;
     UILabel *vipLabel = [[UILabel alloc] initWithFrame:CGRectMake(memberX, vipY, memberW, memberH)];
-    vipLabel.text = @"分销商";
+    vipLabel.text = @"普通会员";
     vipLabel.font = [UIFont systemFontOfSize:12];
 //    vipLabel.textAlignment = NSTextAlignmentRight;
     [scr addSubview:vipLabel];
     
-    UIView *blueView1 = [[UIView alloc] initWithFrame:CGRectMake(redMemX, vipY, redMemW, redMemH)];
-    blueView1.backgroundColor = [UIColor colorWithRed:0.004 green:0.553 blue:1.000 alpha:1.000];
+    UIView *blueView1 = [[UIView alloc] initWithFrame:CGRectMake(redMemX, vipY + 2, redMemW, redMemH)];
+    blueView1.backgroundColor = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
     [scr addSubview:blueView1];
     
     CGFloat distriX = ScreenWidth * 0.44;

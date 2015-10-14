@@ -279,7 +279,7 @@
 
 - (NSNumber *)getMaxFromArray:(NSArray *)array {
     
-    NSNumber *a = 0;
+    NSNumber *a = @0;
     
     for (NSNumber *num in array) {
         
