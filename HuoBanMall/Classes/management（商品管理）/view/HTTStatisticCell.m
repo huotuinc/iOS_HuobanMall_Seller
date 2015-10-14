@@ -206,12 +206,12 @@
 //    self.dateType.frame = CGRectMake(TypeX, TypeY, TypeW, TypeH);
     
     
-    self.accessoryView.frame = CGRectMake(self.frame.size.width-60-5,10, 60,self.frame.size.height);
+    self.accessoryView.frame = CGRectMake(self.frame.size.width-60-5 - 10,10, 60,self.frame.size.height);
 //    _rightView.frame = CGRectMake(self.frame.size.width-60, 0, 60,self.frame.size.height);
 //    _rightView.backgroundColor = [UIColor greenColor];
-    _datelable.frame = CGRectMake(5, 0, _rightView.frame.size.width, _rightView.frame.size.height*0.5);
+    _datelable.frame = CGRectMake(0, 0, _rightView.frame.size.width , _rightView.frame.size.height*0.5);
 //    _datelable.backgroundColor = [UIColor redColor];
-    _dateType.frame = CGRectMake(5, _rightView.frame.size.height*0.5-10,  _rightView.frame.size.width, _rightView.frame.size.height*0.5);
+    _dateType.frame = CGRectMake(0, _rightView.frame.size.height*0.5-10,  _rightView.frame.size.width, _rightView.frame.size.height*0.5);
 }
 
 @end

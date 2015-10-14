@@ -121,7 +121,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBtn];
     [searchBtn addTarget:self action:@selector(searchBarItems:) forControlEvents:UIControlEventTouchUpInside];
     
-    UISegmentedControl * aa = [[UISegmentedControl alloc] initWithItems:@[@"明细",@"top"]];
+    UISegmentedControl * aa = [[UISegmentedControl alloc] initWithItems:@[@"明细",@"统计"]];
     aa.frame =  CGRectMake(0, 0, 120, 30);
     self.mySegmented = aa;
     aa.selectedSegmentIndex = 0;

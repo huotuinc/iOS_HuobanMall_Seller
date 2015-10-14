@@ -517,11 +517,16 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
 
 
 - (IBAction)putawayAction:(id)sender {
-    if ([self.putaway.titleLabel.text isEqualToString:@"上架"]) {
-        [self exchangeGoodWithType:1];
+    if (self.selectGoods.count) {
+        if ([self.putaway.titleLabel.text isEqualToString:@"上架"]) {
+            [self exchangeGoodWithType:1];
+        }else {
+            [self exchangeGoodWithType:0];
+        }
     }else {
-        [self exchangeGoodWithType:2];
+        
     }
+    
 }
 
 - (IBAction)deleteGood:(id)sender {
