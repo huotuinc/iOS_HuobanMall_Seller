@@ -34,6 +34,7 @@
     self.title = @"商品销量前十";
     [self toGetTopTenSaller];
     self.tableView.tableFooterView = [[UIView alloc] init];
+    [self.tableView registerNib:[UINib nibWithNibName:@"HTTopTenGoodCell" bundle:nil] forCellReuseIdentifier:@"HTTopTenGoodCellId"];
     //集成涮新空间
     [self setupRefresh];
 }
@@ -66,6 +67,7 @@
 - (void)toGetTopTenSaller{
     
     [UserLoginTool loginRequestGet:@"topGoods" parame:nil success:^(id json) {
+        NSLog(@"%@", json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
             
             NSArray * models = [HTTopTenModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
@@ -99,6 +101,9 @@
     
     HTTopTenGoodCell * cell = [HTTopTenGoodCell cellWithTableView:tableView cellForRowAtIndexPath:indexPath];
     
+    //排名
+    cell.numLable.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
+    
     HTTopTenModel * model = self.datasArray[indexPath.row];
     cell.model = model;
     return cell;
@@ -108,7 +113,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 60;
+    return 75;
 }
 
 

@@ -11,19 +11,23 @@
 #import <UIImageView+WebCache.h>
 
 @interface HTTopTenGoodCell()
+@property (weak, nonatomic) IBOutlet UIImageView *titleImage;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *disLabel;
 
-@property(nonatomic,strong) UILabel * numLable;
+
 @end
 
 @implementation HTTopTenGoodCell
 
 + (HTTopTenGoodCell *)cellWithTableView:(UITableView *)tablew cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString * Id = @"HTTopTenGoodCell";
+    static NSString * Id = @"HTTopTenGoodCellId";
     HTTopTenGoodCell * cell = [tablew dequeueReusableCellWithIdentifier:Id];
+    
     if (cell == nil) {
         
-        cell = [[HTTopTenGoodCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:Id];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"HTTopTenGoodCell" owner:nil options:nil] lastObject];
     }
     if (indexPath.row == 0) {
         cell.topImageView.image = [UIImage imageNamed:@"yellow-1"];
@@ -68,8 +72,8 @@
 - (void)setModel:(HTTopTenModel *)model{
  
     _model = model;
-    self.textLabel.text = [NSString stringWithFormat:@" %@",model.title];
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.picture] placeholderImage:[UIImage imageNamed:@"tpzwx"] options:SDWebImageRetryFailed];
+    self.titleLabel.text = [NSString stringWithFormat:@" %@",model.title];
+    [self.titleImage sd_setImageWithURL:[NSURL URLWithString:model.picture] placeholderImage:[UIImage imageNamed:@"tpzwx"] options:SDWebImageRetryFailed];
     
     NSString * redStrs = [NSString stringWithFormat:@"￥%@",[model.price stringValue]];
 //    NSString * buyStr = [NSString stringWithFormat:@"%@人已购买",[model.amount stringValue]];
@@ -79,18 +83,25 @@
     NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:redStr];
    
     [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:0.941 green:0.227 blue:0.098 alpha:1.000] range:NSMakeRange(0,redStrs.length)];
-    self.detailTextLabel.attributedText = str;
+    self.disLabel.attributedText = str;
   
 }
 
-- (void)layoutSubviews{
-    [super layoutSubviews];
-    CGFloat cellW = self.frame.size.width;
-    CGFloat cellH = self.frame.size.height;
-    _topImageView.frame = CGRectMake(cellW - 52+12, 0, 32, cellH);
-    
-    _numLable.frame = CGRectMake(0, 0, 32, cellH);
-}
+//- (void)layoutSubviews{
+//    [super layoutSubviews];
+//    
+//    
+//
+//    
+//    
+//    CGFloat cellW = ScreenWidth;
+//    CGFloat cellH = self.frame.size.height;
+//    _topImageView.frame = CGRectMake(cellW - 52+12, 0, 32, cellH);
+//    
+//    _numLable.frame = CGRectMake(0, 0, 32, cellH);
+//    
+//    
+//}
 
 
 

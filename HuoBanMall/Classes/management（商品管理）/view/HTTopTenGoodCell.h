@@ -12,7 +12,10 @@
 
 + (HTTopTenGoodCell *)cellWithTableView:(UITableView *)tablew cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
-@property(nonatomic,strong)UIImageView * topImageView;
+@property(nonatomic,strong) IBOutlet UIImageView * topImageView;
+
+@property(nonatomic,strong) IBOutlet UILabel * numLable;
+
 @property(nonatomic,strong) HTTopTenModel * model;
 
 @end
