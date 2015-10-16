@@ -28,6 +28,9 @@
 @property (nonatomic, strong) UIView *searchView;
 
 @property(nonatomic,strong) UISegmentedControl * mySegmented;
+
+@property (nonatomic, strong) UIBarButtonItem *rightBar;
+
 @end
 
 @implementation HTStatisticsController
@@ -116,9 +119,11 @@
     
     
     self.tableView.tableFooterView = [[UIView alloc] init];
+    
     UIButton * searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [searchBtn setBackgroundImage:[UIImage imageNamed:@"ss"] forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBtn];
+    self.rightBar = [[UIBarButtonItem alloc] initWithCustomView:searchBtn];
+    self.navigationItem.rightBarButtonItem = self.rightBar;
     [searchBtn addTarget:self action:@selector(searchBarItems:) forControlEvents:UIControlEventTouchUpInside];
     
     UISegmentedControl * aa = [[UISegmentedControl alloc] initWithItems:@[@"明细",@"统计"]];
@@ -339,12 +344,13 @@
 - (void)SegmentedControlValueChange:(UISegmentedControl *) seg{
   
     if(seg.selectedSegmentIndex == 0) {
-
+        self.navigationItem.rightBarButtonItem = self.rightBar;
         [self.dateStat removeAllObjects];
         [self.dateStat addObjectsFromArray:self.liushui];
         [self.tableView reloadData];
+        
     }else if(seg.selectedSegmentIndex == 1){
-
+        self.navigationItem.rightBarButtonItem = nil;
         [self.dateStat removeAllObjects];
         [self.dateStat addObjectsFromArray:self.Topliushui];
         [self.tableView reloadData];

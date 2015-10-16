@@ -119,17 +119,17 @@
         _dateType.text = @"总返利";
         placeIcon = [UIImage imageNamed:@"zchyzrs"];
         self.textLabel.text = model.name;
-        _datelable.text = [model.score stringValue];
+        _datelable.text = [NSString stringWithFormat:@"%.0f",[model.score floatValue]];
     }else if(model.Type == 2){
         _dateType.text = @"总消费(元)";
         placeIcon = [UIImage imageNamed:@"zchyzrs"];
-        self.textLabel.text = [NSString stringWithFormat:@"%@\n购买%d单",model.name,[model.amount integerValue]];
-        _datelable.text = [model.money stringValue];
+        self.textLabel.text = [NSString stringWithFormat:@"%@\n购买%ld单",model.name,(long)[model.amount integerValue]];
+        _datelable.text = [NSString stringWithFormat:@"%.0f",[model.money floatValue]];
     }else{
         placeIcon = [UIImage imageNamed:@"ddzs"];
         _dateType.text = @"消费额(元)";
         self.textLabel.text = model.orderNo;
-        _datelable.text = [model.money stringValue];
+        _datelable.text = [NSString stringWithFormat:@"%.0f",[model.money floatValue]];
     }
 //    _datelable.text = [model.num stringValue];
     
@@ -209,7 +209,7 @@
     self.accessoryView.frame = CGRectMake(self.frame.size.width-60-5 - 10,10, 60,self.frame.size.height);
 //    _rightView.frame = CGRectMake(self.frame.size.width-60, 0, 60,self.frame.size.height);
 //    _rightView.backgroundColor = [UIColor greenColor];
-    _datelable.frame = CGRectMake(0, 0, _rightView.frame.size.width , _rightView.frame.size.height*0.5);
+    _datelable.frame = CGRectMake(0, 0, _rightView.frame.size.width, _rightView.frame.size.height*0.5);
 //    _datelable.backgroundColor = [UIColor redColor];
     _dateType.frame = CGRectMake(0, _rightView.frame.size.height*0.5-10,  _rightView.frame.size.width, _rightView.frame.size.height*0.5);
 }

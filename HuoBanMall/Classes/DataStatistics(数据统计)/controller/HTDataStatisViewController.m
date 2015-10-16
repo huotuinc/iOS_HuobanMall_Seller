@@ -613,7 +613,7 @@ static NSString *popAnimation = @"first";
     CGFloat pnchartX = 2;
     CGFloat pnchartY = statisticsY + statisticsH;
     CGFloat pnchartW = self.view.frame.size.width-4;
-    CGFloat pnchartH = self.view.frame.size.height*0.3;
+    CGFloat pnchartH = self.view.frame.size.height*0.3 + 20;
     self.SaleBgView = [[UIView alloc] init];
     self.SaleBgView.frame = CGRectMake(pnchartX, pnchartY, pnchartW, pnchartH);
 
@@ -1037,7 +1037,7 @@ static NSString *popAnimation = @"first";
     [topGood2View addSubview:HeadImage2];
     
     UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(10 + topGoodLableH * .4 + 10, topGoodLableH * 0.1, topGoodLableW * 0.6, topGoodLableH * 0.8)];
-    label1.text = @"返利积分统计";
+    label1.text = @"消费统计";
     label1.font = [UIFont systemFontOfSize:16];
     [topGood2View addSubview:label1];
 
@@ -1058,7 +1058,7 @@ static NSString *popAnimation = @"first";
     lineChart.showCoordinateAxis = YES;
     
     lineChart.yValueMax = [[self getMaxFromArray:self.ordorModel.weekAmounts] floatValue] ;
-    lineChart.yFixedValueMax = lineChart.yValueMax;
+    lineChart.yFixedValueMax = [self getFixMaxWithYMax:lineChart.yValueMax];
     lineChart.yFixedValueMin = 0.0;
     lineChart.yValueMin = 0;
     
@@ -1092,7 +1092,8 @@ static NSString *popAnimation = @"first";
     [lineChart setXLabels:[self getNSNumberArrayWithArray:self.saleModel.weekTimes]];
     lineChart.showCoordinateAxis = YES;
     
-    lineChart.yValueMax = [[self getMaxFromArray:self.saleModel.weekAmounts] floatValue] ;
+    lineChart.yValueMax = [[self getMaxFromArray:self.saleModel.weekAmounts] floatValue];
+    lineChart.yFixedValueMax = [self getFixMaxWithYMax:lineChart.yValueMax];
     lineChart.yFixedValueMin = 0.0;
     lineChart.yValueMin = 0;
     
@@ -1128,7 +1129,7 @@ static NSString *popAnimation = @"first";
     lineChart.yValueMin = 0;
     
      lineChart.yValueMax = [[self getMaxFromArray:self.memModel.weekMemberAmounts AndNext:self.memModel.weekPartnerAmounts] floatValue];
-    lineChart.yFixedValueMax = lineChart.yValueMax;
+    lineChart.yFixedValueMax = [self getFixMaxWithYMax:lineChart.yValueMax];
     
     [lineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.memModel.weekMemberAmounts AndNext:self.memModel.weekPartnerAmounts] integerValue]]];
     
@@ -1420,6 +1421,7 @@ static NSString *popAnimation = @"first";
         self.saleNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.saleModel.todayAmount];
         
         self.salelineChart.yValueMax = [[self getMaxFromArray:self.saleModel.todayAmounts] floatValue];
+        self.salelineChart.yFixedValueMax = [self getFixMaxWithYMax:self.salelineChart.yValueMax];
         [self.salelineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.saleModel.todayAmounts] integerValue]]];
         [self.salelineChart setXLabels:[self getNSStringArrayWithArray:self.saleModel.todayTimes]];
   
@@ -1441,7 +1443,9 @@ static NSString *popAnimation = @"first";
         
         self.saleNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.saleModel.weekAmount];
         
+        
         self.salelineChart.yValueMax = [[self getMaxFromArray:self.saleModel.weekAmounts] floatValue];
+        self.salelineChart.yFixedValueMax = [self getFixMaxWithYMax:self.salelineChart.yValueMax];
         [self.salelineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.saleModel.weekAmounts] integerValue]]];
         [self.salelineChart setXLabels:[self getNSNumberArrayWithArray:self.saleModel.weekTimes]];
         
@@ -1464,6 +1468,7 @@ static NSString *popAnimation = @"first";
         self.saleNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.saleModel.monthAmount];
         
         self.salelineChart.yValueMax = [[self getMaxFromArray:self.saleModel.monthAmounts] floatValue];
+        self.salelineChart.yFixedValueMax = [self getFixMaxWithYMax:self.salelineChart.yValueMax];
         [self.salelineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.saleModel.monthAmounts] integerValue]]];
         [self.salelineChart setXLabels:[self getNSNumberArrayWithArray:self.saleModel.monthTimes]];
         
@@ -1507,6 +1512,7 @@ static NSString *popAnimation = @"first";
         self.ordorNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.ordorModel.todayAmount];
         
         self.orderlineChart.yValueMax = [[self getMaxFromArray:self.ordorModel.todayAmounts] floatValue];
+        self.orderlineChart.yFixedValueMax = [self getFixMaxWithYMax:self.orderlineChart.yValueMax];
         [self.orderlineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.ordorModel.todayAmounts] integerValue]]];
         [self.orderlineChart setXLabels:[self getNSStringArrayWithArray:self.ordorModel.todayTimes]];
         
@@ -1529,6 +1535,7 @@ static NSString *popAnimation = @"first";
         self.ordorNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.ordorModel.weekAmount];
         
         self.orderlineChart.yValueMax = [[self getMaxFromArray:self.ordorModel.weekAmounts] floatValue];
+        self.orderlineChart.yFixedValueMax = [self getFixMaxWithYMax:self.orderlineChart.yValueMax];
         [self.orderlineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.ordorModel.weekAmounts] integerValue]]];
         [self.orderlineChart setXLabels:[self getNSNumberArrayWithArray:self.ordorModel.weekTimes]];
         
@@ -1551,6 +1558,7 @@ static NSString *popAnimation = @"first";
         self.ordorNewLabel.text = [NSString stringWithFormat:@"当前统计:%@", self.ordorModel.monthAmount];
         
         self.orderlineChart.yValueMax = [[self getMaxFromArray:self.ordorModel.monthAmounts] floatValue];
+        self.orderlineChart.yFixedValueMax = [self getFixMaxWithYMax:self.orderlineChart.yValueMax];
         [self.orderlineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.ordorModel.monthAmounts] integerValue]]];
         [self.orderlineChart setXLabels:[self getNSNumberArrayWithArray:self.ordorModel.monthTimes]];
         
@@ -1600,6 +1608,7 @@ static NSString *popAnimation = @"first";
         self.memNewlabel.text = [NSString stringWithFormat:@"%@", self.memModel.todayMemberAmount];
         
         self.viplineChart.yValueMax = [[self getMaxFromArray:self.memModel.todayMemberAmounts AndNext:self.memModel.todayPartnerAmounts] floatValue];
+        self.viplineChart.yFixedValueMax = [self getFixMaxWithYMax:self.viplineChart.yValueMax ];
         [self.viplineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.memModel.todayMemberAmounts AndNext:self.memModel.todayPartnerAmounts] integerValue]]];
         
         [self.viplineChart setXLabels:[self getNSStringArrayWithArray:self.memModel.todayTimes]];
@@ -1637,6 +1646,7 @@ static NSString *popAnimation = @"first";
         self.memNewlabel.text = [NSString stringWithFormat:@"%@", self.memModel.weekMemberAmount];
         
         self.viplineChart.yValueMax = [[self getMaxFromArray:self.memModel.weekMemberAmounts AndNext:self.memModel.weekPartnerAmounts] floatValue];
+        self.viplineChart.yFixedValueMax = [self getFixMaxWithYMax:self.viplineChart.yValueMax];
         [self.viplineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.memModel.weekMemberAmounts AndNext:self.memModel.weekPartnerAmounts] integerValue]]];
         
         [self.viplineChart setXLabels:[self getNSNumberArrayWithArray:self.memModel.weekTimes]];
@@ -1674,7 +1684,7 @@ static NSString *popAnimation = @"first";
         self.memNewlabel.text = [NSString stringWithFormat:@"%@", self.memModel.monthMemberAmount];
         
         self.viplineChart.yValueMax = [[self getMaxFromArray:self.memModel.monthMemberAmounts AndNext:self.memModel.monthPartnerAmounts] floatValue];
-        
+        self.viplineChart.yFixedValueMax = [self getFixMaxWithYMax:self.viplineChart.yValueMax];
         [self.viplineChart setYLabels:[self getArrayWithY:[[self getMaxFromArray:self.memModel.monthMemberAmounts AndNext:self.memModel.monthPartnerAmounts] integerValue]]];
         
         [self.viplineChart setXLabels:[self getNSNumberArrayWithArray:self.memModel.monthTimes]];
@@ -1754,15 +1764,22 @@ static NSString *popAnimation = @"first";
         i = num / 100 + 1;
     }
     
-//    if (i) {
-        array = @[@"0",[NSString stringWithFormat:@"%d", i * 25],[NSString stringWithFormat:@"%d", i * 50],[NSString stringWithFormat:@"%d", i * 75],[NSString stringWithFormat:@"%d", i * 100]];
-//    }else  {
-//        array = @[[NSString stringWithFormat:@"5"],[NSString stringWithFormat:@"10"],[NSString stringWithFormat:@"15"],[NSString stringWithFormat:@"20"]];
-//    }
-    
-    
-    
+
+    array = @[@"0",[NSString stringWithFormat:@"%ld", i * 25],[NSString stringWithFormat:@"%ld", i * 50],[NSString stringWithFormat:@"%ld", i * 75],[NSString stringWithFormat:@"%ld", i * 100]];
     return array;
+}
+
+- (CGFloat)getFixMaxWithYMax:(NSInteger) yMax {
+    NSInteger i;
+    
+    if (yMax % 100 == 0) {
+        i = yMax / 100;
+    }else {
+        i = yMax / 100 + 1;
+    }
+    
+    return i * 100;
+    
 }
 
 - (NSArray *)getNSStringArrayWithArray:(NSArray *)array {

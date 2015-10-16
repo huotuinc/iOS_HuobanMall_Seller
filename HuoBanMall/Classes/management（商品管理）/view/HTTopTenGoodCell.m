@@ -75,14 +75,14 @@
     self.titleLabel.text = [NSString stringWithFormat:@" %@",model.title];
     [self.titleImage sd_setImageWithURL:[NSURL URLWithString:model.picture] placeholderImage:[UIImage imageNamed:@"tpzwx"] options:SDWebImageRetryFailed];
     
-    NSString * redStrs = [NSString stringWithFormat:@"￥%@",[model.price stringValue]];
+//    NSString * redStrs = [NSString stringWithFormat:@"￥%@",[model.price stringValue]];
 //    NSString * buyStr = [NSString stringWithFormat:@"%@人已购买",[model.amount stringValue]];
     
-    NSMutableString * redStr = [NSMutableString stringWithFormat:@"￥%@ 已售出%@件",[model.price stringValue],[model.amount stringValue]];
+    NSMutableString * redStr = [NSMutableString stringWithFormat:@"已售出%@件",[model.amount stringValue]];
     
     NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:redStr];
    
-    [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:0.941 green:0.227 blue:0.098 alpha:1.000] range:NSMakeRange(0,redStrs.length)];
+//    [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:0.941 green:0.227 blue:0.098 alpha:1.000] range:NSMakeRange(0,redStrs.length)];
     self.disLabel.attributedText = str;
   
 }

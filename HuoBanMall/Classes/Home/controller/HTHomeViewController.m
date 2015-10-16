@@ -322,6 +322,19 @@
     return temp1;
 }
 
+- (CGFloat)getFixMaxWithYMax:(NSInteger) yMax {
+    NSInteger i;
+    
+    if (yMax % 100 == 0) {
+        i = yMax / 100;
+    }else {
+        i = yMax / 100 + 1;
+    }
+    
+    return i * 100;
+    
+}
+
 
 #pragma mark 初始化滑动视图
 
@@ -352,18 +365,17 @@
             case 0:
             {
                 NSInteger max = [[self getMaxFromArray:self.homeModel.orderAmount] integerValue];
-                self.ordorChart.yValueMax = max;
-                self.ordorChart = [self PNChartWithView:sc AndXArray:[self getNSStringArrayWithArray:self.homeModel.orderHour] AndYArray:[self getArrayWithY:max] AndDataArray:self.homeModel.orderAmount];
-                self.ordorChart.showLabel = YES;
-                sc.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.000];
+                self.ordorChart = [self PNChartWithView:sc AndXArray:[self getNSStringArrayWithArray:self.homeModel.orderHour] AndYArray:[self getArrayWithY:max] AndDataArray:self.homeModel.orderAmount AndMax:[[self getMaxFromArray:self.homeModel.orderAmount] floatValue]];
+
+                sc.backgroundColor = [UIColor colorWithWhite:0.973  alpha:1.000];
                 [sc addSubview:self.ordorChart];
                 break;
             }
             case 1:
             {
                 NSInteger max = [[self getMaxFromArray:self.homeModel.memberAmount] integerValue];
-                self.memberChart.yValueMax = max;
-                self.memberChart = [self PNChartWithView:sc AndXArray:[self getNSStringArrayWithArray:self.homeModel.memberHour] AndYArray:[self getArrayWithY:max] AndDataArray:self.homeModel.memberAmount];
+                
+                self.memberChart = [self PNChartWithView:sc AndXArray:[self getNSStringArrayWithArray:self.homeModel.memberHour] AndYArray:[self getArrayWithY:max] AndDataArray:self.homeModel.memberAmount AndMax:[[self getMaxFromArray:self.homeModel.memberAmount] floatValue]];
                 sc.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.000];
                 [sc addSubview:self.memberChart];
                 break;
@@ -371,11 +383,12 @@
             default:
             {
                 NSInteger max = [[self getMaxFromArray:self.homeModel.partnerAmount] integerValue];
-                self.distributorChart.yValueMax = max;
+                
                 self.distributorChart = [self PNChartWithView:sc
                                                     AndXArray:[self getNSStringArrayWithArray:self.homeModel.partnerHour]
                                                     AndYArray:[self getArrayWithY:max]
-                                                 AndDataArray:self.homeModel.partnerAmount];
+                                                 AndDataArray:self.homeModel.partnerAmount
+                                                       AndMax:[[self getMaxFromArray:self.homeModel.partnerAmount] floatValue]];
                 sc.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.000];
                 [sc addSubview:self.distributorChart];
                 break;
@@ -556,16 +569,16 @@
 
 #pragma PNChart
 
-- (PNLineChart *)PNChartWithView:(UIView *)view AndXArray:(NSArray *) xArray AndYArray:(NSArray *) yArray AndDataArray: (NSArray *) dataArray;
+- (PNLineChart *)PNChartWithView:(UIView *)view AndXArray:(NSArray *) xArray AndYArray:(NSArray *) yArray AndDataArray: (NSArray *) dataArray AndMax:(CGFloat ) max;
 {
     PNLineChart *lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 10, view.bounds.size.width, view.bounds.size.height - 20)];
     lineChart.yLabelFormat = @"%1.1f";
     lineChart.backgroundColor = [UIColor clearColor];
     [lineChart setXLabels:xArray];
     lineChart.showCoordinateAxis = YES;
-    
+    lineChart.yFixedValueMax = [self getFixMaxWithYMax:max];
+    lineChart.yValueMax = max;
 
-    
     lineChart.yFixedValueMin = 0.0;
     lineChart.yValueMin = 0;
     [lineChart setYLabels:yArray];

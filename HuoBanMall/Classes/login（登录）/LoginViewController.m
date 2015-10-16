@@ -71,7 +71,7 @@
 /**
  *  键盘弹出
  *
- *  @param noto <#noto description#>
+ *  @param noto
  */
 -(void)keyboardWasShown:(NSNotification *) note{
     NSDictionary* keyboardInfo = note.userInfo;
@@ -172,6 +172,9 @@
             [self.passwdTextField resignFirstResponder];
             [self.userNameTextFiled resignFirstResponder];
             
+        }else {
+            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
+            return ;
         }
     } failure:^(NSError *error) {
         [SVProgressHUD dismiss];
