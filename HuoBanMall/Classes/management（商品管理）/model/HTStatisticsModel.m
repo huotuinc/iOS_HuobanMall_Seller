@@ -12,7 +12,7 @@
 
 - (void)setOrderNo:(NSString *)orderNo{
     
-    _orderNo = [NSString stringWithFormat:@"订单号:%@",orderNo];
+    _orderNo = [NSString stringWithFormat:@"单号:%@",orderNo];
     
 }
 

@@ -116,20 +116,44 @@
     _model = model;
     UIImage * placeIcon = nil;
     if(model.Type == 1){
-        _dateType.text = @"总返利";
-        placeIcon = [UIImage imageNamed:@"zchyzrs"];
-        self.textLabel.text = model.name;
-        _datelable.text = [NSString stringWithFormat:@"%.0f",[model.score floatValue]];
+        if ([model.score floatValue] > 10000) {
+            _dateType.text = @"总返利(万)";
+            placeIcon = [UIImage imageNamed:@"zchyzrs"];
+            self.textLabel.text = model.name;
+            _datelable.text = [NSString stringWithFormat:@"%.1f",[model.score floatValue] / 10000];
+        }else {
+            _dateType.text = @"总返利";
+            placeIcon = [UIImage imageNamed:@"zchyzrs"];
+            self.textLabel.text = model.name;
+            _datelable.text = [NSString stringWithFormat:@"%.0f",[model.score floatValue]];
+        }
+        
     }else if(model.Type == 2){
-        _dateType.text = @"总消费(元)";
-        placeIcon = [UIImage imageNamed:@"zchyzrs"];
-        self.textLabel.text = [NSString stringWithFormat:@"%@\n购买%ld单",model.name,(long)[model.amount integerValue]];
-        _datelable.text = [NSString stringWithFormat:@"%.0f",[model.money floatValue]];
+        if ([model.money floatValue] > 10000) {
+            _dateType.text = @"总消费(万元)";
+            placeIcon = [UIImage imageNamed:@"zchyzrs"];
+            self.textLabel.text = [NSString stringWithFormat:@"%@\n购买%ld单",model.name,(long)[model.amount integerValue]];
+            _datelable.text = [NSString stringWithFormat:@"%.1f",[model.money floatValue] / 10000];
+        }else {
+            _dateType.text = @"总消费(元)";
+            placeIcon = [UIImage imageNamed:@"zchyzrs"];
+            self.textLabel.text = [NSString stringWithFormat:@"%@\n购买%ld单",model.name,(long)[model.amount integerValue]];
+            _datelable.text = [NSString stringWithFormat:@"%.0f",[model.money floatValue]];
+        }
+        
     }else{
-        placeIcon = [UIImage imageNamed:@"ddzs"];
-        _dateType.text = @"消费额(元)";
-        self.textLabel.text = model.orderNo;
-        _datelable.text = [NSString stringWithFormat:@"%.0f",[model.money floatValue]];
+        if ([model.money floatValue] > 10000) {
+            placeIcon = [UIImage imageNamed:@"ddzs"];
+            _dateType.text = @"消费额(万元)";
+            self.textLabel.text = model.orderNo;
+            _datelable.text = [NSString stringWithFormat:@"%.1f",[model.money floatValue] / 10000];
+        }else {
+            placeIcon = [UIImage imageNamed:@"ddzs"];
+            _dateType.text = @"消费额(元)";
+            self.textLabel.text = model.orderNo;
+            _datelable.text = [NSString stringWithFormat:@"%.0f",[model.money floatValue]];
+        }
+        
     }
 //    _datelable.text = [model.num stringValue];
     
@@ -206,12 +230,12 @@
 //    self.dateType.frame = CGRectMake(TypeX, TypeY, TypeW, TypeH);
     
     
-    self.accessoryView.frame = CGRectMake(self.frame.size.width-60-5 - 10,10, 60,self.frame.size.height);
+    self.accessoryView.frame = CGRectMake(self.frame.size.width-60-5 - 10 - 10,10, 80,self.frame.size.height);
 //    _rightView.frame = CGRectMake(self.frame.size.width-60, 0, 60,self.frame.size.height);
 //    _rightView.backgroundColor = [UIColor greenColor];
     _datelable.frame = CGRectMake(0, 0, _rightView.frame.size.width, _rightView.frame.size.height*0.5);
 //    _datelable.backgroundColor = [UIColor redColor];
-    _dateType.frame = CGRectMake(0, _rightView.frame.size.height*0.5-10,  _rightView.frame.size.width, _rightView.frame.size.height*0.5);
+    _dateType.frame = CGRectMake(0, _rightView.frame.size.height*0.5-10,  _rightView.frame.size.width + 10, _rightView.frame.size.height*0.5);
 }
 
 @end
