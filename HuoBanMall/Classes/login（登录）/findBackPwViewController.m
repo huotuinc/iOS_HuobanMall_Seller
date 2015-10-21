@@ -148,6 +148,8 @@
         }else if([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1){
             [self settime];
             
+        }else {
+            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
         }
         
     } failure:^(NSError *error) {
