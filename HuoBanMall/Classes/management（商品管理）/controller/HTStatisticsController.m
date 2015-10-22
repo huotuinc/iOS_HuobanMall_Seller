@@ -100,6 +100,7 @@
     [SVProgressHUD showWithStatus:@"数据加载中"];
     [UserLoginTool loginRequestGet:StatisticsControllerJieKous parame:nil success:^(id json) {
         [SVProgressHUD dismiss];
+        NSLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
             NSArray * models = [HTStatisticsModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             if (models.count) {
@@ -272,6 +273,7 @@
     __weak HTStatisticsController *wself = self;
     [UserLoginTool loginRequestGet:StatisticsControllerJieKou parame:params success:^(id json) {
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
+            NSLog(@"%@",json);
             NSArray * models = [HTStatisticsModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             if (models.count) {
                 //纪录数据

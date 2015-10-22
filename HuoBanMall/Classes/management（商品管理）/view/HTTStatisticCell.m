@@ -134,6 +134,11 @@
             placeIcon = [UIImage imageNamed:@"zchyzrs"];
             self.textLabel.text = [NSString stringWithFormat:@"%@\n购买%ld单",model.name,(long)[model.amount integerValue]];
             _datelable.text = [NSString stringWithFormat:@"%.1f",[model.money floatValue] / 10000];
+        }else if ([model.money floatValue] < 10){
+            _dateType.text = @"总消费(元)";
+            placeIcon = [UIImage imageNamed:@"zchyzrs"];
+            self.textLabel.text = [NSString stringWithFormat:@"%@\n购买%ld单",model.name,(long)[model.amount integerValue]];
+            _datelable.text = [NSString stringWithFormat:@"%.2f",[model.money floatValue]];
         }else {
             _dateType.text = @"总消费(元)";
             placeIcon = [UIImage imageNamed:@"zchyzrs"];
@@ -147,6 +152,11 @@
             _dateType.text = @"消费额(万元)";
             self.textLabel.text = model.orderNo;
             _datelable.text = [NSString stringWithFormat:@"%.1f",[model.money floatValue] / 10000];
+        }else if ([model.money floatValue] < 10){
+            placeIcon = [UIImage imageNamed:@"ddzs"];
+            _dateType.text = @"消费额(元)";
+            self.textLabel.text = model.orderNo;
+            _datelable.text = [NSString stringWithFormat:@"%.2f",[model.money floatValue]];
         }else {
             placeIcon = [UIImage imageNamed:@"ddzs"];
             _dateType.text = @"消费额(元)";
