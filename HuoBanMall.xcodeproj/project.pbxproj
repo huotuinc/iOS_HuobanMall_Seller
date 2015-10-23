@@ -940,7 +940,7 @@
 				TargetAttributes = {
 					EF6AB1781B87241900C9F114 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = Q3B3AD6JJH;
+						DevelopmentTeam = 3Z4NZSRMPF;
 					};
 					EF6AB1911B87241A00C9F114 = {
 						CreatedOnToolsVersion = 6.4;
@@ -1269,6 +1269,7 @@
 				INFOPLIST_FILE = HuoBanMall/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.huotu.HuoBanMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1288,6 +1289,7 @@
 				INFOPLIST_FILE = HuoBanMall/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.huotu.HuoBanMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
