@@ -308,10 +308,16 @@
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
             NSArray * models = [HTStatisticsModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             if (models.count) {
+                [self.tableView setTableViewNormal];
                 [wself.liushui removeAllObjects];
                 [wself.liushui addObjectsFromArray:models];
                 [self.dateStat removeAllObjects];
                 [self.dateStat addObjectsFromArray:models];
+                [self.tableView reloadData];
+            }else {
+                [self.tableView setTabelViewListIsZero];
+                [self.dateStat removeAllObjects];
+                [wself.liushui removeAllObjects];
                 [self.tableView reloadData];
             }
             
