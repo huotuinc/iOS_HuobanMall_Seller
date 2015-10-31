@@ -67,7 +67,7 @@
 - (void)toGetTopTenSaller{
     
     [UserLoginTool loginRequestGet:@"topGoods" parame:nil success:^(id json) {
-        NSLog(@"%@", json);
+//        NSLog(@"%@", json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
             
             NSArray * models = [HTTopTenModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];

@@ -44,14 +44,14 @@
 
 
 - (IBAction)changePasswordButton:(id)sender {
-    NSLog(@"xxxxxxx");
+//    NSLog(@"xxxxxxx");
     if (!self.oldPassWordTextField.text.length) {
-        NSLog(@"旧密码为空");
+//        NSLog(@"旧密码为空");
         return;
     }
     
     if (![self.firstPassWord.text isEqualToString:self.secondPassword.text]) {
-        NSLog(@"两次密码不同");
+//        NSLog(@"两次密码不同");
         [SVProgressHUD showErrorWithStatus:@"两次密码不同"];
         return;
     }
@@ -62,7 +62,7 @@
     __weak ChangePasswordController *wself = self;
     
     [UserLoginTool loginRequestGet:@"modifyPassword" parame:parames success:^(id json) {
-        NSLog(@"%@",json);
+//        NSLog(@"%@",json);
         
         
         
@@ -79,7 +79,7 @@
             
             [[NSUserDefaults standardUserDefaults] setObject:wself.firstPassWord.text forKey:loginPassword];
             
-            NSLog(@"用户登录后返回的token%@",user.token);
+//            NSLog(@"用户登录后返回的token%@",user.token);
             //保存新的token
             [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:HuoBanMallAppToken];
             
@@ -89,7 +89,7 @@
         }
         
     } failure:^(NSError *error) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
     }];
 
 }

@@ -118,7 +118,7 @@
     __weak MCController * wself = self;
     [UserLoginTool loginRequestGet:@"messages" parame:params success:^(id json) {
         
-        NSLog(@"%@",json);
+//        NSLog(@"%@",json);
 
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==56001){
 
@@ -161,7 +161,7 @@
     __weak MCController * wself = self;
     [UserLoginTool loginRequestGet:@"messages" parame:parame success:^(id json) {
         
-        NSLog(@"%@",json);
+//        NSLog(@"%@",json);
         
         NSMutableArray * aaframe = [NSMutableArray array];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {

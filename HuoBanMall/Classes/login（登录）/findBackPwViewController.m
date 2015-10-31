@@ -117,7 +117,7 @@
 
 - (IBAction)verificationBtnClick:(id)sender {
     
-    NSLog(@"获取签证吗");
+//    NSLog(@"获取签证吗");
     //判断手机号是否输入正确
     NSString * phoneNumber= self.phoneNumber.text;
     if ([phoneNumber isEqualToString:@""]) {
@@ -137,7 +137,7 @@
     params[@"codeType"] = @(0);
     [UserLoginTool loginRequestGet:@"sendSMS" parame:params success:^(id json) {
         
-        NSLog(@"------sendSMS%@",json);
+//        NSLog(@"------sendSMS%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==55001){
             
             if ([json[@"resultData"][@"voiceAble"] intValue]) {
@@ -214,7 +214,7 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:HuoBanMallAppToken];
 //    [self.view endEditing:YES];
-    NSLog(@"sssss");
+//    NSLog(@"sssss");
     if (!self.phoneNumber.text.length) {
         [SVProgressHUD showErrorWithStatus:@"手机号不能为空"];
         return;
@@ -239,7 +239,7 @@
     
     [UserLoginTool loginRequestGet:@"forgetPassword" parame:params success:^(id json) {
         
-        NSLog(@"找回密码成功%@",json);
+//        NSLog(@"找回密码成功%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==56001){
             [SVProgressHUD showErrorWithStatus:@"账号被登入"];
             return ;

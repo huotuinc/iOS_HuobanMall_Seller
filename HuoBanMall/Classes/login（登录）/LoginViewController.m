@@ -75,7 +75,7 @@
  */
 -(void)keyboardWasShown:(NSNotification *) note{
     NSDictionary* keyboardInfo = note.userInfo;
-    NSLog(@"%@",keyboardInfo);
+//    NSLog(@"%@",keyboardInfo);
     CGPoint kbSize = [[keyboardInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
     CGPoint center = self.backView.center;
     center.y = self.view.center.y - (self.view.frame.size.height - kbSize.y)*0.2;
@@ -106,7 +106,7 @@
 - (IBAction)loginBtn:(id)sender {
     
     
-    NSLog(@"xxxx");
+//    NSLog(@"xxxx");
 //    self.userNameTextFiled.text = @"lc";
 //    self.passwdTextField.text = @"123456";
     
@@ -121,7 +121,7 @@
     [SVProgressHUD showWithStatus:@"登录ing"];
     [UserLoginTool loginRequestGet:@"login" parame:dic success:^(id json) {
         [SVProgressHUD dismiss];
-        NSLog(@"%@", json);
+//        NSLog(@"%@", json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 54003) {
 
             [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
@@ -155,7 +155,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:wself.userNameTextFiled.text forKey:loginUserName];
             [[NSUserDefaults standardUserDefaults] setObject:wself.passwdTextField.text forKey:loginPassword];
             
-            NSLog(@"用户登录后返回的token%@",user.token);
+//            NSLog(@"用户登录后返回的token%@",user.token);
             //保存新的token
             [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:HuoBanMallAppToken];
             if (![user.welcomeTip isEqualToString:@""]) {//登入成功提示
@@ -226,7 +226,7 @@
 
 
 - (void)dealloc{
-    NSLog(@"------");
+//    NSLog(@"------");
     [self.view endEditing:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

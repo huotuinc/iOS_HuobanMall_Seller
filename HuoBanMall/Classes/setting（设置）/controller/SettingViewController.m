@@ -153,7 +153,7 @@
         }
         
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 }
 
@@ -312,7 +312,7 @@
       
         [UserLoginTool loginRequestPostWithFile:@"updateMerchantProfile" parame:params success:^(id json) {
             [SVProgressHUD dismiss];
-            NSLog(@"%@", json);
+//            NSLog(@"%@", json);
             if ([json[@"systemResultCode"] intValue] ==1&&[json[@"resultCode"] intValue] == 1) {
                 HTUser * user1 = [HTUser objectWithKeyValues:json[@"resultData"][@"user"]];
                 NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -328,7 +328,7 @@
         } failure:^(NSError *error) {
             [SVProgressHUD dismiss];
             [SVProgressHUD showErrorWithStatus:@"头像上传失败"];
-            NSLog(@"%@",error.description);
+//            NSLog(@"%@",error.description);
         } withFileKey:@"profileData"];
 
     }];

@@ -33,17 +33,17 @@
     self.user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
     
     
-    NSLog(@"ordro%@", self.user.enableBillNotice);
+//    NSLog(@"ordro%@", self.user.enableBillNotice);
     self.order.on = [self.user.enableBillNotice intValue];
     [self.order addTarget:self action:@selector(swichChanged:) forControlEvents:UIControlEventValueChanged];
     self.order.tag = 4;
     
-    NSLog(@"friend%@", self.user.enablePartnerNotice);
+//    NSLog(@"friend%@", self.user.enablePartnerNotice);
     self.friend.on = [self.user.enablePartnerNotice intValue];
     [self.friend addTarget:self action:@selector(swichChanged:) forControlEvents:UIControlEventValueChanged];
     self.friend.tag = 5;
     
-    NSLog(@"message%@", self.user.noDisturbed);
+//    NSLog(@"message%@", self.user.noDisturbed);
     self.message.on = [self.user.noDisturbed intValue];
     [self.message addTarget:self action:@selector(swichChanged:) forControlEvents:UIControlEventValueChanged];
     self.message.tag = 6;

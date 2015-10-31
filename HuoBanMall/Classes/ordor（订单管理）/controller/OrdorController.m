@@ -152,7 +152,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
         
         [SVProgressHUD dismiss];
         
-        NSLog(@"%@", json);
+//        NSLog(@"%@", json);
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
@@ -202,7 +202,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     
     [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
         [self.tableView headerEndRefreshing];
-        NSLog(@"%@", json);
+//        NSLog(@"%@", json);
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
@@ -259,11 +259,11 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     }
     
     [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
-        NSLog(@"%@", json);
+//        NSLog(@"%@", json);
         [self.tableView footerEndRefreshing];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
             
-            NSLog(@"%@", json);
+//            NSLog(@"%@", json);
             
             NSArray *temp = [OrdorModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             
@@ -290,7 +290,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
         }
     } failure:^(NSError *error) {
         [self.tableView footerEndRefreshing];
-        NSLog(@"%@", error);
+//        NSLog(@"%@", error);
         [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
     }];
     

@@ -73,7 +73,7 @@
     
     [UserLoginTool loginRequestPost:@"feedback" parame:params success:^(id json) {
         
-        NSLog(@"sdasd%@",json);
+//        NSLog(@"sdasd%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==56001){
             [SVProgressHUD showErrorWithStatus:@"账号被登入"];
             return ;
@@ -85,8 +85,8 @@
         }
         
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-        NSLog(@"意见反馈出错");
+//        NSLog(@"%@",error);
+//        NSLog(@"意见反馈出错");
     }];
 }
 @end

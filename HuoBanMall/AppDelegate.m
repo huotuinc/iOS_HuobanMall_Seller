@@ -39,7 +39,7 @@
         NSDictionary *dicRemote = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         if (dicRemote) {
             
-            NSLog(@"launch-------Remote%@",dicRemote);
+//            NSLog(@"launch-------Remote%@",dicRemote);
             NSDictionary * dict = [[dicRemote objectForKey:@"aps"] objectForKey:@"alert"];
             if (dict != NULL) {
                 UIAlertView* alert = [[UIAlertView alloc] initWithTitle:dict[@"body"]
@@ -105,7 +105,7 @@
 
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"注册推送服务时，发生以下错误： %@",error.description);
+//    NSLog(@"注册推送服务时，发生以下错误： %@",error.description);
 }
 
 /**
@@ -113,14 +113,14 @@
  */
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     
-    NSLog(@"%@",deviceToken);
+//    NSLog(@"%@",deviceToken);
     NSString * aa = [[deviceToken hexadecimalString] copy];
     //    NSString * urlstr = [MainUrl stringByAppendingPathComponent:@"updateDeviceToken"];
     NSMutableDictionary * parame = [NSMutableDictionary dictionary];
     parame[@"deviceToken"] = aa;
-    NSLog(@"deviceToken===%@",aa);
+//    NSLog(@"deviceToken===%@",aa);
     [UserLoginTool loginRequestGet:@"updateDeviceToken" parame:parame success:^(id json) {
-        NSLog(@"%@",json);
+//        NSLog(@"%@",json);
     } failure:^(NSError *error) {
         
     }];
@@ -130,8 +130,8 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     
-    NSLog(@"didReceiveRemoteNotification ------ %@",userInfo);
-    NSLog(@"%@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
+//    NSLog(@"didReceiveRemoteNotification ------ %@",userInfo);
+//    NSLog(@"%@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
     //以警告框的方式来显示推送消息
     NSDictionary * dict = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     if (dict != NULL) {
@@ -154,7 +154,7 @@
 - (void)callInitFunction{
     __block HTResultData * resultData = [[HTResultData  alloc] init];
     [UserLoginTool loginRequestGet:@"init" parame:nil success:^(id json) {
-        NSLog(@"xxxx------init%@",json);
+//        NSLog(@"xxxx------init%@",json);
         if ([json[@"resultCode"] intValue] == 56001) {
             LoginViewController *login = [[LoginViewController alloc] init];
             UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
@@ -175,7 +175,7 @@
                 
             }else{
                 
-                NSLog(@"----init -new --token%@",resultData.user.token);
+//                NSLog(@"----init -new --token%@",resultData.user.token);
                 //保存新的token
                 [[NSUserDefaults standardUserDefaults] setObject:resultData.user.token forKey:HuoBanMallAPPKEY];
                 NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -265,7 +265,7 @@
     [clg reverseGeocodeLocation:locs completionHandler:^(NSArray *placemarks, NSError *error) {
         
         CLPlacemark *pm = [placemarks firstObject];
-        NSLog(@"%@",pm.locality);
+//        NSLog(@"%@",pm.locality);
         for (NSDictionary * dict in array) {
             if ([dict[@"Value"] isEqualToString:pm.locality]) {
                 cityCode = dict[@"Key"];

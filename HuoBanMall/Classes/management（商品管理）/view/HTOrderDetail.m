@@ -80,7 +80,7 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        NSLog(@"%@",reuseIdentifier);
+//        NSLog(@"%@",reuseIdentifier);
         SEL funreuseIdentifier = NSSelectorFromString(reuseIdentifier);
         [self performSelector:funreuseIdentifier withObject:nil];
     }

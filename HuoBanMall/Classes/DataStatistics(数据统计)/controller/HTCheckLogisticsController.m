@@ -86,7 +86,7 @@
          
      } failure:^(NSError *error) {
           [SVProgressHUD dismiss];
-          NSLog(@"ss  orderDetail%@",error.description);
+//          NSLog(@"ss  orderDetail%@",error.description);
      }];
 }
 #pragma mark - Table view data source

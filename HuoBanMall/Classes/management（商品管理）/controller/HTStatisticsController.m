@@ -100,7 +100,7 @@
     [SVProgressHUD showWithStatus:@"数据加载中"];
     [UserLoginTool loginRequestGet:StatisticsControllerJieKous parame:nil success:^(id json) {
         [SVProgressHUD dismiss];
-        NSLog(@"%@",json);
+//        NSLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
             NSArray * models = [HTStatisticsModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             if (models.count) {
@@ -112,7 +112,7 @@
 
     } failure:^(NSError *error) {
         [SVProgressHUD dismiss];
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
     }];
 }
 
@@ -273,7 +273,7 @@
     __weak HTStatisticsController *wself = self;
     [UserLoginTool loginRequestGet:StatisticsControllerJieKou parame:params success:^(id json) {
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
-            NSLog(@"%@",json);
+//            NSLog(@"%@",json);
             NSArray * models = [HTStatisticsModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             if (models.count) {
                 //纪录数据
@@ -283,7 +283,7 @@
             }
         }
     } failure:^(NSError *error) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
  
     }];
     
@@ -323,7 +323,7 @@
             
         }
     } failure:^(NSError *error) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
     }];
 }
 

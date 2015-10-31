@@ -251,11 +251,9 @@
 - (void)_initNav
 {
     
-    HTHomeViewController * wself = self;
     
     [self _initNavBackgroundColor];
-    
-    
+
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
     HTUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
@@ -345,8 +343,8 @@
     
     [self.scrollView layoutIfNeeded];
     
-    NSLog(@"%f",self.scrollView.bounds.size.width);
-    NSLog(@"%f",self.scrollView.bounds.size.height);
+//    NSLog(@"%f",self.scrollView.bounds.size.width);
+//    NSLog(@"%f",self.scrollView.bounds.size.height);
     
     self.scrollView.delegate = self;
     self.scrollView.userInteractionEnabled = YES;
@@ -489,12 +487,12 @@
     CGFloat DISX = self.distributorBgView.frame.size.width / 2 - ScreenWidth * 0.33 * 0.35 + self.distributorBgView.frame.origin.x;
     
     
-    NSLog(@"%f",self.ordorBgView.frame.origin.x);
-    NSLog(@"%f", self.ordorBgView.frame.size.width);
-    
-    NSLog(@"%f", ORX);
-    NSLog(@"%f", SIY);
-    NSLog(@"%f", ScreenWidth * 0.33 * 0.7);
+//    NSLog(@"%f",self.ordorBgView.frame.origin.x);
+//    NSLog(@"%f", self.ordorBgView.frame.size.width);
+//    
+//    NSLog(@"%f", ORX);
+//    NSLog(@"%f", SIY);
+//    NSLog(@"%f", ScreenWidth * 0.33 * 0.7);
     
     self.scrollImage = [[UIView alloc] initWithFrame:CGRectMake( ORX, SIY, ScreenWidth * 0.33 * 0.7, 2)];
     self.scrollImage.backgroundColor = [UIColor colorWithRed:1.000 green:0.235 blue:0.000 alpha:1.000];
@@ -602,12 +600,12 @@
 
 #pragma mark PNChart代理方法
 - (void)userClickedOnLineKeyPoint:(CGPoint)point lineIndex:(NSInteger)lineIndex pointIndex:(NSInteger)pointIndex{//点击关键点
-    NSLog(@"Click Key on line %f, %f line index is %d and point index is %d",point.x, point.y,(int)lineIndex, (int)pointIndex);
+//    NSLog(@"Click Key on line %f, %f line index is %d and point index is %d",point.x, point.y,(int)lineIndex, (int)pointIndex);
     
 }
 
 - (void)userClickedOnLinePoint:(CGPoint)point lineIndex:(NSInteger)lineIndex{//点击线上点
-    NSLog(@"Click on line %f, %f, line index is %d",point.x, point.y, (int)lineIndex);
+//    NSLog(@"Click on line %f, %f, line index is %d",point.x, point.y, (int)lineIndex);
 }
 
 

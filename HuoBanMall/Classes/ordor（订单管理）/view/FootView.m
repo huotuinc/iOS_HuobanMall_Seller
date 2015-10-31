@@ -36,6 +36,6 @@
 
 - (IBAction)materialButtonClick:(id)sender {
     
-    NSLog(@"xxxx");
+//    NSLog(@"xxxx");
 }
 @end

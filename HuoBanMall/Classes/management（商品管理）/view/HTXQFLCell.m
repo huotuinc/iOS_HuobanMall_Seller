@@ -46,7 +46,7 @@
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSString * publishtime = [formatter stringFromDate:ptime];
     
-    NSLog(@"time -----time === %@",publishtime);
+//    NSLog(@"time -----time === %@",publishtime);
     return publishtime;
 }
 

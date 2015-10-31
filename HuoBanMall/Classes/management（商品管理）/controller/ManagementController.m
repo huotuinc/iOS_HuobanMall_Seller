@@ -272,7 +272,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
     
     [UserLoginTool loginRequestPost:@"goodsList" parame:dic success:^(id json) {
         
-        NSLog(@"%@", json);
+//        NSLog(@"%@", json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             NSArray *temp = [ManagementModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             
@@ -287,8 +287,8 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
                 [self.tableView selectRowAtIndexPath:index animated:NO scrollPosition:UITableViewScrollPositionNone];
             }
             
-            NSLog(@"%lu", (unsigned long)self.goods.count);
-            NSLog(@"%lu", (unsigned long)self.selectGoods.count);
+//            NSLog(@"%lu", (unsigned long)self.goods.count);
+//            NSLog(@"%lu", (unsigned long)self.selectGoods.count);
             if (self.tableView.editing && self.selectGoods != self.goods) {
                 self.selectImage.image = [UIImage imageNamed:@"wxz"];
             }
@@ -548,7 +548,7 @@ static NSString * ManagementIdentifier = @"ManagementCellIdentifier";
         [self.selectGoods removeAllObjects];
         self.selectImage.image = [UIImage imageNamed:@"wxz"];
         [self.tableView reloadData];
-        NSLog(@"%ld",(unsigned long)self.goods.count);
+//        NSLog(@"%ld",(unsigned long)self.goods.count);
     }
 }
 @end

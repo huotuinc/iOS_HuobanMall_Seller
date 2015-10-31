@@ -66,7 +66,7 @@
     dict[@"orderNo"] = self.ordorNumber;
     [SVProgressHUD showWithStatus:@"数据加载中"];
     [UserLoginTool loginRequestGet:@"orderDetail" parame:dict success:^(NSDictionary * json) {
-        NSLog(@"xx  orderDetail  %@",json);
+//        NSLog(@"xx  orderDetail  %@",json);
         [SVProgressHUD dismiss];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1){
             
@@ -77,7 +77,7 @@
         
     } failure:^(NSError *error) {
         [SVProgressHUD dismiss];
-        NSLog(@"ss  orderDetail%@",error.description);
+//        NSLog(@"ss  orderDetail%@",error.description);
     }];
 }
 #pragma mark 集成刷新空间
@@ -181,7 +181,7 @@
         
         headView.ordorLabel.text = [NSString stringWithFormat:@"订单号:%@",self.orderDetailModel.orderNo];
         headView.ordorType.hidden = YES;
-        NSLog(@"%@",headView.ordorLabel.text);
+//        NSLog(@"%@",headView.ordorLabel.text);
         return headView;
     }else if(section == 0 ||section == 1||section == 3){
         
