@@ -31,7 +31,7 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
+    [NSThread sleepForTimeInterval:1.5];//设置启动页面时间
     application.applicationIconBadgeNumber = 0;
 
     
