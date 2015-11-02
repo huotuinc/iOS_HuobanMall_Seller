@@ -1272,6 +1272,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.huotu.HuoBanMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1292,6 +1293,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.huotu.HuoBanMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

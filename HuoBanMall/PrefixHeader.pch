@@ -35,6 +35,7 @@
 
 #define HuoBanMallAPPKEY @"b73ca64567fb49ee963477263283a1bf"     //2、伙伴商场卖家版appKey
 
+   
 #define HuoBanMallAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] //3、伙伴商场卖家版App版本号*
 
 #define LocalHuoBanMallAppVersion @"LocalAppVersion"  //4、伙伴商场卖家版本地存储的版本号
