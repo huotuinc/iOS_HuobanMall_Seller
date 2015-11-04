@@ -27,6 +27,8 @@
     [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     
     self.dateLabel.text = [NSString stringWithFormat:@"%@", [formatter stringFromDate:date]];
+    
+    self.mainOrdor.text = self.model.mainOrderNo;
 }
 
 

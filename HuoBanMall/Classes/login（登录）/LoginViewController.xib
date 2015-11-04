@@ -140,7 +140,7 @@
                                 <action selector="loginBtn:" destination="-1" eventType="touchUpInside" id="ZSy-hX-yw8"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rtC-lf-7tJ">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rtC-lf-7tJ">
                             <rect key="frame" x="331" y="244" width="68" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="68" id="GYa-u6-bvL"/>
