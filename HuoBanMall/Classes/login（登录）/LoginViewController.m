@@ -89,7 +89,7 @@
  */
 - (void) setweigtAttribute
 {
-    self.title = @"伙伴商城登陆";
+    self.title = @"伙伴商城掌柜版登陆";
     [self _initNavBackgroundColor];
 }
 

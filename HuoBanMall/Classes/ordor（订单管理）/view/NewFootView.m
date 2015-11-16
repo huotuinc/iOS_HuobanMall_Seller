@@ -20,7 +20,7 @@
     
     self.goodCount.text = [NSString stringWithFormat:@"共%@件商品", self.model.amount];
     
-    self.priceLabel.text = [NSString stringWithFormat:@"%@", self.model.paid];
+    self.priceLabel.text = [NSString stringWithFormat:@"%.2f", [self.model.paid doubleValue]];
     
     NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[self.model.time doubleValue] / 1000];
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];

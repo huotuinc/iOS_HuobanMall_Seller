@@ -256,10 +256,12 @@
         [[NSUserDefaults standardUserDefaults] setObject:@"wrong" forKey:loginFlag];
         
         [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:loginUserName];
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:loginPassword];
         NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         
         //1、保存个人信息
         NSString *fileName = [path stringByAppendingPathComponent:LocalUserDate];
+        
         [NSKeyedArchiver archiveRootObject:nil toFile:fileName];
         
         LoginViewController *login = [[LoginViewController alloc] init];

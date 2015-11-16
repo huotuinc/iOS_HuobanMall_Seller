@@ -152,7 +152,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
         
         [SVProgressHUD dismiss];
         
-//        NSLog(@"%@", json);
+        NSLog(@"%@", json);
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
