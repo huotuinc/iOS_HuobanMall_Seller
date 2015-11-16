@@ -219,7 +219,17 @@
     [self _initNav];
     
     [self getNewToday];
+    
+    //首页接受重启app的通知
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(homeRefreshData) name:@"homeRefresh" object:nil];
 
+    
+}
+
+- (void)homeRefreshData {
+    
+    [self getNewToday];
     
 }
 

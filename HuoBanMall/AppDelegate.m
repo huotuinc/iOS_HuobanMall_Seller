@@ -18,6 +18,8 @@
 /**定位管理者*/
 @property(nonatomic,strong) CLLocationManager *mgr;
 
+@property(nonatomic, strong) HTHuoBanNavgationViewController *homeNav;
+
 @end
 
 @implementation AppDelegate
@@ -62,8 +64,8 @@
     
     if ([HTToJudgeLoginFlag ToJudgeLoginFlag]) {
         UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        HTHuoBanNavgationViewController * homeNav = [story instantiateViewControllerWithIdentifier:@"HTHuoBanNavgationViewController"];
-        self.window.rootViewController = homeNav;
+        _homeNav = [story instantiateViewControllerWithIdentifier:@"HTHuoBanNavgationViewController"];
+        self.window.rootViewController = _homeNav;
     }else{
         LoginViewController *login = [[LoginViewController alloc] init];
         UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
@@ -74,6 +76,17 @@
     [self registRemoteNotification:application];
     
     return YES;
+}
+
+/**
+ *  app重新打开的动作
+ *
+ *  @param application <#application description#>
+ */
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [self.homeNav popToRootViewControllerAnimated:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"homeRefresh" object:nil];
 }
 
 /**

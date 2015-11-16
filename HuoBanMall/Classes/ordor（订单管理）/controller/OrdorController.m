@@ -253,9 +253,6 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     
     if (self.searchStr.length != 0) {
         dic[@"keyword"] = self.searchStr;
-    }else {
-        [self.tableView footerEndRefreshing];
-        return;
     }
     
     [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
@@ -269,7 +266,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
             
             [self.ordors addObjectsFromArray:temp];
             
-            
+            [self.tableView reloadData];
             
         }
         if ([json[@"resultCode"] intValue] == 56001) {
