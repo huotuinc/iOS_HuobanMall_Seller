@@ -167,7 +167,7 @@
 - (void)callInitFunction{
     __block HTResultData * resultData = [[HTResultData  alloc] init];
     [UserLoginTool loginRequestGet:@"init" parame:nil success:^(id json) {
-        NSLog(@"xxxx------init%@",json);
+//        NSLog(@"xxxx------init%@",json);
         if ([json[@"resultCode"] intValue] == 56001) {
             LoginViewController *login = [[LoginViewController alloc] init];
             UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
