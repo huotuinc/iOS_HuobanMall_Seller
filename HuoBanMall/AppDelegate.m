@@ -10,7 +10,6 @@
 #import <CoreLocation/CoreLocation.h> 
 #import "LoginViewController.h"
 #import "HTResultData.h"
-#import "HTHuoBanNavgationViewController.h"
 #import "HTToJudgeLoginFlag.h"
 #import "NSData+NSDataDeal.h"
 
@@ -18,7 +17,7 @@
 /**定位管理者*/
 @property(nonatomic,strong) CLLocationManager *mgr;
 
-@property(nonatomic, strong) HTHuoBanNavgationViewController *homeNav;
+
 
 @end
 
@@ -84,6 +83,7 @@
  *  @param application <#application description#>
  */
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    
     [self.homeNav popToRootViewControllerAnimated:YES];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"homeRefresh" object:nil];

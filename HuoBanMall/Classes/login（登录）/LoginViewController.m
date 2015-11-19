@@ -12,6 +12,7 @@
 #import "HTUser.h"
 #import "MD5Encryption.h"
 #import <SVProgressHUD.h>
+#import "AppDelegate.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -166,8 +167,12 @@
             
             UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             HTHuoBanNavgationViewController * home = [story instantiateViewControllerWithIdentifier:@"HTHuoBanNavgationViewController"];
+            
             UIWindow * mainview = [UIApplication sharedApplication].keyWindow;
             mainview.rootViewController = home;
+            
+            AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            app.homeNav = home;
             
             [self.passwdTextField resignFirstResponder];
             [self.userNameTextFiled resignFirstResponder];

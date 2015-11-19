@@ -7,11 +7,14 @@
 //  代理s
 
 #import <UIKit/UIKit.h>
+#import "HTHuoBanNavgationViewController.h"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property(nonatomic, strong) HTHuoBanNavgationViewController *homeNav;
 
 @end
 
