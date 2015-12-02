@@ -24,7 +24,7 @@
     
     NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[self.model.time doubleValue] / 1000];
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
     self.dateLabel.text = [NSString stringWithFormat:@"%@", [formatter stringFromDate:date]];
     

@@ -254,6 +254,16 @@
     UIBarButtonItem *bar = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.navigationItem.leftBarButtonItem = bar;
     
+    
+    NSDate *  senddate=[NSDate date];
+    
+    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+    
+    [dateformatter setDateFormat:@"MM-dd"];
+    
+    NSString *  locationString=[dateformatter stringFromDate:senddate];
+    self.today.text = [NSString stringWithFormat:@"今日%@", locationString];
+    
 }
 /**
  *  设置导航栏

@@ -1058,13 +1058,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IY7-iA-i4o">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ks8-Br-qt1">
-                                                <rect key="frame" x="270" y="2" width="30" height="18"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总销售额（元）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrV-41-3uI">
                                                 <rect key="frame" x="20" y="41" width="105" height="18"/>
                                                 <animations/>
@@ -1109,10 +1102,17 @@
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="¥" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1P-yk-4fQ">
-                                                <rect key="frame" x="20" y="2" width="20" height="42"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1P-yk-4fQ">
+                                                <rect key="frame" x="20" y="2" width="22" height="42"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                                <color key="textColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ks8-Br-qt1">
+                                                <rect key="frame" x="270" y="41" width="30" height="18"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1128,6 +1128,7 @@
                                             <constraint firstAttribute="centerX" secondItem="C1P-yk-4fQ" secondAttribute="centerX" id="HnB-1s-Jvi"/>
                                             <constraint firstAttribute="bottom" secondItem="w0O-yE-9t8" secondAttribute="bottom" id="MLd-Ai-bbF"/>
                                             <constraint firstItem="C1P-yk-4fQ" firstAttribute="top" secondItem="IY7-iA-i4o" secondAttribute="top" constant="8" id="TUw-8d-YBq"/>
+                                            <constraint firstItem="Ks8-Br-qt1" firstAttribute="bottom" secondItem="IrV-41-3uI" secondAttribute="bottom" id="djX-4G-Obw"/>
                                             <constraint firstAttribute="centerY" secondItem="C1P-yk-4fQ" secondAttribute="centerY" constant="20" id="hbz-5I-m5E"/>
                                             <constraint firstAttribute="centerY" secondItem="C1P-yk-4fQ" secondAttribute="centerY" constant="25" id="heU-z3-V6A"/>
                                             <constraint firstItem="Ks8-Br-qt1" firstAttribute="leading" secondItem="C1P-yk-4fQ" secondAttribute="trailing" constant="5" id="hhe-5I-bTh"/>
@@ -1141,6 +1142,7 @@
                                                 <exclude reference="HnB-1s-Jvi"/>
                                                 <exclude reference="TUw-8d-YBq"/>
                                                 <exclude reference="hbz-5I-m5E"/>
+                                                <exclude reference="wAZ-J4-Aey"/>
                                                 <exclude reference="Gvw-e7-wlE"/>
                                                 <exclude reference="hhe-5I-bTh"/>
                                             </mask>
@@ -1491,6 +1493,7 @@
                         <outlet property="productManager" destination="NMq-ja-INg" id="oY8-ln-LSu"/>
                         <outlet property="scrollView" destination="B2P-ad-GCV" id="2YB-FT-t8n"/>
                         <outlet property="settingManager" destination="Egh-lq-OPX" id="nxd-Zq-8ZJ"/>
+                        <outlet property="today" destination="Ks8-Br-qt1" id="EE2-uG-HhT"/>
                         <outlet property="todayLabel" destination="C1P-yk-4fQ" id="gIh-31-s9Y"/>
                     </connections>
                 </viewController>
