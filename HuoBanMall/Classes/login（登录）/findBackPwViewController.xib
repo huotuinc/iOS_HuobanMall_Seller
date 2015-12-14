@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -27,6 +27,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cw-Zb-PlD" customClass="FMButton">
                             <rect key="frame" x="15" y="301" width="570" height="44"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="R7i-eU-7z5"/>
                             </constraints>
@@ -43,6 +44,7 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CG8-0J-ycS">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                    <animations/>
                                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="1D1-xw-AMu"/>
@@ -50,6 +52,7 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Af5-VO-fcc">
                                     <rect key="frame" x="60" y="46" width="540" height="1"/>
+                                    <animations/>
                                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="01h-Tr-Keg"/>
@@ -57,6 +60,7 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nT9-N2-eHG">
                                     <rect key="frame" x="0.0" y="92" width="600" height="1"/>
+                                    <animations/>
                                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="cEp-xB-8cv"/>
@@ -64,6 +68,7 @@
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mw0-hm-I36" customClass="FMButton">
                                     <rect key="frame" x="482" y="54" width="105" height="30"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="Yy3-bd-ZoN"/>
                                         <constraint firstAttribute="width" constant="105" id="hJz-h0-mzp"/>
@@ -78,6 +83,7 @@
                                 </button>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机号" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wm0-Ny-xed">
                                     <rect key="frame" x="81" y="1" width="506" height="45"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="sak-Rm-Qoi"/>
                                     </constraints>
@@ -86,6 +92,7 @@
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="右侧验证码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5Yk-bM-auB">
                                     <rect key="frame" x="81" y="47" width="401" height="45"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="BCA-t2-baC"/>
                                     </constraints>
@@ -94,6 +101,7 @@
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDq-Wc-5Yu">
                                     <rect key="frame" x="13" y="1" width="68" height="45"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="68" id="E5n-Gh-5qb"/>
                                         <constraint firstAttribute="height" constant="45" id="iYf-he-Reb"/>
@@ -104,6 +112,7 @@
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="验证码" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5A6-ae-afH">
                                     <rect key="frame" x="13" y="47" width="68" height="45"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="bdx-Mg-QJb"/>
                                         <constraint firstAttribute="width" constant="68" id="glF-n6-U2Z"/>
@@ -113,6 +122,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="93" id="2Tp-VI-Msz"/>
@@ -151,6 +161,7 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新密码" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNF-Ut-1nW">
                                     <rect key="frame" x="14" y="1" width="68" height="45"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="68" id="RPB-kQ-zV3"/>
                                         <constraint firstAttribute="height" constant="45" id="ucS-TH-MzU"/>
@@ -161,6 +172,7 @@
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rch-XZ-kY3">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                    <animations/>
                                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="ZG1-9Q-vII"/>
@@ -168,6 +180,7 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CqB-8J-AdI">
                                     <rect key="frame" x="60" y="46" width="540" height="1"/>
+                                    <animations/>
                                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="NOH-sz-rKX"/>
@@ -175,6 +188,7 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cB1-YK-6rl">
                                     <rect key="frame" x="0.0" y="92" width="600" height="1"/>
+                                    <animations/>
                                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="UMh-el-4p0"/>
@@ -182,6 +196,7 @@
                                 </view>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入新密码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="f5J-Lk-9oz">
                                     <rect key="frame" x="82" y="1" width="505" height="45"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="SrK-w3-uW9"/>
                                     </constraints>
@@ -190,6 +205,7 @@
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新密码" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whc-FQ-Czu">
                                     <rect key="frame" x="14" y="55" width="68" height="37"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="37" id="NCX-C5-O96"/>
                                         <constraint firstAttribute="width" constant="68" id="Nod-HT-4Ph"/>
@@ -200,6 +216,7 @@
                                 </label>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认新密码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cRc-Fu-Q9L">
                                     <rect key="frame" x="82" y="51" width="505" height="45"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="HvO-jA-29X"/>
                                     </constraints>
@@ -207,6 +224,7 @@
                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 </textField>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="Rch-XZ-kY3" firstAttribute="top" secondItem="eu2-rQ-GvY" secondAttribute="top" id="6dn-vx-InA"/>
@@ -240,6 +258,7 @@
                             </variation>
                         </view>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="eu2-rQ-GvY" secondAttribute="trailing" id="5PC-EM-h2E"/>
@@ -255,6 +274,7 @@
                     </constraints>
                 </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="c5W-gQ-nRr" secondAttribute="bottom" id="EQ0-Xd-16t"/>
