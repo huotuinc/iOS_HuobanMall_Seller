@@ -10,13 +10,14 @@
 #import <CoreLocation/CoreLocation.h> 
 #import "LoginViewController.h"
 #import "HTResultData.h"
-#import "HTHuoBanNavgationViewController.h"
 #import "HTToJudgeLoginFlag.h"
 #import "NSData+NSDataDeal.h"
 
 @interface AppDelegate ()<CLLocationManagerDelegate>
 /**定位管理者*/
 @property(nonatomic,strong) CLLocationManager *mgr;
+
+
 
 @end
 
@@ -62,8 +63,8 @@
     
     if ([HTToJudgeLoginFlag ToJudgeLoginFlag]) {
         UIStoryboard * story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        HTHuoBanNavgationViewController * homeNav = [story instantiateViewControllerWithIdentifier:@"HTHuoBanNavgationViewController"];
-        self.window.rootViewController = homeNav;
+        _homeNav = [story instantiateViewControllerWithIdentifier:@"HTHuoBanNavgationViewController"];
+        self.window.rootViewController = _homeNav;
     }else{
         LoginViewController *login = [[LoginViewController alloc] init];
         UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
@@ -74,6 +75,18 @@
     [self registRemoteNotification:application];
     
     return YES;
+}
+
+/**
+ *  app重新打开的动作
+ *
+ *  @param application <#application description#>
+ */
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    
+    [self.homeNav popToRootViewControllerAnimated:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"homeRefresh" object:nil];
 }
 
 /**
@@ -154,7 +167,7 @@
 - (void)callInitFunction{
     __block HTResultData * resultData = [[HTResultData  alloc] init];
     [UserLoginTool loginRequestGet:@"init" parame:nil success:^(id json) {
-        NSLog(@"xxxx------init%@",json);
+//        NSLog(@"xxxx------init%@",json);
         if ([json[@"resultCode"] intValue] == 56001) {
             LoginViewController *login = [[LoginViewController alloc] init];
             UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];

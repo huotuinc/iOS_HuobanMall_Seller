@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HTHomeViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *today;
 
 @end

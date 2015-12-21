@@ -152,7 +152,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
         
         [SVProgressHUD dismiss];
         
-//        NSLog(@"%@", json);
+        NSLog(@"%@", json);
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
@@ -253,9 +253,6 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
     
     if (self.searchStr.length != 0) {
         dic[@"keyword"] = self.searchStr;
-    }else {
-        [self.tableView footerEndRefreshing];
-        return;
     }
     
     [UserLoginTool loginRequestGet:@"orderList" parame:dic success:^(id json) {
@@ -269,7 +266,7 @@ static NSString *ordorIdentifier = @"ordorCellIdentifier";
             
             [self.ordors addObjectsFromArray:temp];
             
-            
+            [self.tableView reloadData];
             
         }
         if ([json[@"resultCode"] intValue] == 56001) {

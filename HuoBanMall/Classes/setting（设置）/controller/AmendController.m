@@ -57,7 +57,7 @@
         
         [UserLoginTool loginRequestPost:@"updateMerchantProfile" parame:dic success:^(id json) {
             
-            NSLog(@"%@",json);
+//            NSLog(@"%@",json);
             
             [SVProgressHUD dismiss];
             

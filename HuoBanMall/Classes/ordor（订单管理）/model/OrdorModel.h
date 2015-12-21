@@ -24,5 +24,6 @@
 /**下单时间*/
 @property (nonatomic, strong) NSNumber *time;
 
+@property (nonatomic, strong) NSString *mainOrderNo;
 
 @end
